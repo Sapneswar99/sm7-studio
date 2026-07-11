@@ -346,6 +346,228 @@ footer{
     justify-content:center;
 }
 
+   /* ===============================
+   TOAST
+================================ */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:30px;
+    transform:translateX(-50%) translateY(100px);
+    background:#222;
+    color:#fff;
+    padding:14px 22px;
+    border-radius:12px;
+    font-size:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+    opacity:0;
+    transition:.35s;
+    z-index:99999;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+}
+
+/* ===============================
+   SCROLL ANIMATION
+================================ */
+
+section{
+    opacity:0;
+    transform:translateY(40px);
+    transition:.6s ease;
+}
+
+section.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* ===============================
+   TOP BUTTON
+================================ */
+
+#topButton{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:55px;
+    height:55px;
+    border:none;
+    border-radius:50%;
+    background:#4f46e5;
+    color:#fff;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    font-size:22px;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+    z-index:999;
+    transition:.3s;
+}
+
+#topButton:hover{
+    transform:scale(1.1);
+}
+
+/* ===============================
+   LIGHTBOX
+================================ */
+
+.image-viewer{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.95);
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+}
+
+.image-viewer.active{
+    display:flex;
+}
+
+.image-viewer img{
+    width:90%;
+    max-width:500px;
+    border-radius:15px;
+}
+
+.close-viewer{
+    position:absolute;
+    top:20px;
+    right:20px;
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:50%;
+    background:#fff;
+    font-size:20px;
+    cursor:pointer;
+}
+
+/* ===============================
+   AUTO SLIDER
+================================ */
+
+.slider{
+    scroll-snap-type:x mandatory;
+}
+
+.slider img{
+    scroll-snap-align:center;
+}
+
+/* ===============================
+   DOWNLOAD BUTTON EFFECT
+================================ */
+
+.download-btn{
+    position:relative;
+    overflow:hidden;
+}
+
+.download-btn::before{
+    content:"";
+    position:absolute;
+    left:-120%;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(255,255,255,.3);
+    transform:skewX(-30deg);
+}
+
+.download-btn:hover::before{
+    animation:shine .8s linear;
+}
+
+@keyframes shine{
+
+100%{
+left:130%;
+}
+
+}
+
+/* ===============================
+   CARD HOVER
+================================ */
+
+.app-card,
+.info-box,
+.faq-item{
+
+transition:.3s;
+
+}
+
+.app-card:hover,
+.info-box:hover,
+.faq-item:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+}
+
+/* ===============================
+   SCROLLBAR
+================================ */
+
+::-webkit-scrollbar{
+width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+background:#4f46e5;
+border-radius:10px;
+}
+
+::-webkit-scrollbar-track{
+background:#ddd;
+}
+
+body.dark ::-webkit-scrollbar-track{
+background:#222;
+}
+
+/* ===============================
+   IMAGE ZOOM
+================================ */
+
+.slider img:hover{
+
+transform:scale(1.08);
+
+}
+
+/* ===============================
+   FOOTER
+================================ */
+
+footer{
+
+margin-top:40px;
+
+background:#fff;
+
+padding:30px;
+
+}
+
+body.dark footer{
+
+background:#1c1c1c;
+
+}
+   
 .app-right h2{
     font-size:24px;
 }
