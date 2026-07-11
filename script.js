@@ -407,19 +407,3 @@ behavior:"smooth"
 }
 
 },3000);
-
-/* ==========================
-   Splash Screen
-========================== */
-
-window.addEventListener("load", () => {
-
-    const splash = document.getElementById("splash");
-
-    setTimeout(() => {
-
-        splash.classList.add("hide");
-
-    }, 2500);
-
-});
