@@ -1,76 +1,155 @@
-const data=[
-{
-name:"Spotify",
-icon:"https://picsum.photos/200?1",
-dev:"Spotify AB"
-},
-{
-name:"WhatsApp",
-icon:"https://picsum.photos/200?2",
-dev:"Meta"
-},
-{
-name:"Instagram",
-icon:"https://picsum.photos/200?3",
-dev:"Meta"
-},
-{
-name:"Telegram",
-icon:"https://picsum.photos/200?4",
-dev:"Telegram"
-},
-{
-name:"YouTube",
-icon:"https://picsum.photos/200?5",
-dev:"Google"
-},
-{
-name:"Facebook",
-icon:"https://picsum.photos/200?6",
-dev:"Meta"
+const images = document.querySelectorAll(".screenshot-card-img img");
+const viewer = document.getElementById("imageViewer");
+const fullImage = document.getElementById("fullImage");
+const close = document.querySelector(".close");
+
+images.forEach(img => {
+  img.onclick = () => {
+    viewer.style.display = "flex";
+    fullImage.src = img.src;
+  };
+});
+
+close.onclick = () => {
+  viewer.style.display = "none";
+};
+
+viewer.onclick = (e) => {
+  if(e.target === viewer){
+    viewer.style.display = "none";
+  }
+};let selectedRating=0;
+
+const ADMIN_PASS="7328887871";
+
+
+function selectStar(n){
+
+selectedRating=n;
+
+document.querySelectorAll(".ps-stars span")
+.forEach((s,i)=>{
+s.classList.toggle("active",i<n);
+});
+
 }
-];
 
-const apps=document.getElementById("apps");
 
-function load(){
 
-apps.innerHTML="";
+function submitReview(){
 
-data.forEach(app=>{
+let name=username.value;
+let text=userReview.value;
 
-apps.innerHTML+=`
-<div class="card">
-<img src="${app.icon}">
-<h3>${app.name}</h3>
-<p>${app.dev}</p>
+
+if(!name || !text || selectedRating==0){
+
+alert("Fill all fields");
+return;
+
+}
+
+
+let data=JSON.parse(localStorage.getItem("reviews")||"[]");
+
+
+data.unshift({
+
+name:name,
+review:text,
+rating:selectedRating,
+date:new Date().toLocaleDateString()
+
+});
+
+
+localStorage.setItem("reviews",JSON.stringify(data));
+
+
+loadReviews();
+
+
+username.value="";
+userReview.value="";
+selectedRating=0;
+
+
+}
+
+
+
+function loadReviews(){
+
+let data=JSON.parse(localStorage.getItem("reviews")||"[]");
+
+let html="";
+
+
+data.forEach((r,i)=>{
+
+
+html+=`
+
+<div class="review">
+
+<button class="delete-btn"
+onclick="deleteReview(${i})">
+Delete
+</button>
+
+
+<div class="review-name">
+${r.name}
 </div>
+
+
+<div class="review-stars">
+${"â˜…".repeat(r.rating)}
+</div>
+
+
+<p>${r.review}</p>
+
+
+<div class="review-date">
+${r.date}
+</div>
+
+
+</div>
+
 `;
 
 });
 
+
+reviewList.innerHTML=html;
+
 }
 
-load();
 
-document.getElementById("theme").onclick=()=>{
 
-document.body.classList.toggle("dark");
+function deleteReview(i){
 
-};
+let p=prompt("Admin password");
 
-document.getElementById("search").addEventListener("input",e=>{
+if(p===ADMIN_PASS){
 
-let value=e.target.value.toLowerCase();
+let data=JSON.parse(localStorage.getItem("reviews")||"[]");
 
-let cards=document.querySelectorAll(".card");
+data.splice(i,1);
 
-cards.forEach(card=>{
+localStorage.setItem("reviews",JSON.stringify(data));
 
-card.style.display=
-card.innerText.toLowerCase().includes(value)
-?"block":"none";
+loadReviews();
 
-});
+}else{
 
-});
+alert("Wrong password");
+
+}
+
+}
+
+
+loadReviews();
