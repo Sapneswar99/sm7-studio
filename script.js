@@ -302,6 +302,88 @@ viewer.classList.remove("active");
 
 };
 
+/* Progress Animation */
+
+const progressFill=document.getElementById("progressFill");
+const progressText=document.getElementById("progressText");
+const downloadCount=document.getElementById("downloadCount");
+
+downloadCount.innerText=localStorage.getItem("downloads")||0;
+
+downloadBtn.addEventListener("click",()=>{
+
+let p=0;
+
+let timer=setInterval(()=>{
+
+p++;
+
+progressFill.style.width=p+"%";
+
+progressText.innerHTML=p+"%";
+
+if(p>=100){
+
+clearInterval(timer);
+
+let d=Number(localStorage.getItem("downloads"))||0;
+
+d++;
+
+localStorage.setItem("downloads",d);
+
+downloadCount.innerHTML=d;
+
+}
+
+},20);
+
+});
+
+/* Rating */
+
+const stars=document.querySelectorAll(".star");
+const ratingText=document.getElementById("ratingText");
+
+stars.forEach((star,index)=>{
+
+star.onclick=()=>{
+
+stars.forEach(s=>{
+s.classList.remove("active");
+s.classList.replace("fa-solid","fa-regular");
+});
+
+for(let i=0;i<=index;i++){
+
+stars[i].classList.add("active");
+stars[i].classList.replace("fa-regular","fa-solid");
+
+}
+
+ratingText.innerHTML="You rated "+(index+1)+" / 5 ⭐";
+
+localStorage.setItem("rating",index+1);
+
+};
+
+});
+
+const savedRating=localStorage.getItem("rating");
+
+if(savedRating){
+
+for(let i=0;i<savedRating;i++){
+
+stars[i].classList.add("active");
+stars[i].classList.replace("fa-regular","fa-solid");
+
+}
+
+ratingText.innerHTML="Your Rating : "+savedRating+" / 5 ⭐";
+
+}
+
 /* ===========================
    AUTO SLIDER
 =========================== */
