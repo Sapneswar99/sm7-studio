@@ -1,192 +1,47 @@
-<link href="../fonts.googleapis.com/css2ef6e.css?family=Google+Sans:wght@400;500;700&amp;family=Roboto:wght@400;500&amp;display=swap"
-    rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Play Store UI</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
 
-  
-<!-- TOP BAR -->
-  <div class="topbar">
-    <div class="topbar-logo">
-      <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"
-viewBox="0 0 466 511.98">
- <g id="Layer_x0020_1">
-  <path fill="#EA4335" fill-rule="nonzero" d="M199.9 237.8l-198.5 232.37c7.22,24.57 30.16,41.81 55.8,41.81 11.16,0 20.93,-2.79 29.3,-8.37l0 0 244.16 -139.46 -130.76 -126.35z"/>
-  <path fill="#FBBC04" fill-rule="nonzero" d="M433.91 205.1l0 0 -104.65 -60 -111.61 110.22 113.01 108.83 104.64 -58.6c18.14,-9.77 30.7,-29.3 30.7,-50.23 -1.4,-20.93 -13.95,-40.46 -32.09,-50.22z"/>
-  <path fill="#34A853" fill-rule="nonzero" d="M199.42 273.45l129.85 -128.35 -241.37 -136.73c-8.37,-5.58 -19.54,-8.37 -30.7,-8.37 -26.5,0 -50.22,18.14 -55.8,41.86 0,0 0,0 0,0l198.02 231.59z"/>
-  <path fill="#4285F4" fill-rule="nonzero" d="M1.39 41.86c-1.39,4.18 -1.39,9.77 -1.39,15.34l0 397.64c0,5.57 0,9.76 1.4,15.34l216.27 -214.86 -216.28 -213.46z"/>
- </g>
-</svg>
+<body>
 
-      <span>Sm7 Studio</span>
-    </div>
-    <div class="topbar-icons">
-      <svg viewBox="0 0 24 24">
-        <path
-          d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
-      </svg>
-      <div class="avatar"><i class="fa fa-bars" style="font-size:18px;color:white"></i></div>
-    </div>
-  </div>
+<header>
+<div class="logo">Play Store</div>
 
-  <!-- APP HEADER -->
-  <div class="app-header">
-    <div class="app-icon">
-      <img src="https://i.ibb.co/PsqpKSm8/1782056090235-uuid-dd0d6722-b747-4d65-b73a-16927c692281.png" alt="Super Video Player" />
-    </div>
-    <div class="app-info">
-      <div class="app-name">Super Video Player</div>
-      <div class="app-dev">SM Studio</div>
-      <div class="app-ads">Contains ads</div>
-    </div>
-  </div>
+<input type="text" id="search" placeholder="Search apps">
 
-  <!-- STATS ROW -->
-  <div class="stats-row">
-    <div class="stat-item">
-      <div class="stat-value">Version</div>
-      <div class="stat-label">1.0.1</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-value">Update</div>
-      <div class="stat-label">02/07/26</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-value"><span class="rated-box">SIZE</span></div>
-      <div class="stat-label">Size of 26MB</div>
-    </div>
-  </div>
+<button id="theme">🌙</button>
 
-  <!-- INSTALL BUTTON -->
-  <div class="btn-section">
-    <a href="https://file.wapka.org/00hg2g/24cd6ac9e15308332cfc03d96e7259bb/super-video-player" class="btn-install"
-      id="installBtn">Download Now</a>
-  </div>
+</header>
 
-  <div class="divider"></div>
+<div class="chips">
 
-  <!-- SCREENSHOTS -->
-  <div class="screenshots-section">
-  <div class="screenshots-scroll">
-    <div class="screenshot-card-img">
-      <img src="https://i.ibb.co/tMzMWBF7/IMG-20260701-103610.jpg" alt="Screenshot 1">
-    </div>
-
-    <div class="screenshot-card-img">
-      <img src="https://i.ibb.co/xtSgkVhS/Screenshot-2026-07-01-10-34-00-550-com-sm7-video-player.jpg" alt="Screenshot 2">
-    </div>
-
-    <div class="screenshot-card-img">
-      <img src="https://i.ibb.co/JYq3fg8/Screenshot-2026-07-01-10-31-35-928-com-sm7-video-player.jpg" alt="Screenshot 3">
-    </div>
-
-    <div class="screenshot-card-img">
-      <img src="https://i.ibb.co/BH9cByWH/Screenshot-2026-07-01-10-31-22-149-com-sm7-video-player.jpg" alt="Screenshot 4">
-    </div>
-
-    <div class="screenshot-card-img">
-      <img src="https://i.ibb.co/QF4Bx2r7/Screenshot-2026-07-02-13-21-36-713-com-sm7-video-player.jpg" alt="Screenshot 5">
-    </div>
-  </div>
-</div>
-
-<!-- Fullscreen Viewer -->
-<div class="image-viewer" id="imageViewer">
-  <span class="close">&times;</span>
-  <img id="fullImage">
-</div>
-
-  <div class="divider"></div>
-
-  <!-- TRUSTED / BADGES SECTION -->
-  <div class="section-block">
-    <div class="section-title" style="margin-bottom:14px;">App info</div>
-    <div class="badges-grid">
-      <div class="badge-item">
-        <div class="badge-icon" style="background:#e8f5e9;">
-          <svg viewBox="0 0 24 24" fill="#01875f" width="22" height="22">
-            <path
-              d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
-          </svg>
-        </div>
-        <div class="badge-text">
-          <div class="badge-title">Verified by Play</div>
-          <div class="badge-sub">Meets Google Play policies</div>
-        </div>
-      </div>
-      <div class="badge-item">
-        <div class="badge-icon" style="background:#e3f2fd;">
-          <svg viewBox="0 0 24 24" fill="#1a73e8" width="22" height="22">
-            <path
-              d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
-          </svg>
-        </div>
-        <div class="badge-text">
-          <div class="badge-title">Data encrypted</div>
-          <div class="badge-sub">In transit &amp; at rest</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- RATINGS & REVIEWS -->
-  <div class="section-block">
-
-<div class="section-header">
-<span class="section-title">Ratings and reviews</span>
-<svg viewBox="0 0 24 24" class="section-arrow">
-<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/>
-</svg>
-</div>
-
-
-<div class="rating-top">
-
-<div class="big-rating">4.8</div>
-
-<div>
-<div class="stars-big">★★★★★</div>
-<div class="small-text">Based on user reviews</div>
-</div>
+<button>For You</button>
+<button>Top Charts</button>
+<button>Kids</button>
+<button>Premium</button>
 
 </div>
 
+<section class="apps" id="apps">
 
-<div class="ps-review-box">
+</section>
 
-<h3>Rate this app</h3>
+<nav>
 
-<div class="ps-stars">
-<span onclick="selectStar(1)">★</span>
-<span onclick="selectStar(2)">★</span>
-<span onclick="selectStar(3)">★</span>
-<span onclick="selectStar(4)">★</span>
-<span onclick="selectStar(5)">★</span>
-</div>
+<button>🏠</button>
+<button>🎮</button>
+<button>📚</button>
+<button>👤</button>
 
+</nav>
 
-<input id="username" placeholder="Your name">
+<script src="script.js"></script>
 
-
-<textarea id="userReview"
-placeholder="Write your review..."></textarea>
-
-
-<button class="ps-submit" onclick="submitReview()">
-Post review
-</button>
-
-</div>
-
-
-<div id="reviewList"></div>
-
-
-</div>
-
-</br></br></br></></br></br></></br>
-
-  </div>
-</div>
-
-</div>
+</body>
+</html>
