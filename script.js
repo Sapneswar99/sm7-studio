@@ -1,155 +1,267 @@
-const images = document.querySelectorAll(".screenshot-card-img img");
-const viewer = document.getElementById("imageViewer");
-const fullImage = document.getElementById("fullImage");
-const close = document.querySelector(".close");
+/* ===================================
+   APK Website Script
+   Dark Mode
+   Share
+   Copy Link
+   Search
+   Download Counter
+   Toast
+=================================== */
 
-images.forEach(img => {
-  img.onclick = () => {
-    viewer.style.display = "flex";
-    fullImage.src = img.src;
-  };
-});
+const body = document.body;
 
-close.onclick = () => {
-  viewer.style.display = "none";
-};
+const themeBtn = document.getElementById("themeBtn");
+const copyBtn = document.getElementById("copyBtn");
+const shareBtn = document.getElementById("shareBtn");
+const searchInput = document.getElementById("searchInput");
+const downloadBtn = document.querySelector(".download-btn");
 
-viewer.onclick = (e) => {
-  if(e.target === viewer){
-    viewer.style.display = "none";
-  }
-};let selectedRating=0;
+/* ==========================
+   Toast
+========================== */
 
-const ADMIN_PASS="7328887871";
+function showToast(message){
 
+    let toast = document.createElement("div");
 
-function selectStar(n){
+    toast.className = "toast";
 
-selectedRating=n;
+    toast.innerText = message;
 
-document.querySelectorAll(".ps-stars span")
-.forEach((s,i)=>{
-s.classList.toggle("active",i<n);
-});
+    document.body.appendChild(toast);
 
-}
+    setTimeout(()=>{
+        toast.classList.add("show");
+    },100);
 
+    setTimeout(()=>{
+        toast.classList.remove("show");
 
+        setTimeout(()=>{
+            toast.remove();
+        },300);
 
-function submitReview(){
-
-let name=username.value;
-let text=userReview.value;
-
-
-if(!name || !text || selectedRating==0){
-
-alert("Fill all fields");
-return;
+    },2500);
 
 }
 
+/* ==========================
+   Dark Mode
+========================== */
 
-let data=JSON.parse(localStorage.getItem("reviews")||"[]");
+const savedTheme = localStorage.getItem("theme");
 
+if(savedTheme === "dark"){
+    body.classList.add("dark");
+    themeBtn.innerHTML =
+    '<i class="fa-solid fa-sun"></i>';
+}
 
-data.unshift({
+themeBtn.addEventListener("click",()=>{
 
-name:name,
-review:text,
-rating:selectedRating,
-date:new Date().toLocaleDateString()
+    body.classList.toggle("dark");
+
+    if(body.classList.contains("dark")){
+
+        localStorage.setItem("theme","dark");
+
+        themeBtn.innerHTML =
+        '<i class="fa-solid fa-sun"></i>';
+
+    }else{
+
+        localStorage.setItem("theme","light");
+
+        themeBtn.innerHTML =
+        '<i class="fa-solid fa-moon"></i>';
+
+    }
 
 });
 
+/* ==========================
+   Copy Link
+========================== */
 
-localStorage.setItem("reviews",JSON.stringify(data));
+copyBtn.addEventListener("click",()=>{
 
+navigator.clipboard.writeText(window.location.href);
 
-loadReviews();
-
-
-username.value="";
-userReview.value="";
-selectedRating=0;
-
-
-}
-
-
-
-function loadReviews(){
-
-let data=JSON.parse(localStorage.getItem("reviews")||"[]");
-
-let html="";
-
-
-data.forEach((r,i)=>{
-
-
-html+=`
-
-<div class="review">
-
-<button class="delete-btn"
-onclick="deleteReview(${i})">
-Delete
-</button>
-
-
-<div class="review-name">
-${r.name}
-</div>
-
-
-<div class="review-stars">
-${"â˜…".repeat(r.rating)}
-</div>
-
-
-<p>${r.review}</p>
-
-
-<div class="review-date">
-${r.date}
-</div>
-
-
-</div>
-
-`;
+showToast("Website link copied.");
 
 });
 
+/* ==========================
+   Share
+========================== */
 
-reviewList.innerHTML=html;
+shareBtn.addEventListener("click",async()=>{
 
-}
+if(navigator.share){
 
+try{
 
+await navigator.share({
 
-function deleteReview(i){
+title:document.title,
 
-let p=prompt("Admin password");
+text:"Download APK",
 
-if(p===ADMIN_PASS){
+url:window.location.href
 
-let data=JSON.parse(localStorage.getItem("reviews")||"[]");
+});
 
-data.splice(i,1);
-
-localStorage.setItem("reviews",JSON.stringify(data));
-
-loadReviews();
+}catch(e){}
 
 }else{
 
-alert("Wrong password");
+showToast("Share not supported.");
 
 }
 
+});
+
+/* ==========================
+   Search
+========================== */
+
+searchInput.addEventListener("keyup",()=>{
+
+let value = searchInput.value.toLowerCase();
+
+document.querySelectorAll("section").forEach(sec=>{
+
+let text = sec.innerText.toLowerCase();
+
+if(text.includes(value)){
+
+sec.style.display="block";
+
+}else{
+
+if(sec.classList.contains("search-section")) return;
+
+if(sec.classList.contains("banner")) return;
+
+sec.style.display="none";
+
 }
 
+});
 
-loadReviews();
+});
+
+/* ==========================
+   Download Counter
+========================== */
+
+let count = Number(localStorage.getItem("downloads")) || 0;
+
+downloadBtn.addEventListener("click",()=>{
+
+count++;
+
+localStorage.setItem("downloads",count);
+
+showToast("Download Started");
+
+console.log("Downloads :",count);
+
+});
+
+/* ==========================
+   Lazy Image
+========================== */
+
+document.querySelectorAll("img").forEach(img=>{
+
+img.loading="lazy";
+
+});
+
+/* ==========================
+   Scroll Animation
+========================== */
+
+const observer = new IntersectionObserver((entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("visible");
+
+}
+
+});
+
+},{
+threshold:.15
+});
+
+document.querySelectorAll("section").forEach(sec=>{
+
+observer.observe(sec);
+
+});
+
+/* ==========================
+   Back To Top Button
+========================== */
+
+const topBtn=document.createElement("button");
+
+topBtn.innerHTML='<i class="fa-solid fa-arrow-up"></i>';
+
+topBtn.id="topButton";
+
+document.body.appendChild(topBtn);
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY>300){
+
+topBtn.style.display="flex";
+
+}else{
+
+topBtn.style.display="none";
+
+}
+
+});
+
+topBtn.addEventListener("click",()=>{
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+});
+
+/* ==========================
+   Keyboard Shortcut
+========================== */
+
+document.addEventListener("keydown",(e)=>{
+
+if(e.ctrlKey && e.key==="d"){
+
+e.preventDefault();
+
+downloadBtn.click();
+
+}
+
+});
+
+/* ==========================
+   Console Message
+========================== */
+
+console.log("%cAPK Website Ready",
+"color:#4f46e5;font-size:20px;font-weight:bold;");
