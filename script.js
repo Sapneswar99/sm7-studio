@@ -265,3 +265,63 @@ downloadBtn.click();
 
 console.log("%cAPK Website Ready",
 "color:#4f46e5;font-size:20px;font-weight:bold;");
+
+/* ===========================
+   IMAGE VIEWER
+=========================== */
+
+const viewer=document.createElement("div");
+viewer.className="image-viewer";
+
+viewer.innerHTML=`
+<button class="close-viewer">
+<i class="fa-solid fa-xmark"></i>
+</button>
+<img src="">
+`;
+
+document.body.appendChild(viewer);
+
+const viewerImg=viewer.querySelector("img");
+
+document.querySelectorAll(".slider img").forEach(img=>{
+
+img.addEventListener("click",()=>{
+
+viewer.classList.add("active");
+
+viewerImg.src=img.src;
+
+});
+
+});
+
+viewer.querySelector("button").onclick=()=>{
+
+viewer.classList.remove("active");
+
+};
+
+/* ===========================
+   AUTO SLIDER
+=========================== */
+
+const slider=document.querySelector(".slider");
+
+setInterval(()=>{
+
+slider.scrollBy({
+left:240,
+behavior:"smooth"
+});
+
+if(slider.scrollLeft+slider.clientWidth>=slider.scrollWidth-5){
+
+slider.scrollTo({
+left:0,
+behavior:"smooth"
+});
+
+}
+
+},3000);
