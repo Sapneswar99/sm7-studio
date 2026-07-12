@@ -340,8 +340,6 @@ downloadCount.innerHTML=d;
 
 });
 
-/* Rating */
-
 const stars=document.querySelectorAll(".star");
 const ratingText=document.getElementById("ratingText");
 
