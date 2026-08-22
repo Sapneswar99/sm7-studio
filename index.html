@@ -1,309 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sm Studio</title>
+  <title>Super Video Player</title>
 
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- Header -->
-
 <header class="header">
+  <div class="brand">
+    <img src="icon.png" alt="Super Video Player">
+    <span>Super Video Player</span>
+  </div>
 
-<div class="logo">
-<i class="fa-solid fa-cube"></i>
-<span>SM Studio</span>
-</div>
-
-<div class="header-right">
-
-<button id="themeBtn">
-<i class="fa-solid fa-moon"></i>
-</button>
-
-<button id="shareBtn">
-<i class="fa-solid fa-share"></i>
-</button>
-
-</div>
-
+  <button class="menu-btn" id="menuBtn">☰</button>
 </header>
 
-<!-- App Card -->
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="badge">
+        ★ #1 Video Player for Android
+      </div>
+
+      <h1>
+        Super<br>
+        <span>Video</span> Player
+      </h1>
+
+      <p class="subtitle">
+        Powerful, Fast and Lightweight<br>
+        Video Player for Android.
+      </p>
+
+      <div class="stats">
+
+        <div class="stat">
+          <div class="stat-icon android">♟</div>
+          <small>Android</small>
+          <strong>5.0+</strong>
+        </div>
+
+        <div class="stat">
+          <div class="stat-icon">⇩</div>
+          <small>Downloads</small>
+          <strong>10K+</strong>
+        </div>
+
+        <div class="stat">
+          <div class="stat-icon star">★</div>
+          <small>Rating</small>
+          <strong>4.8 ★</strong>
+        </div>
+
+        <div class="stat">
+          <div class="stat-icon">▣</div>
+          <small>Size</small>
+          <strong>23 MB</strong>
+        </div>
+
+      </div>
+
+      <button class="download-btn" onclick="downloadAPK()">
+        <span>⇩</span>
+        Download APK
+        <small>(23 MB)</small>
+      </button>
+
+      <div class="secure">
+        🛡️ 100% Safe & Secure Download
+      </div>
+
+    </div>
+
+    <!-- PHONE PREVIEW -->
+    <div class="phone-wrapper">
+
+      <div class="phone">
+
+        <div class="phone-top">
+          <span>12:30</span>
+          <span>● ◔ ▰</span>
+        </div>
+
+        <div class="app-bar">
+          <span>☰</span>
+          <strong>Super Video Player</strong>
+          <span>⌕ ⋮</span>
+        </div>
+
+        <div class="tabs">
+          <span class="active">Videos</span>
+          <span>Folders</span>
+        </div>
+
+        <div class="folders">
+
+          <div class="folder">
+            <b>▰</b>
+            <div>
+              <strong>Movies</strong>
+              <small>128 Videos</small>
+            </div>
+            <span>›</span>
+          </div>
+
+          <div class="folder">
+            <b>▰</b>
+            <div>
+              <strong>Action</strong>
+              <small>64 Videos</small>
+            </div>
+            <span>›</span>
+          </div>
+
+          <div class="folder">
+            <b>▰</b>
+            <div>
+              <strong>Drama</strong>
+              <small>52 Videos</small>
+            </div>
+            <span>›</span>
+          </div>
+
+          <div class="folder">
+            <b>▰</b>
+            <div>
+              <strong>Comedy</strong>
+              <small>36 Videos</small>
+            </div>
+            <span>›</span>
+          </div>
+
+          <div class="folder">
+            <b>▰</b>
+            <div>
+              <strong>Animation</strong>
+              <small>47 Videos</small>
+            </div>
+            <span>›</span>
+          </div>
 
-<section class="app-card">
+          <div class="folder">
+            <b>▰</b>
+            <div>
+              <strong>Documentary</strong>
+              <small>24 Videos</small>
+            </div>
+            <span>›</span>
+          </div>
 
-<div class="app-left">
+        </div>
 
-<img src="https://i.ibb.co/PsqpKSm8/1782056090235-uuid-dd0d6722-b747-4d65-b73a-16927c692281.png"
-class="app-logo">
+        <div class="phone-nav">
+          <span class="selected">▣<small>Videos</small></span>
+          <span>☷<small>Playlist</small></span>
+          <span>⚙<small>Settings</small></span>
+        </div>
 
-</div>
+      </div>
 
-<div class="app-right">
+    </div>
 
-<h2>Super Video Player</h2>
+  </section>
 
-<p class="developer">
-SM Studio
-</div>
 
-</section>
+  <!-- FEATURES -->
+  <section class="section">
 
-<!-- Download -->
+    <h2>✦ &nbsp; Why Choose Us?</h2>
 
-<section class="download-area">
+    <div class="features">
 
-<a href="https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk"
-class="download-btn"
-download>
+      <div class="feature">
+        <div class="feature-icon purple">▶</div>
+        <h3>All Format Support</h3>
+        <p>
+          Supports all major video formats including 4K, Ultra HD.
+        </p>
+      </div>
 
-<i class="fa-solid fa-download"></i>
+      <div class="feature">
+        <div class="feature-icon blue">ϟ</div>
+        <h3>Fast & Smooth</h3>
+        <p>
+          Optimized for smooth playback experience without lag.
+        </p>
+      </div>
 
-Download APK
+      <div class="feature">
+        <div class="feature-icon green">🔒</div>
+        <h3>Private & Secure</h3>
+        <p>
+          Keep your videos safe and private with advanced security.
+        </p>
+      </div>
 
-</a>
+      <div class="feature">
+        <div class="feature-icon orange">☷</div>
+        <h3>Advanced Controls</h3>
+        <p>
+          Brightness, Volume, Speed and more powerful controls.
+        </p>
+      </div>
 
-<button id="copyBtn">
+    </div>
 
-<i class="fa-solid fa-link"></i>
+  </section>
 
-Copy Link
 
-</button>
+  <!-- SCREENSHOTS -->
+  <section class="section screenshots-section">
 
-</section>
+    <div class="section-title">
+      <h2>▧ &nbsp; Screenshots</h2>
+      <a href="#">View All ›</a>
+    </div>
 
-<!-- Information -->
+    <div class="screenshots">
 
-<section class="information">
+      <img src="screenshots/player.jpg" alt="Video Player">
 
-<div class="info-box">
+      <img src="screenshots/movies.jpg" alt="Movies">
 
-<h3>Version</h3>
+      <img src="screenshots/speed.jpg" alt="Playback Speed">
 
-<p>1.0.1</p>
+      <img src="screenshots/equalizer.jpg" alt="Equalizer">
 
-</div>
+    </div>
 
-<div class="info-box">
+    <div class="dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
 
-<h3>Size</h3>
+  </section>
 
-<p>26 MB</p>
 
-</div>
+  <!-- DOWNLOAD CARD -->
+  <section class="download-card">
 
-<div class="info-box">
+    <div class="download-icon">
+      ▶
+    </div>
 
-<h3>Android</h3>
+    <div class="download-info">
 
-<p>7.0+</p>
+      <h2>Super Video Player</h2>
 
-</div>
+      <p>
+        Version 1.0.0 &nbsp; | &nbsp; Updated on May 20, 2025
+      </p>
 
-<div class="info-box">
+      <div class="tags">
+        <span>23 MB</span>
+        <span>Android 5.0+</span>
+      </div>
 
-<h3>Updated</h3>
+    </div>
 
-<p>August 2026</p>
+    <div class="download-area">
 
-</div>
+      <button class="download-btn" onclick="downloadAPK()">
+        ⇩ &nbsp; Download APK
+        <small>(23 MB)</small>
+      </button>
 
-</section>
+      <p class="verified">
+        🛡️ Scanned & Verified &nbsp; | &nbsp; No Malware
+      </p>
 
-<!-- Screenshots -->
+    </div>
 
-<section class="screenshots">
+  </section>
 
-<div class="screenshots-sm"><h2>Screenshots</h2></div>
+</main>
 
-<div class="slider">
-
-<img src="https://i.imgur.com/Zxcs4Kt.jpeg">
-
-<img src="https://i.imgur.com/QLsqEcS.jpeg">
-
-<img src="https://i.imgur.com/rvL7tex.jpeg">
-
-<img src="https://i.imgur.com/oLKaOO6.jpeg">
-
-<img src="https://i.imgur.com/HzYEQ20.jpeg">
-  
-</div>
-
-</section>
-
-<!-- Description -->
-
-<section class="description">
-
-<h2>About App</h2>
-
-<p>
-
-This app provides a smooth and fast experience with a beautiful Material UI.
-
-Enjoy video and experience high-quality video completely free.
-
-</p>
-
-</section>
-
-<!-- Features -->
-
-<section class="features">
-
-<h2>Features</h2>
-
-<ul>
-
-<li>✔ Material Design</li>
-
-<li>✔ Offline Support</li>
-
-<li>✔ Secure APK</li>
-
-<li>✔ Dark Mode</li>
-
-<li>✔ Responsive UI</li>
-
-</ul>
-
-</section>
-
-<!-- Changelog -->
-
-<section class="changelog">
-
-<h2>What's New</h2>
-
-<ul>
-
-<li>Added New UI</li>
-
-<li>Performance Improved</li>
-
-<li>Bug Fixes</li>
-
-<li>Faster Response</li>
-
-</ul>
-
-</section>
-
-<!-- FAQ -->
-
-<section class="faq">
-
-<h2>FAQ</h2>
-
-<div class="faq-item">
-
-<h4>Is this APK safe?</h4>
-
-<p>Yes, it is completely safe and verified.</p>
-
-</div>
-
-<div class="faq-item">
-
-<h4>Does it require internet?</h4>
-
-<p>No, it works offline after installation.</p>
-
-</div>
-
-</section>
-
-<!-- ==========================
-     Download Statistics
-========================== -->
-
-<section class="stats-section">
-
-<div class="stat-card">
-<h3>Total Downloads</h3>
-<p id="downloadCount">0</p>
-</div>
-
-<div class="stat-card">
-<h3>Current Version</h3>
-<p>1.0.1</p>
-</div>
-
-<div class="stat-card">
-<h3>APK Status</h3>
-<p class="verified">Verified ✓</p>
-</div>
-
-</section>
-
-<!-- ==========================
-     Related Apps
-========================== -->
-
-<section class="related-apps">
-
-<div class="related-apps-sm"><h2>Related Apps</h2></div>
-
-<div class="related-grid">
-
-<div class="related-card">
-
-<img src="assets/logo.png">
-
-<h3>Music Player Lite</h3>
-
-<button>View</button>
-
-</div>
-
-<div class="related-card">
-
-<img src="assets/logo.png">
-
-<h3>Video Player</h3>
-
-<button>View</button>
-
-</div>
-
-<div class="related-card">
-
-<img src="assets/logo.png">
-
-<h3>Gallery App</h3>
-
-<button>View</button>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- Footer -->
 
 <footer>
 
-<p>
+  <div class="footer-brand">
+    <img src="icon.png" alt="">
+    <strong>Super Video Player</strong>
+  </div>
 
-© 2026 SM Studio
+  <p>
+    © 2025 Super Video Player.<br>
+    All rights reserved.
+  </p>
 
-</p>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Use</a>
+    <a href="#">Contact Us</a>
+  </div>
 
 </footer>
+
 
 <script src="script.js"></script>
 
