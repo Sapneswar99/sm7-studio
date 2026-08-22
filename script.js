@@ -196,7 +196,7 @@ function loadRecommended() {
 
 function downloadApp() {
 
-  const apkPath = "apk/SuperVideoPlayer.apk";
+  const apkPath = "https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk";
 
   const link = document.createElement("a");
 
