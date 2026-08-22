@@ -4,309 +4,451 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Super Video Player</title>
+  <title>Super Store</title>
 
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header class="header">
-  <div class="brand">
-    <img src="icon.png" alt="Super Video Player">
-    <span>Super Video Player</span>
-  </div>
+<div class="app">
 
-  <button class="menu-btn" id="menuBtn">☰</button>
-</header>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="brand">
+      <img src="icon.png" alt="Super Store">
+      <span>Super Store</span>
+    </div>
 
-<main>
+    <button class="icon-btn">♧</button>
+  </header>
 
-  <!-- HERO -->
-  <section class="hero">
 
-    <div class="hero-content">
+  <!-- HOME -->
+  <section id="home" class="screen active">
 
-      <div class="badge">
-        ★ #1 Video Player for Android
+    <div class="search-box" onclick="openSearch()">
+      <span>⌕</span>
+      <span class="placeholder">Search for apps & games</span>
+      <span>♩</span>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active">For you</button>
+      <button class="tab">Top charts</button>
+      <button class="tab" onclick="showScreen('categories')">Categories</button>
+      <button class="tab">Kids</button>
+    </div>
+
+    <!-- FEATURED -->
+    <div class="featured">
+
+      <div>
+        <h1>Super Video Player</h1>
+
+        <p>
+          Powerful, Fast and<br>
+          Lightweight Video Player
+        </p>
+
+        <button onclick="openApp()">
+          Download Now
+        </button>
       </div>
 
-      <h1>
-        Super<br>
-        <span>Video</span> Player
-      </h1>
-
-      <p class="subtitle">
-        Powerful, Fast and Lightweight<br>
-        Video Player for Android.
-      </p>
-
-      <div class="stats">
-
-        <div class="stat">
-          <div class="stat-icon android">♟</div>
-          <small>Android</small>
-          <strong>5.0+</strong>
-        </div>
-
-        <div class="stat">
-          <div class="stat-icon">⇩</div>
-          <small>Downloads</small>
-          <strong>10K+</strong>
-        </div>
-
-        <div class="stat">
-          <div class="stat-icon star">★</div>
-          <small>Rating</small>
-          <strong>4.8 ★</strong>
-        </div>
-
-        <div class="stat">
-          <div class="stat-icon">▣</div>
-          <small>Size</small>
-          <strong>23 MB</strong>
-        </div>
-
-      </div>
-
-      <button class="download-btn" onclick="downloadAPK()">
-        <span>⇩</span>
-        Download APK
-        <small>(23 MB)</small>
-      </button>
-
-      <div class="secure">
-        🛡️ 100% Safe & Secure Download
-      </div>
+      <img src="icon.png" alt="Super Video Player">
 
     </div>
 
-    <!-- PHONE PREVIEW -->
-    <div class="phone-wrapper">
-
-      <div class="phone">
-
-        <div class="phone-top">
-          <span>12:30</span>
-          <span>● ◔ ▰</span>
-        </div>
-
-        <div class="app-bar">
-          <span>☰</span>
-          <strong>Super Video Player</strong>
-          <span>⌕ ⋮</span>
-        </div>
-
-        <div class="tabs">
-          <span class="active">Videos</span>
-          <span>Folders</span>
-        </div>
-
-        <div class="folders">
-
-          <div class="folder">
-            <b>▰</b>
-            <div>
-              <strong>Movies</strong>
-              <small>128 Videos</small>
-            </div>
-            <span>›</span>
-          </div>
-
-          <div class="folder">
-            <b>▰</b>
-            <div>
-              <strong>Action</strong>
-              <small>64 Videos</small>
-            </div>
-            <span>›</span>
-          </div>
-
-          <div class="folder">
-            <b>▰</b>
-            <div>
-              <strong>Drama</strong>
-              <small>52 Videos</small>
-            </div>
-            <span>›</span>
-          </div>
-
-          <div class="folder">
-            <b>▰</b>
-            <div>
-              <strong>Comedy</strong>
-              <small>36 Videos</small>
-            </div>
-            <span>›</span>
-          </div>
-
-          <div class="folder">
-            <b>▰</b>
-            <div>
-              <strong>Animation</strong>
-              <small>47 Videos</small>
-            </div>
-            <span>›</span>
-          </div>
-
-          <div class="folder">
-            <b>▰</b>
-            <div>
-              <strong>Documentary</strong>
-              <small>24 Videos</small>
-            </div>
-            <span>›</span>
-          </div>
-
-        </div>
-
-        <div class="phone-nav">
-          <span class="selected">▣<small>Videos</small></span>
-          <span>☷<small>Playlist</small></span>
-          <span>⚙<small>Settings</small></span>
-        </div>
-
-      </div>
-
+    <div class="carousel-dots">
+      <span class="selected"></span>
+      <span></span>
+      <span></span>
     </div>
 
-  </section>
-
-
-  <!-- FEATURES -->
-  <section class="section">
-
-    <h2>✦ &nbsp; Why Choose Us?</h2>
-
-    <div class="features">
-
-      <div class="feature">
-        <div class="feature-icon purple">▶</div>
-        <h3>All Format Support</h3>
-        <p>
-          Supports all major video formats including 4K, Ultra HD.
-        </p>
-      </div>
-
-      <div class="feature">
-        <div class="feature-icon blue">ϟ</div>
-        <h3>Fast & Smooth</h3>
-        <p>
-          Optimized for smooth playback experience without lag.
-        </p>
-      </div>
-
-      <div class="feature">
-        <div class="feature-icon green">🔒</div>
-        <h3>Private & Secure</h3>
-        <p>
-          Keep your videos safe and private with advanced security.
-        </p>
-      </div>
-
-      <div class="feature">
-        <div class="feature-icon orange">☷</div>
-        <h3>Advanced Controls</h3>
-        <p>
-          Brightness, Volume, Speed and more powerful controls.
-        </p>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- SCREENSHOTS -->
-  <section class="section screenshots-section">
 
     <div class="section-title">
-      <h2>▧ &nbsp; Screenshots</h2>
-      <a href="#">View All ›</a>
+      <h2>Recommended for you</h2>
+      <a>See all</a>
     </div>
 
-    <div class="screenshots">
+    <div id="recommended"></div>
 
-      <img src="screenshots/player.jpg" alt="Video Player">
 
-      <img src="screenshots/movies.jpg" alt="Movies">
-
-      <img src="screenshots/speed.jpg" alt="Playback Speed">
-
-      <img src="screenshots/equalizer.jpg" alt="Equalizer">
-
+    <div class="section-title">
+      <h2>Top categories</h2>
     </div>
 
-    <div class="dots">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
+    <div class="category-row">
 
-  </section>
+      <div onclick="showScreen('categories')">
+        <div class="cat-icon purple">▶</div>
+        <small>Video Players</small>
+      </div>
 
+      <div onclick="showScreen('categories')">
+        <div class="cat-icon blue">⚒</div>
+        <small>Tools</small>
+      </div>
 
-  <!-- DOWNLOAD CARD -->
-  <section class="download-card">
+      <div onclick="showScreen('categories')">
+        <div class="cat-icon red">▣</div>
+        <small>Entertainment</small>
+      </div>
 
-    <div class="download-icon">
-      ▶
-    </div>
-
-    <div class="download-info">
-
-      <h2>Super Video Player</h2>
-
-      <p>
-        Version 1.0.0 &nbsp; | &nbsp; Updated on May 20, 2025
-      </p>
-
-      <div class="tags">
-        <span>23 MB</span>
-        <span>Android 5.0+</span>
+      <div onclick="showScreen('categories')">
+        <div class="cat-icon green">●</div>
+        <small>Games</small>
       </div>
 
     </div>
 
-    <div class="download-area">
+  </section>
 
-      <button class="download-btn" onclick="downloadAPK()">
-        ⇩ &nbsp; Download APK
-        <small>(23 MB)</small>
-      </button>
 
-      <p class="verified">
-        🛡️ Scanned & Verified &nbsp; | &nbsp; No Malware
-      </p>
+  <!-- CATEGORIES -->
+  <section id="categories" class="screen">
+
+    <div class="page-header">
+      <button onclick="showScreen('home')">‹</button>
+      <h2>Categories</h2>
+      <span>⌕</span>
+    </div>
+
+    <div class="category-list">
+
+      <div class="category-item">
+        <div class="cat-icon purple">▶</div>
+        <div>
+          <b>Video Players</b>
+          <small>45 Apps</small>
+        </div>
+        <span>›</span>
+      </div>
+
+      <div class="category-item">
+        <div class="cat-icon blue">⚒</div>
+        <div>
+          <b>Tools</b>
+          <small>86 Apps</small>
+        </div>
+        <span>›</span>
+      </div>
+
+      <div class="category-item">
+        <div class="cat-icon red">▥</div>
+        <div>
+          <b>Entertainment</b>
+          <small>62 Apps</small>
+        </div>
+        <span>›</span>
+      </div>
+
+      <div class="category-item">
+        <div class="cat-icon orange">▣</div>
+        <div>
+          <b>Photography</b>
+          <small>54 Apps</small>
+        </div>
+        <span>›</span>
+      </div>
+
+      <div class="category-item">
+        <div class="cat-icon pink">♫</div>
+        <div>
+          <b>Music & Audio</b>
+          <small>40 Apps</small>
+        </div>
+        <span>›</span>
+      </div>
+
+      <div class="category-item">
+        <div class="cat-icon blue">●</div>
+        <div>
+          <b>Social</b>
+          <small>33 Apps</small>
+        </div>
+        <span>›</span>
+      </div>
+
+      <div class="category-item">
+        <div class="cat-icon green">✓</div>
+        <div>
+          <b>Productivity</b>
+          <small>28 Apps</small>
+        </div>
+        <span>›</span>
+      </div>
+
+      <div class="category-item">
+        <div class="cat-icon green">●</div>
+        <div>
+          <b>Games</b>
+          <small>120 Apps</small>
+        </div>
+        <span>›</span>
+      </div>
 
     </div>
 
   </section>
 
-</main>
+
+  <!-- SEARCH -->
+  <section id="search" class="screen">
+
+    <div class="search-header">
+
+      <button onclick="showScreen('home')">‹</button>
+
+      <input
+        id="searchInput"
+        type="text"
+        value="video player"
+        placeholder="Search apps & games"
+        oninput="searchApps()"
+      >
+
+      <button onclick="clearSearch()">×</button>
+
+    </div>
+
+    <h3 class="results-title">Search results</h3>
+
+    <div id="searchResults"></div>
+
+  </section>
 
 
-<footer>
+  <!-- APP DETAILS -->
+  <section id="details" class="screen">
 
-  <div class="footer-brand">
-    <img src="icon.png" alt="">
-    <strong>Super Video Player</strong>
-  </div>
+    <div class="page-header">
+      <button onclick="showScreen('home')">‹</button>
+      <span></span>
+      <span>⋮</span>
+    </div>
 
-  <p>
-    © 2025 Super Video Player.<br>
-    All rights reserved.
-  </p>
+    <div class="app-info">
 
-  <div class="footer-links">
-    <a href="#">Privacy Policy</a>
-    <a href="#">Terms of Use</a>
-    <a href="#">Contact Us</a>
-  </div>
+      <img src="icon.png" alt="Super Video Player">
 
-</footer>
+      <div>
+        <h1>Super Video Player</h1>
+        <p class="developer">Super Studio</p>
+        <p class="ads">Contains ads</p>
+      </div>
 
+    </div>
+
+    <div class="app-stats">
+
+      <div>
+        <b>4.8 ★</b>
+        <small>12K reviews</small>
+      </div>
+
+      <div>
+        <b>23 MB</b>
+        <small>Size</small>
+      </div>
+
+      <div>
+        <b>3+</b>
+        <small>Rated for</small>
+      </div>
+
+    </div>
+
+    <button class="install-btn" onclick="downloadApp()">
+      Install
+    </button>
+
+    <div class="app-screenshots">
+
+      <img src="screenshots/player.jpg">
+      <img src="screenshots/movies.jpg">
+      <img src="screenshots/speed.jpg">
+
+    </div>
+
+    <h2>About this app</h2>
+
+    <p class="description">
+      Super Video Player is a powerful, fast and lightweight
+      video player for Android. Supports all major video
+      formats including 4K and Ultra HD.
+    </p>
+
+    <span class="tag">Video Players & Editors</span>
+
+  </section>
+
+
+  <!-- DOWNLOADS -->
+  <section id="updates" class="screen">
+
+    <div class="page-header">
+      <button onclick="showScreen('home')">‹</button>
+      <h2>My downloads</h2>
+      <span></span>
+    </div>
+
+    <div class="download-tabs">
+      <button class="active">Downloads</button>
+      <button>Updates <b>3</b></button>
+    </div>
+
+    <h3>Downloading (1)</h3>
+
+    <div class="download-item">
+
+      <img src="icon.png">
+
+      <div class="download-content">
+
+        <b>Super Video Player</b>
+
+        <div class="progress">
+          <span id="progressBar"></span>
+        </div>
+
+        <small>
+          <span id="progressText">12.4 MB / 23 MB</span>
+        </small>
+
+      </div>
+
+      <button onclick="pauseDownload()">Ⅱ</button>
+
+    </div>
+
+
+    <h3>Completed (2)</h3>
+
+    <div class="download-item">
+
+      <div class="mini-icon blue-bg">▶</div>
+
+      <div class="download-content">
+        <b>MX Player</b>
+        <small>28 MB</small>
+      </div>
+
+      <button class="open-btn">Open</button>
+
+    </div>
+
+    <div class="download-item">
+
+      <div class="mini-icon orange-bg">▶</div>
+
+      <div class="download-content">
+        <b>VLC for Android</b>
+        <small>32 MB</small>
+      </div>
+
+      <button class="open-btn">Open</button>
+
+    </div>
+
+
+    <h3>Pending (1)</h3>
+
+    <div class="download-item">
+
+      <div class="mini-icon purple-bg">▶</div>
+
+      <div class="download-content">
+        <b>KMPlayer</b>
+        <small>23 MB</small>
+      </div>
+
+      <button class="open-btn">Install</button>
+
+    </div>
+
+  </section>
+
+
+  <!-- PROFILE -->
+  <section id="profile" class="screen">
+
+    <div class="profile-header">
+      <h2>Profile</h2>
+      <span>⚙</span>
+    </div>
+
+    <div class="profile-card">
+
+      <div class="avatar">👨🏻</div>
+
+      <div>
+        <b>Super User</b>
+        <small>superuser@gmail.com</small>
+      </div>
+
+      <span>›</span>
+
+    </div>
+
+    <div class="menu-list">
+
+      <div>▣ <span>My apps & games</span> ›</div>
+      <div>⇩ <span>Downloads</span> ›</div>
+      <div>♡ <span>My wishlist</span> ›</div>
+      <div>▤ <span>Payment methods</span> ›</div>
+      <div>⚙ <span>Settings</span> ›</div>
+      <div>? <span>Help & support</span> ›</div>
+      <div>ⓘ <span>About</span> ›</div>
+
+    </div>
+
+  </section>
+
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+
+    <button
+      class="nav-item active"
+      data-screen="home"
+      onclick="showScreen('home')"
+    >
+      <span>⌂</span>
+      <small>Home</small>
+    </button>
+
+    <button
+      class="nav-item"
+      data-screen="categories"
+      onclick="showScreen('categories')"
+    >
+      <span>▦</span>
+      <small>Categories</small>
+    </button>
+
+    <button
+      class="nav-item"
+      data-screen="updates"
+      onclick="showScreen('updates')"
+    >
+      <span>⇩</span>
+      <small>Updates</small>
+    </button>
+
+    <button
+      class="nav-item"
+      data-screen="profile"
+      onclick="showScreen('profile')"
+    >
+      <span>♙</span>
+      <small>Profile</small>
+    </button>
+
+  </nav>
+
+</div>
 
 <script src="script.js"></script>
 
