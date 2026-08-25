@@ -1,71 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="theme-color"
+    content="#3867f6"
+  >
 
   <title>Super Video Player</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
 </head>
+
 
 <body>
 
-  <!-- REGISTER / LOGIN -->
 
-  <div id="authScreen" class="auth-screen">
+  <!-- =========================================
+       REGISTER / LOGIN SCREEN
+  ========================================== -->
+
+  <div
+    id="authScreen"
+    class="auth-screen"
+  >
 
     <div class="auth-card">
 
+
+      <!-- APP LOGO -->
+
       <div class="auth-logo">
-        <img src="icon.png" alt="Super Video Player">
+
+        <img
+          src="icon.png"
+          alt="Super Video Player"
+        >
+
       </div>
 
-      <h1>Super Video Player</h1>
+
+      <h1>
+        Super Video Player
+      </h1>
+
 
       <p id="authSubtitle">
         Create your account to continue
       </p>
 
 
-      <!-- REGISTER -->
 
-      <form id="registerForm">
+      <!-- =====================================
+           REGISTER
+      ====================================== -->
+
+      <form
+        id="registerForm"
+      >
 
         <input
           id="registerName"
           type="text"
           placeholder="Enter your name"
           autocomplete="name"
+          minlength="2"
           required
         >
+
 
         <input
           id="registerPassword"
           type="password"
           placeholder="Create password"
           autocomplete="new-password"
+          minlength="4"
           required
         >
+
 
         <input
           id="registerConfirm"
           type="password"
           placeholder="Confirm password"
           autocomplete="new-password"
+          minlength="4"
           required
         >
 
-        <button type="submit" class="primary-btn">
+
+        <button
+          type="submit"
+          class="primary-btn"
+        >
           Register
         </button>
 
       </form>
 
 
-      <!-- LOGIN -->
 
-      <form id="loginForm" class="hidden">
+      <!-- =====================================
+           LOGIN
+      ====================================== -->
+
+      <form
+        id="loginForm"
+        class="hidden"
+      >
 
         <input
           id="loginName"
@@ -75,6 +129,7 @@
           required
         >
 
+
         <input
           id="loginPassword"
           type="password"
@@ -83,18 +138,34 @@
           required
         >
 
-        <button type="submit" class="primary-btn">
+
+        <button
+          type="submit"
+          class="primary-btn"
+        >
           Login
         </button>
 
       </form>
 
 
-      <button id="switchAuth" class="switch-btn">
+
+      <!-- SWITCH LOGIN / REGISTER -->
+
+      <button
+        id="switchAuth"
+        class="switch-btn"
+        type="button"
+      >
         Already have an account? Login
       </button>
 
-      <p id="authMessage" class="auth-message"></p>
+
+      <p
+        id="authMessage"
+        class="auth-message"
+      ></p>
+
 
     </div>
 
@@ -102,38 +173,77 @@
 
 
 
-  <!-- MAIN APP -->
+  <!-- =========================================
+       MAIN APP SCREEN
+  ========================================== -->
 
-  <div id="appScreen" class="hidden">
+  <div
+    id="appScreen"
+    class="hidden"
+  >
+
+
+    <!-- =======================================
+         TOP BAR
+    ======================================== -->
 
     <header class="topbar">
 
+
       <div class="brand">
 
-        <img src="icon.png" alt="App Icon">
+        <img
+          src="icon.png"
+          alt="App Icon"
+        >
+
 
         <div>
-          <strong>Super Video Player</strong>
-          <small>Official App</small>
+
+          <strong>
+            Super Video Player
+          </strong>
+
+          <small>
+            Official App
+          </small>
+
         </div>
 
       </div>
 
-      <button id="logoutBtn" class="logout-btn">
+
+
+      <button
+        id="logoutBtn"
+        class="logout-btn"
+        type="button"
+      >
         Logout
       </button>
+
 
     </header>
 
 
+
+    <!-- =======================================
+         MAIN CONTAINER
+    ======================================== -->
+
     <main class="container">
 
 
-      <!-- APP INFORMATION -->
+
+      <!-- =====================================
+           APP INFORMATION
+      ====================================== -->
 
       <section class="app-card">
 
+
         <div class="app-header">
+
 
           <img
             src="icon.png"
@@ -141,13 +251,21 @@
             alt="Super Video Player"
           >
 
+
           <div class="app-info">
 
-            <h2>Super Video Player</h2>
+
+            <h2>
+              Super Video Player
+            </h2>
+
 
             <p class="developer">
               Super Video Player
             </p>
+
+
+            <!-- RATING -->
 
             <div class="rating-line">
 
@@ -161,196 +279,472 @@
 
             </div>
 
+
+            <!-- DOWNLOAD COUNT -->
+
             <p class="downloads">
-              <span id="downloadCount">0</span>
+
+              <span id="downloadCount">
+                0
+              </span>
+
               downloads
+
             </p>
+
 
           </div>
 
+
         </div>
 
+
+
+        <!-- APP DETAILS -->
 
         <div class="app-details">
 
-          <div>
-            <strong>1.0</strong>
-            <span>Version</span>
-          </div>
 
           <div>
-            <strong>Android</strong>
-            <span>Platform</span>
+
+            <strong>
+              1.0
+            </strong>
+
+            <span>
+              Version
+            </span>
+
           </div>
 
+
           <div>
-            <strong>Offline</strong>
-            <span>Type</span>
+
+            <strong>
+              Android
+            </strong>
+
+            <span>
+              Platform
+            </span>
+
           </div>
+
+
+          <div>
+
+            <strong>
+              Offline
+            </strong>
+
+            <span>
+              Type
+            </span>
+
+          </div>
+
 
         </div>
 
+
+
+        <!-- ===================================
+             DOWNLOAD BUTTON
+        ==================================== -->
 
         <a
           id="downloadButton"
           href="downloads/SuperVideoPlayer.apk"
           class="download-btn"
-          download
+          download="SuperVideoPlayer.apk"
         >
-          <span>↓</span>
-          Download APK
+
+          <span
+            class="download-icon"
+          >
+            ↓
+          </span>
+
+
+          <span
+            class="download-content"
+          >
+            Download APK
+          </span>
+
+
+          <!-- 5 SECOND PROGRESS -->
+
+          <span
+            class="download-progress"
+          ></span>
+
+
         </a>
 
+
+        <!-- DOWNLOAD STATUS -->
+
+        <p
+          id="downloadStatus"
+          class="download-status"
+        ></p>
+
+
       </section>
 
 
 
-      <!-- ABOUT -->
+      <!-- =====================================
+           ABOUT APP
+      ====================================== -->
 
       <section class="section-card">
 
-        <h2>About this app</h2>
+
+        <h2>
+          About this app
+        </h2>
+
 
         <p>
-          Super Video Player is a fast and simple offline
-          video player for Android. Play your local videos
-          without requiring an internet connection.
+
+          Super Video Player is a fast and simple
+          offline video player for Android. Play
+          your local videos without requiring an
+          internet connection.
+
         </p>
+
 
       </section>
 
 
 
-      <!-- FEATURES -->
+      <!-- =====================================
+           FEATURES
+      ====================================== -->
 
       <section class="section-card">
 
-        <h2>Features</h2>
+
+        <h2>
+          Features
+        </h2>
+
 
         <div class="features">
 
-          <div class="feature">
-            <span>🎬</span>
-            <div>
-              <strong>Offline Player</strong>
-              <small>Play local videos</small>
-            </div>
-          </div>
 
           <div class="feature">
-            <span>⚡</span>
+
+            <span>
+              🎬
+            </span>
+
             <div>
-              <strong>Fast Playback</strong>
-              <small>Smooth video playback</small>
+
+              <strong>
+                Offline Player
+              </strong>
+
+              <small>
+                Play local videos
+              </small>
+
             </div>
+
           </div>
 
-          <div class="feature">
-            <span>📁</span>
-            <div>
-              <strong>Video Folders</strong>
-              <small>Browse your videos</small>
-            </div>
-          </div>
+
 
           <div class="feature">
-            <span>📱</span>
+
+            <span>
+              ⚡
+            </span>
+
             <div>
-              <strong>Android</strong>
-              <small>Optimized for mobile</small>
+
+              <strong>
+                Fast Playback
+              </strong>
+
+              <small>
+                Smooth video playback
+              </small>
+
             </div>
+
           </div>
+
+
+
+          <div class="feature">
+
+            <span>
+              📁
+            </span>
+
+            <div>
+
+              <strong>
+                Video Folders
+              </strong>
+
+              <small>
+                Browse your videos
+              </small>
+
+            </div>
+
+          </div>
+
+
+
+          <div class="feature">
+
+            <span>
+              📱
+            </span>
+
+            <div>
+
+              <strong>
+                Android
+              </strong>
+
+              <small>
+                Optimized for mobile
+              </small>
+
+            </div>
+
+          </div>
+
 
         </div>
+
 
       </section>
 
 
 
-      <!-- RATINGS -->
+      <!-- =====================================
+           RATINGS & REVIEWS
+      ====================================== -->
 
       <section class="section-card">
 
-        <h2>Ratings & reviews</h2>
 
+        <h2>
+          Ratings & reviews
+        </h2>
+
+
+
+        <!-- RATING SUMMARY -->
 
         <div class="rating-summary">
 
+
+          <!-- BIG RATING -->
+
           <div class="big-rating">
+
 
             <strong id="bigRating">
               0.0
             </strong>
 
+
             <div id="bigStars">
               ☆☆☆☆☆
             </div>
 
+
             <small>
-              <span id="totalReviews">0</span> reviews
+
+              <span id="totalReviews">
+                0
+              </span>
+
+              reviews
+
             </small>
+
 
           </div>
 
+
+
+          <!-- RATING BARS -->
 
           <div class="rating-bars">
 
-            <div class="rating-row">
-              <span>5</span>
-              <div class="bar">
-                <div id="bar5"></div>
-              </div>
-            </div>
 
             <div class="rating-row">
-              <span>4</span>
+
+              <span>
+                5
+              </span>
+
               <div class="bar">
-                <div id="bar4"></div>
+
+                <div
+                  id="bar5"
+                ></div>
+
               </div>
+
             </div>
 
-            <div class="rating-row">
-              <span>3</span>
-              <div class="bar">
-                <div id="bar3"></div>
-              </div>
-            </div>
+
 
             <div class="rating-row">
-              <span>2</span>
+
+              <span>
+                4
+              </span>
+
               <div class="bar">
-                <div id="bar2"></div>
+
+                <div
+                  id="bar4"
+                ></div>
+
               </div>
+
             </div>
 
+
+
             <div class="rating-row">
-              <span>1</span>
+
+              <span>
+                3
+              </span>
+
               <div class="bar">
-                <div id="bar1"></div>
+
+                <div
+                  id="bar3"
+                ></div>
+
               </div>
+
             </div>
+
+
+
+            <div class="rating-row">
+
+              <span>
+                2
+              </span>
+
+              <div class="bar">
+
+                <div
+                  id="bar2"
+                ></div>
+
+              </div>
+
+            </div>
+
+
+
+            <div class="rating-row">
+
+              <span>
+                1
+              </span>
+
+              <div class="bar">
+
+                <div
+                  id="bar1"
+                ></div>
+
+              </div>
+
+            </div>
+
 
           </div>
+
 
         </div>
 
 
-        <!-- USER RATING -->
+
+        <!-- ===================================
+             WRITE REVIEW
+        ==================================== -->
 
         <div class="write-review">
 
-          <h3>Rate this app</h3>
 
-          <div id="starSelector" class="star-selector">
+          <h3>
+            Rate this app
+          </h3>
 
-            <button data-rating="1">☆</button>
-            <button data-rating="2">☆</button>
-            <button data-rating="3">☆</button>
-            <button data-rating="4">☆</button>
-            <button data-rating="5">☆</button>
+
+
+          <!-- STAR SELECTOR -->
+
+          <div
+            id="starSelector"
+            class="star-selector"
+          >
+
+
+            <button
+              type="button"
+              data-rating="1"
+            >
+              ☆
+            </button>
+
+
+            <button
+              type="button"
+              data-rating="2"
+            >
+              ☆
+            </button>
+
+
+            <button
+              type="button"
+              data-rating="3"
+            >
+              ☆
+            </button>
+
+
+            <button
+              type="button"
+              data-rating="4"
+            >
+              ☆
+            </button>
+
+
+            <button
+              type="button"
+              data-rating="5"
+            >
+              ☆
+            </button>
+
 
           </div>
 
+
+
+          <!-- REVIEW -->
 
           <textarea
             id="reviewText"
@@ -359,24 +753,43 @@
           ></textarea>
 
 
+
           <button
             id="submitReview"
             class="primary-btn"
+            type="button"
           >
             Submit Review
           </button>
 
-          <p id="reviewMessage"></p>
+
+
+          <p
+            id="reviewMessage"
+          ></p>
+
 
         </div>
 
 
-        <!-- REVIEWS -->
 
-        <div id="reviewsList" class="reviews-list"></div>
+        <!-- ===================================
+             REVIEWS LIST
+        ==================================== -->
+
+        <div
+          id="reviewsList"
+          class="reviews-list"
+        ></div>
+
 
       </section>
 
+
+
+      <!-- =====================================
+           FOOTER
+      ====================================== -->
 
       <footer>
 
@@ -384,12 +797,19 @@
 
       </footer>
 
+
     </main>
+
 
   </div>
 
 
+
+  <!-- JAVASCRIPT -->
+
   <script src="script.js"></script>
 
+
 </body>
+
 </html>
