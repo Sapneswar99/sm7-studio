@@ -1,6 +1,9 @@
 /*
   Super Video Player
-  Registration + Login + Rating + Review + Download Count
+  Registration + Login + Rating + Review
+  + Owner-only Review Delete
+  + 5 Second APK Download Animation
+  + Download Count
 */
 
 
@@ -18,18 +21,29 @@ const DOWNLOAD_KEY = "svp_download_count";
 // ELEMENTS
 // ==============================
 
-const authScreen = document.getElementById("authScreen");
-const appScreen = document.getElementById("appScreen");
+const authScreen =
+  document.getElementById("authScreen");
 
-const registerForm = document.getElementById("registerForm");
-const loginForm = document.getElementById("loginForm");
+const appScreen =
+  document.getElementById("appScreen");
 
-const switchAuth = document.getElementById("switchAuth");
+const registerForm =
+  document.getElementById("registerForm");
 
-const authSubtitle = document.getElementById("authSubtitle");
-const authMessage = document.getElementById("authMessage");
+const loginForm =
+  document.getElementById("loginForm");
 
-const logoutBtn = document.getElementById("logoutBtn");
+const switchAuth =
+  document.getElementById("switchAuth");
+
+const authSubtitle =
+  document.getElementById("authSubtitle");
+
+const authMessage =
+  document.getElementById("authMessage");
+
+const logoutBtn =
+  document.getElementById("logoutBtn");
 
 const downloadButton =
   document.getElementById("downloadButton");
@@ -41,9 +55,17 @@ const downloadButton =
 
 function getUsers() {
 
-  return JSON.parse(
-    localStorage.getItem(USERS_KEY) || "[]"
-  );
+  try {
+
+    return JSON.parse(
+      localStorage.getItem(USERS_KEY) || "[]"
+    );
+
+  } catch {
+
+    return [];
+
+  }
 
 }
 
@@ -60,9 +82,17 @@ function saveUsers(users) {
 
 function getReviews() {
 
-  return JSON.parse(
-    localStorage.getItem(REVIEWS_KEY) || "[]"
-  );
+  try {
+
+    return JSON.parse(
+      localStorage.getItem(REVIEWS_KEY) || "[]"
+    );
+
+  } catch {
+
+    return [];
+
+  }
 
 }
 
@@ -79,7 +109,9 @@ function saveReviews(reviews) {
 
 function getCurrentUser() {
 
-  return localStorage.getItem(CURRENT_USER_KEY);
+  return localStorage.getItem(
+    CURRENT_USER_KEY
+  );
 
 }
 
@@ -95,6 +127,8 @@ function showApp() {
   appScreen.classList.remove("hidden");
 
   updateRatings();
+
+  updateDownloadCount();
 
 }
 
@@ -118,16 +152,21 @@ registerForm.addEventListener(
 
     event.preventDefault();
 
+
     const name =
-      document.getElementById("registerName")
-        .value.trim();
+      document
+        .getElementById("registerName")
+        .value
+        .trim();
 
     const password =
-      document.getElementById("registerPassword")
+      document
+        .getElementById("registerPassword")
         .value;
 
     const confirm =
-      document.getElementById("registerConfirm")
+      document
+        .getElementById("registerConfirm")
         .value;
 
 
@@ -164,14 +203,16 @@ registerForm.addEventListener(
     }
 
 
-    const users = getUsers();
+    const users =
+      getUsers();
 
 
-    const exists = users.some(
-      user =>
-        user.name.toLowerCase() ===
-        name.toLowerCase()
-    );
+    const exists =
+      users.some(
+        user =>
+          user.name.toLowerCase() ===
+          name.toLowerCase()
+      );
 
 
     if (exists) {
@@ -190,9 +231,11 @@ registerForm.addEventListener(
       id:
         Date.now().toString(),
 
-      name: name,
+      name:
+        name,
 
-      password: password
+      password:
+        password
 
     };
 
@@ -209,6 +252,8 @@ registerForm.addEventListener(
 
 
     registerForm.reset();
+
+    showAuthMessage("");
 
     showApp();
 
@@ -228,23 +273,29 @@ loginForm.addEventListener(
 
 
     const name =
-      document.getElementById("loginName")
-        .value.trim();
+      document
+        .getElementById("loginName")
+        .value
+        .trim();
 
     const password =
-      document.getElementById("loginPassword")
+      document
+        .getElementById("loginPassword")
         .value;
 
 
-    const users = getUsers();
+    const users =
+      getUsers();
 
 
-    const user = users.find(
-      item =>
-        item.name.toLowerCase() ===
-        name.toLowerCase() &&
-        item.password === password
-    );
+    const user =
+      users.find(
+        item =>
+          item.name.toLowerCase() ===
+          name.toLowerCase() &&
+          item.password ===
+          password
+      );
 
 
     if (!user) {
@@ -266,6 +317,8 @@ loginForm.addEventListener(
 
     loginForm.reset();
 
+    showAuthMessage("");
+
     showApp();
 
   }
@@ -281,29 +334,43 @@ switchAuth.addEventListener(
   function() {
 
     const registerVisible =
-      !registerForm.classList.contains("hidden");
+      !registerForm.classList.contains(
+        "hidden"
+      );
 
 
     if (registerVisible) {
 
-      registerForm.classList.add("hidden");
+      registerForm.classList.add(
+        "hidden"
+      );
 
-      loginForm.classList.remove("hidden");
+      loginForm.classList.remove(
+        "hidden"
+      );
+
 
       authSubtitle.textContent =
         "Login to continue";
+
 
       switchAuth.textContent =
         "Don't have an account? Register";
 
     } else {
 
-      loginForm.classList.add("hidden");
+      loginForm.classList.add(
+        "hidden"
+      );
 
-      registerForm.classList.remove("hidden");
+      registerForm.classList.remove(
+        "hidden"
+      );
+
 
       authSubtitle.textContent =
         "Create your account to continue";
+
 
       switchAuth.textContent =
         "Already have an account? Login";
@@ -323,7 +390,8 @@ switchAuth.addEventListener(
 
 function showAuthMessage(message) {
 
-  authMessage.textContent = message;
+  authMessage.textContent =
+    message;
 
 }
 
@@ -346,14 +414,16 @@ logoutBtn.addEventListener(
 );
 
 
-// ==============================
+// ==================================================
 // DOWNLOAD COUNT
-// ==============================
+// ==================================================
 
 function getDownloadCount() {
 
   return Number(
-    localStorage.getItem(DOWNLOAD_KEY) || 0
+    localStorage.getItem(
+      DOWNLOAD_KEY
+    ) || 0
   );
 
 }
@@ -361,39 +431,326 @@ function getDownloadCount() {
 
 function updateDownloadCount() {
 
-  document.getElementById(
-    "downloadCount"
-  ).textContent =
+  const element =
+    document.getElementById(
+      "downloadCount"
+    );
+
+
+  if (!element) {
+
+    return;
+
+  }
+
+
+  element.textContent =
     getDownloadCount().toLocaleString();
 
 }
 
 
+// ==================================================
+// 5 SECOND DOWNLOAD ANIMATION
+// ==================================================
+
 downloadButton.addEventListener(
   "click",
-  function() {
+  function(event) {
 
-    let count =
-      getDownloadCount();
+    // Stop the browser's normal
+    // immediate download.
+    event.preventDefault();
 
-    count++;
 
-    localStorage.setItem(
-      DOWNLOAD_KEY,
-      count
+    // Prevent multiple clicks.
+    if (
+      downloadButton.classList.contains(
+        "loading"
+      )
+    ) {
+
+      return;
+
+    }
+
+
+    const apkURL =
+      downloadButton.getAttribute(
+        "href"
+      );
+
+
+    if (!apkURL) {
+
+      alert(
+        "APK file not found."
+      );
+
+      return;
+
+    }
+
+
+    const originalHTML =
+      downloadButton.innerHTML;
+
+
+    // Start loading.
+    downloadButton.classList.add(
+      "loading"
     );
 
-    updateDownloadCount();
+
+    // Create progress layer.
+    let progress =
+      downloadButton.querySelector(
+        ".download-progress"
+      );
+
+
+    if (!progress) {
+
+      progress =
+        document.createElement(
+          "span"
+        );
+
+      progress.className =
+        "download-progress";
+
+
+      downloadButton.prepend(
+        progress
+      );
+
+    }
+
+
+    progress.style.width =
+      "0%";
+
+
+    // Find text element.
+    let content =
+      downloadButton.querySelector(
+        ".download-content"
+      );
+
+
+    if (!content) {
+
+      content =
+        document.createElement(
+          "span"
+        );
+
+      content.className =
+        "download-content";
+
+
+      downloadButton.appendChild(
+        content
+      );
+
+    }
+
+
+    content.textContent =
+      "Preparing download... 5s";
+
+
+    // Optional status text.
+    const status =
+      document.getElementById(
+        "downloadStatus"
+      );
+
+
+    if (status) {
+
+      status.textContent =
+        "Please wait...";
+
+    }
+
+
+    const totalTime =
+      5000;
+
+    let elapsed =
+      0;
+
+
+    const timer =
+      setInterval(
+        function() {
+
+          elapsed += 100;
+
+
+          const percentage =
+            Math.min(
+              (elapsed / totalTime) * 100,
+              100
+            );
+
+
+          progress.style.width =
+            percentage + "%";
+
+
+          const remaining =
+            Math.ceil(
+              (totalTime - elapsed) / 1000
+            );
+
+
+          if (
+            remaining > 0
+          ) {
+
+            content.textContent =
+              "Preparing download... " +
+              remaining +
+              "s";
+
+          }
+
+
+          // ==========================
+          // 5 SECONDS COMPLETED
+          // ==========================
+
+          if (
+            elapsed >= totalTime
+          ) {
+
+            clearInterval(timer);
+
+
+            progress.style.width =
+              "100%";
+
+
+            content.textContent =
+              "Starting download...";
+
+
+            if (status) {
+
+              status.textContent =
+                "Download starting...";
+
+            }
+
+
+            // ==========================
+            // INCREASE DOWNLOAD COUNT
+            // ==========================
+
+            let count =
+              getDownloadCount();
+
+
+            count++;
+
+
+            localStorage.setItem(
+              DOWNLOAD_KEY,
+              count
+            );
+
+
+            updateDownloadCount();
+
+
+            // ==========================
+            // START APK DOWNLOAD
+            // ==========================
+
+            setTimeout(
+              function() {
+
+                const link =
+                  document.createElement(
+                    "a"
+                  );
+
+
+                link.href =
+                  apkURL;
+
+
+                link.download =
+                  "SuperVideoPlayer.apk";
+
+
+                link.style.display =
+                  "none";
+
+
+                document.body.appendChild(
+                  link
+                );
+
+
+                link.click();
+
+
+                document.body.removeChild(
+                  link
+                );
+
+
+                // ======================
+                // RESET BUTTON
+                // ======================
+
+                setTimeout(
+                  function() {
+
+                    downloadButton.classList.remove(
+                      "loading"
+                    );
+
+
+                    downloadButton.innerHTML =
+                      originalHTML;
+
+
+                    if (status) {
+
+                      status.textContent =
+                        "Download started successfully.";
+
+                    }
+
+                  },
+                  500
+                );
+
+
+              },
+              300
+            );
+
+          }
+
+        },
+        100
+      );
 
   }
 );
 
 
-// ==============================
+// ==================================================
 // RATING SELECTOR
-// ==============================
+// ==================================================
 
-let selectedRating = 0;
+let selectedRating =
+  0;
 
 
 const starButtons =
@@ -414,6 +771,7 @@ starButtons.forEach(
             this.dataset.rating
           );
 
+
         updateStarSelector();
 
       }
@@ -422,6 +780,10 @@ starButtons.forEach(
   }
 );
 
+
+// ==============================
+// UPDATE SELECTED STARS
+// ==============================
 
 function updateStarSelector() {
 
@@ -445,9 +807,9 @@ function updateStarSelector() {
 }
 
 
-// ==============================
+// ==================================================
 // SUBMIT REVIEW
-// ==============================
+// ==================================================
 
 document
   .getElementById("submitReview")
@@ -466,11 +828,17 @@ document
       }
 
 
-      if (selectedRating === 0) {
-
+      const message =
         document.getElementById(
           "reviewMessage"
-        ).textContent =
+        );
+
+
+      if (
+        selectedRating === 0
+      ) {
+
+        message.textContent =
           "Please select a star rating.";
 
         return;
@@ -479,16 +847,19 @@ document
 
 
       const reviewText =
-        document.getElementById(
-          "reviewText"
-        ).value.trim();
+        document
+          .getElementById(
+            "reviewText"
+          )
+          .value
+          .trim();
 
 
-      if (reviewText.length < 2) {
+      if (
+        reviewText.length < 2
+      ) {
 
-        document.getElementById(
-          "reviewMessage"
-        ).textContent =
+        message.textContent =
           "Please write a review.";
 
         return;
@@ -496,13 +867,15 @@ document
       }
 
 
-      const users = getUsers();
+      const users =
+        getUsers();
 
 
       const user =
         users.find(
           item =>
-            item.id === currentUser
+            item.id ===
+            currentUser
         );
 
 
@@ -517,7 +890,7 @@ document
         getReviews();
 
 
-      // One review per user
+      // One review per user.
 
       const existing =
         reviews.find(
@@ -529,9 +902,7 @@ document
 
       if (existing) {
 
-        document.getElementById(
-          "reviewMessage"
-        ).textContent =
+        message.textContent =
           "You already reviewed this app.";
 
         return;
@@ -557,14 +928,20 @@ document
           reviewText,
 
         date:
-          new Date().toLocaleDateString()
+          new Date()
+            .toLocaleDateString()
 
       };
 
 
-      reviews.push(newReview);
+      reviews.push(
+        newReview
+      );
 
-      saveReviews(reviews);
+
+      saveReviews(
+        reviews
+      );
 
 
       document.getElementById(
@@ -572,15 +949,16 @@ document
       ).value = "";
 
 
-      selectedRating = 0;
+      selectedRating =
+        0;
+
 
       updateStarSelector();
 
 
-      document.getElementById(
-        "reviewMessage"
-      ).textContent =
+      message.textContent =
         "Your review has been added.";
+
 
       updateRatings();
 
@@ -588,9 +966,9 @@ document
   );
 
 
-// ==============================
+// ==================================================
 // DELETE REVIEW
-// ==============================
+// ==================================================
 
 function deleteReview(reviewId) {
 
@@ -605,7 +983,8 @@ function deleteReview(reviewId) {
   const review =
     reviews.find(
       item =>
-        item.id === reviewId
+        item.id ===
+        reviewId
     );
 
 
@@ -617,7 +996,8 @@ function deleteReview(reviewId) {
 
 
   // IMPORTANT:
-  // Only review owner can delete
+  // Only the owner of the review
+  // can delete it.
 
   if (
     review.userId !==
@@ -633,23 +1013,40 @@ function deleteReview(reviewId) {
   }
 
 
-  const updated =
-    reviews.filter(
-      item =>
-        item.id !== reviewId
+  const confirmed =
+    confirm(
+      "Delete your review?"
     );
 
 
-  saveReviews(updated);
+  if (!confirmed) {
+
+    return;
+
+  }
+
+
+  const updated =
+    reviews.filter(
+      item =>
+        item.id !==
+        reviewId
+    );
+
+
+  saveReviews(
+    updated
+  );
+
 
   updateRatings();
 
 }
 
 
-// ==============================
+// ==================================================
 // UPDATE RATINGS
-// ==============================
+// ==================================================
 
 function updateRatings() {
 
@@ -661,17 +1058,24 @@ function updateRatings() {
     reviews.length;
 
 
-  let average = 0;
+  let average =
+    0;
 
 
-  if (total > 0) {
+  if (
+    total > 0
+  ) {
 
     const sum =
       reviews.reduce(
         (total, review) =>
-          total + review.rating,
+          total +
+          Number(
+            review.rating
+          ),
         0
       );
+
 
     average =
       sum / total;
@@ -685,46 +1089,82 @@ function updateRatings() {
     ) / 10;
 
 
-  document.getElementById(
-    "averageRating"
-  ).textContent =
-    average.toFixed(1);
+  const averageElement =
+    document.getElementById(
+      "averageRating"
+    );
 
 
-  document.getElementById(
-    "bigRating"
-  ).textContent =
-    average.toFixed(1);
+  const bigRatingElement =
+    document.getElementById(
+      "bigRating"
+    );
 
 
-  document.getElementById(
-    "totalReviews"
-  ).textContent =
-    total;
+  const totalReviewsElement =
+    document.getElementById(
+      "totalReviews"
+    );
 
 
-  updateBigStars(average);
+  if (averageElement) {
 
-  updateRatingBars(reviews);
+    averageElement.textContent =
+      average.toFixed(1);
+
+  }
+
+
+  if (bigRatingElement) {
+
+    bigRatingElement.textContent =
+      average.toFixed(1);
+
+  }
+
+
+  if (totalReviewsElement) {
+
+    totalReviewsElement.textContent =
+      total;
+
+  }
+
+
+  updateBigStars(
+    average
+  );
+
+
+  updateRatingBars(
+    reviews
+  );
+
 
   renderReviews();
+
 
   updateDownloadCount();
 
 }
 
 
-// ==============================
+// ==================================================
 // BIG STARS
-// ==============================
+// ==================================================
 
-function updateBigStars(average) {
+function updateBigStars(
+  average
+) {
 
   const rounded =
-    Math.round(average);
+    Math.round(
+      average
+    );
 
 
-  let stars = "";
+  let stars =
+    "";
 
 
   for (
@@ -741,19 +1181,29 @@ function updateBigStars(average) {
   }
 
 
-  document.getElementById(
-    "bigStars"
-  ).textContent =
-    stars;
+  const element =
+    document.getElementById(
+      "bigStars"
+    );
+
+
+  if (element) {
+
+    element.textContent =
+      stars;
+
+  }
 
 }
 
 
-// ==============================
+// ==================================================
 // RATING BARS
-// ==============================
+// ==================================================
 
-function updateRatingBars(reviews) {
+function updateRatingBars(
+  reviews
+) {
 
   for (
     let rating = 1;
@@ -764,7 +1214,9 @@ function updateRatingBars(reviews) {
     const count =
       reviews.filter(
         review =>
-          review.rating === rating
+          Number(
+            review.rating
+          ) === rating
       ).length;
 
 
@@ -777,19 +1229,27 @@ function updateRatingBars(reviews) {
           ) * 100;
 
 
-    document.getElementById(
-      "bar" + rating
-    ).style.width =
-      percentage + "%";
+    const bar =
+      document.getElementById(
+        "bar" + rating
+      );
+
+
+    if (bar) {
+
+      bar.style.width =
+        percentage + "%";
+
+    }
 
   }
 
 }
 
 
-// ==============================
+// ==================================================
 // RENDER REVIEWS
-// ==============================
+// ==================================================
 
 function renderReviews() {
 
@@ -807,15 +1267,26 @@ function renderReviews() {
     );
 
 
-  if (reviews.length === 0) {
+  if (!reviewsList) {
+
+    return;
+
+  }
+
+
+  if (
+    reviews.length === 0
+  ) {
 
     reviewsList.innerHTML = `
-      <div style="
-        text-align:center;
-        padding:25px 0;
-        color:#8992a3;
-        font-size:13px;
-      ">
+      <div
+        style="
+          text-align:center;
+          padding:25px 0;
+          color:#8992a3;
+          font-size:13px;
+        "
+      >
         No reviews yet.<br>
         Be the first to rate this app!
       </div>
@@ -833,7 +1304,8 @@ function renderReviews() {
       .map(
         review => {
 
-          let stars = "";
+          let stars =
+            "";
 
 
           for (
@@ -843,23 +1315,31 @@ function renderReviews() {
           ) {
 
             stars +=
-              i <= review.rating
+              i <= Number(
+                review.rating
+              )
                 ? "★"
                 : "☆";
 
           }
 
 
+          // Only owner sees delete button.
+
           const deleteButton =
-            review.userId === currentUser
+            review.userId ===
+            currentUser
+
               ? `
                 <button
                   class="delete-review"
+                  type="button"
                   onclick="deleteReview('${review.id}')"
                 >
                   Delete my review
                 </button>
               `
+
               : "";
 
 
@@ -871,7 +1351,9 @@ function renderReviews() {
                 <div>
 
                   <div class="user-name">
-                    ${escapeHTML(review.userName)}
+                    ${escapeHTML(
+                      review.userName
+                    )}
                   </div>
 
                   <div class="review-stars">
@@ -881,14 +1363,20 @@ function renderReviews() {
                 </div>
 
                 <div class="review-date">
-                  ${escapeHTML(review.date)}
+                  ${escapeHTML(
+                    review.date
+                  )}
                 </div>
 
               </div>
 
+
               <div class="review-text">
-                ${escapeHTML(review.text)}
+                ${escapeHTML(
+                  review.text
+                )}
               </div>
+
 
               ${deleteButton}
 
@@ -902,28 +1390,36 @@ function renderReviews() {
 }
 
 
-// ==============================
-// SECURITY HELPER
-// ==============================
+// ==================================================
+// HTML SECURITY HELPER
+// ==================================================
 
-function escapeHTML(text) {
+function escapeHTML(
+  text
+) {
 
   const div =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
+
 
   div.textContent =
-    text;
+    String(text);
+
 
   return div.innerHTML;
 
 }
 
 
-// ==============================
+// ==================================================
 // START APP
-// ==============================
+// ==================================================
 
-if (getCurrentUser()) {
+if (
+  getCurrentUser()
+) {
 
   showApp();
 
@@ -932,3 +1428,10 @@ if (getCurrentUser()) {
   showAuth();
 
 }
+
+
+// ==================================================
+// INITIAL DOWNLOAD COUNT
+// ==================================================
+
+updateDownloadCount();
