@@ -4,453 +4,392 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Super Store</title>
+  <title>Super Video Player</title>
 
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="app">
+  <!-- REGISTER / LOGIN -->
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="brand">
-      <img src="icon.png" alt="Super Store">
-      <span>Super Store</span>
+  <div id="authScreen" class="auth-screen">
+
+    <div class="auth-card">
+
+      <div class="auth-logo">
+        <img src="icon.png" alt="Super Video Player">
+      </div>
+
+      <h1>Super Video Player</h1>
+
+      <p id="authSubtitle">
+        Create your account to continue
+      </p>
+
+
+      <!-- REGISTER -->
+
+      <form id="registerForm">
+
+        <input
+          id="registerName"
+          type="text"
+          placeholder="Enter your name"
+          autocomplete="name"
+          required
+        >
+
+        <input
+          id="registerPassword"
+          type="password"
+          placeholder="Create password"
+          autocomplete="new-password"
+          required
+        >
+
+        <input
+          id="registerConfirm"
+          type="password"
+          placeholder="Confirm password"
+          autocomplete="new-password"
+          required
+        >
+
+        <button type="submit" class="primary-btn">
+          Register
+        </button>
+
+      </form>
+
+
+      <!-- LOGIN -->
+
+      <form id="loginForm" class="hidden">
+
+        <input
+          id="loginName"
+          type="text"
+          placeholder="Enter your name"
+          autocomplete="username"
+          required
+        >
+
+        <input
+          id="loginPassword"
+          type="password"
+          placeholder="Enter password"
+          autocomplete="current-password"
+          required
+        >
+
+        <button type="submit" class="primary-btn">
+          Login
+        </button>
+
+      </form>
+
+
+      <button id="switchAuth" class="switch-btn">
+        Already have an account? Login
+      </button>
+
+      <p id="authMessage" class="auth-message"></p>
+
     </div>
 
-    <button class="icon-btn">♧</button>
-  </header>
+  </div>
 
 
-  <!-- HOME -->
-  <section id="home" class="screen active">
 
-    <div class="search-box" onclick="openSearch()">
-      <span>⌕</span>
-      <span class="placeholder">Search for apps & games</span>
-      <span>♩</span>
-    </div>
+  <!-- MAIN APP -->
 
-    <div class="tabs">
-      <button class="tab active">For you</button>
-      <button class="tab">Top charts</button>
-      <button class="tab" onclick="showScreen('categories')">Categories</button>
-      <button class="tab">Kids</button>
-    </div>
+  <div id="appScreen" class="hidden">
 
-    <!-- FEATURED -->
-    <div class="featured">
+    <header class="topbar">
 
-      <div>
-        <h1>Super Video Player</h1>
+      <div class="brand">
+
+        <img src="icon.png" alt="App Icon">
+
+        <div>
+          <strong>Super Video Player</strong>
+          <small>Official App</small>
+        </div>
+
+      </div>
+
+      <button id="logoutBtn" class="logout-btn">
+        Logout
+      </button>
+
+    </header>
+
+
+    <main class="container">
+
+
+      <!-- APP INFORMATION -->
+
+      <section class="app-card">
+
+        <div class="app-header">
+
+          <img
+            src="icon.png"
+            class="app-icon"
+            alt="Super Video Player"
+          >
+
+          <div class="app-info">
+
+            <h2>Super Video Player</h2>
+
+            <p class="developer">
+              Super Video Player
+            </p>
+
+            <div class="rating-line">
+
+              <strong id="averageRating">
+                0.0
+              </strong>
+
+              <span class="stars">
+                ★★★★★
+              </span>
+
+            </div>
+
+            <p class="downloads">
+              <span id="downloadCount">0</span>
+              downloads
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="app-details">
+
+          <div>
+            <strong>1.0</strong>
+            <span>Version</span>
+          </div>
+
+          <div>
+            <strong>Android</strong>
+            <span>Platform</span>
+          </div>
+
+          <div>
+            <strong>Offline</strong>
+            <span>Type</span>
+          </div>
+
+        </div>
+
+
+        <a
+          id="downloadButton"
+          href="downloads/SuperVideoPlayer.apk"
+          class="download-btn"
+          download
+        >
+          <span>↓</span>
+          Download APK
+        </a>
+
+      </section>
+
+
+
+      <!-- ABOUT -->
+
+      <section class="section-card">
+
+        <h2>About this app</h2>
 
         <p>
-          Powerful, Fast and<br>
-          Lightweight Video Player
+          Super Video Player is a fast and simple offline
+          video player for Android. Play your local videos
+          without requiring an internet connection.
         </p>
 
-        <button onclick="openApp()">
-          Download Now
-        </button>
-      </div>
+      </section>
 
-      <img src="icon.png" alt="Super Video Player">
 
-    </div>
 
-    <div class="carousel-dots">
-      <span class="selected"></span>
-      <span></span>
-      <span></span>
-    </div>
+      <!-- FEATURES -->
 
+      <section class="section-card">
 
-    <div class="section-title">
-      <h2>Recommended for you</h2>
-      <a>See all</a>
-    </div>
+        <h2>Features</h2>
 
-    <div id="recommended"></div>
+        <div class="features">
 
+          <div class="feature">
+            <span>🎬</span>
+            <div>
+              <strong>Offline Player</strong>
+              <small>Play local videos</small>
+            </div>
+          </div>
 
-    <div class="section-title">
-      <h2>Top categories</h2>
-    </div>
+          <div class="feature">
+            <span>⚡</span>
+            <div>
+              <strong>Fast Playback</strong>
+              <small>Smooth video playback</small>
+            </div>
+          </div>
 
-    <div class="category-row">
+          <div class="feature">
+            <span>📁</span>
+            <div>
+              <strong>Video Folders</strong>
+              <small>Browse your videos</small>
+            </div>
+          </div>
 
-      <div onclick="showScreen('categories')">
-        <div class="cat-icon purple">▶</div>
-        <small>Video Players</small>
-      </div>
+          <div class="feature">
+            <span>📱</span>
+            <div>
+              <strong>Android</strong>
+              <small>Optimized for mobile</small>
+            </div>
+          </div>
 
-      <div onclick="showScreen('categories')">
-        <div class="cat-icon blue">⚒</div>
-        <small>Tools</small>
-      </div>
-
-      <div onclick="showScreen('categories')">
-        <div class="cat-icon red">▣</div>
-        <small>Entertainment</small>
-      </div>
-
-      <div onclick="showScreen('categories')">
-        <div class="cat-icon green">●</div>
-        <small>Games</small>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- CATEGORIES -->
-  <section id="categories" class="screen">
-
-    <div class="page-header">
-      <button onclick="showScreen('home')">‹</button>
-      <h2>Categories</h2>
-      <span>⌕</span>
-    </div>
-
-    <div class="category-list">
-
-      <div class="category-item">
-        <div class="cat-icon purple">▶</div>
-        <div>
-          <b>Video Players</b>
-          <small>45 Apps</small>
-        </div>
-        <span>›</span>
-      </div>
-
-      <div class="category-item">
-        <div class="cat-icon blue">⚒</div>
-        <div>
-          <b>Tools</b>
-          <small>86 Apps</small>
-        </div>
-        <span>›</span>
-      </div>
-
-      <div class="category-item">
-        <div class="cat-icon red">▥</div>
-        <div>
-          <b>Entertainment</b>
-          <small>62 Apps</small>
-        </div>
-        <span>›</span>
-      </div>
-
-      <div class="category-item">
-        <div class="cat-icon orange">▣</div>
-        <div>
-          <b>Photography</b>
-          <small>54 Apps</small>
-        </div>
-        <span>›</span>
-      </div>
-
-      <div class="category-item">
-        <div class="cat-icon pink">♫</div>
-        <div>
-          <b>Music & Audio</b>
-          <small>40 Apps</small>
-        </div>
-        <span>›</span>
-      </div>
-
-      <div class="category-item">
-        <div class="cat-icon blue">●</div>
-        <div>
-          <b>Social</b>
-          <small>33 Apps</small>
-        </div>
-        <span>›</span>
-      </div>
-
-      <div class="category-item">
-        <div class="cat-icon green">✓</div>
-        <div>
-          <b>Productivity</b>
-          <small>28 Apps</small>
-        </div>
-        <span>›</span>
-      </div>
-
-      <div class="category-item">
-        <div class="cat-icon green">●</div>
-        <div>
-          <b>Games</b>
-          <small>120 Apps</small>
-        </div>
-        <span>›</span>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- SEARCH -->
-  <section id="search" class="screen">
-
-    <div class="search-header">
-
-      <button onclick="showScreen('home')">‹</button>
-
-      <input
-        id="searchInput"
-        type="text"
-        value="video player"
-        placeholder="Search apps & games"
-        oninput="searchApps()"
-      >
-
-      <button onclick="clearSearch()">×</button>
-
-    </div>
-
-    <h3 class="results-title">Search results</h3>
-
-    <div id="searchResults"></div>
-
-  </section>
-
-
-  <!-- APP DETAILS -->
-  <section id="details" class="screen">
-
-    <div class="page-header">
-      <button onclick="showScreen('home')">‹</button>
-      <span></span>
-      <span>⋮</span>
-    </div>
-
-    <div class="app-info">
-
-      <img src="icon.png" alt="Super Video Player">
-
-      <div>
-        <h1>Super Video Player</h1>
-        <p class="developer">Super Studio</p>
-        <p class="ads">Contains ads</p>
-      </div>
-
-    </div>
-
-    <div class="app-stats">
-
-      <div>
-        <b>4.8 ★</b>
-        <small>12K reviews</small>
-      </div>
-
-      <div>
-        <b>23 MB</b>
-        <small>Size</small>
-      </div>
-
-      <div>
-        <b>3+</b>
-        <small>Rated for</small>
-      </div>
-
-    </div>
-
-    <button class="install-btn" onclick="downloadApp()">
-      Install
-    </button>
-
-    <div class="app-screenshots">
-
-      <img src="screenshots/player.jpg">
-      <img src="screenshots/movies.jpg">
-      <img src="screenshots/speed.jpg">
-
-    </div>
-
-    <h2>About this app</h2>
-
-    <p class="description">
-      Super Video Player is a powerful, fast and lightweight
-      video player for Android. Supports all major video
-      formats including 4K and Ultra HD.
-    </p>
-
-    <span class="tag">Video Players & Editors</span>
-
-  </section>
-
-
-  <!-- DOWNLOADS -->
-  <section id="updates" class="screen">
-
-    <div class="page-header">
-      <button onclick="showScreen('home')">‹</button>
-      <h2>My downloads</h2>
-      <span></span>
-    </div>
-
-    <div class="download-tabs">
-      <button class="active">Downloads</button>
-      <button>Updates <b>3</b></button>
-    </div>
-
-    <h3>Downloading (1)</h3>
-
-    <div class="download-item">
-
-      <img src="icon.png">
-
-      <div class="download-content">
-
-        <b>Super Video Player</b>
-
-        <div class="progress">
-          <span id="progressBar"></span>
         </div>
 
-        <small>
-          <span id="progressText">12.4 MB / 23 MB</span>
-        </small>
-
-      </div>
-
-      <button onclick="pauseDownload()">Ⅱ</button>
-
-    </div>
+      </section>
 
 
-    <h3>Completed (2)</h3>
 
-    <div class="download-item">
+      <!-- RATINGS -->
 
-      <div class="mini-icon blue-bg">▶</div>
+      <section class="section-card">
 
-      <div class="download-content">
-        <b>MX Player</b>
-        <small>28 MB</small>
-      </div>
-
-      <button class="open-btn">Open</button>
-
-    </div>
-
-    <div class="download-item">
-
-      <div class="mini-icon orange-bg">▶</div>
-
-      <div class="download-content">
-        <b>VLC for Android</b>
-        <small>32 MB</small>
-      </div>
-
-      <button class="open-btn">Open</button>
-
-    </div>
+        <h2>Ratings & reviews</h2>
 
 
-    <h3>Pending (1)</h3>
+        <div class="rating-summary">
 
-    <div class="download-item">
+          <div class="big-rating">
 
-      <div class="mini-icon purple-bg">▶</div>
+            <strong id="bigRating">
+              0.0
+            </strong>
 
-      <div class="download-content">
-        <b>KMPlayer</b>
-        <small>23 MB</small>
-      </div>
+            <div id="bigStars">
+              ☆☆☆☆☆
+            </div>
 
-      <button class="open-btn">Install</button>
+            <small>
+              <span id="totalReviews">0</span> reviews
+            </small>
 
-    </div>
-
-  </section>
-
-
-  <!-- PROFILE -->
-  <section id="profile" class="screen">
-
-    <div class="profile-header">
-      <h2>Profile</h2>
-      <span>⚙</span>
-    </div>
-
-    <div class="profile-card">
-
-      <div class="avatar">👨🏻</div>
-
-      <div>
-        <b>Super User</b>
-        <small>superuser@gmail.com</small>
-      </div>
-
-      <span>›</span>
-
-    </div>
-
-    <div class="menu-list">
-
-      <div>▣ <span>My apps & games</span> ›</div>
-      <div>⇩ <span>Downloads</span> ›</div>
-      <div>♡ <span>My wishlist</span> ›</div>
-      <div>▤ <span>Payment methods</span> ›</div>
-      <div>⚙ <span>Settings</span> ›</div>
-      <div>? <span>Help & support</span> ›</div>
-      <div>ⓘ <span>About</span> ›</div>
-
-    </div>
-
-  </section>
+          </div>
 
 
-  <!-- BOTTOM NAV -->
-  <nav class="bottom-nav">
+          <div class="rating-bars">
 
-    <button
-      class="nav-item active"
-      data-screen="home"
-      onclick="showScreen('home')"
-    >
-      <span>⌂</span>
-      <small>Home</small>
-    </button>
+            <div class="rating-row">
+              <span>5</span>
+              <div class="bar">
+                <div id="bar5"></div>
+              </div>
+            </div>
 
-    <button
-      class="nav-item"
-      data-screen="categories"
-      onclick="showScreen('categories')"
-    >
-      <span>▦</span>
-      <small>Categories</small>
-    </button>
+            <div class="rating-row">
+              <span>4</span>
+              <div class="bar">
+                <div id="bar4"></div>
+              </div>
+            </div>
 
-    <button
-      class="nav-item"
-      data-screen="updates"
-      onclick="showScreen('updates')"
-    >
-      <span>⇩</span>
-      <small>Updates</small>
-    </button>
+            <div class="rating-row">
+              <span>3</span>
+              <div class="bar">
+                <div id="bar3"></div>
+              </div>
+            </div>
 
-    <button
-      class="nav-item"
-      data-screen="profile"
-      onclick="showScreen('profile')"
-    >
-      <span>♙</span>
-      <small>Profile</small>
-    </button>
+            <div class="rating-row">
+              <span>2</span>
+              <div class="bar">
+                <div id="bar2"></div>
+              </div>
+            </div>
 
-  </nav>
+            <div class="rating-row">
+              <span>1</span>
+              <div class="bar">
+                <div id="bar1"></div>
+              </div>
+            </div>
 
-</div>
+          </div>
 
-<script src="script.js"></script>
+        </div>
+
+
+        <!-- USER RATING -->
+
+        <div class="write-review">
+
+          <h3>Rate this app</h3>
+
+          <div id="starSelector" class="star-selector">
+
+            <button data-rating="1">☆</button>
+            <button data-rating="2">☆</button>
+            <button data-rating="3">☆</button>
+            <button data-rating="4">☆</button>
+            <button data-rating="5">☆</button>
+
+          </div>
+
+
+          <textarea
+            id="reviewText"
+            placeholder="Write a review..."
+            maxlength="500"
+          ></textarea>
+
+
+          <button
+            id="submitReview"
+            class="primary-btn"
+          >
+            Submit Review
+          </button>
+
+          <p id="reviewMessage"></p>
+
+        </div>
+
+
+        <!-- REVIEWS -->
+
+        <div id="reviewsList" class="reviews-list"></div>
+
+      </section>
+
+
+      <footer>
+
+        © 2026 Super Video Player
+
+      </footer>
+
+    </main>
+
+  </div>
+
+
+  <script src="script.js"></script>
 
 </body>
 </html>
