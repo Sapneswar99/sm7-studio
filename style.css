@@ -1,8 +1,26 @@
+/* =========================================================
+   SUPER VIDEO PLAYER
+   Complete Website CSS
+   Register + Login + App Page + Ratings + Reviews
+   + 5 Second APK Download Animation
+========================================================= */
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
+
+html {
+  scroll-behavior: smooth;
+}
+
 
 body {
   font-family:
@@ -11,8 +29,12 @@ body {
     sans-serif;
 
   background: #f5f7fb;
+
   color: #172033;
+
+  min-height: 100vh;
 }
+
 
 button,
 input,
@@ -20,22 +42,33 @@ textarea {
   font: inherit;
 }
 
+
 button {
   cursor: pointer;
 }
+
+
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
 
 .hidden {
   display: none !important;
 }
 
 
-/* AUTH */
+/* =========================================================
+   AUTH SCREEN
+========================================================= */
 
 .auth-screen {
   min-height: 100vh;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   padding: 20px;
@@ -48,11 +81,13 @@ button {
     );
 }
 
+
 .auth-card {
   width: 100%;
+
   max-width: 420px;
 
-  background: white;
+  background: #ffffff;
 
   padding: 30px 22px;
 
@@ -65,8 +100,21 @@ button {
   text-align: center;
 }
 
+
+/* AUTH LOGO */
+
+.auth-logo {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+}
+
+
 .auth-logo img {
   width: 90px;
+
   height: 90px;
 
   object-fit: cover;
@@ -74,24 +122,39 @@ button {
   border-radius: 22px;
 
   margin-bottom: 18px;
+
+  box-shadow:
+    0 8px 25px
+    rgba(56, 103, 246, 0.15);
 }
+
 
 .auth-card h1 {
   font-size: 25px;
+
   margin-bottom: 8px;
 }
 
+
 .auth-card > p {
   color: #727b8d;
+
   margin-bottom: 22px;
+
   font-size: 14px;
 }
 
+
+/* AUTH FORM */
+
 .auth-card form {
   display: flex;
+
   flex-direction: column;
+
   gap: 12px;
 }
+
 
 .auth-card input {
   width: 100%;
@@ -105,18 +168,41 @@ button {
   outline: none;
 
   background: #fafbfe;
+
+  color: #172033;
+
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
+
+
+.auth-card input::placeholder {
+  color: #9aa2b1;
+}
+
 
 .auth-card input:focus {
   border-color: #3867f6;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(56, 103, 246, 0.10);
+
+  background: #ffffff;
 }
+
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
 
 .primary-btn {
   border: none;
 
   background: #3867f6;
 
-  color: white;
+  color: #ffffff;
 
   padding: 14px;
 
@@ -124,12 +210,28 @@ button {
 
   font-weight: 700;
 
-  transition: 0.2s;
+  transition:
+    background 0.2s,
+    transform 0.15s,
+    box-shadow 0.2s;
 }
+
 
 .primary-btn:hover {
   background: #2855dc;
+
+  box-shadow:
+    0 6px 18px
+    rgba(56, 103, 246, 0.20);
 }
+
+
+.primary-btn:active {
+  transform: scale(0.98);
+}
+
+
+/* SWITCH BUTTON */
 
 .switch-btn {
   border: none;
@@ -141,20 +243,37 @@ button {
   margin-top: 18px;
 
   font-size: 14px;
+
+  padding: 5px;
 }
+
+
+.switch-btn:hover {
+  text-decoration: underline;
+}
+
+
+/* AUTH MESSAGE */
 
 .auth-message {
   margin-top: 12px !important;
+
   margin-bottom: 0 !important;
+
+  color: #e34d4d !important;
+
+  min-height: 18px;
 }
 
 
-/* TOPBAR */
+/* =========================================================
+   TOP BAR
+========================================================= */
 
 .topbar {
   height: 70px;
 
-  background: white;
+  background: #ffffff;
 
   display: flex;
 
@@ -175,30 +294,52 @@ button {
   z-index: 20;
 }
 
+
 .brand {
   display: flex;
+
   align-items: center;
+
   gap: 11px;
+
+  min-width: 0;
 }
+
 
 .brand img {
   width: 42px;
+
   height: 42px;
 
   border-radius: 12px;
 
   object-fit: cover;
+
+  flex-shrink: 0;
 }
+
 
 .brand strong {
   display: block;
+
   font-size: 16px;
+
+  white-space: nowrap;
 }
+
 
 .brand small {
   color: #8992a3;
+
   font-size: 11px;
+
+  display: block;
+
+  margin-top: 2px;
 }
+
+
+/* LOGOUT */
 
 .logout-btn {
   border: none;
@@ -212,13 +353,30 @@ button {
   border-radius: 10px;
 
   font-size: 12px;
+
+  transition:
+    background 0.2s,
+    transform 0.15s;
 }
 
 
-/* CONTAINER */
+.logout-btn:hover {
+  background: #e7eaf0;
+}
+
+
+.logout-btn:active {
+  transform: scale(0.96);
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
 
 .container {
   width: 100%;
+
   max-width: 720px;
 
   margin: auto;
@@ -227,11 +385,13 @@ button {
 }
 
 
-/* APP CARD */
+/* =========================================================
+   APP CARD
+========================================================= */
 
 .app-card,
 .section-card {
-  background: white;
+  background: #ffffff;
 
   border-radius: 20px;
 
@@ -244,6 +404,7 @@ button {
     rgba(0, 0, 0, 0.05);
 }
 
+
 .app-header {
   display: flex;
 
@@ -252,50 +413,82 @@ button {
   align-items: center;
 }
 
+
 .app-icon {
   width: 92px;
+
   height: 92px;
 
   border-radius: 21px;
 
   object-fit: cover;
+
+  flex-shrink: 0;
+
+  box-shadow:
+    0 5px 15px
+    rgba(0, 0, 0, 0.08);
 }
+
+
+.app-info {
+  min-width: 0;
+}
+
 
 .app-info h2 {
   font-size: 22px;
+
   margin-bottom: 5px;
+
+  line-height: 1.2;
 }
+
 
 .developer {
   color: #70798b;
+
   font-size: 13px;
+
   margin-bottom: 8px;
 }
 
+
 .rating-line {
   display: flex;
+
   align-items: center;
+
   gap: 7px;
 }
+
 
 .rating-line strong {
   font-size: 14px;
 }
 
+
 .stars {
   color: #f4ad19;
+
   letter-spacing: 1px;
+
   font-size: 13px;
 }
 
+
 .downloads {
   color: #7b8494;
+
   font-size: 12px;
+
   margin-top: 6px;
 }
 
 
-/* DETAILS */
+/* =========================================================
+   APP DETAILS
+========================================================= */
 
 .app-details {
   display: grid;
@@ -312,21 +505,25 @@ button {
   padding: 15px 0;
 }
 
+
 .app-details div {
   text-align: center;
 
   border-right: 1px solid #edf0f5;
 }
 
+
 .app-details div:last-child {
   border-right: none;
 }
+
 
 .app-details strong {
   display: block;
 
   font-size: 13px;
 }
+
 
 .app-details span {
   display: block;
@@ -339,21 +536,30 @@ button {
 }
 
 
-/* DOWNLOAD */
+/* =========================================================
+   DOWNLOAD BUTTON
+========================================================= */
 
 .download-btn {
+  position: relative;
+
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
   gap: 8px;
+
+  width: 100%;
+
+  min-height: 50px;
 
   text-decoration: none;
 
   background: #3867f6;
 
-  color: white;
+  color: #ffffff;
 
   padding: 15px;
 
@@ -362,20 +568,126 @@ button {
   font-weight: 700;
 
   font-size: 15px;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  transition:
+    background 0.2s,
+    transform 0.15s,
+    box-shadow 0.2s;
 }
+
 
 .download-btn:hover {
   background: #2855dc;
+
+  box-shadow:
+    0 7px 20px
+    rgba(56, 103, 246, 0.22);
 }
 
 
-/* SECTION */
+.download-btn:active {
+  transform: scale(0.985);
+}
+
+
+/* DOWNLOAD ICON */
+
+.download-icon {
+  position: relative;
+
+  z-index: 3;
+
+  font-size: 21px;
+
+  line-height: 1;
+}
+
+
+/* DOWNLOAD TEXT */
+
+.download-content {
+  position: relative;
+
+  z-index: 3;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   5 SECOND DOWNLOAD PROGRESS
+========================================================= */
+
+.download-progress {
+  position: absolute;
+
+  left: 0;
+
+  top: 0;
+
+  bottom: 0;
+
+  width: 0%;
+
+  background:
+    rgba(255, 255, 255, 0.18);
+
+  z-index: 1;
+
+  pointer-events: none;
+
+  transition:
+    width 0.1s linear;
+}
+
+
+/* LOADING STATE */
+
+.download-btn.loading {
+  pointer-events: none;
+
+  cursor: wait;
+
+  background: #6f7c9a;
+
+  box-shadow: none;
+}
+
+
+.download-btn.loading .download-icon {
+  display: none;
+}
+
+
+/* Status text */
+
+.download-status {
+  min-height: 17px;
+
+  margin-top: 8px;
+
+  text-align: center;
+
+  color: #8992a3;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
 
 .section-card h2 {
   font-size: 18px;
 
   margin-bottom: 14px;
 }
+
 
 .section-card > p {
   color: #697386;
@@ -386,15 +698,19 @@ button {
 }
 
 
-/* FEATURES */
+/* =========================================================
+   FEATURES
+========================================================= */
 
 .features {
   display: grid;
 
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns:
+    1fr 1fr;
 
   gap: 10px;
 }
+
 
 .feature {
   background: #f7f9fc;
@@ -408,11 +724,26 @@ button {
   align-items: center;
 
   gap: 10px;
+
+  transition:
+    transform 0.2s,
+    background 0.2s;
 }
+
+
+.feature:hover {
+  transform: translateY(-2px);
+
+  background: #f1f5fb;
+}
+
 
 .feature > span {
   font-size: 22px;
+
+  flex-shrink: 0;
 }
+
 
 .feature strong {
   display: block;
@@ -420,14 +751,21 @@ button {
   font-size: 12px;
 }
 
+
 .feature small {
   color: #8992a3;
 
   font-size: 10px;
+
+  display: block;
+
+  margin-top: 3px;
 }
 
 
-/* RATING */
+/* =========================================================
+   RATING SUMMARY
+========================================================= */
 
 .rating-summary {
   display: flex;
@@ -441,17 +779,24 @@ button {
   border-bottom: 1px solid #edf0f5;
 }
 
+
 .big-rating {
   width: 120px;
 
   text-align: center;
+
+  flex-shrink: 0;
 }
+
 
 .big-rating strong {
   display: block;
 
   font-size: 42px;
+
+  line-height: 1.1;
 }
+
 
 .big-rating div {
   color: #f4ad19;
@@ -460,8 +805,9 @@ button {
 
   font-size: 17px;
 
-  margin: 3px 0;
+  margin: 5px 0;
 }
+
 
 .big-rating small {
   color: #8a93a4;
@@ -469,9 +815,17 @@ button {
   font-size: 11px;
 }
 
+
+/* =========================================================
+   RATING BARS
+========================================================= */
+
 .rating-bars {
   flex: 1;
+
+  min-width: 0;
 }
+
 
 .rating-row {
   display: flex;
@@ -483,13 +837,17 @@ button {
   margin: 6px 0;
 }
 
+
 .rating-row > span {
   width: 10px;
 
   font-size: 11px;
 
   color: #727b8d;
+
+  text-align: center;
 }
+
 
 .bar {
   height: 7px;
@@ -503,6 +861,7 @@ button {
   overflow: hidden;
 }
 
+
 .bar div {
   height: 100%;
 
@@ -512,11 +871,14 @@ button {
 
   border-radius: 20px;
 
-  transition: 0.3s;
+  transition:
+    width 0.3s ease;
 }
 
 
-/* WRITE REVIEW */
+/* =========================================================
+   WRITE REVIEW
+========================================================= */
 
 .write-review {
   padding: 20px 0;
@@ -524,11 +886,15 @@ button {
   border-bottom: 1px solid #edf0f5;
 }
 
+
 .write-review h3 {
   font-size: 15px;
 
   margin-bottom: 10px;
 }
+
+
+/* STAR SELECTOR */
 
 .star-selector {
   display: flex;
@@ -537,6 +903,7 @@ button {
 
   margin-bottom: 12px;
 }
+
 
 .star-selector button {
   border: none;
@@ -548,7 +915,25 @@ button {
   font-size: 31px;
 
   padding: 0 2px;
+
+  line-height: 1;
+
+  transition:
+    transform 0.15s;
 }
+
+
+.star-selector button:hover {
+  transform: scale(1.15);
+}
+
+
+.star-selector button:active {
+  transform: scale(0.95);
+}
+
+
+/* TEXTAREA */
 
 .write-review textarea {
   width: 100%;
@@ -566,11 +951,32 @@ button {
   outline: none;
 
   margin-bottom: 10px;
+
+  color: #172033;
+
+  background: #ffffff;
+
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
+
+
+.write-review textarea::placeholder {
+  color: #9aa2b1;
+}
+
 
 .write-review textarea:focus {
   border-color: #3867f6;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(56, 103, 246, 0.08);
 }
+
+
+/* REVIEW MESSAGE */
 
 #reviewMessage {
   margin-top: 10px;
@@ -578,14 +984,19 @@ button {
   font-size: 12px;
 
   color: #687386;
+
+  min-height: 16px;
 }
 
 
-/* REVIEWS */
+/* =========================================================
+   REVIEWS
+========================================================= */
 
 .reviews-list {
   padding-top: 5px;
 }
+
 
 .review {
   padding: 18px 0;
@@ -593,9 +1004,11 @@ button {
   border-bottom: 1px solid #edf0f5;
 }
 
+
 .review:last-child {
   border-bottom: none;
 }
+
 
 .review-top {
   display: flex;
@@ -603,13 +1016,19 @@ button {
   align-items: center;
 
   justify-content: space-between;
+
+  gap: 10px;
 }
+
 
 .user-name {
   font-weight: 700;
 
   font-size: 14px;
+
+  word-break: break-word;
 }
+
 
 .review-stars {
   color: #f4ad19;
@@ -617,13 +1036,19 @@ button {
   font-size: 13px;
 
   margin-top: 4px;
+
+  letter-spacing: 1px;
 }
+
 
 .review-date {
   color: #929aaa;
 
   font-size: 10px;
+
+  flex-shrink: 0;
 }
+
 
 .review-text {
   color: #606a7c;
@@ -633,7 +1058,12 @@ button {
   line-height: 1.5;
 
   margin-top: 9px;
+
+  word-break: break-word;
 }
+
+
+/* DELETE REVIEW */
 
 .delete-review {
   border: none;
@@ -649,10 +1079,26 @@ button {
   font-size: 11px;
 
   margin-top: 10px;
+
+  transition:
+    background 0.2s,
+    transform 0.15s;
 }
 
 
-/* FOOTER */
+.delete-review:hover {
+  background: #ffe0e0;
+}
+
+
+.delete-review:active {
+  transform: scale(0.97);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer {
   text-align: center;
@@ -665,47 +1111,291 @@ footer {
 }
 
 
-/* MOBILE */
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 520px) {
 
+  .auth-screen {
+    padding: 15px;
+  }
+
+
+  .auth-card {
+    padding: 27px 18px;
+
+    border-radius: 21px;
+  }
+
+
+  .auth-logo img {
+    width: 82px;
+
+    height: 82px;
+
+    border-radius: 20px;
+  }
+
+
+  .auth-card h1 {
+    font-size: 22px;
+  }
+
+
   .topbar {
+    height: 64px;
+
     padding: 0 13px;
   }
+
+
+  .brand {
+    gap: 9px;
+  }
+
+
+  .brand img {
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 10px;
+  }
+
+
+  .brand strong {
+    font-size: 14px;
+  }
+
+
+  .brand small {
+    font-size: 10px;
+  }
+
+
+  .logout-btn {
+    padding: 8px 11px;
+
+    font-size: 11px;
+  }
+
 
   .container {
     padding: 15px 10px 40px;
   }
 
+
   .app-card,
   .section-card {
     padding: 17px;
+
     border-radius: 17px;
   }
 
+
+  .app-header {
+    gap: 13px;
+  }
+
+
   .app-icon {
     width: 76px;
+
     height: 76px;
+
+    border-radius: 18px;
   }
+
 
   .app-info h2 {
     font-size: 18px;
   }
 
+
+  .developer {
+    font-size: 12px;
+  }
+
+
+  .download-btn {
+    min-height: 50px;
+
+    padding: 14px;
+
+    font-size: 14px;
+  }
+
+
+  .app-details {
+    margin: 18px 0;
+
+    padding: 13px 0;
+  }
+
+
   .rating-summary {
     gap: 12px;
+
+    padding-bottom: 20px;
   }
+
 
   .big-rating {
     width: 95px;
   }
 
+
   .big-rating strong {
     font-size: 35px;
   }
 
+
+  .big-rating div {
+    font-size: 15px;
+
+    letter-spacing: 1px;
+  }
+
+
+  .rating-row {
+    margin: 5px 0;
+  }
+
+
   .features {
     grid-template-columns: 1fr;
+  }
+
+
+  .feature {
+    padding: 13px;
+  }
+
+
+  .star-selector button {
+    font-size: 29px;
+  }
+
+
+  .review-top {
+    align-items: flex-start;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .auth-card {
+    padding: 24px 15px;
+  }
+
+
+  .app-header {
+    gap: 10px;
+  }
+
+
+  .app-icon {
+    width: 68px;
+
+    height: 68px;
+  }
+
+
+  .app-info h2 {
+    font-size: 16px;
+  }
+
+
+  .rating-line {
+    gap: 5px;
+  }
+
+
+  .stars {
+    font-size: 11px;
+  }
+
+
+  .rating-summary {
+    gap: 7px;
+  }
+
+
+  .big-rating {
+    width: 85px;
+  }
+
+
+  .big-rating strong {
+    font-size: 32px;
+  }
+
+
+  .big-rating div {
+    font-size: 13px;
+  }
+
+
+  .star-selector {
+    gap: 2px;
+  }
+
+
+  .star-selector button {
+    font-size: 27px;
+  }
+
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media (hover: none) {
+
+  .download-btn:hover {
+    background: #3867f6;
+
+    box-shadow: none;
+  }
+
+
+  .primary-btn:hover {
+    background: #3867f6;
+
+    box-shadow: none;
+  }
+
+
+  .feature:hover {
+    transform: none;
+
+    background: #f7f9fc;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  * {
+    scroll-behavior: auto !important;
+
+    transition-duration: 0.01ms !important;
+
+    animation-duration: 0.01ms !important;
   }
 
 }
