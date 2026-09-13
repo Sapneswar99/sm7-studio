@@ -1,15 +1,15 @@
-/*
-  Super Video Player
-  Registration + Login + Rating + Review
-  + Owner-only Review Delete
-  + 5 Second APK Download Animation
-  + Download Count
-*/
+// ==================================================
+// SUPER VIDEO PLAYER
+// Registration + Login + Rating + Review
+// Owner-only Review Delete
+// 5 Second APK Download Animation
+// Persistent Download Count
+// ==================================================
 
 
-// ==============================
-// STORAGE
-// ==============================
+// ==================================================
+// STORAGE KEYS
+// ==================================================
 
 const USERS_KEY = "svp_users";
 const CURRENT_USER_KEY = "svp_current_user";
@@ -17,9 +17,9 @@ const REVIEWS_KEY = "svp_reviews";
 const DOWNLOAD_KEY = "svp_download_count";
 
 
-// ==============================
+// ==================================================
 // ELEMENTS
-// ==============================
+// ==================================================
 
 const authScreen =
   document.getElementById("authScreen");
@@ -49,17 +49,27 @@ const downloadButton =
   document.getElementById("downloadButton");
 
 
-// ==============================
+// ==================================================
 // DATA FUNCTIONS
-// ==============================
+// ==================================================
 
 function getUsers() {
 
   try {
 
-    return JSON.parse(
-      localStorage.getItem(USERS_KEY) || "[]"
-    );
+    const data =
+      localStorage.getItem(USERS_KEY);
+
+    if (!data) {
+      return [];
+    }
+
+    const users =
+      JSON.parse(data);
+
+    return Array.isArray(users)
+      ? users
+      : [];
 
   } catch {
 
@@ -84,9 +94,19 @@ function getReviews() {
 
   try {
 
-    return JSON.parse(
-      localStorage.getItem(REVIEWS_KEY) || "[]"
-    );
+    const data =
+      localStorage.getItem(REVIEWS_KEY);
+
+    if (!data) {
+      return [];
+    }
+
+    const reviews =
+      JSON.parse(data);
+
+    return Array.isArray(reviews)
+      ? reviews
+      : [];
 
   } catch {
 
@@ -116,315 +136,71 @@ function getCurrentUser() {
 }
 
 
-// ==============================
-// AUTH SCREEN
-// ==============================
-
-function showApp() {
-
-  authScreen.classList.add("hidden");
-
-  appScreen.classList.remove("hidden");
-
-  updateRatings();
-
-  updateDownloadCount();
-
-}
-
-
-function showAuth() {
-
-  appScreen.classList.add("hidden");
-
-  authScreen.classList.remove("hidden");
-
-}
-
-
-// ==============================
-// REGISTER
-// ==============================
-
-registerForm.addEventListener(
-  "submit",
-  function(event) {
-
-    event.preventDefault();
-
-
-    const name =
-      document
-        .getElementById("registerName")
-        .value
-        .trim();
-
-    const password =
-      document
-        .getElementById("registerPassword")
-        .value;
-
-    const confirm =
-      document
-        .getElementById("registerConfirm")
-        .value;
-
-
-    if (name.length < 2) {
-
-      showAuthMessage(
-        "Name must contain at least 2 characters."
-      );
-
-      return;
-
-    }
-
-
-    if (password.length < 4) {
-
-      showAuthMessage(
-        "Password must contain at least 4 characters."
-      );
-
-      return;
-
-    }
-
-
-    if (password !== confirm) {
-
-      showAuthMessage(
-        "Passwords do not match."
-      );
-
-      return;
-
-    }
-
-
-    const users =
-      getUsers();
-
-
-    const exists =
-      users.some(
-        user =>
-          user.name.toLowerCase() ===
-          name.toLowerCase()
-      );
-
-
-    if (exists) {
-
-      showAuthMessage(
-        "This name is already registered."
-      );
-
-      return;
-
-    }
-
-
-    const newUser = {
-
-      id:
-        Date.now().toString(),
-
-      name:
-        name,
-
-      password:
-        password
-
-    };
-
-
-    users.push(newUser);
-
-    saveUsers(users);
-
-
-    localStorage.setItem(
-      CURRENT_USER_KEY,
-      newUser.id
-    );
-
-
-    registerForm.reset();
-
-    showAuthMessage("");
-
-    showApp();
-
-  }
-);
-
-
-// ==============================
-// LOGIN
-// ==============================
-
-loginForm.addEventListener(
-  "submit",
-  function(event) {
-
-    event.preventDefault();
-
-
-    const name =
-      document
-        .getElementById("loginName")
-        .value
-        .trim();
-
-    const password =
-      document
-        .getElementById("loginPassword")
-        .value;
-
-
-    const users =
-      getUsers();
-
-
-    const user =
-      users.find(
-        item =>
-          item.name.toLowerCase() ===
-          name.toLowerCase() &&
-          item.password ===
-          password
-      );
-
-
-    if (!user) {
-
-      showAuthMessage(
-        "Incorrect name or password."
-      );
-
-      return;
-
-    }
-
-
-    localStorage.setItem(
-      CURRENT_USER_KEY,
-      user.id
-    );
-
-
-    loginForm.reset();
-
-    showAuthMessage("");
-
-    showApp();
-
-  }
-);
-
-
-// ==============================
-// SWITCH REGISTER / LOGIN
-// ==============================
-
-switchAuth.addEventListener(
-  "click",
-  function() {
-
-    const registerVisible =
-      !registerForm.classList.contains(
-        "hidden"
-      );
-
-
-    if (registerVisible) {
-
-      registerForm.classList.add(
-        "hidden"
-      );
-
-      loginForm.classList.remove(
-        "hidden"
-      );
-
-
-      authSubtitle.textContent =
-        "Login to continue";
-
-
-      switchAuth.textContent =
-        "Don't have an account? Register";
-
-    } else {
-
-      loginForm.classList.add(
-        "hidden"
-      );
-
-      registerForm.classList.remove(
-        "hidden"
-      );
-
-
-      authSubtitle.textContent =
-        "Create your account to continue";
-
-
-      switchAuth.textContent =
-        "Already have an account? Login";
-
-    }
-
-
-    authMessage.textContent = "";
-
-  }
-);
-
-
-// ==============================
-// AUTH MESSAGE
-// ==============================
-
-function showAuthMessage(message) {
-
-  authMessage.textContent =
-    message;
-
-}
-
-
-// ==============================
-// LOGOUT
-// ==============================
-
-logoutBtn.addEventListener(
-  "click",
-  function() {
-
-    localStorage.removeItem(
-      CURRENT_USER_KEY
-    );
-
-    showAuth();
-
-  }
-);
-
-
 // ==================================================
 // DOWNLOAD COUNT
 // ==================================================
 
 function getDownloadCount() {
 
-  return Number(
+  const saved =
     localStorage.getItem(
       DOWNLOAD_KEY
-    ) || 0
+    );
+
+
+  // First time only.
+  if (saved === null) {
+
+    localStorage.setItem(
+      DOWNLOAD_KEY,
+      "0"
+    );
+
+    return 0;
+
+  }
+
+
+  const count =
+    Number(saved);
+
+
+  // Protect against corrupted data.
+  if (
+    !Number.isFinite(count) ||
+    count < 0
+  ) {
+
+    return 0;
+
+  }
+
+
+  return Math.floor(count);
+
+}
+
+
+function increaseDownloadCount() {
+
+  const currentCount =
+    getDownloadCount();
+
+
+  const newCount =
+    currentCount + 1;
+
+
+  localStorage.setItem(
+    DOWNLOAD_KEY,
+    String(newCount)
   );
+
+
+  updateDownloadCount();
+
+
+  return newCount;
 
 }
 
@@ -438,9 +214,7 @@ function updateDownloadCount() {
 
 
   if (!element) {
-
     return;
-
   }
 
 
@@ -451,298 +225,686 @@ function updateDownloadCount() {
 
 
 // ==================================================
+// AUTH SCREEN
+// ==================================================
+
+function showApp() {
+
+  if (authScreen) {
+
+    authScreen.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  if (appScreen) {
+
+    appScreen.classList.remove(
+      "hidden"
+    );
+
+  }
+
+
+  updateRatings();
+
+  updateDownloadCount();
+
+}
+
+
+function showAuth() {
+
+  if (appScreen) {
+
+    appScreen.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  if (authScreen) {
+
+    authScreen.classList.remove(
+      "hidden"
+    );
+
+  }
+
+}
+
+
+// ==================================================
+// REGISTER
+// ==================================================
+
+if (registerForm) {
+
+  registerForm.addEventListener(
+    "submit",
+    function(event) {
+
+      event.preventDefault();
+
+
+      const name =
+        document
+          .getElementById("registerName")
+          .value
+          .trim();
+
+
+      const password =
+        document
+          .getElementById("registerPassword")
+          .value;
+
+
+      const confirm =
+        document
+          .getElementById("registerConfirm")
+          .value;
+
+
+      if (
+        name.length < 2
+      ) {
+
+        showAuthMessage(
+          "Name must contain at least 2 characters."
+        );
+
+        return;
+
+      }
+
+
+      if (
+        password.length < 4
+      ) {
+
+        showAuthMessage(
+          "Password must contain at least 4 characters."
+        );
+
+        return;
+
+      }
+
+
+      if (
+        password !== confirm
+      ) {
+
+        showAuthMessage(
+          "Passwords do not match."
+        );
+
+        return;
+
+      }
+
+
+      const users =
+        getUsers();
+
+
+      const exists =
+        users.some(
+          user =>
+            String(user.name)
+              .toLowerCase() ===
+            name.toLowerCase()
+        );
+
+
+      if (exists) {
+
+        showAuthMessage(
+          "This name is already registered."
+        );
+
+        return;
+
+      }
+
+
+      const newUser = {
+
+        id:
+          Date.now().toString(),
+
+        name:
+          name,
+
+        password:
+          password
+
+      };
+
+
+      users.push(
+        newUser
+      );
+
+
+      saveUsers(
+        users
+      );
+
+
+      localStorage.setItem(
+        CURRENT_USER_KEY,
+        newUser.id
+      );
+
+
+      registerForm.reset();
+
+      showAuthMessage("");
+
+      showApp();
+
+    }
+  );
+
+}
+
+
+// ==================================================
+// LOGIN
+// ==================================================
+
+if (loginForm) {
+
+  loginForm.addEventListener(
+    "submit",
+    function(event) {
+
+      event.preventDefault();
+
+
+      const name =
+        document
+          .getElementById("loginName")
+          .value
+          .trim();
+
+
+      const password =
+        document
+          .getElementById("loginPassword")
+          .value;
+
+
+      const users =
+        getUsers();
+
+
+      const user =
+        users.find(
+          item =>
+            String(item.name)
+              .toLowerCase() ===
+            name.toLowerCase() &&
+            item.password ===
+            password
+        );
+
+
+      if (!user) {
+
+        showAuthMessage(
+          "Incorrect name or password."
+        );
+
+        return;
+
+      }
+
+
+      localStorage.setItem(
+        CURRENT_USER_KEY,
+        user.id
+      );
+
+
+      loginForm.reset();
+
+      showAuthMessage("");
+
+      showApp();
+
+    }
+  );
+
+}
+
+
+// ==================================================
+// SWITCH REGISTER / LOGIN
+// ==================================================
+
+if (switchAuth) {
+
+  switchAuth.addEventListener(
+    "click",
+    function() {
+
+      const registerVisible =
+        registerForm &&
+        !registerForm.classList.contains(
+          "hidden"
+        );
+
+
+      if (registerVisible) {
+
+        registerForm.classList.add(
+          "hidden"
+        );
+
+        loginForm.classList.remove(
+          "hidden"
+        );
+
+
+        if (authSubtitle) {
+
+          authSubtitle.textContent =
+            "Login to continue";
+
+        }
+
+
+        switchAuth.textContent =
+          "Don't have an account? Register";
+
+      } else {
+
+        loginForm.classList.add(
+          "hidden"
+        );
+
+        registerForm.classList.remove(
+          "hidden"
+        );
+
+
+        if (authSubtitle) {
+
+          authSubtitle.textContent =
+            "Create your account to continue";
+
+        }
+
+
+        switchAuth.textContent =
+          "Already have an account? Login";
+
+      }
+
+
+      if (authMessage) {
+
+        authMessage.textContent = "";
+
+      }
+
+    }
+  );
+
+}
+
+
+// ==================================================
+// AUTH MESSAGE
+// ==================================================
+
+function showAuthMessage(message) {
+
+  if (!authMessage) {
+    return;
+  }
+
+
+  authMessage.textContent =
+    message;
+
+}
+
+
+// ==================================================
+// LOGOUT
+// ==================================================
+
+if (logoutBtn) {
+
+  logoutBtn.addEventListener(
+    "click",
+    function() {
+
+      // IMPORTANT:
+      // Only current login is removed.
+      // Download count remains saved.
+
+      localStorage.removeItem(
+        CURRENT_USER_KEY
+      );
+
+
+      showAuth();
+
+    }
+  );
+
+}
+
+
+// ==================================================
 // 5 SECOND DOWNLOAD ANIMATION
 // ==================================================
 
-downloadButton.addEventListener(
-  "click",
-  function(event) {
+if (downloadButton) {
 
-    // Stop the browser's normal
-    // immediate download.
-    event.preventDefault();
+  downloadButton.addEventListener(
+    "click",
+    function(event) {
+
+      // Stop immediate browser download.
+      event.preventDefault();
 
 
-    // Prevent multiple clicks.
-    if (
-      downloadButton.classList.contains(
+      // Prevent multiple clicks.
+      if (
+        downloadButton.classList.contains(
+          "loading"
+        )
+      ) {
+
+        return;
+
+      }
+
+
+      const apkURL =
+        downloadButton.getAttribute(
+          "href"
+        );
+
+
+      if (!apkURL) {
+
+        alert(
+          "APK file not found."
+        );
+
+        return;
+
+      }
+
+
+      const originalHTML =
+        downloadButton.innerHTML;
+
+
+      // Start loading.
+      downloadButton.classList.add(
         "loading"
-      )
-    ) {
-
-      return;
-
-    }
-
-
-    const apkURL =
-      downloadButton.getAttribute(
-        "href"
       );
 
 
-    if (!apkURL) {
+      // ==================================================
+      // PROGRESS BAR
+      // ==================================================
 
-      alert(
-        "APK file not found."
-      );
-
-      return;
-
-    }
-
-
-    const originalHTML =
-      downloadButton.innerHTML;
-
-
-    // Start loading.
-    downloadButton.classList.add(
-      "loading"
-    );
-
-
-    // Create progress layer.
-    let progress =
-      downloadButton.querySelector(
-        ".download-progress"
-      );
-
-
-    if (!progress) {
-
-      progress =
-        document.createElement(
-          "span"
+      let progress =
+        downloadButton.querySelector(
+          ".download-progress"
         );
 
-      progress.className =
-        "download-progress";
+
+      if (!progress) {
+
+        progress =
+          document.createElement(
+            "span"
+          );
 
 
-      downloadButton.prepend(
-        progress
-      );
-
-    }
+        progress.className =
+          "download-progress";
 
 
-    progress.style.width =
-      "0%";
-
-
-    // Find text element.
-    let content =
-      downloadButton.querySelector(
-        ".download-content"
-      );
-
-
-    if (!content) {
-
-      content =
-        document.createElement(
-          "span"
+        downloadButton.prepend(
+          progress
         );
 
-      content.className =
-        "download-content";
+      }
 
 
-      downloadButton.appendChild(
-        content
-      );
-
-    }
+      progress.style.width =
+        "0%";
 
 
-    content.textContent =
-      "Preparing download... 5s";
+      // ==================================================
+      // DOWNLOAD TEXT
+      // ==================================================
+
+      let content =
+        downloadButton.querySelector(
+          ".download-content"
+        );
 
 
-    // Optional status text.
-    const status =
-      document.getElementById(
-        "downloadStatus"
-      );
+      if (!content) {
+
+        content =
+          document.createElement(
+            "span"
+          );
 
 
-    if (status) {
-
-      status.textContent =
-        "Please wait...";
-
-    }
+        content.className =
+          "download-content";
 
 
-    const totalTime =
-      5000;
+        downloadButton.appendChild(
+          content
+        );
 
-    let elapsed =
-      0;
-
-
-    const timer =
-      setInterval(
-        function() {
-
-          elapsed += 100;
+      }
 
 
-          const percentage =
-            Math.min(
-              (elapsed / totalTime) * 100,
-              100
-            );
+      content.textContent =
+        "Preparing download... 5s";
 
 
-          progress.style.width =
-            percentage + "%";
+      // ==================================================
+      // STATUS
+      // ==================================================
+
+      const status =
+        document.getElementById(
+          "downloadStatus"
+        );
 
 
-          const remaining =
-            Math.ceil(
-              (totalTime - elapsed) / 1000
-            );
+      if (status) {
+
+        status.textContent =
+          "Please wait...";
+
+      }
 
 
-          if (
-            remaining > 0
-          ) {
+      // ==================================================
+      // TIMER
+      // ==================================================
 
-            content.textContent =
-              "Preparing download... " +
-              remaining +
-              "s";
-
-          }
+      const totalTime =
+        5000;
 
 
-          // ==========================
-          // 5 SECONDS COMPLETED
-          // ==========================
+      let elapsed =
+        0;
 
-          if (
-            elapsed >= totalTime
-          ) {
 
-            clearInterval(timer);
+      const timer =
+        setInterval(
+          function() {
+
+            elapsed += 100;
+
+
+            const percentage =
+              Math.min(
+                (elapsed / totalTime) * 100,
+                100
+              );
 
 
             progress.style.width =
-              "100%";
+              percentage + "%";
 
 
-            content.textContent =
-              "Starting download...";
+            const remaining =
+              Math.ceil(
+                (totalTime - elapsed) / 1000
+              );
 
 
-            if (status) {
+            if (
+              remaining > 0
+            ) {
 
-              status.textContent =
-                "Download starting...";
+              content.textContent =
+                "Preparing download... " +
+                remaining +
+                "s";
 
             }
 
 
-            // ==========================
-            // INCREASE DOWNLOAD COUNT
-            // ==========================
+            // ==================================================
+            // 5 SECONDS COMPLETED
+            // ==================================================
 
-            let count =
-              getDownloadCount();
+            if (
+              elapsed >= totalTime
+            ) {
 
-
-            count++;
-
-
-            localStorage.setItem(
-              DOWNLOAD_KEY,
-              count
-            );
+              clearInterval(
+                timer
+              );
 
 
-            updateDownloadCount();
+              progress.style.width =
+                "100%";
 
 
-            // ==========================
-            // START APK DOWNLOAD
-            // ==========================
-
-            setTimeout(
-              function() {
-
-                const link =
-                  document.createElement(
-                    "a"
-                  );
+              content.textContent =
+                "Starting download...";
 
 
-                link.href =
-                  apkURL;
+              if (status) {
+
+                status.textContent =
+                  "Download starting...";
+
+              }
 
 
-                link.download =
-                  "SuperVideoPlayer.apk";
+              // ==================================================
+              // INCREASE DOWNLOAD COUNT
+              // ==================================================
+
+              increaseDownloadCount();
 
 
-                link.style.display =
-                  "none";
+              // ==================================================
+              // START APK DOWNLOAD
+              // ==================================================
 
+              setTimeout(
+                function() {
 
-                document.body.appendChild(
-                  link
-                );
-
-
-                link.click();
-
-
-                document.body.removeChild(
-                  link
-                );
-
-
-                // ======================
-                // RESET BUTTON
-                // ======================
-
-                setTimeout(
-                  function() {
-
-                    downloadButton.classList.remove(
-                      "loading"
+                  const link =
+                    document.createElement(
+                      "a"
                     );
 
 
-                    downloadButton.innerHTML =
-                      originalHTML;
+                  link.href =
+                    apkURL;
 
 
-                    if (status) {
-
-                      status.textContent =
-                        "Download started successfully.";
-
-                    }
-
-                  },
-                  500
-                );
+                  link.download =
+                    "SuperVideoPlayer.apk";
 
 
-              },
-              300
-            );
+                  link.style.display =
+                    "none";
 
-          }
 
-        },
-        100
-      );
+                  document.body.appendChild(
+                    link
+                  );
 
-  }
-);
+
+                  link.click();
+
+
+                  document.body.removeChild(
+                    link
+                  );
+
+
+                  // ==================================================
+                  // RESET BUTTON
+                  // ==================================================
+
+                  setTimeout(
+                    function() {
+
+                      downloadButton.classList.remove(
+                        "loading"
+                      );
+
+
+                      downloadButton.innerHTML =
+                        originalHTML;
+
+
+                      if (status) {
+
+                        status.textContent =
+                          "Download started successfully.";
+
+                      }
+
+                    },
+                    500
+                  );
+
+
+                },
+                300
+              );
+
+            }
+
+          },
+          100
+        );
+
+    }
+  );
+
+}
 
 
 // ==================================================
@@ -781,9 +943,9 @@ starButtons.forEach(
 );
 
 
-// ==============================
+// ==================================================
 // UPDATE SELECTED STARS
-// ==============================
+// ==================================================
 
 function updateStarSelector() {
 
@@ -811,9 +973,15 @@ function updateStarSelector() {
 // SUBMIT REVIEW
 // ==================================================
 
-document
-  .getElementById("submitReview")
-  .addEventListener(
+const submitReview =
+  document.getElementById(
+    "submitReview"
+  );
+
+
+if (submitReview) {
+
+  submitReview.addEventListener(
     "click",
     function() {
 
@@ -838,29 +1006,40 @@ document
         selectedRating === 0
       ) {
 
-        message.textContent =
-          "Please select a star rating.";
+        if (message) {
+
+          message.textContent =
+            "Please select a star rating.";
+
+        }
 
         return;
 
       }
 
 
+      const reviewInput =
+        document.getElementById(
+          "reviewText"
+        );
+
+
       const reviewText =
-        document
-          .getElementById(
-            "reviewText"
-          )
-          .value
-          .trim();
+        reviewInput
+          ? reviewInput.value.trim()
+          : "";
 
 
       if (
         reviewText.length < 2
       ) {
 
-        message.textContent =
-          "Please write a review.";
+        if (message) {
+
+          message.textContent =
+            "Please write a review.";
+
+        }
 
         return;
 
@@ -891,7 +1070,6 @@ document
 
 
       // One review per user.
-
       const existing =
         reviews.find(
           review =>
@@ -902,8 +1080,12 @@ document
 
       if (existing) {
 
-        message.textContent =
-          "You already reviewed this app.";
+        if (message) {
+
+          message.textContent =
+            "You already reviewed this app.";
+
+        }
 
         return;
 
@@ -944,9 +1126,12 @@ document
       );
 
 
-      document.getElementById(
-        "reviewText"
-      ).value = "";
+      if (reviewInput) {
+
+        reviewInput.value =
+          "";
+
+      }
 
 
       selectedRating =
@@ -956,14 +1141,20 @@ document
       updateStarSelector();
 
 
-      message.textContent =
-        "Your review has been added.";
+      if (message) {
+
+        message.textContent =
+          "Your review has been added.";
+
+      }
 
 
       updateRatings();
 
     }
   );
+
+}
 
 
 // ==================================================
@@ -995,10 +1186,7 @@ function deleteReview(reviewId) {
   }
 
 
-  // IMPORTANT:
-  // Only the owner of the review
-  // can delete it.
-
+  // Only review owner can delete.
   if (
     review.userId !==
     currentUser
@@ -1325,7 +1513,6 @@ function renderReviews() {
 
 
           // Only owner sees delete button.
-
           const deleteButton =
             review.userId ===
             currentUser
@@ -1370,13 +1557,11 @@ function renderReviews() {
 
               </div>
 
-
               <div class="review-text">
                 ${escapeHTML(
                   review.text
                 )}
               </div>
-
 
               ${deleteButton}
 
@@ -1394,9 +1579,7 @@ function renderReviews() {
 // HTML SECURITY HELPER
 // ==================================================
 
-function escapeHTML(
-  text
-) {
+function escapeHTML(text) {
 
   const div =
     document.createElement(
