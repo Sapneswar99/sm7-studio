@@ -99,6 +99,7 @@
 
     <div class="login-container">
 
+
         <div class="login-logo-wrap">
 
             <img
@@ -231,7 +232,8 @@
 
                 <p
                     id="loginMessage"
-                    class="form-message">
+                    class="form-message"
+                    aria-live="polite">
                 </p>
 
             </form>
@@ -780,15 +782,20 @@
 
         <p
             id="reviewMessage"
-            class="form-message">
+            class="form-message"
+            aria-live="polite">
         </p>
 
     </form>
 
 
-    <!-- REVIEWS LIST -->
+    <!-- ==================================================
+         REVIEWS LIST
+         ================================================== -->
 
-    <div id="reviewsList">
+    <div
+        id="reviewsList"
+        aria-live="polite">
 
         <div class="empty-state">
             Loading reviews...
@@ -807,7 +814,10 @@
 <div
     class="modal"
     id="profileModal"
-    aria-hidden="true">
+    aria-hidden="true"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="profileModalTitle">
 
     <div class="modal-box profile-modal">
 
@@ -832,7 +842,7 @@
         </div>
 
 
-        <h2>
+        <h2 id="profileModalTitle">
             My Profile
         </h2>
 
@@ -913,7 +923,8 @@
 
             <p
                 id="profileMessage"
-                class="form-message">
+                class="form-message"
+                aria-live="polite">
             </p>
 
         </form>
@@ -931,7 +942,10 @@
 <div
     class="modal"
     id="registerModal"
-    aria-hidden="true">
+    aria-hidden="true"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="registerModalTitle">
 
     <div class="modal-box">
 
@@ -956,7 +970,7 @@
         </div>
 
 
-        <h2>
+        <h2 id="registerModalTitle">
             Create Account
         </h2>
 
@@ -1040,7 +1054,8 @@
 
         <p
             id="registerMessage"
-            class="form-message">
+            class="form-message"
+            aria-live="polite">
         </p>
 
 
@@ -1067,7 +1082,10 @@
 <div
     class="modal"
     id="forgotModal"
-    aria-hidden="true">
+    aria-hidden="true"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="forgotModalTitle">
 
     <div class="modal-box">
 
@@ -1092,7 +1110,7 @@
         </div>
 
 
-        <h2>
+        <h2 id="forgotModalTitle">
             Forgot Password?
         </h2>
 
@@ -1130,7 +1148,8 @@
 
         <p
             id="forgotMessage"
-            class="form-message">
+            class="form-message"
+            aria-live="polite">
         </p>
 
 
@@ -1144,6 +1163,59 @@
             </b>
 
         </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     DOWNLOAD COUNTDOWN MODAL
+     ================================================== -->
+
+<div
+    class="modal"
+    id="downloadModal"
+    aria-hidden="true"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="downloadModalTitle">
+
+    <div class="modal-box download-countdown-box">
+
+        <div class="modal-logo">
+
+            <img
+                src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
+                alt="Super Video Player">
+
+        </div>
+
+
+        <h2 id="downloadModalTitle">
+            Preparing Download
+        </h2>
+
+
+        <p id="downloadCountdownText">
+            Your download will start in
+        </p>
+
+
+        <div
+            id="downloadCountdown"
+            class="download-countdown"
+            aria-live="assertive">
+
+            5
+
+        </div>
+
+
+        <p class="download-countdown-hint">
+            Please wait...
+        </p>
 
     </div>
 
