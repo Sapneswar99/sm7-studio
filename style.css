@@ -51,6 +51,9 @@ button {
     justify-content: center;
     align-items: center;
 
+    width: 100%;
+    height: 100vh;
+
     padding: 20px;
 
     background:
@@ -63,48 +66,53 @@ button {
 
     opacity: 1;
     visibility: visible;
+    pointer-events: all;
 
     transition:
-        opacity .6s ease,
-        visibility .6s ease;
+        opacity 0.5s ease,
+        visibility 0.5s ease;
 }
 
+/*
+   JS uses .hidden to hide the loading screen.
+   .hide is also supported for compatibility.
+*/
+
+#loadingScreen.hidden,
 #loadingScreen.hide {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
 }
 
-.loading-logo {
-    width: 90px;
-    height: 90px;
 
-    display: grid;
-    place-items: center;
+/* ================= LOADING LOGO ================= */
+
+.loading-logo {
+    width: 110px;
+    height: 110px;
+
+    display: block;
+
+    object-fit: contain;
 
     border-radius: 25px;
 
-    font-size: 40px;
-    font-weight: bold;
+    animation:
+        loadingLogoPulse 1.5s ease-in-out infinite;
 
-    background:
-        linear-gradient(
-            135deg,
-            #176eff,
-            #8b20ff
-        );
-
-    box-shadow:
-        0 0 25px #176eff,
-        0 0 70px #721dff55;
-
-    animation: pulse 1.5s ease-in-out infinite;
+    filter:
+        drop-shadow(0 0 20px #176eff88)
+        drop-shadow(0 0 45px #721dff55);
 }
 
 #loadingScreen h1 {
     margin-top: 25px;
 
     font-size: 25px;
+
+    line-height: 1.2;
+
     text-align: center;
 }
 
@@ -139,6 +147,8 @@ button {
     width: 0;
     height: 100%;
 
+    border-radius: 20px;
+
     background:
         linear-gradient(
             90deg,
@@ -146,18 +156,28 @@ button {
             #08c7ff
         );
 
-    animation: loading 2.8s linear forwards;
+    animation:
+        loading 3s linear forwards;
 }
 
 @keyframes loading {
+    from {
+        width: 0;
+    }
+
     to {
         width: 100%;
     }
 }
 
-@keyframes pulse {
+@keyframes loadingLogoPulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
     50% {
-        transform: scale(1.08);
+        transform: scale(1.06);
     }
 }
 
@@ -173,6 +193,7 @@ header {
 
     display: flex;
     align-items: center;
+
     gap: 22px;
 
     position: sticky;
@@ -180,7 +201,7 @@ header {
 
     z-index: 1000;
 
-    background: rgba(3, 6, 17, .88);
+    background: rgba(3, 6, 17, 0.88);
 
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -191,6 +212,7 @@ header {
 .logo {
     display: flex;
     align-items: center;
+
     gap: 10px;
 
     margin-right: auto;
@@ -224,6 +246,7 @@ header {
 
 .logo h2 {
     font-size: 20px;
+
     white-space: nowrap;
 }
 
@@ -241,9 +264,15 @@ header {
     font-size: 10px;
 }
 
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
 nav {
     display: flex;
     align-items: center;
+
     gap: 25px;
 }
 
@@ -257,8 +286,8 @@ nav a {
     font-size: 14px;
 
     transition:
-        color .2s ease,
-        transform .2s ease;
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
 nav a::after {
@@ -283,7 +312,8 @@ nav a::after {
 
     transform: scaleX(0);
 
-    transition: transform .2s ease;
+    transition:
+        transform 0.2s ease;
 }
 
 nav a:hover {
@@ -302,6 +332,7 @@ nav a:hover::after {
 .auth-buttons {
     display: flex;
     align-items: center;
+
     gap: 8px;
 }
 
@@ -320,9 +351,9 @@ nav a:hover::after {
     font-weight: 600;
 
     transition:
-        transform .2s ease,
-        box-shadow .2s ease,
-        background .2s ease;
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
 }
 
 .login-btn {
@@ -427,7 +458,7 @@ nav a:hover::after {
 
     font-size: 65px;
 
-    line-height: .95;
+    line-height: 0.95;
 
     letter-spacing: -2px;
 }
@@ -487,9 +518,9 @@ nav a:hover::after {
         0 0 30px #6e20ff55;
 
     transition:
-        transform .2s ease,
-        box-shadow .2s ease,
-        opacity .2s ease;
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
 }
 
 .download-btn:hover {
@@ -504,7 +535,7 @@ nav a:hover::after {
 }
 
 .download-btn:disabled {
-    opacity: .55;
+    opacity: 0.55;
 
     cursor: not-allowed;
 
@@ -594,8 +625,8 @@ nav a:hover::after {
     border-right: 1px solid #17345e;
 
     transition:
-        background .2s ease,
-        transform .2s ease;
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
 .feature:hover {
@@ -886,8 +917,8 @@ select {
     outline: none;
 
     transition:
-        border-color .2s ease,
-        box-shadow .2s ease;
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 input::placeholder,
@@ -940,9 +971,9 @@ textarea {
         );
 
     transition:
-        transform .2s ease,
-        box-shadow .2s ease,
-        opacity .2s ease;
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
 }
 
 .review-submit:hover,
@@ -955,7 +986,7 @@ textarea {
 
 .review-submit:disabled,
 .modal-action:disabled {
-    opacity: .5;
+    opacity: 0.5;
 
     cursor: not-allowed;
 
@@ -1004,8 +1035,8 @@ textarea {
     background: #071329;
 
     transition:
-        border-color .2s ease,
-        transform .2s ease;
+        border-color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .review-card:hover,
@@ -1088,8 +1119,8 @@ textarea {
     cursor: pointer;
 
     transition:
-        background .2s ease,
-        border-color .2s ease;
+        background 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .delete-review:hover {
@@ -1131,7 +1162,7 @@ textarea {
 
     padding: 20px;
 
-    background: rgba(0, 0, 0, .78);
+    background: rgba(0, 0, 0, 0.78);
 
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -1141,7 +1172,7 @@ textarea {
     display: flex;
 
     animation:
-        modalFade .2s ease;
+        modalFade 0.2s ease;
 }
 
 @keyframes modalFade {
@@ -1178,13 +1209,13 @@ textarea {
         0 0 50px #0b58aa44;
 
     animation:
-        modalBoxIn .25s ease;
+        modalBoxIn 0.25s ease;
 }
 
 @keyframes modalBoxIn {
     from {
         opacity: 0;
-        transform: translateY(15px) scale(.97);
+        transform: translateY(15px) scale(0.97);
     }
 
     to {
@@ -1236,8 +1267,8 @@ textarea {
     cursor: pointer;
 
     transition:
-        background .2s ease,
-        color .2s ease;
+        background 0.2s ease,
+        color 0.2s ease;
 }
 
 .close:hover {
@@ -1472,7 +1503,6 @@ footer {
     .feature:nth-child(3) {
         border-right: 0;
     }
-
 }
 
 
@@ -1593,7 +1623,6 @@ footer {
         padding:
             25px 5%;
     }
-
 }
 
 
@@ -1784,6 +1813,14 @@ footer {
         text-align: center;
     }
 
+    .loading-logo {
+        width: 95px;
+        height: 95px;
+    }
+
+    #loadingScreen h1 {
+        font-size: 22px;
+    }
 }
 
 
@@ -1820,4 +1857,8 @@ footer {
         font-size: 11px;
     }
 
+    .loading-logo {
+        width: 85px;
+        height: 85px;
+    }
 }
