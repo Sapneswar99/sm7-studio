@@ -16,7 +16,7 @@ const APK_URL = "apk/super-video-player.apk";
    Example:
    const OWNER_UID = "abc123xyz...";
 */
-const OWNER_UID = "YOUR_OWNER_FIREBASE_UID";
+const OWNER_UID = "yZsy5oOxhjU7BFnaCH67FOL3rjB2";
 
 
 /* ================= FIREBASE ================= */
