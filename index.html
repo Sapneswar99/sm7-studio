@@ -21,6 +21,7 @@
     <!-- ================= FAVICON ================= -->
 
     <!-- DO NOT CHANGE FAVICON -->
+
     <link
         rel="icon"
         type="image/png"
@@ -59,6 +60,7 @@
 
 <!-- ==================================================
      LOADING SCREEN
+     FIRST TIME / INITIAL AUTH CHECK
      ================================================== -->
 
 <div
@@ -66,28 +68,240 @@
     aria-label="Loading Super Video Player"
     role="status">
 
-    <!-- ONLY LOADING SCREEN LOGO -->
+    <!-- SAME LOGO AS REQUESTED -->
+
     <img
         src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
         alt="Super Video Player"
         class="loading-logo">
 
+
     <h1>
         <span>Super</span> Video Player
     </h1>
+
 
     <p>
         Loading...
     </p>
 
+
     <div class="loading-bar">
 
-        <div class="loading-progress"></div>
+        <div
+            class="loading-progress">
+        </div>
 
     </div>
 
 </div>
 
+
+
+<!-- ==================================================
+     LOGIN SCREEN
+     SHOWN WHEN USER IS NOT LOGGED IN
+     ================================================== -->
+
+<section
+    id="loginScreen"
+    class="login-screen"
+    aria-hidden="true">
+
+
+    <div class="login-container">
+
+
+        <!-- SAME APP LOGO -->
+
+        <div class="login-logo-wrap">
+
+            <img
+                src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
+                alt="Super Video Player"
+                class="login-logo">
+
+        </div>
+
+
+        <div class="login-brand">
+
+            <h1>
+                <span>Super</span> Video Player
+            </h1>
+
+            <p>
+                Play Everything. Anywhere.
+            </p>
+
+        </div>
+
+
+        <!-- LOGIN CARD -->
+
+        <div class="login-card">
+
+
+            <h2>
+                Welcome Back
+            </h2>
+
+
+            <p class="login-card-subtitle">
+                Login to continue
+            </p>
+
+
+            <!-- GOOGLE -->
+
+            <button
+                type="button"
+                id="googleLoginButton"
+                class="google-login-btn">
+
+                <span class="google-icon">
+                    G
+                </span>
+
+                <span>
+                    Continue with Google
+                </span>
+
+            </button>
+
+
+            <!-- DIVIDER -->
+
+            <div class="auth-divider">
+
+                <span></span>
+
+                <small>
+                    OR
+                </small>
+
+                <span></span>
+
+            </div>
+
+
+            <!-- LOGIN FORM -->
+
+            <form
+                id="loginForm"
+                autocomplete="on">
+
+
+                <div class="auth-field">
+
+                    <label for="loginEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        name="email"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required>
+
+                </div>
+
+
+                <div class="auth-field">
+
+                    <label for="loginPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        minlength="6"
+                        required>
+
+                </div>
+
+
+                <div class="forgot-row">
+
+                    <button
+                        type="button"
+                        id="loginForgotPassword"
+                        class="forgot-password">
+
+                        Forgot Password?
+
+                    </button>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    id="loginSubmit"
+                    class="primary-auth-btn">
+
+                    Login
+
+                </button>
+
+
+                <p
+                    id="loginMessage"
+                    class="form-message">
+                </p>
+
+
+            </form>
+
+
+            <!-- REGISTER -->
+
+            <div class="auth-bottom-text">
+
+                <span>
+                    Don't have an account?
+                </span>
+
+                <button
+                    type="button"
+                    id="openRegisterButton">
+
+                    Register
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+        <p class="login-footer-text">
+            Safe & Secure Firebase Authentication
+        </p>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     MAIN WEBSITE
+     HIDDEN UNTIL LOGIN
+     ================================================== -->
+
+<div
+    id="mainApp"
+    class="main-app"
+    aria-hidden="true">
 
 
 <!-- ==================================================
@@ -140,34 +354,16 @@
 
     <div class="auth-buttons">
 
-        <button
-            class="login-btn"
-            id="loginButton"
-            type="button"
-            onclick="openAuth('login')">
-
-            Login
-
-        </button>
-
-
-        <button
-            class="register-btn"
-            id="registerButton"
-            type="button"
-            onclick="openAuth('register')">
-
-            Register
-
-        </button>
+        <div
+            id="loggedUserName"
+            class="logged-user-name">
+        </div>
 
 
         <button
             class="logout-btn"
             id="logoutButton"
-            type="button"
-            onclick="logoutUser()"
-            hidden>
+            type="button">
 
             Logout
 
@@ -226,8 +422,7 @@
         <button
             class="download-btn"
             id="heroDownloadButton"
-            type="button"
-            onclick="startDownload()">
+            type="button">
 
             ⇩ Download APK
 
@@ -415,8 +610,7 @@
         <button
             class="download-btn"
             id="downloadButton"
-            type="button"
-            onclick="startDownload()">
+            type="button">
 
             ⇩ Download APK
 
@@ -472,7 +666,7 @@
 
 
     <p class="reviews-subtitle">
-        Login to share your experience with Super Video Player.
+        Share your experience with Super Video Player.
     </p>
 
 
@@ -485,8 +679,7 @@
 
         <div
             class="review-user"
-            id="reviewUser"
-            hidden>
+            id="reviewUser">
 
             <span>
                 Reviewing as
@@ -576,12 +769,12 @@
 
 
 <!-- ==================================================
-     AUTH MODAL
+     REGISTER MODAL
      ================================================== -->
 
 <div
     class="modal"
-    id="authModal"
+    id="registerModal"
     aria-hidden="true">
 
 
@@ -591,7 +784,7 @@
         <button
             class="close"
             type="button"
-            onclick="closeAuth()"
+            id="registerClose"
             aria-label="Close">
 
             ×
@@ -599,44 +792,95 @@
         </button>
 
 
-        <h2 id="authTitle">
-            Login
+        <div class="modal-logo">
+
+            <img
+                src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
+                alt="Super Video Player">
+
+        </div>
+
+
+        <h2>
+            Create Account
         </h2>
 
 
-        <p id="authSubtitle">
-            Login with your name and password.
+        <p>
+            Create your Super Video Player account.
         </p>
 
 
+        <!-- GOOGLE REGISTER -->
+
+        <button
+            type="button"
+            id="googleRegisterButton"
+            class="google-login-btn">
+
+            <span class="google-icon">
+                G
+            </span>
+
+            <span>
+                Continue with Google
+            </span>
+
+        </button>
+
+
+        <div class="auth-divider">
+
+            <span></span>
+
+            <small>
+                OR
+            </small>
+
+            <span></span>
+
+        </div>
+
+
+        <!-- REGISTER FORM -->
+
         <form
-            id="authForm">
+            id="registerForm"
+            autocomplete="on">
 
 
             <input
                 type="text"
-                id="authName"
-                placeholder="Name"
-                autocomplete="username"
-                maxlength="30"
+                id="registerName"
+                placeholder="Full Name"
+                autocomplete="name"
+                maxlength="50"
+                required>
+
+
+            <input
+                type="email"
+                id="registerEmail"
+                placeholder="Email"
+                autocomplete="email"
                 required>
 
 
             <input
                 type="password"
-                id="authPassword"
+                id="registerPassword"
                 placeholder="Password"
-                autocomplete="current-password"
+                autocomplete="new-password"
                 minlength="6"
                 required>
 
 
             <button
                 class="modal-action"
-                id="authSubmit"
+                id="registerSubmit"
                 type="submit">
 
-                Login
+                Create Account
 
             </button>
 
@@ -645,19 +889,113 @@
 
 
         <p
-            id="authMessage"
+            id="registerMessage"
             class="form-message">
         </p>
 
 
         <button
             class="switch"
-            id="switchAuth"
-            type="button"
-            onclick="toggleAuth()">
+            id="backToLoginButton"
+            type="button">
 
-            Don't have an account?
-            <b>Register</b>
+            Already have an account?
+            <b>Login</b>
+
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ==================================================
+     FORGOT PASSWORD MODAL
+     ================================================== -->
+
+<div
+    class="modal"
+    id="forgotModal"
+    aria-hidden="true">
+
+
+    <div class="modal-box">
+
+
+        <button
+            class="close"
+            type="button"
+            id="forgotClose"
+            aria-label="Close">
+
+            ×
+
+        </button>
+
+
+        <div class="modal-logo">
+
+            <img
+                src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
+                alt="Super Video Player">
+
+        </div>
+
+
+        <h2>
+            Forgot Password?
+        </h2>
+
+
+        <p>
+            Enter your registered email and we will send
+            you a password reset link.
+        </p>
+
+
+        <form
+            id="forgotForm"
+            autocomplete="on">
+
+
+            <input
+                type="email"
+                id="forgotEmail"
+                placeholder="Enter your email"
+                autocomplete="email"
+                required>
+
+
+            <button
+                class="modal-action"
+                id="forgotSubmit"
+                type="submit">
+
+                Send Reset Link
+
+            </button>
+
+
+        </form>
+
+
+        <p
+            id="forgotMessage"
+            class="form-message">
+        </p>
+
+
+        <button
+            class="switch"
+            id="forgotBackLogin"
+            type="button">
+
+            <b>
+                Back to Login
+            </b>
 
         </button>
 
@@ -756,6 +1094,10 @@
 
 
 </footer>
+
+
+</div>
+<!-- END MAIN APP -->
 
 
 
