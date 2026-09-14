@@ -1,6 +1,7 @@
 /* =========================================================
    SUPER VIDEO PLAYER
-   MAIN WEBSITE STYLES
+   PREMIUM RESPONSIVE WEBSITE STYLES
+   FULL REPLACE
    ========================================================= */
 
 * {
@@ -11,13 +12,35 @@
 
 html {
     scroll-behavior: smooth;
+    background: #030611;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #030611;
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            #101f52 0,
+            #030611 42%
+        );
+
     color: #ffffff;
+
     overflow-x: hidden;
+
+    min-height: 100vh;
+}
+
+body.modal-open {
+    overflow: hidden;
 }
 
 button,
@@ -31,9 +54,31 @@ button {
     -webkit-tap-highlight-color: transparent;
 }
 
+img {
+    max-width: 100%;
+}
+
 ::selection {
     background: #176eff;
     color: #ffffff;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #030611;
+}
+
+::-webkit-scrollbar-thumb {
+    background:
+        linear-gradient(
+            #176eff,
+            #8b20ff
+        );
+
+    border-radius: 20px;
 }
 
 
@@ -44,24 +89,28 @@ button {
 #loadingScreen {
     position: fixed;
     inset: 0;
-    z-index: 99999;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    z-index: 99999;
 
     width: 100%;
     height: 100vh;
+    height: 100dvh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     padding: 20px;
+
+    text-align: center;
 
     background:
         radial-gradient(
             circle at center,
-            #10245c 0%,
-            #07112b 35%,
-            #030611 70%
+            #12265f 0%,
+            #08142f 32%,
+            #030611 72%
         );
 
     opacity: 1;
@@ -73,10 +122,28 @@ button {
         visibility 0.5s ease;
 }
 
-/*
-   JS uses .hidden to hide the loading screen.
-   .hide is also supported for compatibility.
-*/
+#loadingScreen::before {
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    max-width: 100vw;
+    max-height: 100vw;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #176eff1c,
+            transparent 65%
+        );
+
+    pointer-events: none;
+}
 
 #loadingScreen.hidden,
 #loadingScreen.hide {
@@ -85,82 +152,99 @@ button {
     pointer-events: none;
 }
 
-
-/* ================= LOADING LOGO ================= */
-
 .loading-logo {
-    width: 110px;
-    height: 110px;
+    position: relative;
+    z-index: 1;
+
+    width: 115px;
+    height: 115px;
 
     display: block;
 
     object-fit: contain;
 
-    border-radius: 25px;
+    border-radius: 26px;
 
     animation:
         loadingLogoPulse 1.5s ease-in-out infinite;
 
     filter:
         drop-shadow(0 0 20px #176eff88)
-        drop-shadow(0 0 45px #721dff55);
+        drop-shadow(0 0 50px #721dff55);
 }
 
 #loadingScreen h1 {
+    position: relative;
+    z-index: 1;
+
     margin-top: 25px;
 
-    font-size: 25px;
+    font-size: 26px;
+    font-weight: 800;
 
     line-height: 1.2;
 
-    text-align: center;
+    letter-spacing: -0.5px;
 }
 
 #loadingScreen h1 span {
     color: #13baff;
+
+    text-shadow:
+        0 0 25px #13baff44;
 }
 
 #loadingScreen p {
-    margin-top: 12px;
+    position: relative;
+    z-index: 1;
+
+    margin-top: 11px;
 
     color: #8998b5;
 
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .loading-bar {
-    width: 230px;
+    position: relative;
+    z-index: 1;
+
+    width: 240px;
     max-width: 80vw;
 
     height: 5px;
 
-    margin-top: 20px;
+    margin-top: 21px;
 
     overflow: hidden;
 
     background: #17213a;
 
-    border-radius: 20px;
+    border-radius: 50px;
+
+    box-shadow:
+        0 0 15px #00000055;
 }
 
 .loading-progress {
     width: 0;
     height: 100%;
 
-    border-radius: 20px;
+    border-radius: 50px;
 
     background:
         linear-gradient(
             90deg,
             #8b20ff,
+            #176eff,
             #08c7ff
         );
 
     animation:
-        loading 3s linear forwards;
+        loadingProgress 3s linear forwards;
 }
 
-@keyframes loading {
+@keyframes loadingProgress {
     from {
         width: 0;
     }
@@ -183,10 +267,437 @@ button {
 
 
 /* =========================================================
-   HEADER / NAVBAR
+   LOGIN SCREEN
+   ========================================================= */
+
+.login-screen {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9000;
+
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    overflow-y: auto;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px 16px;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            #132a62 0,
+            #07122b 30%,
+            #030611 70%
+        );
+}
+
+.login-screen.show {
+    display: flex;
+}
+
+.login-screen::before {
+    content: "";
+
+    position: fixed;
+
+    width: 500px;
+    height: 500px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #176eff14,
+            transparent 68%
+        );
+
+    pointer-events: none;
+}
+
+.login-container {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    max-width: 430px;
+
+    margin: auto;
+
+    text-align: center;
+}
+
+.login-logo-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-logo {
+    width: 82px;
+    height: 82px;
+
+    object-fit: contain;
+
+    border-radius: 20px;
+
+    filter:
+        drop-shadow(0 0 18px #176eff66)
+        drop-shadow(0 0 35px #8b20ff33);
+}
+
+.login-brand h1 {
+    margin-top: 15px;
+
+    font-size: 25px;
+    font-weight: 800;
+
+    letter-spacing: -0.5px;
+}
+
+.login-brand h1 span {
+    color: #13baff;
+}
+
+.login-brand p {
+    margin-top: 7px;
+
+    color: #8190aa;
+
+    font-size: 13px;
+}
+
+.login-card {
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 27px 25px;
+
+    text-align: left;
+
+    border: 1px solid #1b4f94;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #091932ee,
+            #050b1bee
+        );
+
+    box-shadow:
+        0 0 45px #176eff0e,
+        inset 0 1px 0 #ffffff06;
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.login-card h2 {
+    text-align: center;
+
+    font-size: 24px;
+
+    font-weight: 750;
+}
+
+.login-card-subtitle {
+    margin-top: 7px;
+
+    text-align: center;
+
+    color: #7f90ad;
+
+    font-size: 13px;
+}
+
+.google-login-btn {
+    width: 100%;
+
+    min-height: 48px;
+
+    margin-top: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 12px 16px;
+
+    border: 1px solid #35517a;
+
+    border-radius: 12px;
+
+    color: #ffffff;
+
+    background: #071225;
+
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 650;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.google-login-btn:hover {
+    transform: translateY(-2px);
+
+    border-color: #4e78b1;
+
+    background: #0a1931;
+
+    box-shadow:
+        0 0 20px #176eff18;
+}
+
+.google-login-btn:active {
+    transform: translateY(0);
+}
+
+.google-icon {
+    width: 22px;
+    height: 22px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    color: #4285f4;
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.auth-divider {
+    width: 100%;
+
+    margin: 21px 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.auth-divider span {
+    flex: 1;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #254365
+        );
+}
+
+.auth-divider span:last-child {
+    background:
+        linear-gradient(
+            90deg,
+            #254365,
+            transparent
+        );
+}
+
+.auth-divider small {
+    color: #667895;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+.auth-field {
+    margin-bottom: 14px;
+}
+
+.auth-field label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #a4b2c8;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.auth-field input {
+    margin: 0;
+}
+
+.forgot-row {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: -3px;
+
+    margin-bottom: 14px;
+}
+
+.forgot-password {
+    padding: 2px;
+
+    border: 0;
+
+    color: #16bfff;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 12px;
+}
+
+.forgot-password:hover {
+    color: #76ddff;
+
+    text-decoration: underline;
+}
+
+.primary-auth-btn {
+    width: 100%;
+
+    min-height: 48px;
+
+    padding: 12px 20px;
+
+    border: 0;
+
+    border-radius: 12px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            100deg,
+            #8b1cff,
+            #176eff,
+            #08a9ff
+        );
+
+    box-shadow:
+        0 0 25px #176eff20;
+
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.primary-auth-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 32px #176eff4d;
+}
+
+.primary-auth-btn:active {
+    transform: translateY(0);
+}
+
+.primary-auth-btn:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+.auth-bottom-text {
+    margin-top: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 5px;
+
+    color: #71819b;
+
+    font-size: 12px;
+}
+
+.auth-bottom-text button {
+    border: 0;
+
+    padding: 0;
+
+    color: #13baff;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-weight: 700;
+}
+
+.auth-bottom-text button:hover {
+    text-decoration: underline;
+}
+
+.login-footer-text {
+    margin-top: 17px;
+
+    color: #52627b;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   MAIN APP
+   ========================================================= */
+
+#mainApp {
+    display: none;
+
+    min-height: 100vh;
+}
+
+#mainApp.show {
+    display: block;
+}
+
+
+/* =========================================================
+   HEADER
    ========================================================= */
 
 header {
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+
     min-height: 72px;
 
     padding: 10px 6%;
@@ -196,28 +707,24 @@ header {
 
     gap: 22px;
 
-    position: sticky;
-    top: 0;
-
-    z-index: 1000;
-
-    background: rgba(3, 6, 17, 0.88);
-
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    background:
+        rgba(3, 6, 17, 0.88);
 
     border-bottom: 1px solid #16376b;
+
+    backdrop-filter: blur(17px);
+    -webkit-backdrop-filter: blur(17px);
 }
 
 .logo {
+    min-width: 0;
+
     display: flex;
     align-items: center;
 
     gap: 10px;
 
     margin-right: auto;
-
-    min-width: 0;
 }
 
 .logo-icon {
@@ -231,7 +738,10 @@ header {
 
     border-radius: 12px;
 
-    font-weight: bold;
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: 800;
 
     background:
         linear-gradient(
@@ -246,6 +756,7 @@ header {
 
 .logo h2 {
     font-size: 20px;
+    font-weight: 800;
 
     white-space: nowrap;
 }
@@ -264,11 +775,6 @@ header {
     font-size: 10px;
 }
 
-
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
-
 nav {
     display: flex;
     align-items: center;
@@ -284,6 +790,7 @@ nav a {
     text-decoration: none;
 
     font-size: 14px;
+    font-weight: 500;
 
     transition:
         color 0.2s ease,
@@ -312,22 +819,21 @@ nav a::after {
 
     transform: scaleX(0);
 
+    transform-origin: center;
+
     transition:
         transform 0.2s ease;
 }
 
 nav a:hover {
     color: #16bfff;
+
+    transform: translateY(-1px);
 }
 
 nav a:hover::after {
     transform: scaleX(1);
 }
-
-
-/* =========================================================
-   AUTH BUTTONS
-   ========================================================= */
 
 .auth-buttons {
     display: flex;
@@ -336,9 +842,57 @@ nav a:hover::after {
     gap: 8px;
 }
 
-.login-btn,
-.register-btn,
+.logged-user-name {
+    max-width: 140px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    color: #a9b8cf;
+
+    font-size: 12px;
+}
+
 .logout-btn {
+    padding: 9px 16px;
+
+    border: 1px solid #2877ff;
+
+    border-radius: 25px;
+
+    color: #ffffff;
+
+    background: #07132b;
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 650;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+
+    background: #0a1b3b;
+
+    box-shadow:
+        0 0 20px #176eff55;
+}
+
+.logout-btn:active {
+    transform: translateY(0);
+}
+
+.login-btn,
+.register-btn {
     padding: 10px 18px;
 
     border-radius: 25px;
@@ -349,24 +903,12 @@ nav a:hover::after {
 
     font-size: 13px;
     font-weight: 600;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
 }
 
 .login-btn {
     background: #07132b;
 
     border: 1px solid #2877ff;
-}
-
-.login-btn:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 0 20px #176eff55;
 }
 
 .register-btn {
@@ -380,26 +922,6 @@ nav a:hover::after {
         );
 }
 
-.register-btn:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 0 22px #741dff66;
-}
-
-.logout-btn {
-    border: 1px solid #2877ff;
-
-    background: #07132b;
-}
-
-.logout-btn:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 0 20px #176eff55;
-}
-
 [hidden] {
     display: none !important;
 }
@@ -410,6 +932,8 @@ nav a:hover::after {
    ========================================================= */
 
 .hero {
+    position: relative;
+
     min-height: 570px;
 
     padding: 70px 7%;
@@ -422,6 +946,8 @@ nav a:hover::after {
 
     gap: 40px;
 
+    overflow: hidden;
+
     background:
         radial-gradient(
             circle at 75% 45%,
@@ -430,7 +956,35 @@ nav a:hover::after {
         );
 }
 
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 450px;
+    height: 450px;
+
+    right: -130px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #721dff15,
+            transparent 68%
+        );
+
+    pointer-events: none;
+}
+
 .hero-content {
+    position: relative;
+    z-index: 1;
+
     min-width: 0;
 }
 
@@ -448,6 +1002,7 @@ nav a:hover::after {
     background: #7e20ff0d;
 
     font-size: 12px;
+    font-weight: 600;
 
     box-shadow:
         0 0 20px #8b20ff18;
@@ -456,11 +1011,13 @@ nav a:hover::after {
 .hero h1 {
     margin-top: 20px;
 
-    font-size: 65px;
+    font-size: clamp(47px, 6vw, 65px);
 
     line-height: 0.95;
 
-    letter-spacing: -2px;
+    letter-spacing: -2.5px;
+
+    font-weight: 850;
 }
 
 .hero h1 span {
@@ -476,6 +1033,7 @@ nav a:hover::after {
     color: #bfd5ff;
 
     font-size: 30px;
+    font-weight: 650;
 }
 
 .hero p {
@@ -502,8 +1060,7 @@ nav a:hover::after {
     color: #ffffff;
 
     font-size: 16px;
-
-    font-weight: bold;
+    font-weight: 750;
 
     cursor: pointer;
 
@@ -545,6 +1102,8 @@ nav a:hover::after {
 .specs {
     display: flex;
 
+    align-items: center;
+
     gap: 15px;
 
     margin-top: 22px;
@@ -557,6 +1116,9 @@ nav a:hover::after {
 }
 
 .hero-art {
+    position: relative;
+    z-index: 1;
+
     display: flex;
 
     justify-content: center;
@@ -574,8 +1136,10 @@ nav a:hover::after {
 
     border-radius: 55px;
 
+    color: #ffffff;
+
     font-size: 80px;
-    font-weight: bold;
+    font-weight: 800;
 
     background:
         linear-gradient(
@@ -593,6 +1157,11 @@ nav a:hover::after {
 }
 
 @keyframes float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
     50% {
         transform: translateY(-15px);
     }
@@ -614,7 +1183,12 @@ nav a:hover::after {
     grid-template-columns:
         repeat(5, 1fr);
 
-    background: #030815;
+    background:
+        linear-gradient(
+            180deg,
+            #030815,
+            #040918
+        );
 }
 
 .feature {
@@ -722,8 +1296,10 @@ nav a:hover::after {
 
     border-radius: 20px;
 
+    color: #ffffff;
+
     font-size: 35px;
-    font-weight: bold;
+    font-weight: 800;
 
     background:
         linear-gradient(
@@ -746,6 +1322,7 @@ nav a:hover::after {
     color: #09baff;
 
     font-size: 11px;
+    font-weight: 700;
 
     letter-spacing: 1px;
 }
@@ -760,6 +1337,8 @@ nav a:hover::after {
     color: #8a9ab6;
 
     line-height: 1.6;
+
+    font-size: 14px;
 }
 
 
@@ -782,7 +1361,12 @@ nav a:hover::after {
 
     border-radius: 20px;
 
-    background: #071329;
+    background:
+        linear-gradient(
+            145deg,
+            #071329,
+            #050c1c
+        );
 
     border: 1px solid #1b4f9d;
 
@@ -815,7 +1399,12 @@ nav a:hover::after {
 .reviews {
     padding: 60px 7%;
 
-    background: #040918;
+    background:
+        linear-gradient(
+            180deg,
+            #040918,
+            #030714
+        );
 
     border-top: 1px solid #101f3e;
 }
@@ -824,6 +1413,8 @@ nav a:hover::after {
     text-align: center;
 
     font-size: 32px;
+
+    font-weight: 800;
 }
 
 .reviews-subtitle {
@@ -845,7 +1436,12 @@ nav a:hover::after {
 
     border-radius: 20px;
 
-    background: #071329;
+    background:
+        linear-gradient(
+            145deg,
+            #071329,
+            #050c1d
+        );
 
     border: 1px solid #183e78;
 
@@ -918,7 +1514,8 @@ select {
 
     transition:
         border-color 0.2s ease,
-        box-shadow 0.2s ease;
+        box-shadow 0.2s ease,
+        background 0.2s ease;
 }
 
 input::placeholder,
@@ -931,8 +1528,11 @@ textarea:focus,
 select:focus {
     border-color: #237eff;
 
+    background: #040b18;
+
     box-shadow:
-        0 0 0 3px #176eff14;
+        0 0 0 3px #176eff14,
+        0 0 18px #176eff0c;
 }
 
 select {
@@ -959,7 +1559,7 @@ textarea {
 
     color: #ffffff;
 
-    font-weight: bold;
+    font-weight: 700;
 
     cursor: pointer;
 
@@ -984,6 +1584,11 @@ textarea {
         0 0 25px #176eff44;
 }
 
+.review-submit:active,
+.modal-action:active {
+    transform: translateY(0);
+}
+
 .review-submit:disabled,
 .modal-action:disabled {
     opacity: 0.5;
@@ -1001,6 +1606,8 @@ textarea {
     color: #ff718c;
 
     font-size: 12px;
+
+    line-height: 1.5;
 }
 
 .form-message.success {
@@ -1032,7 +1639,12 @@ textarea {
 
     border: 1px solid #173b72;
 
-    background: #071329;
+    background:
+        linear-gradient(
+            145deg,
+            #071329,
+            #050c1d
+        );
 
     transition:
         border-color 0.2s ease,
@@ -1162,10 +1774,11 @@ textarea {
 
     padding: 20px;
 
-    background: rgba(0, 0, 0, 0.78);
+    background:
+        rgba(0, 0, 0, 0.80);
 
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
 }
 
 .modal.show {
@@ -1192,6 +1805,11 @@ textarea {
 
     max-width: 430px;
 
+    max-height: calc(100vh - 30px);
+    max-height: calc(100dvh - 30px);
+
+    overflow-y: auto;
+
     padding: 30px;
 
     border-radius: 25px;
@@ -1212,6 +1830,14 @@ textarea {
         modalBoxIn 0.25s ease;
 }
 
+.modal-box::-webkit-scrollbar {
+    width: 4px;
+}
+
+.modal-box::-webkit-scrollbar-thumb {
+    background: #245aa2;
+}
+
 @keyframes modalBoxIn {
     from {
         opacity: 0;
@@ -1228,16 +1854,35 @@ textarea {
     margin-bottom: 10px;
 
     font-size: 24px;
+
+    font-weight: 800;
 }
 
-#authSubtitle {
-    margin-bottom: 20px;
-
+.modal-box > p {
     color: #7d8eaa;
 
     font-size: 13px;
 
-    line-height: 1.5;
+    line-height: 1.6;
+}
+
+.modal-logo {
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 17px;
+}
+
+.modal-logo img {
+    width: 65px;
+    height: 65px;
+
+    object-fit: contain;
+
+    border-radius: 16px;
+
+    filter:
+        drop-shadow(0 0 15px #176eff55);
 }
 
 .close {
@@ -1268,13 +1913,26 @@ textarea {
 
     transition:
         background 0.2s ease,
-        color 0.2s ease;
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .close:hover {
     color: #ffffff;
 
     background: #ffffff0c;
+
+    transform: rotate(90deg);
+}
+
+#registerForm,
+#forgotForm {
+    margin-top: 18px;
+}
+
+#registerForm input,
+#forgotForm input {
+    margin-bottom: 12px;
 }
 
 #authForm input {
@@ -1311,6 +1969,10 @@ textarea {
     color: #13baff;
 }
 
+.switch:hover b {
+    text-decoration: underline;
+}
+
 
 /* =========================================================
    DOWNLOAD COUNTDOWN MODAL
@@ -1318,6 +1980,8 @@ textarea {
 
 .download-modal {
     text-align: center;
+
+    max-width: 390px;
 }
 
 .download-modal-icon {
@@ -1334,7 +1998,7 @@ textarea {
     color: #ffffff;
 
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 800;
 
     background:
         linear-gradient(
@@ -1345,6 +2009,10 @@ textarea {
 
     box-shadow:
         0 0 25px #176eff44;
+}
+
+.download-modal h2 {
+    margin-bottom: 8px;
 }
 
 .download-modal > p {
@@ -1372,7 +2040,7 @@ textarea {
 
     font-size: 35px;
 
-    font-weight: bold;
+    font-weight: 800;
 
     box-shadow:
         0 0 35px #137fff66;
@@ -1382,6 +2050,11 @@ textarea {
 }
 
 @keyframes countdownPulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
     50% {
         transform: scale(1.08);
     }
@@ -1435,6 +2108,8 @@ footer {
 
     display: flex;
 
+    align-items: center;
+
     justify-content: space-between;
 
     gap: 20px;
@@ -1450,40 +2125,17 @@ footer {
 
 
 /* =========================================================
-   SCROLLBAR
-   ========================================================= */
-
-::-webkit-scrollbar {
-    width: 7px;
-}
-
-::-webkit-scrollbar-track {
-    background: #030611;
-}
-
-::-webkit-scrollbar-thumb {
-    background:
-        linear-gradient(
-            #176eff,
-            #8b20ff
-        );
-
-    border-radius: 10px;
-}
-
-
-/* =========================================================
    TABLET
    ========================================================= */
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
 
     header {
         gap: 15px;
     }
 
     nav {
-        gap: 16px;
+        gap: 17px;
     }
 
     .hero {
@@ -1503,11 +2155,20 @@ footer {
     .feature:nth-child(3) {
         border-right: 0;
     }
+
+    .feature:nth-child(-n + 3) {
+        border-bottom: 1px solid #17345e;
+    }
+
+    .feature:nth-child(4),
+    .feature:nth-child(5) {
+        border-bottom: 0;
+    }
 }
 
 
 /* =========================================================
-   MOBILE
+   MOBILE NAV / HERO
    ========================================================= */
 
 @media (max-width: 850px) {
@@ -1528,8 +2189,10 @@ footer {
         margin-left: 5px;
     }
 
-    .login-btn,
-    .register-btn,
+    .logged-user-name {
+        display: none;
+    }
+
     .logout-btn {
         padding: 9px 13px;
 
@@ -1632,6 +2295,45 @@ footer {
 
 @media (max-width: 520px) {
 
+    .login-screen {
+        align-items: flex-start;
+
+        padding:
+            25px 12px;
+    }
+
+    .login-container {
+        padding-top: 10px;
+    }
+
+    .login-logo {
+        width: 70px;
+        height: 70px;
+
+        border-radius: 17px;
+    }
+
+    .login-brand h1 {
+        font-size: 22px;
+    }
+
+    .login-brand p {
+        font-size: 12px;
+    }
+
+    .login-card {
+        margin-top: 20px;
+
+        padding:
+            23px 17px;
+
+        border-radius: 20px;
+    }
+
+    .login-card h2 {
+        font-size: 22px;
+    }
+
     header {
         padding:
             9px 4%;
@@ -1662,8 +2364,6 @@ footer {
         gap: 5px;
     }
 
-    .login-btn,
-    .register-btn,
     .logout-btn {
         padding:
             8px 10px;
@@ -1728,7 +2428,8 @@ footer {
     }
 
     .download-card {
-        padding: 25px 18px;
+        padding:
+            25px 18px;
 
         gap: 18px;
     }
@@ -1793,9 +2494,18 @@ footer {
     }
 
     .modal-box {
-        padding: 24px 18px;
+        max-height:
+            calc(100dvh - 28px);
+
+        padding:
+            24px 18px;
 
         border-radius: 20px;
+    }
+
+    .modal-logo img {
+        width: 58px;
+        height: 58px;
     }
 
     .countdown {
@@ -1830,12 +2540,20 @@ footer {
 
 @media (max-width: 360px) {
 
+    .login-screen {
+        padding:
+            20px 10px;
+    }
+
+    .login-card {
+        padding:
+            20px 14px;
+    }
+
     .logo h2 {
         font-size: 14px;
     }
 
-    .login-btn,
-    .register-btn,
     .logout-btn {
         padding:
             7px 8px;
@@ -1857,8 +2575,45 @@ footer {
         font-size: 11px;
     }
 
+    .download-btn {
+        padding:
+            13px 20px;
+
+        font-size: 14px;
+    }
+
     .loading-logo {
         width: 85px;
         height: 85px;
+    }
+
+    #loadingScreen h1 {
+        font-size: 20px;
+    }
+
+    .auth-bottom-text {
+        flex-direction: column;
+
+        gap: 4px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
