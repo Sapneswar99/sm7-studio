@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Photo Enhance AI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f172a, #1e1b4b);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            padding: 35px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .header h1 span {
+            color: #a78bfa;
+        }
+
+        .header p {
+            color: #cbd5e1;
+            font-size: 16px;
+        }
+
+        .upload-box {
+            border: 2px dashed #8b5cf6;
+            border-radius: 20px;
+            padding: 45px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            background: rgba(139, 92, 246, 0.08);
+        }
+
+        .upload-box:hover {
+            background: rgba(139, 92, 246, 0.18);
+            transform: translateY(-2px);
+        }
+
+        .upload-icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .upload-box h2 {
+            margin-bottom: 8px;
+        }
+
+        .upload-box p {
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .upload-btn {
+            display: inline-block;
+            background: #7c3aed;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .preview-section {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .preview-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .preview {
+            width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            border-radius: 15px;
+            background: #020617;
+            padding: 10px;
+        }
+
+        .file-name {
+            text-align: center;
+            color: #cbd5e1;
+            margin-top: 10px;
+            word-break: break-all;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: none;
+            padding: 13px 25px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .enhance-btn {
+            background: #8b5cf6;
+            color: white;
+        }
+
+        .enhance-btn:hover {
+            background: #7c3aed;
+            transform: translateY(-2px);
+        }
+
+        .reset-btn {
+            background: #334155;
+            color: white;
+        }
+
+        .reset-btn:hover {
+            background: #475569;
+        }
+
+        .download-btn {
+            display: none;
+            background: #10b981;
+            color: white;
+        }
+
+        .download-btn:hover {
+            background: #059669;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .spinner {
+            width: 35px;
+            height: 35px;
+            border: 4px solid #475569;
+            border-top: 4px solid #a78bfa;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: auto;
+        }
+
+        .loading p {
+            margin-top: 10px;
+            color: #cbd5e1;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.06);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .feature h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .feature p {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 30px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .upload-box {
+                padding: 35px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>✨ Photo <span>Enhance AI</span></h1>
+            <p>Make your photos sharper, clearer and better.</p>
+        </div>
+
+        <!-- Upload Area -->
+        <div class="upload-box" id="uploadBox">
+
+            <div class="upload-icon">📸</div>
+
+            <h2>Upload Your Photo</h2>
+
+            <p>
+                Drag & drop your image here or click the button below
+            </p>
+
+            <label for="fileInput" class="upload-btn">
+                Choose Photo
+            </label>
+
+            <input
+                type="file"
+                id="fileInput"
+                accept="image/*"
+            >
+
+        </div>
+
+        <!-- Preview -->
+        <div class="preview-section" id="previewSection">
+
+            <h2>Photo Preview</h2>
+
+            <img
+                id="previewImage"
+                class="preview"
+                alt="Photo Preview"
+            >
+
+            <div class="file-name" id="fileName"></div>
+
+            <div class="actions">
+
+                <button
+                    class="enhance-btn"
+                    id="enhanceBtn"
+                >
+                    ✨ Enhance Photo
+                </button>
+
+                <button
+                    class="reset-btn"
+                    id="resetBtn"
+                >
+                    🔄 Choose Another
+                </button>
+
+                <button
+                    class="download-btn"
+                    id="downloadBtn"
+                >
+                    ⬇ Download
+                </button>
+
+            </div>
+
+            <div class="loading" id="loading">
+
+                <div class="spinner"></div>
+
+                <p>Enhancing your photo...</p>
+
+            </div>
+
+        </div>
+
+        <!-- Features -->
+        <div class="features">
+
+            <div class="feature">
+                <div class="feature-icon">✨</div>
+                <h3>AI Enhancement</h3>
+                <p>Improve image quality</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🔍</div>
+                <h3>Upscale</h3>
+                <p>Increase image resolution</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>Fast Processing</h3>
+                <p>Quick photo enhancement</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const fileInput = document.getElementById("fileInput");
+        const uploadBox = document.getElementById("uploadBox");
+
+        const previewSection =
+            document.getElementById("previewSection");
+
+        const previewImage =
+            document.getElementById("previewImage");
+
+        const fileName =
+            document.getElementById("fileName");
+
+        const enhanceBtn =
+            document.getElementById("enhanceBtn");
+
+        const resetBtn =
+            document.getElementById("resetBtn");
+
+        const downloadBtn =
+            document.getElementById("downloadBtn");
+
+        const loading =
+            document.getElementById("loading");
+
+
+        // File selection
+        fileInput.addEventListener("change", function () {
+
+            const file = this.files[0];
+
+            if (!file) return;
+
+            if (!file.type.startsWith("image/")) {
+                alert("Please select an image file.");
+                return;
+            }
+
+            const imageURL = URL.createObjectURL(file);
+
+            previewImage.src = imageURL;
+
+            fileName.textContent = file.name;
+
+            previewSection.style.display = "block";
+
+            downloadBtn.style.display = "none";
+
+            previewSection.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        });
+
+
+        // Drag & Drop
+        uploadBox.addEventListener("dragover", function (e) {
+
+            e.preventDefault();
+
+            uploadBox.style.background =
+                "rgba(139, 92, 246, 0.25)";
+
+        });
+
+
+        uploadBox.addEventListener("dragleave", function () {
+
+            uploadBox.style.background =
+                "rgba(139, 92, 246, 0.08)";
+
+        });
+
+
+        uploadBox.addEventListener("drop", function (e) {
+
+            e.preventDefault();
+
+            uploadBox.style.background =
+                "rgba(139, 92, 246, 0.08)";
+
+            const file = e.dataTransfer.files[0];
+
+            if (!file || !file.type.startsWith("image/")) {
+                alert("Please drop an image file.");
+                return;
+            }
+
+            fileInput.files = e.dataTransfer.files;
+
+            const imageURL = URL.createObjectURL(file);
+
+            previewImage.src = imageURL;
+
+            fileName.textContent = file.name;
+
+            previewSection.style.display = "block";
+
+        });
+
+
+        // Enhance button
+        enhanceBtn.addEventListener("click", function () {
+
+            loading.style.display = "block";
+
+            enhanceBtn.disabled = true;
+
+            /*
+             * Yahan future mein backend/API connect hoga.
+             *
+             * Example:
+             *
+             * fetch("/api/enhance", {
+             *     method: "POST",
+             *     body: formData
+             * })
+             *
+             * Backend AI se photo enhance karega.
+             */
+
+            setTimeout(function () {
+
+                loading.style.display = "none";
+
+                enhanceBtn.disabled = false;
+
+                downloadBtn.style.display = "inline-block";
+
+                alert(
+                    "Demo enhancement complete! " +
+                    "Real AI enhancement ke liye backend connect karein."
+                );
+
+            }, 2000);
+
+        });
+
+
+        // Download
+        downloadBtn.addEventListener("click", function () {
+
+            if (!previewImage.src) return;
+
+            const link = document.createElement("a");
+
+            link.href = previewImage.src;
+
+            link.download = "enhanced-photo.jpg";
+
+            link.click();
+
+        });
+
+
+        // Reset
+        resetBtn.addEventListener("click", function () {
+
+            fileInput.value = "";
+
+            previewImage.src = "";
+
+            fileName.textContent = "";
+
+            previewSection.style.display = "none";
+
+            downloadBtn.style.display = "none";
+
+        });
+
+    </script>
+
+</body>
+</html>
