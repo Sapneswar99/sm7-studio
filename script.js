@@ -1,6 +1,7 @@
 /* =========================================================
    SUPER VIDEO PLAYER WEBSITE
    FIREBASE CONNECTED VERSION
+   FULL REPLACE SCRIPT
    ========================================================= */
 
 
@@ -9,26 +10,21 @@
    ========================================================= */
 
 /*
-   APK ka URL.
+   Firebase config file mein APK_URL defined ho to
+   wahi use hoga.
 
-   Agar APK same website ke /apk/ folder mein hai:
+   Agar nahi hai to ye GitHub Release APK use hoga.
 */
-const APK_URL = "https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk";
+const DEFAULT_APK_URL =
+    "https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk";
 
 
 /*
-   Firebase Authentication owner UID.
-
-   IMPORTANT:
-   Yahan Firebase Authentication wale OWNER ka
-   REAL UID paste karna hai.
+   Agar firebase-config.js mein OWNER_UID nahi hai,
+   to yahan REAL OWNER UID paste kar sakte ho.
 
    Example:
-
-   const OWNER_UID = "abc123xyz456...";
-
-   Agar firebase-config.js mein OWNER_UID already
-   defined hai, to wahi use hoga.
+   const LOCAL_OWNER_UID = "abc123...";
 */
 const LOCAL_OWNER_UID = "yZsy5oOxhjU7BFnaCH67FOL3rjB2";
 
@@ -38,7 +34,6 @@ const LOCAL_OWNER_UID = "yZsy5oOxhjU7BFnaCH67FOL3rjB2";
    ========================================================= */
 
 let auth = null;
-
 let db = null;
 
 let currentUser = null;
@@ -61,8 +56,12 @@ function get(id) {
 }
 
 
+/* =========================================================
+   SAFE MESSAGE
+   ========================================================= */
+
 function showMessage(text) {
-    alert(text);
+    window.alert(text);
 }
 
 
@@ -80,6 +79,24 @@ function setFormMessage(element, text, success = false) {
 
 
 /* =========================================================
+   APK URL
+   ========================================================= */
+
+function getAPKURL() {
+
+    if (
+        typeof APK_URL !== "undefined" &&
+        typeof APK_URL === "string" &&
+        APK_URL.trim()
+    ) {
+        return APK_URL.trim();
+    }
+
+    return DEFAULT_APK_URL;
+}
+
+
+/* =========================================================
    OWNER UID
    ========================================================= */
 
@@ -87,16 +104,17 @@ function getOwnerUID() {
 
     if (
         typeof OWNER_UID !== "undefined" &&
-        OWNER_UID
+        typeof OWNER_UID === "string" &&
+        OWNER_UID.trim()
     ) {
-        return OWNER_UID;
+        return OWNER_UID.trim();
     }
 
     if (
-        typeof LOCAL_OWNER_UID !== "undefined" &&
-        LOCAL_OWNER_UID
+        LOCAL_OWNER_UID &&
+        typeof LOCAL_OWNER_UID === "string"
     ) {
-        return LOCAL_OWNER_UID;
+        return LOCAL_OWNER_UID.trim();
     }
 
     return "";
@@ -107,15 +125,59 @@ function getOwnerUID() {
    SYNTHETIC EMAIL
    ========================================================= */
 
-function syntheticEmail(name) {
+/*
+   Firebase Email/Password Auth use karne ke liye
+   Name ko deterministic synthetic email mein convert
+   kiya ja raha hai.
+
+   Same name -> same Firebase email.
+
+   Example:
+   Sapneswar
+   ->
+   user-xxxxxxxx@supervideoplayer.local
+*/
+
+
+function hashString(value) {
+
+    let hash = 0x811c9dc5;
+
+    for (let i = 0; i < value.length; i++) {
+
+        hash ^= value.charCodeAt(i);
+
+        hash =
+            Math.imul(
+                hash,
+                0x01000193
+            );
+
+    }
 
     return (
+        hash >>> 0
+    ).toString(36);
+
+}
+
+
+function syntheticEmail(name) {
+
+    const normalized =
         name
             .trim()
-            .toLowerCase()
-            .replace(/[^a-z0-9._-]/g, "")
-        + "@supervideoplayer.local"
+            .toLowerCase();
+
+    const hash =
+        hashString(normalized);
+
+    return (
+        "user-" +
+        hash +
+        "@supervideoplayer.local"
     );
+
 }
 
 
@@ -125,7 +187,10 @@ function syntheticEmail(name) {
 
 function validName(name) {
 
-    return /^[a-zA-Z0-9._-]{3,30}$/.test(name);
+    return /^[a-zA-Z0-9._-]{3,30}$/.test(
+        name
+    );
+
 }
 
 
@@ -135,7 +200,11 @@ function validName(name) {
 
 function validPassword(password) {
 
-    return password.length >= 6;
+    return (
+        typeof password === "string" &&
+        password.length >= 6
+    );
+
 }
 
 
@@ -144,8 +213,13 @@ function validPassword(password) {
    ========================================================= */
 
 /*
-   Website loading screen minimum 3 seconds.
+   IMPORTANT:
+   Loading screen Firebase ke load hone ka wait nahi karega.
+
+   Page script execute hone ke baad exactly 3 seconds mein
+   loading screen hide ho jayega.
 */
+
 
 (function startLoadingScreen() {
 
@@ -155,27 +229,48 @@ function validPassword(password) {
     if (!loading) return;
 
 
-    setTimeout(function () {
+    window.setTimeout(
+        function () {
 
-        loading.classList.add("hide");
+            loading.classList.add(
+                "hidden"
+            );
 
-        setTimeout(function () {
+            loading.classList.add(
+                "hide"
+            );
 
-            if (loading.parentNode) {
 
-                loading.remove();
+            /*
+               CSS transition complete hone ke baad
+               element ko remove kar denge.
+            */
 
-            }
+            window.setTimeout(
+                function () {
 
-        }, 700);
+                    if (
+                        loading &&
+                        loading.parentNode
+                    ) {
 
-    }, 3000);
+                        loading.remove();
+
+                    }
+
+                },
+                750
+            );
+
+        },
+        3000
+    );
 
 })();
 
 
 /* =========================================================
-   YEAR
+   CURRENT YEAR
    ========================================================= */
 
 (function setCurrentYear() {
@@ -183,12 +278,10 @@ function validPassword(password) {
     const year =
         get("year");
 
-    if (year) {
+    if (!year) return;
 
-        year.textContent =
-            new Date().getFullYear();
-
-    }
+    year.textContent =
+        new Date().getFullYear();
 
 })();
 
@@ -209,7 +302,9 @@ function openAuth(mode = "login") {
     if (!modal) return;
 
 
-    modal.classList.add("show");
+    modal.classList.add(
+        "show"
+    );
 
     modal.setAttribute(
         "aria-hidden",
@@ -225,7 +320,8 @@ function openAuth(mode = "login") {
 
     if (message) {
 
-        message.textContent = "";
+        message.textContent =
+            "";
 
         message.classList.remove(
             "success"
@@ -239,7 +335,8 @@ function openAuth(mode = "login") {
 
     if (password) {
 
-        password.value = "";
+        password.value =
+            "";
 
     }
 
@@ -249,11 +346,14 @@ function openAuth(mode = "login") {
 
     if (name) {
 
-        setTimeout(function () {
+        window.setTimeout(
+            function () {
 
-            name.focus();
+                name.focus();
 
-        }, 100);
+            },
+            100
+        );
 
     }
 
@@ -261,7 +361,7 @@ function openAuth(mode = "login") {
 
 
 /* =========================================================
-   CLOSE AUTH
+   CLOSE AUTH MODAL
    ========================================================= */
 
 function closeAuth() {
@@ -285,7 +385,7 @@ function closeAuth() {
 
 
 /* =========================================================
-   TOGGLE AUTH
+   TOGGLE LOGIN / REGISTER
    ========================================================= */
 
 function toggleAuth() {
@@ -302,7 +402,8 @@ function toggleAuth() {
 
     if (message) {
 
-        message.textContent = "";
+        message.textContent =
+            "";
 
         message.classList.remove(
             "success"
@@ -316,7 +417,8 @@ function toggleAuth() {
 
     if (password) {
 
-        password.value = "";
+        password.value =
+            "";
 
     }
 
@@ -324,7 +426,7 @@ function toggleAuth() {
 
 
 /* =========================================================
-   UPDATE AUTH UI
+   UPDATE AUTH MODAL UI
    ========================================================= */
 
 function updateAuthUI() {
@@ -470,7 +572,7 @@ function updateAuthUI() {
 
 
 /* =========================================================
-   LOGIN / REGISTER BUTTONS
+   LOGIN BUTTON
    ========================================================= */
 
 const loginButton =
@@ -544,12 +646,16 @@ if (logoutButton) {
 
 
 /* =========================================================
-   LOGOUT
+   LOGOUT USER
    ========================================================= */
 
 async function logoutUser() {
 
-    if (!auth) return;
+    if (!auth) {
+
+        return;
+
+    }
 
 
     try {
@@ -597,19 +703,24 @@ if (authForm) {
 
 
 /* =========================================================
-   AUTH SUBMIT
+   SUBMIT AUTH
    ========================================================= */
 
 async function submitAuth() {
 
+    const authMessage =
+        get("authMessage");
+
+
     if (!auth || !db) {
 
         setFormMessage(
-            get("authMessage"),
+            authMessage,
             "Firebase is not connected yet."
         );
 
         return;
+
     }
 
 
@@ -632,10 +743,14 @@ async function submitAuth() {
             : "";
 
 
+    /* =========================================
+       VALIDATE NAME
+       ========================================= */
+
     if (!validName(name)) {
 
         setFormMessage(
-            get("authMessage"),
+            authMessage,
             "Name must be 3–30 characters and may contain letters, numbers, dot, underscore or hyphen."
         );
 
@@ -644,10 +759,14 @@ async function submitAuth() {
     }
 
 
+    /* =========================================
+       VALIDATE PASSWORD
+       ========================================= */
+
     if (!validPassword(password)) {
 
         setFormMessage(
-            get("authMessage"),
+            authMessage,
             "Password must be at least 6 characters."
         );
 
@@ -666,18 +785,19 @@ async function submitAuth() {
 
     if (submit) {
 
-        submit.disabled = true;
+        submit.disabled =
+            true;
 
     }
 
 
     try {
 
-        if (registerMode) {
+        /* =========================================
+           REGISTER
+           ========================================= */
 
-            /* =========================================
-               REGISTER
-               ========================================= */
+        if (registerMode) {
 
             const credential =
                 await auth.createUserWithEmailAndPassword(
@@ -686,22 +806,27 @@ async function submitAuth() {
                 );
 
 
-            if (credential.user) {
+            const user =
+                credential.user;
 
-                await credential.user.updateProfile({
 
-                    displayName: name
+            if (user) {
+
+                await user.updateProfile({
+
+                    displayName:
+                        name
 
                 });
 
 
                 await db
                     .collection("users")
-                    .doc(credential.user.uid)
+                    .doc(user.uid)
                     .set(
                         {
                             uid:
-                                credential.user.uid,
+                                user.uid,
 
                             name:
                                 name,
@@ -713,7 +838,8 @@ async function submitAuth() {
 
                         },
                         {
-                            merge: true
+                            merge:
+                                true
                         }
                     );
 
@@ -721,17 +847,20 @@ async function submitAuth() {
 
 
             setFormMessage(
-                get("authMessage"),
+                authMessage,
                 "Account created successfully.",
                 true
             );
 
 
-            setTimeout(function () {
+            window.setTimeout(
+                function () {
 
-                closeAuth();
+                    closeAuth();
 
-            }, 700);
+                },
+                700
+            );
 
 
         } else {
@@ -740,10 +869,42 @@ async function submitAuth() {
                LOGIN
                ========================================= */
 
-            await auth.signInWithEmailAndPassword(
-                email,
-                password
-            );
+            const credential =
+                await auth.signInWithEmailAndPassword(
+                    email,
+                    password
+                );
+
+
+            /*
+               Agar displayName missing hai to
+               current login name set kar denge.
+            */
+
+            if (
+                credential.user &&
+                !credential.user.displayName
+            ) {
+
+                try {
+
+                    await credential.user.updateProfile({
+
+                        displayName:
+                            name
+
+                    });
+
+                } catch (profileError) {
+
+                    console.warn(
+                        "Profile update warning:",
+                        profileError
+                    );
+
+                }
+
+            }
 
 
             closeAuth();
@@ -792,6 +953,15 @@ async function submitAuth() {
 
         } else if (
             code.includes(
+                "invalid-email"
+            )
+        ) {
+
+            message =
+                "Invalid account name.";
+
+        } else if (
+            code.includes(
                 "weak-password"
             )
         ) {
@@ -808,6 +978,15 @@ async function submitAuth() {
             message =
                 "Network error. Please check your internet connection.";
 
+        } else if (
+            code.includes(
+                "too-many-requests"
+            )
+        ) {
+
+            message =
+                "Too many attempts. Please wait and try again.";
+
         } else if (error.message) {
 
             message =
@@ -817,7 +996,7 @@ async function submitAuth() {
 
 
         setFormMessage(
-            get("authMessage"),
+            authMessage,
             message
         );
 
@@ -825,7 +1004,8 @@ async function submitAuth() {
 
         if (submit) {
 
-            submit.disabled = false;
+            submit.disabled =
+                false;
 
         }
 
@@ -867,30 +1047,38 @@ function renderAuthState() {
 
     if (currentUser) {
 
+        /* =========================================
+           LOGGED IN
+           ========================================= */
+
         if (login) {
 
-            login.hidden = true;
+            login.hidden =
+                true;
 
         }
 
 
         if (register) {
 
-            register.hidden = true;
+            register.hidden =
+                true;
 
         }
 
 
         if (logout) {
 
-            logout.hidden = false;
+            logout.hidden =
+                false;
 
         }
 
 
         if (reviewUser) {
 
-            reviewUser.hidden = false;
+            reviewUser.hidden =
+                false;
 
         }
 
@@ -906,76 +1094,94 @@ function renderAuthState() {
 
         if (reviewSubmit) {
 
-            reviewSubmit.disabled = false;
+            reviewSubmit.disabled =
+                false;
 
         }
 
 
         if (reviewText) {
 
-            reviewText.disabled = false;
+            reviewText.disabled =
+                false;
 
         }
 
 
         if (reviewRating) {
 
-            reviewRating.disabled = false;
+            reviewRating.disabled =
+                false;
 
         }
 
     } else {
 
+        /* =========================================
+           LOGGED OUT
+           ========================================= */
+
         if (login) {
 
-            login.hidden = false;
+            login.hidden =
+                false;
 
         }
 
 
         if (register) {
 
-            register.hidden = false;
+            register.hidden =
+                false;
 
         }
 
 
         if (logout) {
 
-            logout.hidden = true;
+            logout.hidden =
+                true;
 
         }
 
 
         if (reviewUser) {
 
-            reviewUser.hidden = true;
+            reviewUser.hidden =
+                true;
 
         }
 
 
         if (reviewSubmit) {
 
-            reviewSubmit.disabled = false;
+            reviewSubmit.disabled =
+                false;
 
         }
 
 
         if (reviewText) {
 
-            reviewText.disabled = true;
+            reviewText.disabled =
+                true;
 
         }
 
 
         if (reviewRating) {
 
-            reviewRating.disabled = true;
+            reviewRating.disabled =
+                true;
 
         }
 
     }
 
+
+    /*
+       Reviews snapshot automatically update karega.
+    */
 
     renderReviewsFromCurrentState();
 
@@ -1017,7 +1223,7 @@ async function submitReview() {
         openAuth("login");
 
         setFormMessage(
-            get("reviewMessage"),
+            get("authMessage"),
             "Please Login/Register before submitting a review."
         );
 
@@ -1053,7 +1259,9 @@ async function submitReview() {
 
     const rating =
         ratingInput
-            ? Number(ratingInput.value)
+            ? Number(
+                ratingInput.value
+            )
             : 5;
 
 
@@ -1103,7 +1311,8 @@ async function submitReview() {
 
     if (submit) {
 
-        submit.disabled = true;
+        submit.disabled =
+            true;
 
         submit.textContent =
             "Posting...";
@@ -1115,39 +1324,41 @@ async function submitReview() {
 
         await db
             .collection("reviews")
-            .add({
+            .add(
+                {
+                    uid:
+                        currentUser.uid,
 
-                uid:
-                    currentUser.uid,
+                    name:
+                        currentUser.displayName ||
+                        "User",
 
-                name:
-                    currentUser.displayName ||
-                    "User",
+                    text:
+                        text,
 
-                text:
-                    text,
+                    rating:
+                        rating,
 
-                rating:
-                    rating,
-
-                createdAt:
-                    firebase.firestore
-                        .FieldValue
-                        .serverTimestamp()
-
-            });
+                    createdAt:
+                        firebase.firestore
+                            .FieldValue
+                            .serverTimestamp()
+                }
+            );
 
 
         if (textInput) {
 
-            textInput.value = "";
+            textInput.value =
+                "";
 
         }
 
 
         if (ratingInput) {
 
-            ratingInput.value = "5";
+            ratingInput.value =
+                "5";
 
         }
 
@@ -1157,7 +1368,6 @@ async function submitReview() {
             "Review posted successfully.",
             true
         );
-
 
     } catch (error) {
 
@@ -1176,7 +1386,8 @@ async function submitReview() {
 
         if (submit) {
 
-            submit.disabled = false;
+            submit.disabled =
+                false;
 
             submit.textContent =
                 "Submit Review";
@@ -1194,7 +1405,11 @@ async function submitReview() {
 
 function loadReviews() {
 
-    if (!db) return;
+    if (!db) {
+
+        return;
+
+    }
 
 
     if (reviewsUnsubscribe) {
@@ -1216,7 +1431,6 @@ function loadReviews() {
             )
             .limit(50)
             .onSnapshot(
-
                 function (snapshot) {
 
                     renderReviews(
@@ -1224,7 +1438,6 @@ function loadReviews() {
                     );
 
                 },
-
                 function (error) {
 
                     console.error(
@@ -1249,7 +1462,6 @@ function loadReviews() {
                     }
 
                 }
-
             );
 
 }
@@ -1265,10 +1477,14 @@ function renderReviews(snapshot) {
         get("reviewsList");
 
 
-    if (!list) return;
+    if (!list) {
+
+        return;
+
+    }
 
 
-    if (snapshot.empty) {
+    if (!snapshot || snapshot.empty) {
 
         list.innerHTML =
             `
@@ -1282,7 +1498,8 @@ function renderReviews(snapshot) {
     }
 
 
-    list.innerHTML = "";
+    list.innerHTML =
+        "";
 
 
     snapshot.forEach(
@@ -1302,12 +1519,20 @@ function renderReviews(snapshot) {
                 "review-card";
 
 
+            /* =========================================
+               NAME
+               ========================================= */
+
             const name =
                 escapeHtml(
                     data.name ||
                     "User"
                 );
 
+
+            /* =========================================
+               REVIEW TEXT
+               ========================================= */
 
             const text =
                 escapeHtml(
@@ -1316,22 +1541,48 @@ function renderReviews(snapshot) {
                 );
 
 
-            const rating =
+            /* =========================================
+               RATING
+               ========================================= */
+
+            let rating =
+                Number(
+                    data.rating || 5
+                );
+
+
+            if (
+                !Number.isInteger(rating)
+            ) {
+
+                rating =
+                    5;
+
+            }
+
+
+            rating =
                 Math.max(
                     1,
                     Math.min(
                         5,
-                        Number(
-                            data.rating || 5
-                        )
+                        rating
                     )
                 );
 
 
             const stars =
-                "★".repeat(rating) +
-                "☆".repeat(5 - rating);
+                "★".repeat(
+                    rating
+                ) +
+                "☆".repeat(
+                    5 - rating
+                );
 
+
+            /* =========================================
+               DATE
+               ========================================= */
 
             let date =
                 "Just now";
@@ -1343,47 +1594,124 @@ function renderReviews(snapshot) {
                     "function"
             ) {
 
-                date =
-                    data.createdAt
-                        .toDate()
-                        .toLocaleDateString(
-                            undefined,
-                            {
-                                day: "numeric",
-                                month: "short",
-                                year: "numeric"
-                            }
-                        );
+                try {
+
+                    date =
+                        data.createdAt
+                            .toDate()
+                            .toLocaleDateString(
+                                undefined,
+                                {
+                                    day:
+                                        "numeric",
+
+                                    month:
+                                        "short",
+
+                                    year:
+                                        "numeric"
+                                }
+                            );
+
+                } catch (dateError) {
+
+                    console.warn(
+                        "Review date error:",
+                        dateError
+                    );
+
+                }
 
             }
 
 
-            card.innerHTML =
-                `
-                <div class="review-top">
+            /* =========================================
+               CARD CONTENT
+               ========================================= */
 
-                    <div>
+            const top =
+                document.createElement(
+                    "div"
+                );
 
-                        <b>
-                            ${name}
-                        </b>
 
-                        <small>
-                            ${date}
-                        </small>
+            top.className =
+                "review-top";
 
-                    </div>
 
-                    <span>
-                        ${stars}
-                    </span>
+            const info =
+                document.createElement(
+                    "div"
+                );
 
-                </div>
 
-                <p>
-                    ${text}
-                </p>
-                `;
+            const nameElement =
+                document.createElement(
+                    "b"
+                );
+
+
+            nameElement.textContent =
+                data.name ||
+                "User";
+
+
+            const dateElement =
+                document.createElement(
+                    "small"
+                );
+
+
+            dateElement.textContent =
+                date;
+
+
+            info.appendChild(
+                nameElement
+            );
+
+            info.appendChild(
+                dateElement
+            );
+
+
+            const ratingElement =
+                document.createElement(
+                    "span"
+                );
+
+
+            ratingElement.textContent =
+                stars;
+
+
+            top.appendChild(
+                info
+            );
+
+            top.appendChild(
+                ratingElement
+            );
+
+
+            const textElement =
+                document.createElement(
+                    "p"
+                );
+
+
+            textElement.textContent =
+                data.text ||
+                "";
+
+
+            card.appendChild(
+                top
+            );
+
+            card.appendChild(
+                textElement
+            );
 
 
             /* =========================================
@@ -1448,16 +1776,17 @@ function renderReviews(snapshot) {
 
 
 /* =========================================================
-   RENDER REVIEWS AFTER AUTH CHANGE
+   REVIEW STATE REFRESH
    ========================================================= */
 
 function renderReviewsFromCurrentState() {
 
     /*
-       onSnapshot normally handles this.
+       Firestore onSnapshot already maintains
+       the latest review list.
 
-       This function intentionally does not
-       reload the complete collection.
+       Auth change ke time snapshot automatically
+       re-renders through the listener.
     */
 
 }
@@ -1476,6 +1805,17 @@ async function deleteReview(reviewId) {
     }
 
 
+    if (!db) {
+
+        showMessage(
+            "Firebase is not connected."
+        );
+
+        return;
+
+    }
+
+
     const ownerUID =
         getOwnerUID();
 
@@ -1488,6 +1828,13 @@ async function deleteReview(reviewId) {
         showMessage(
             "You are not allowed to delete reviews."
         );
+
+        return;
+
+    }
+
+
+    if (!reviewId) {
 
         return;
 
@@ -1513,7 +1860,6 @@ async function deleteReview(reviewId) {
             .collection("reviews")
             .doc(reviewId)
             .delete();
-
 
     } catch (error) {
 
@@ -1543,15 +1889,29 @@ function escapeHtml(value) {
             /[&<>'"]/g,
             function (character) {
 
-                return {
+                const entities = {
 
-                    "&": "&amp;",
-                    "<": "&lt;",
-                    ">": "&gt;",
-                    "'": "&#39;",
-                    '"': "&quot;"
+                    "&":
+                        "&amp;",
 
-                }[character];
+                    "<":
+                        "&lt;",
+
+                    ">":
+                        "&gt;",
+
+                    "'":
+                        "&#39;",
+
+                    '"':
+                        "&quot;"
+
+                };
+
+                return (
+                    entities[character] ||
+                    character
+                );
 
             }
         );
@@ -1563,30 +1923,12 @@ function escapeHtml(value) {
    DOWNLOAD BUTTONS
    ========================================================= */
 
-const downloadButtons =
-    document.querySelectorAll(
-        ".download-btn"
-    );
+/*
+   HTML ke onclick="startDownload()" ko
+   intentionally support kiya gaya hai.
 
-
-downloadButtons.forEach(
-    function (button) {
-
-        button.addEventListener(
-            "click",
-            function (event) {
-
-                /*
-                   HTML already has onclick.
-                   Prevent duplicate handling
-                   from this listener.
-                */
-
-            }
-        );
-
-    }
-);
+   Yahan duplicate click listener add nahi kiya ja raha.
+*/
 
 
 /* =========================================================
@@ -1614,7 +1956,7 @@ async function startDownload() {
 
 
     /* =========================================
-       PREVENT DUPLICATE DOWNLOAD TIMER
+       PREVENT DUPLICATE DOWNLOAD
        ========================================= */
 
     if (downloadInProgress) {
@@ -1638,6 +1980,10 @@ async function startDownload() {
 
 
     if (!modal) {
+
+        showMessage(
+            "Download window is unavailable."
+        );
 
         return;
 
@@ -1671,7 +2017,8 @@ async function startDownload() {
     );
 
 
-    let seconds = 5;
+    let seconds =
+        5;
 
 
     if (countdown) {
@@ -1699,7 +2046,7 @@ async function startDownload() {
 
 
     downloadTimer =
-        setInterval(
+        window.setInterval(
             async function () {
 
                 seconds--;
@@ -1731,12 +2078,16 @@ async function startDownload() {
                 }
 
 
-                clearInterval(
-                    downloadTimer
-                );
+                if (downloadTimer) {
 
-                downloadTimer =
-                    null;
+                    clearInterval(
+                        downloadTimer
+                    );
+
+                    downloadTimer =
+                        null;
+
+                }
 
 
                 if (status) {
@@ -1762,6 +2113,25 @@ async function startDownload() {
                         error
                     );
 
+
+                    if (status) {
+
+                        status.textContent =
+                            "Could not update download count.";
+
+                    }
+
+
+                    /*
+                       Download count fail hone par
+                       APK download continue nahi karenge.
+                    */
+
+                    downloadInProgress =
+                        false;
+
+                    return;
+
                 }
 
 
@@ -1769,26 +2139,48 @@ async function startDownload() {
                    APK DOWNLOAD
                    ========================================= */
 
-                startAPKDownload();
+                try {
+
+                    startAPKDownload();
 
 
-                if (status) {
+                    if (status) {
 
-                    status.textContent =
-                        "Download started ✓";
+                        status.textContent =
+                            "Download started ✓";
+
+                    }
+
+
+                    window.setTimeout(
+                        function () {
+
+                            closeDownloadModal();
+
+                        },
+                        1000
+                    );
+
+                } catch (error) {
+
+                    console.error(
+                        "APK download error:",
+                        error
+                    );
+
+
+                    if (status) {
+
+                        status.textContent =
+                            "Could not start download.";
+
+                    }
+
+
+                    downloadInProgress =
+                        false;
 
                 }
-
-
-                setTimeout(
-                    function () {
-
-                        closeDownloadModal();
-
-                    },
-                    1000
-                );
-
 
             },
             1000
@@ -1803,13 +2195,15 @@ async function startDownload() {
 
 function startAPKDownload() {
 
-    if (!APK_URL) {
+    const apkURL =
+        getAPKURL();
 
-        showMessage(
+
+    if (!apkURL) {
+
+        throw new Error(
             "APK download URL is not configured."
         );
-
-        return;
 
     }
 
@@ -1821,15 +2215,23 @@ function startAPKDownload() {
 
 
     link.href =
-        APK_URL;
+        apkURL;
 
 
     link.download =
         "super-video-player.apk";
 
 
+    link.target =
+        "_blank";
+
+
     link.rel =
-        "noopener";
+        "noopener noreferrer";
+
+
+    link.style.display =
+        "none";
 
 
     document.body.appendChild(
@@ -1939,11 +2341,27 @@ async function increaseFirebaseDownloadCount() {
 
             if (snapshot.exists) {
 
+                const data =
+                    snapshot.data() || {};
+
+
                 downloads =
                     Number(
-                        snapshot.data()
-                            .downloads || 0
+                        data.downloads || 0
                     );
+
+
+                if (
+                    !Number.isFinite(
+                        downloads
+                    ) ||
+                    downloads < 0
+                ) {
+
+                    downloads =
+                        0;
+
+                }
 
             }
 
@@ -1960,7 +2378,8 @@ async function increaseFirebaseDownloadCount() {
                             .serverTimestamp()
                 },
                 {
-                    merge: true
+                    merge:
+                        true
                 }
             );
 
@@ -1983,7 +2402,11 @@ async function loadDownloadCount() {
         get("downloadCount");
 
 
-    if (!countElement) return;
+    if (!countElement) {
+
+        return;
+
+    }
 
 
     if (!db) {
@@ -2005,15 +2428,29 @@ async function loadDownloadCount() {
                 .get();
 
 
-        if (
-            snapshot.exists
-        ) {
+        if (snapshot.exists) {
 
-            const downloads =
+            const data =
+                snapshot.data() || {};
+
+
+            let downloads =
                 Number(
-                    snapshot.data()
-                        .downloads || 0
+                    data.downloads || 0
                 );
+
+
+            if (
+                !Number.isFinite(
+                    downloads
+                ) ||
+                downloads < 0
+            ) {
+
+                downloads =
+                    0;
+
+            }
 
 
             countElement.textContent =
@@ -2086,8 +2523,8 @@ if (downloadModal) {
         function (event) {
 
             /*
-               Download countdown ko
-               accidentally close nahi karenge.
+               Active countdown ke time modal
+               accidentally close nahi hoga.
             */
 
             if (
@@ -2115,7 +2552,8 @@ document.addEventListener(
     function (event) {
 
         if (
-            event.key === "Escape"
+            event.key ===
+            "Escape"
         ) {
 
             closeAuth();
@@ -2129,6 +2567,45 @@ document.addEventListener(
 
     }
 );
+
+
+/* =========================================================
+   FIREBASE CONFIG RESOLUTION
+   ========================================================= */
+
+function getFirebaseConfig() {
+
+    /*
+       Primary:
+       FIREBASE_CONFIG
+
+       Fallback:
+       firebaseConfig
+    */
+
+    if (
+        typeof FIREBASE_CONFIG !==
+        "undefined"
+    ) {
+
+        return FIREBASE_CONFIG;
+
+    }
+
+
+    if (
+        typeof firebaseConfig !==
+        "undefined"
+    ) {
+
+        return firebaseConfig;
+
+    }
+
+
+    return null;
+
+}
 
 
 /* =========================================================
@@ -2156,23 +2633,24 @@ function initializeFirebase() {
 
 
         /* =========================================
-           CHECK FIREBASE CONFIG
+           CHECK CONFIG
            ========================================= */
 
-        if (
-            typeof FIREBASE_CONFIG ===
-            "undefined"
-        ) {
+        const config =
+            getFirebaseConfig();
+
+
+        if (!config) {
 
             throw new Error(
-                "FIREBASE_CONFIG was not found. Check firebase-config.js."
+                "Firebase config was not found. Check firebase-config.js."
             );
 
         }
 
 
         /* =========================================
-           INITIALIZE
+           INITIALIZE APP
            ========================================= */
 
         if (
@@ -2180,15 +2658,23 @@ function initializeFirebase() {
         ) {
 
             firebase.initializeApp(
-                FIREBASE_CONFIG
+                config
             );
 
         }
 
 
+        /* =========================================
+           AUTH
+           ========================================= */
+
         auth =
             firebase.auth();
 
+
+        /* =========================================
+           FIRESTORE
+           ========================================= */
 
         db =
             firebase.firestore();
@@ -2209,14 +2695,14 @@ function initializeFirebase() {
 
 
                 /*
-                   Real-time reviews
+                   Real-time reviews.
                 */
 
                 loadReviews();
 
 
                 /*
-                   Real download count
+                   Real download count.
                 */
 
                 await loadDownloadCount();
@@ -2285,3 +2771,8 @@ function initializeFirebase() {
    ========================================================= */
 
 initializeFirebase();
+
+
+/* =========================================================
+   END
+   ========================================================= */
