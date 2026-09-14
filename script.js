@@ -4,7 +4,75 @@
 // Owner-only Review Delete
 // 5 Second APK Download Animation
 // Persistent Download Count
+// Full Screen Page Loader
 // ==================================================
+
+
+// ==================================================
+// PAGE LOADER
+// ==================================================
+
+(function initPageLoader() {
+
+  function hidePageLoader() {
+
+    const pageLoader =
+      document.getElementById(
+        "pageLoader"
+      );
+
+
+    if (!pageLoader) {
+      return;
+    }
+
+
+    pageLoader.classList.add(
+      "loader-hidden"
+    );
+
+
+    document.body.classList.remove(
+      "is-loading"
+    );
+
+
+    setTimeout(
+      function() {
+
+        if (pageLoader) {
+          pageLoader.remove();
+        }
+
+      },
+      500
+    );
+
+  }
+
+
+  // If page is already fully loaded.
+  if (
+    document.readyState ===
+    "complete"
+  ) {
+
+    hidePageLoader();
+
+  } else {
+
+    // Wait until page/resources finish loading.
+    window.addEventListener(
+      "load",
+      hidePageLoader,
+      {
+        once: true
+      }
+    );
+
+  }
+
+})();
 
 
 // ==================================================
@@ -58,7 +126,9 @@ function getUsers() {
   try {
 
     const data =
-      localStorage.getItem(USERS_KEY);
+      localStorage.getItem(
+        USERS_KEY
+      );
 
     if (!data) {
       return [];
@@ -95,7 +165,9 @@ function getReviews() {
   try {
 
     const data =
-      localStorage.getItem(REVIEWS_KEY);
+      localStorage.getItem(
+        REVIEWS_KEY
+      );
 
     if (!data) {
       return [];
@@ -292,20 +364,26 @@ if (registerForm) {
 
       const name =
         document
-          .getElementById("registerName")
+          .getElementById(
+            "registerName"
+          )
           .value
           .trim();
 
 
       const password =
         document
-          .getElementById("registerPassword")
+          .getElementById(
+            "registerPassword"
+          )
           .value;
 
 
       const confirm =
         document
-          .getElementById("registerConfirm")
+          .getElementById(
+            "registerConfirm"
+          )
           .value;
 
 
@@ -429,14 +507,18 @@ if (loginForm) {
 
       const name =
         document
-          .getElementById("loginName")
+          .getElementById(
+            "loginName"
+          )
           .value
           .trim();
 
 
       const password =
         document
-          .getElementById("loginPassword")
+          .getElementById(
+            "loginPassword"
+          )
           .value;
 
 
