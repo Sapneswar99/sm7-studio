@@ -13,4 +13,4 @@ const FIREBASE_CONFIG = {
 const OWNER_UID = "yZsy5oOxhjU7BFnaCH67FOL3rjB2";
 
 // APK ka path
-const APK_URL = "apk/super-video-player.apk";
+const APK_URL = "https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk";
