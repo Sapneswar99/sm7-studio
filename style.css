@@ -3,6 +3,7 @@
    Complete Website CSS
    Register + Login + App Page + Ratings + Reviews
    + 5 Second APK Download Animation
+   + Full Screen Loading Screen
 ========================================================= */
 
 
@@ -55,6 +56,147 @@ a {
 
 .hidden {
   display: none !important;
+}
+
+
+/* =========================================================
+   FULL SCREEN PAGE LOADER
+========================================================= */
+
+.page-loader {
+  position: fixed;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  z-index: 999999;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #ffffff;
+
+  opacity: 1;
+
+  visibility: visible;
+
+  pointer-events: auto;
+
+  transition:
+    opacity 0.45s ease,
+    visibility 0.45s ease;
+}
+
+
+.page-loader.loader-hidden {
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+}
+
+
+/* LOADER CONTENT */
+
+.loader-content {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+}
+
+
+/* LOADER LOGO */
+
+.loader-logo {
+  width: 90px;
+
+  height: 90px;
+
+  object-fit: cover;
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 8px 25px
+    rgba(56, 103, 246, 0.15);
+
+  animation:
+    loaderPulse 1.4s ease-in-out infinite;
+}
+
+
+/* LOADER SPINNER */
+
+.loader-spinner {
+  width: 43px;
+
+  height: 43px;
+
+  margin-top: 21px;
+
+  border: 4px solid #e5e9f1;
+
+  border-top-color: #3867f6;
+
+  border-radius: 50%;
+
+  animation:
+    loaderSpin 0.8s linear infinite;
+}
+
+
+/* LOADER TEXT */
+
+.loader-text {
+  margin-top: 15px;
+
+  color: #727b8d;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.2px;
+}
+
+
+/* LOADER ANIMATIONS */
+
+@keyframes loaderSpin {
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+@keyframes loaderPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
 }
 
 
@@ -1143,6 +1285,33 @@ footer {
   }
 
 
+  /* LOADER MOBILE */
+
+  .loader-logo {
+    width: 82px;
+
+    height: 82px;
+
+    border-radius: 20px;
+  }
+
+
+  .loader-spinner {
+    width: 40px;
+
+    height: 40px;
+
+    margin-top: 19px;
+  }
+
+
+  .loader-text {
+    font-size: 12px;
+
+    margin-top: 14px;
+  }
+
+
   .topbar {
     height: 64px;
 
@@ -1296,6 +1465,29 @@ footer {
   }
 
 
+  .loader-logo {
+    width: 74px;
+
+    height: 74px;
+
+    border-radius: 18px;
+  }
+
+
+  .loader-spinner {
+    width: 37px;
+
+    height: 37px;
+
+    border-width: 3px;
+  }
+
+
+  .loader-text {
+    font-size: 11px;
+  }
+
+
   .app-header {
     gap: 10px;
   }
@@ -1396,6 +1588,8 @@ footer {
     transition-duration: 0.01ms !important;
 
     animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
   }
 
 }
