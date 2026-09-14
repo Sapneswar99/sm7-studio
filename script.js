@@ -13,7 +13,7 @@
 
    Agar APK same website ke /apk/ folder mein hai:
 */
-const APK_URL = "apk/super-video-player.apk";
+const APK_URL = "https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk";
 
 
 /*
