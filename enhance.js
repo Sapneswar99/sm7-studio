@@ -1,17 +1,27 @@
+const WORKER_URL =
+    "https://sm7-photo-enhance.sapneswarmajhi1234.workers.dev/";
+
 const fileInput = document.getElementById("fileInput");
 const uploadBox = document.getElementById("uploadBox");
 const previewSection = document.getElementById("previewSection");
 const previewImage = document.getElementById("previewImage");
 const fileName = document.getElementById("fileName");
+
 const enhanceBtn = document.getElementById("enhanceBtn");
 const resetBtn = document.getElementById("resetBtn");
 const downloadBtn = document.getElementById("downloadBtn");
 const loading = document.getElementById("loading");
 
 let selectedFile = null;
+let enhancedImageUrl = null;
 
-// Select image
+
+// ================================
+// Select Image
+// ================================
+
 fileInput.addEventListener("change", function () {
+
     const file = this.files[0];
 
     if (!file) return;
@@ -19,38 +29,60 @@ fileInput.addEventListener("change", function () {
     handleImage(file);
 });
 
-// Handle image
+
+// ================================
+// Handle Image
+// ================================
+
 function handleImage(file) {
 
     if (!file.type.startsWith("image/")) {
+
         alert("Please select a valid image.");
+
         return;
     }
 
     selectedFile = file;
+    enhancedImageUrl = null;
 
     const imageURL = URL.createObjectURL(file);
 
     previewImage.src = imageURL;
+    previewImage.style.filter = "none";
+
     fileName.textContent = file.name;
 
     previewSection.style.display = "block";
+
     downloadBtn.style.display = "none";
+
+    enhanceBtn.disabled = false;
+    enhanceBtn.textContent = "✨ Enhance Photo";
 
     previewSection.scrollIntoView({
         behavior: "smooth"
     });
 }
 
+
+// ================================
 // Drag & Drop
+// ================================
+
 uploadBox.addEventListener("dragover", function (e) {
+
     e.preventDefault();
+
     uploadBox.classList.add("dragging");
 });
 
+
 uploadBox.addEventListener("dragleave", function () {
+
     uploadBox.classList.remove("dragging");
 });
+
 
 uploadBox.addEventListener("drop", function (e) {
 
@@ -61,67 +93,212 @@ uploadBox.addEventListener("drop", function (e) {
     const file = e.dataTransfer.files[0];
 
     if (file) {
+
         handleImage(file);
     }
 });
 
-// Enhance photo
-enhanceBtn.addEventListener("click", function () {
+
+// ================================
+// AI Enhance Photo
+// ================================
+
+enhanceBtn.addEventListener("click", async function () {
 
     if (!selectedFile) {
+
         alert("Please upload a photo first.");
+
         return;
     }
 
     loading.style.display = "block";
+
     enhanceBtn.disabled = true;
 
-    /*
-       Demo enhancement.
+    enhanceBtn.textContent = "✨ Enhancing...";
 
-       Abhi ye browser mein photo ko enhance
-       karne ka basic effect lagata hai.
+    downloadBtn.style.display = "none";
 
-       Baad mein yahin AI API/backend connect
-       karenge.
-    */
 
-    setTimeout(function () {
+    try {
 
-        previewImage.style.filter =
-            "contrast(1.12) brightness(1.05) saturate(1.08)";
+        const formData = new FormData();
+
+        formData.append("image", selectedFile);
+
+
+        const response = await fetch(
+            WORKER_URL,
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+
+
+        let result;
+
+        try {
+
+            result = await response.json();
+
+        } catch (jsonError) {
+
+            throw new Error(
+                "Server returned an invalid response."
+            );
+        }
+
+
+        if (!response.ok || !result.success) {
+
+            throw new Error(
+                result.message ||
+                "AI enhancement failed."
+            );
+        }
+
+
+        // Get AI output
+        let output = result.output;
+
+
+        if (Array.isArray(output)) {
+
+            output = output[0];
+        }
+
+
+        if (!output) {
+
+            throw new Error(
+                "AI did not return an output image."
+            );
+        }
+
+
+        enhancedImageUrl = output;
+
+
+        // Show enhanced image
+        previewImage.style.filter = "none";
+
+        previewImage.src = enhancedImageUrl;
+
+
+        // Show download button
+        downloadBtn.style.display = "inline-block";
+
+
+        alert("✨ AI Enhancement Complete!");
+
+
+    } catch (error) {
+
+        console.error("Enhancement Error:", error);
+
+
+        alert(
+            "❌ Enhancement failed.\n\n" +
+            (error.message ||
+                "Please try again.")
+        );
+
+
+    } finally {
 
         loading.style.display = "none";
 
         enhanceBtn.disabled = false;
 
-        downloadBtn.style.display = "inline-block";
-
-    }, 1500);
+        enhanceBtn.textContent = "✨ Enhance Photo";
+    }
 });
 
-// Download
-downloadBtn.addEventListener("click", function () {
 
-    if (!previewImage.src) return;
+// ================================
+// Download Enhanced Photo
+// ================================
 
-    const link = document.createElement("a");
+downloadBtn.addEventListener("click", async function () {
 
-    link.href = previewImage.src;
+    if (!enhancedImageUrl) {
 
-    link.download = "enhanced-photo.jpg";
+        alert(
+            "Please enhance the photo first."
+        );
 
-    document.body.appendChild(link);
+        return;
+    }
 
-    link.click();
 
-    document.body.removeChild(link);
+    try {
+
+        const response = await fetch(
+            enhancedImageUrl
+        );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Could not download image."
+            );
+        }
+
+
+        const blob = await response.blob();
+
+        const blobUrl =
+            URL.createObjectURL(blob);
+
+
+        const link =
+            document.createElement("a");
+
+        link.href = blobUrl;
+
+        link.download =
+            "enhanced-photo.png";
+
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        document.body.removeChild(link);
+
+
+        URL.revokeObjectURL(blobUrl);
+
+
+    } catch (error) {
+
+        console.error(
+            "Download Error:",
+            error
+        );
+
+
+        // Fallback: open AI image
+        window.open(
+            enhancedImageUrl,
+            "_blank"
+        );
+    }
 });
 
-// Reset
+
+// ================================
+// Choose Another Photo
+// ================================
+
 resetBtn.addEventListener("click", function () {
 
     selectedFile = null;
+
+    enhancedImageUrl = null;
 
     fileInput.value = "";
 
@@ -134,4 +311,21 @@ resetBtn.addEventListener("click", function () {
     previewSection.style.display = "none";
 
     downloadBtn.style.display = "none";
+
+    loading.style.display = "none";
+
+    enhanceBtn.disabled = false;
+
+    enhanceBtn.textContent = "✨ Enhance Photo";
 });
+
+
+// ================================
+// Initial State
+// ================================
+
+previewSection.style.display = "none";
+
+loading.style.display = "none";
+
+downloadBtn.style.display = "none";
