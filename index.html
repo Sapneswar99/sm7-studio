@@ -22,47 +22,18 @@
 
     <link
         rel="icon"
-        type="image/x-icon"
-        href="favicon.ico">
+        type="image/png"
+        href="favicon.png">
 
     <link
-        rel="icon"
+        rel="shortcut icon"
         type="image/png"
-        sizes="16x16"
-        href="favicon-16x16.png">
-
-    <link
-        rel="icon"
-        type="image/png"
-        sizes="32x32"
-        href="favicon-32x32.png">
-
-    <link
-        rel="icon"
-        type="image/png"
-        sizes="48x48"
-        href="favicon-48x48.png">
-
-    <!-- ================= APPLE ICON ================= -->
+        href="favicon.png">
 
     <link
         rel="apple-touch-icon"
-        sizes="180x180"
-        href="apple-touch-icon.png">
+        href="favicon.png">
 
-    <!-- ================= ANDROID ICON ================= -->
-
-    <link
-        rel="icon"
-        type="image/png"
-        sizes="192x192"
-        href="android-chrome-192x192.png">
-
-    <link
-        rel="icon"
-        type="image/png"
-        sizes="512x512"
-        href="android-chrome-512x512.png">
 
     <!-- ================= STYLESHEET ================= -->
 
@@ -136,7 +107,7 @@
     </div>
 
 
-    <nav>
+    <nav id="nav">
 
         <a href="#home">
             Home
@@ -157,13 +128,40 @@
     </nav>
 
 
-    <button
-        class="login-btn"
-        id="loginButton">
+    <div class="auth-buttons">
 
-        Login
+        <button
+            class="login-btn"
+            id="loginButton"
+            type="button"
+            onclick="openAuth('login')">
 
-    </button>
+            Login
+
+        </button>
+
+        <button
+            class="register-btn"
+            id="registerButton"
+            type="button"
+            onclick="openAuth('register')">
+
+            Register
+
+        </button>
+
+        <button
+            class="logout-btn"
+            id="logoutButton"
+            type="button"
+            onclick="logoutUser()"
+            hidden>
+
+            Logout
+
+        </button>
+
+    </div>
 
 </header>
 
@@ -213,6 +211,8 @@
 
         <button
             class="download-btn"
+            id="heroDownloadButton"
+            type="button"
             onclick="startDownload()">
 
             ⇩ Download APK
@@ -396,6 +396,8 @@
 
         <button
             class="download-btn"
+            id="downloadButton"
+            type="button"
             onclick="startDownload()">
 
             ⇩ Download APK
@@ -447,35 +449,103 @@
     </h2>
 
 
-    <div class="review-form">
+    <p class="reviews-subtitle">
+        Login to share your experience with Super Video Player.
+    </p>
 
 
-        <input
-            type="text"
-            id="reviewName"
-            placeholder="Your Name">
+    <!-- ================= REVIEW FORM ================= -->
+
+    <form
+        class="review-form"
+        id="reviewForm">
+
+
+        <div
+            class="review-user"
+            id="reviewUser"
+            hidden>
+
+            <span>
+                Reviewing as
+            </span>
+
+            <strong id="reviewUserName">
+                User
+            </strong>
+
+        </div>
+
+
+        <div
+            class="rating-box">
+
+            <label for="reviewRating">
+                Rating
+            </label>
+
+            <select
+                id="reviewRating"
+                required>
+
+                <option value="5">
+                    ★★★★★ — 5
+                </option>
+
+                <option value="4">
+                    ★★★★☆ — 4
+                </option>
+
+                <option value="3">
+                    ★★★☆☆ — 3
+                </option>
+
+                <option value="2">
+                    ★★☆☆☆ — 2
+                </option>
+
+                <option value="1">
+                    ★☆☆☆☆ — 1
+                </option>
+
+            </select>
+
+        </div>
 
 
         <textarea
             id="reviewText"
-            placeholder="Write your review..."></textarea>
+            placeholder="Write your review..."
+            maxlength="500"
+            required></textarea>
 
 
         <button
             class="review-submit"
-            onclick="submitReview()">
+            id="reviewSubmit"
+            type="submit">
 
             Submit Review
 
         </button>
 
 
-    </div>
+        <p
+            id="reviewMessage"
+            class="form-message">
+        </p>
 
+
+    </form>
+
+
+    <!-- ================= REVIEWS LIST ================= -->
 
     <div id="reviewsList">
 
-        <!-- Reviews will load here -->
+        <div class="empty-state">
+            Loading reviews...
+        </div>
 
     </div>
 
@@ -488,7 +558,8 @@
 
 <div
     class="modal"
-    id="authModal">
+    id="authModal"
+    aria-hidden="true">
 
 
     <div class="modal-box">
@@ -496,7 +567,9 @@
 
         <button
             class="close"
-            onclick="closeAuth()">
+            type="button"
+            onclick="closeAuth()"
+            aria-label="Close">
 
             ×
 
@@ -508,40 +581,62 @@
         </h2>
 
 
-        <input
-            type="text"
-            id="authName"
-            placeholder="Name"
-            style="display:none">
+        <p id="authSubtitle">
+            Login with your name and password.
+        </p>
 
 
-        <input
-            type="password"
-            id="authPassword"
-            placeholder="Password">
+        <form
+            id="authForm">
+
+
+            <input
+                type="text"
+                id="authName"
+                placeholder="Name"
+                autocomplete="username"
+                maxlength="30"
+                required>
+
+
+            <input
+                type="password"
+                id="authPassword"
+                placeholder="Password"
+                autocomplete="current-password"
+                minlength="6"
+                required>
+
+
+            <button
+                class="modal-action"
+                id="authSubmit"
+                type="submit">
+
+                Login
+
+            </button>
+
+
+        </form>
+
+
+        <p
+            id="authMessage"
+            class="form-message">
+        </p>
 
 
         <button
-            class="modal-action"
-            onclick="submitAuth()">
-
-            Continue
-
-        </button>
-
-
-        <div
             class="switch"
-            onclick="toggleAuth()"
-            id="authSwitch">
+            id="switchAuth"
+            type="button"
+            onclick="toggleAuth()">
 
             Don't have an account?
+            <b>Register</b>
 
-            <b>
-                Register
-            </b>
-
-        </div>
+        </button>
 
 
     </div>
@@ -555,11 +650,17 @@
 
 <div
     class="modal"
-    id="downloadModal">
+    id="downloadModal"
+    aria-hidden="true">
 
 
     <div
         class="modal-box download-modal">
+
+
+        <div class="download-modal-icon">
+            ⇩
+        </div>
 
 
         <h2>
@@ -585,7 +686,6 @@
 
             <div
                 id="countdownProgress">
-
             </div>
 
         </div>
