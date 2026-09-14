@@ -1,0 +1,257 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f172a, #1e1b4b);
+    color: white;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 35px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 25px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.header h1 span {
+    color: #a78bfa;
+}
+
+.header p {
+    color: #cbd5e1;
+}
+
+.upload-box {
+    border: 2px dashed #8b5cf6;
+    border-radius: 20px;
+    padding: 50px 20px;
+    text-align: center;
+    cursor: pointer;
+    background: rgba(139, 92, 246, 0.08);
+    transition: 0.3s;
+}
+
+.upload-box:hover,
+.upload-box.dragging {
+    background: rgba(139, 92, 246, 0.20);
+    transform: translateY(-2px);
+}
+
+.upload-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.upload-box h2 {
+    margin-bottom: 10px;
+}
+
+.upload-box p {
+    color: #cbd5e1;
+    margin-bottom: 20px;
+}
+
+.upload-btn {
+    display: inline-block;
+    background: #7c3aed;
+    padding: 13px 28px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.upload-btn:hover {
+    background: #6d28d9;
+}
+
+#fileInput {
+    display: none;
+}
+
+.preview-section {
+    display: none;
+    margin-top: 30px;
+}
+
+.preview-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.preview {
+    display: block;
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 15px;
+    background: #020617;
+    padding: 10px;
+}
+
+.file-name {
+    text-align: center;
+    color: #cbd5e1;
+    margin-top: 12px;
+    word-break: break-word;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+button {
+    border: none;
+    padding: 13px 24px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+.enhance-btn {
+    background: #8b5cf6;
+    color: white;
+}
+
+.enhance-btn:hover {
+    background: #7c3aed;
+}
+
+.reset-btn {
+    background: #334155;
+    color: white;
+}
+
+.reset-btn:hover {
+    background: #475569;
+}
+
+.download-btn {
+    display: none;
+    background: #10b981;
+    color: white;
+}
+
+.download-btn:hover {
+    background: #059669;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.loading {
+    display: none;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.spinner {
+    width: 38px;
+    height: 38px;
+    margin: auto;
+    border: 4px solid #475569;
+    border-top: 4px solid #a78bfa;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.loading p {
+    margin-top: 10px;
+    color: #cbd5e1;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.feature {
+    background: rgba(255, 255, 255, 0.06);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.feature-icon {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.feature h3 {
+    margin-bottom: 5px;
+}
+
+.feature p {
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        margin: 15px auto;
+        padding: 20px;
+        border-radius: 18px;
+    }
+
+    .header h1 {
+        font-size: 30px;
+    }
+
+    .upload-box {
+        padding: 35px 15px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .actions button {
+        width: 100%;
+    }
+}
