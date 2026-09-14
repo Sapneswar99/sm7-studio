@@ -1,20 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Super Video Player - Android</title>
 
-    <meta name="description"
-          content="Download Super Video Player for Android">
+    <meta
+        name="description"
+        content="Download Super Video Player for Android">
 
-    <meta name="theme-color" content="#030611">
+    <meta
+        name="theme-color"
+        content="#030611">
 
-    <link rel="stylesheet" href="style.css">
+    <!-- ================= FAVICON ================= -->
+
+    <link
+        rel="icon"
+        type="image/x-icon"
+        href="favicon.ico">
+
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="favicon-16x16.png">
+
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="favicon-32x32.png">
+
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="48x48"
+        href="favicon-48x48.png">
+
+    <!-- ================= APPLE ICON ================= -->
+
+    <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="apple-touch-icon.png">
+
+    <!-- ================= ANDROID ICON ================= -->
+
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="192x192"
+        href="android-chrome-192x192.png">
+
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="512x512"
+        href="android-chrome-512x512.png">
+
+    <!-- ================= STYLESHEET ================= -->
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+
+    <!-- ================= FIREBASE SDK ================= -->
+
+    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app-compat.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-auth-compat.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore-compat.js"></script>
+
 </head>
 
+
 <body>
+
 
 <!-- ================= LOADING SCREEN ================= -->
 
@@ -28,13 +97,18 @@
         <span>Super</span> Video Player
     </h1>
 
-    <p>Loading...</p>
+    <p>
+        Loading...
+    </p>
 
     <div class="loading-bar">
+
         <div class="loading-progress"></div>
+
     </div>
 
 </div>
+
 
 
 <!-- ================= NAVBAR ================= -->
@@ -48,6 +122,7 @@
         </div>
 
         <div>
+
             <h2>
                 <span>Super</span> Video Player
             </h2>
@@ -55,51 +130,84 @@
             <small>
                 Play Everything. Anywhere.
             </small>
+
         </div>
 
     </div>
 
 
     <nav>
-        <a href="#home">Home</a>
-        <a href="#features">Features</a>
-        <a href="#download">Download</a>
-        <a href="#reviews">Reviews</a>
+
+        <a href="#home">
+            Home
+        </a>
+
+        <a href="#features">
+            Features
+        </a>
+
+        <a href="#download">
+            Download
+        </a>
+
+        <a href="#reviews">
+            Reviews
+        </a>
+
     </nav>
 
 
     <button
         class="login-btn"
         id="loginButton">
+
         Login
+
     </button>
 
 </header>
 
 
+
 <!-- ================= HERO ================= -->
 
-<section class="hero" id="home">
+<section
+    class="hero"
+    id="home">
+
 
     <div class="hero-content">
 
+
         <div class="badge">
+
             ✦ OFFICIAL ANDROID APP
+
         </div>
 
+
         <h1>
+
             <span>Super</span><br>
+
             Video Player
+
         </h1>
 
+
         <h2>
+
             Play Everything. Anywhere.
+
         </h2>
 
+
         <p>
+
             A fast, powerful and lightweight video player
             for Android. Enjoy movies, videos and series
             with smooth playback and a modern interface.
+
         </p>
 
 
@@ -114,19 +222,30 @@
 
         <div class="specs">
 
-            <span>Android 5.0+</span>
+            <span>
+                Android 5.0+
+            </span>
 
-            <span>•</span>
+            <span>
+                •
+            </span>
 
-            <span>~30 MB</span>
+            <span>
+                ~30 MB
+            </span>
 
-            <span>•</span>
+            <span>
+                •
+            </span>
 
-            <span>Safe & Secure</span>
+            <span>
+                Safe & Secure
+            </span>
 
         </div>
 
     </div>
+
 
 
     <div class="hero-art">
@@ -137,7 +256,9 @@
 
     </div>
 
+
 </section>
+
 
 
 <!-- ================= FEATURES ================= -->
@@ -145,6 +266,7 @@
 <section
     class="features"
     id="features">
+
 
     <div class="feature">
 
@@ -161,6 +283,7 @@
         </p>
 
     </div>
+
 
 
     <div class="feature">
@@ -180,6 +303,7 @@
     </div>
 
 
+
     <div class="feature">
 
         <div class="feature-icon">
@@ -195,6 +319,7 @@
         </p>
 
     </div>
+
 
 
     <div class="feature">
@@ -214,6 +339,7 @@
     </div>
 
 
+
     <div class="feature">
 
         <div class="feature-icon">
@@ -230,7 +356,9 @@
 
     </div>
 
+
 </section>
+
 
 
 <!-- ================= DOWNLOAD ================= -->
@@ -239,7 +367,9 @@
     class="download-section"
     id="download">
 
+
     <div class="download-card">
+
 
         <div class="download-card-icon">
             ▶
@@ -272,28 +402,37 @@
 
         </button>
 
+
     </div>
 
+
 </section>
+
 
 
 <!-- ================= DOWNLOAD COUNT ================= -->
 
 <section class="stats">
 
+
     <div class="counter-card">
+
 
         <h2 id="downloadCount">
             0
         </h2>
 
+
         <p>
             Total Downloads
         </p>
 
+
     </div>
 
+
 </section>
+
 
 
 <!-- ================= REVIEWS ================= -->
@@ -302,12 +441,14 @@
     class="reviews"
     id="reviews">
 
+
     <h2>
         User Reviews
     </h2>
 
 
     <div class="review-form">
+
 
         <input
             type="text"
@@ -328,6 +469,7 @@
 
         </button>
 
+
     </div>
 
 
@@ -337,7 +479,9 @@
 
     </div>
 
+
 </section>
+
 
 
 <!-- ================= AUTH MODAL ================= -->
@@ -346,7 +490,9 @@
     class="modal"
     id="authModal">
 
+
     <div class="modal-box">
+
 
         <button
             class="close"
@@ -390,13 +536,19 @@
             id="authSwitch">
 
             Don't have an account?
-            <b>Register</b>
+
+            <b>
+                Register
+            </b>
 
         </div>
 
+
     </div>
 
+
 </div>
+
 
 
 <!-- ================= DOWNLOAD MODAL ================= -->
@@ -405,11 +557,15 @@
     class="modal"
     id="downloadModal">
 
-    <div class="modal-box download-modal">
+
+    <div
+        class="modal-box download-modal">
+
 
         <h2>
             Preparing Download
         </h2>
+
 
         <p>
             Your download will start automatically.
@@ -429,37 +585,63 @@
 
             <div
                 id="countdownProgress">
+
             </div>
 
         </div>
 
 
         <p id="downloadStatus">
+
             Please wait...
+
         </p>
+
 
     </div>
 
+
 </div>
+
 
 
 <!-- ================= FOOTER ================= -->
 
 <footer>
 
-    <div>
-        © <span id="year"></span>
-        Super Video Player
-    </div>
 
     <div>
-        Android 5.0+ • APK Download
+
+        ©
+
+        <span id="year"></span>
+
+        Super Video Player
+
     </div>
+
+
+    <div>
+
+        Android 5.0+ • APK Download
+
+    </div>
+
 
 </footer>
 
 
+
+<!-- ================= FIREBASE CONFIG ================= -->
+
+<script src="firebase-config.js"></script>
+
+
+<!-- ================= MAIN JAVASCRIPT ================= -->
+
 <script src="script.js"></script>
 
+
 </body>
+
 </html>
