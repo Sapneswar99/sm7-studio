@@ -60,7 +60,6 @@
 
 <!-- ==================================================
      LOADING SCREEN
-     FIRST TIME / INITIAL AUTH CHECK
      ================================================== -->
 
 <div
@@ -68,30 +67,21 @@
     aria-label="Loading Super Video Player"
     role="status">
 
-    <!-- SAME LOGO AS REQUESTED -->
-
     <img
         src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
         alt="Super Video Player"
         class="loading-logo">
 
-
     <h1>
         <span>Super</span> Video Player
     </h1>
-
 
     <p>
         Loading...
     </p>
 
-
     <div class="loading-bar">
-
-        <div
-            class="loading-progress">
-        </div>
-
+        <div class="loading-progress"></div>
     </div>
 
 </div>
@@ -100,7 +90,6 @@
 
 <!-- ==================================================
      LOGIN SCREEN
-     SHOWN WHEN USER IS NOT LOGGED IN
      ================================================== -->
 
 <section
@@ -108,11 +97,7 @@
     class="login-screen"
     aria-hidden="true">
 
-
     <div class="login-container">
-
-
-        <!-- SAME APP LOGO -->
 
         <div class="login-logo-wrap">
 
@@ -137,22 +122,18 @@
         </div>
 
 
-        <!-- LOGIN CARD -->
-
         <div class="login-card">
-
 
             <h2>
                 Welcome Back
             </h2>
-
 
             <p class="login-card-subtitle">
                 Login to continue
             </p>
 
 
-            <!-- GOOGLE -->
+            <!-- GOOGLE LOGIN -->
 
             <button
                 type="button"
@@ -169,8 +150,6 @@
 
             </button>
 
-
-            <!-- DIVIDER -->
 
             <div class="auth-divider">
 
@@ -190,7 +169,6 @@
             <form
                 id="loginForm"
                 autocomplete="on">
-
 
                 <div class="auth-field">
 
@@ -256,11 +234,8 @@
                     class="form-message">
                 </p>
 
-
             </form>
 
-
-            <!-- REGISTER -->
 
             <div class="auth-bottom-text">
 
@@ -278,14 +253,12 @@
 
             </div>
 
-
         </div>
 
 
         <p class="login-footer-text">
             Safe & Secure Firebase Authentication
         </p>
-
 
     </div>
 
@@ -295,7 +268,6 @@
 
 <!-- ==================================================
      MAIN WEBSITE
-     HIDDEN UNTIL LOGIN
      ================================================== -->
 
 <div
@@ -313,7 +285,11 @@
     <div class="logo">
 
         <div class="logo-icon">
-            ▶
+
+            <img
+                src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
+                alt="Super Video Player">
+
         </div>
 
         <div>
@@ -354,10 +330,31 @@
 
     <div class="auth-buttons">
 
-        <div
-            id="loggedUserName"
-            class="logged-user-name">
-        </div>
+        <!-- PROFILE -->
+
+        <button
+            type="button"
+            id="profileButton"
+            class="profile-button"
+            aria-label="Open Profile">
+
+            <span
+                id="profileAvatar"
+                class="profile-avatar">
+
+                U
+
+            </span>
+
+            <span
+                id="loggedUserName"
+                class="logged-user-name">
+
+                User
+
+            </span>
+
+        </button>
 
 
         <button
@@ -383,14 +380,10 @@
     class="hero"
     id="home">
 
-
     <div class="hero-content">
 
-
         <div class="badge">
-
             ✦ OFFICIAL ANDROID APP
-
         </div>
 
 
@@ -404,9 +397,7 @@
 
 
         <h2>
-
             Play Everything. Anywhere.
-
         </h2>
 
 
@@ -435,17 +426,13 @@
                 Android 7.0+
             </span>
 
-            <span>
-                •
-            </span>
+            <span>•</span>
 
             <span>
                 28 MB
             </span>
 
-            <span>
-                •
-            </span>
+            <span>•</span>
 
             <span>
                 Safe & Secure
@@ -456,15 +443,17 @@
     </div>
 
 
-
     <div class="hero-art">
 
         <div class="app-icon-big">
-            ▶
+
+            <img
+                src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
+                alt="Super Video Player">
+
         </div>
 
     </div>
-
 
 </section>
 
@@ -496,7 +485,6 @@
     </div>
 
 
-
     <div class="feature">
 
         <div class="feature-icon">
@@ -512,7 +500,6 @@
         </p>
 
     </div>
-
 
 
     <div class="feature">
@@ -532,7 +519,6 @@
     </div>
 
 
-
     <div class="feature">
 
         <div class="feature-icon">
@@ -548,7 +534,6 @@
         </p>
 
     </div>
-
 
 
     <div class="feature">
@@ -567,7 +552,6 @@
 
     </div>
 
-
 </section>
 
 
@@ -580,12 +564,15 @@
     class="download-section"
     id="download">
 
-
     <div class="download-card">
 
 
         <div class="download-card-icon">
-            ▶
+
+            <img
+                src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
+                alt="Super Video Player">
+
         </div>
 
 
@@ -616,9 +603,7 @@
 
         </button>
 
-
     </div>
-
 
 </section>
 
@@ -630,22 +615,17 @@
 
 <section class="stats">
 
-
     <div class="counter-card">
-
 
         <h2 id="downloadCount">
             0
         </h2>
 
-
         <p>
             Total Downloads
         </p>
 
-
     </div>
-
 
 </section>
 
@@ -659,18 +639,16 @@
     class="reviews"
     id="reviews">
 
-
     <h2>
         User Reviews
     </h2>
-
 
     <p class="reviews-subtitle">
         Share your experience with Super Video Player.
     </p>
 
 
-    <!-- ================= REVIEW FORM ================= -->
+    <!-- REVIEW FORM -->
 
     <form
         class="review-form"
@@ -692,37 +670,95 @@
         </div>
 
 
+        <!-- PLAY STORE STYLE STAR RATING -->
+
         <div class="rating-box">
 
-            <label for="reviewRating">
+            <label>
                 Rating
             </label>
 
-            <select
+
+            <div
+                class="star-rating"
+                id="starRating"
+                role="radiogroup"
+                aria-label="Choose a rating">
+
+                <button
+                    type="button"
+                    class="rating-star"
+                    data-rating="1"
+                    aria-label="1 star"
+                    aria-checked="false"
+                    role="radio">
+
+                    ★
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="rating-star"
+                    data-rating="2"
+                    aria-label="2 stars"
+                    aria-checked="false"
+                    role="radio">
+
+                    ★
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="rating-star"
+                    data-rating="3"
+                    aria-label="3 stars"
+                    aria-checked="false"
+                    role="radio">
+
+                    ★
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="rating-star"
+                    data-rating="4"
+                    aria-label="4 stars"
+                    aria-checked="false"
+                    role="radio">
+
+                    ★
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="rating-star"
+                    data-rating="5"
+                    aria-label="5 stars"
+                    aria-checked="false"
+                    role="radio">
+
+                    ★
+
+                </button>
+
+            </div>
+
+
+            <!-- Hidden value used by JavaScript -->
+
+            <input
+                type="hidden"
                 id="reviewRating"
+                value="0"
                 required>
-
-                <option value="5">
-                    ★★★★★ — 5
-                </option>
-
-                <option value="4">
-                    ★★★★☆ — 4
-                </option>
-
-                <option value="3">
-                    ★★★☆☆ — 3
-                </option>
-
-                <option value="2">
-                    ★★☆☆☆ — 2
-                </option>
-
-                <option value="1">
-                    ★☆☆☆☆ — 1
-                </option>
-
-            </select>
 
         </div>
 
@@ -749,11 +785,10 @@
             class="form-message">
         </p>
 
-
     </form>
 
 
-    <!-- ================= REVIEWS LIST ================= -->
+    <!-- REVIEWS LIST -->
 
     <div id="reviewsList">
 
@@ -763,8 +798,135 @@
 
     </div>
 
-
 </section>
+
+
+
+<!-- ==================================================
+     PROFILE MODAL
+     ================================================== -->
+
+<div
+    class="modal"
+    id="profileModal"
+    aria-hidden="true">
+
+    <div class="modal-box profile-modal">
+
+
+        <button
+            class="close"
+            type="button"
+            id="profileClose"
+            aria-label="Close">
+
+            ×
+
+        </button>
+
+
+        <div class="profile-modal-avatar">
+
+            <span id="profileModalAvatar">
+                U
+            </span>
+
+        </div>
+
+
+        <h2>
+            My Profile
+        </h2>
+
+
+        <p class="profile-subtitle">
+            Manage your account information.
+        </p>
+
+
+        <!-- PROFILE INFORMATION -->
+
+        <div class="profile-info">
+
+            <div class="profile-info-item">
+
+                <span>
+                    Email
+                </span>
+
+                <strong id="profileEmail">
+                    —
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- EDIT PROFILE -->
+
+        <form
+            id="profileForm"
+            autocomplete="off">
+
+
+            <div class="auth-field">
+
+                <label for="profileName">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="profileName"
+                    placeholder="Enter your name"
+                    maxlength="50"
+                    required>
+
+            </div>
+
+
+            <div class="auth-field">
+
+                <label for="profileUsername">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="profileUsername"
+                    placeholder="Enter username"
+                    maxlength="30"
+                    minlength="3"
+                    required>
+
+                <small class="username-hint">
+                    3–30 characters
+                </small>
+
+            </div>
+
+
+            <button
+                type="submit"
+                id="profileSaveButton"
+                class="modal-action">
+
+                Save Changes
+
+            </button>
+
+
+            <p
+                id="profileMessage"
+                class="form-message">
+            </p>
+
+        </form>
+
+    </div>
+
+</div>
 
 
 
@@ -776,7 +938,6 @@
     class="modal"
     id="registerModal"
     aria-hidden="true">
-
 
     <div class="modal-box">
 
@@ -842,8 +1003,6 @@
         </div>
 
 
-        <!-- REGISTER FORM -->
-
         <form
             id="registerForm"
             autocomplete="on">
@@ -884,7 +1043,6 @@
 
             </button>
 
-
         </form>
 
 
@@ -904,9 +1062,7 @@
 
         </button>
 
-
     </div>
-
 
 </div>
 
@@ -920,7 +1076,6 @@
     class="modal"
     id="forgotModal"
     aria-hidden="true">
-
 
     <div class="modal-box">
 
@@ -978,7 +1133,6 @@
 
             </button>
 
-
         </form>
 
 
@@ -999,70 +1153,7 @@
 
         </button>
 
-
     </div>
-
-
-</div>
-
-
-
-<!-- ==================================================
-     DOWNLOAD MODAL
-     ================================================== -->
-
-<div
-    class="modal"
-    id="downloadModal"
-    aria-hidden="true">
-
-
-    <div
-        class="modal-box download-modal">
-
-
-        <div class="download-modal-icon">
-            ⇩
-        </div>
-
-
-        <h2>
-            Preparing Download
-        </h2>
-
-
-        <p>
-            Your download will start automatically.
-        </p>
-
-
-        <div
-            class="countdown"
-            id="countdown">
-
-            5
-
-        </div>
-
-
-        <div class="countdown-bar">
-
-            <div
-                id="countdownProgress">
-            </div>
-
-        </div>
-
-
-        <p id="downloadStatus">
-
-            Please wait...
-
-        </p>
-
-
-    </div>
-
 
 </div>
 
@@ -1074,24 +1165,19 @@
 
 <footer>
 
-
     <div>
 
         ©
-
         <span id="year"></span>
-
         Super Video Player
 
     </div>
-
 
     <div>
 
         Android 7.0+ • APK Download
 
     </div>
-
 
 </footer>
 
@@ -1116,5 +1202,4 @@
 
 
 </body>
-
 </html>
