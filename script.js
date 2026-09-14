@@ -1,34 +1,61 @@
 /* =====================================================
    SUPER VIDEO PLAYER WEBSITE
+   FIREBASE CONNECTED VERSION
    ===================================================== */
 
 
 /* ================= CONFIG ================= */
 
-/*
-   Apna APK yahan rakhein:
-
-   website/
-   ├── index.html
-   ├── style.css
-   ├── script.js
-   └── apk/
-       └── super-video-player.apk
-*/
-
-const APK_URL =
-    "apk/super-video-player.apk";
-
+const APK_URL = "apk/super-video-player.apk";
 
 /*
-   Owner UID yahan add karein.
+   IMPORTANT:
+   Yahan Firebase Authentication mein
+   owner ka REAL UID paste karo.
 
-   Firebase Authentication se
-   owner ka UID milega.
+   Example:
+   const OWNER_UID = "abc123xyz...";
 */
+const OWNER_UID = "YOUR_OWNER_FIREBASE_UID";
 
-const OWNER_UID =
-    "YOUR_OWNER_FIREBASE_UID";
+
+/* ================= FIREBASE ================= */
+
+let auth = null;
+let db = null;
+let currentUser = null;
+let registerMode = false;
+let reviewsUnsubscribe = null;
+
+
+/* ================= HELPERS ================= */
+
+function get(id) {
+    return document.getElementById(id);
+}
+
+
+function showMessage(text) {
+    alert(text);
+}
+
+
+function syntheticEmail(name) {
+
+    return (
+        name
+            .trim()
+            .toLowerCase()
+            .replace(/[^a-z0-9._-]/g, "")
+        + "@supervideoplayer.local"
+    );
+}
+
+
+function validName(name) {
+
+    return /^[a-zA-Z0-9._-]{3,30}$/.test(name);
+}
 
 
 /* ================= LOADING SCREEN ================= */
@@ -37,12 +64,11 @@ window.addEventListener("load", function () {
 
     setTimeout(function () {
 
-        const loading =
-            document.getElementById(
-                "loadingScreen"
-            );
+        const loading = get("loadingScreen");
 
-        loading.classList.add("hide");
+        if (loading) {
+            loading.classList.add("hide");
+        }
 
     }, 2300);
 
@@ -51,87 +77,101 @@ window.addEventListener("load", function () {
 
 /* ================= YEAR ================= */
 
-document.getElementById("year")
-    .textContent =
-    new Date().getFullYear();
+if (get("year")) {
+
+    get("year").textContent =
+        new Date().getFullYear();
+
+}
 
 
-/* ================= AUTH ================= */
+/* ================= AUTH MODAL ================= */
 
-let registerMode = false;
+function openAuth(mode = "login") {
 
+    registerMode = mode === "register";
 
-function openAuth() {
+    const modal = get("authModal");
 
-    document
-        .getElementById("authModal")
-        .classList.add("show");
+    if (!modal) return;
+
+    modal.classList.add("show");
+
+    updateAuthUI();
 
 }
 
 
 function closeAuth() {
 
-    document
-        .getElementById("authModal")
-        .classList.remove("show");
+    const modal = get("authModal");
+
+    if (modal) {
+        modal.classList.remove("show");
+    }
 
 }
 
 
 function toggleAuth() {
 
-    registerMode =
-        !registerMode;
+    registerMode = !registerMode;
+
+    updateAuthUI();
+
+}
 
 
-    const title =
-        document.getElementById(
-            "authTitle"
-        );
+function updateAuthUI() {
 
-
-    const name =
-        document.getElementById(
-            "authName"
-        );
-
-
-    const switchText =
-        document.getElementById(
-            "authSwitch"
-        );
-
+    const title = get("authTitle");
+    const name = get("authName");
+    const password = get("authPassword");
+    const switchText = get("authSwitch");
 
     if (registerMode) {
 
-        title.textContent =
-            "Create Account";
+        if (title) {
+            title.textContent = "Create Account";
+        }
 
+        if (name) {
+            name.style.display = "block";
+            name.placeholder = "Name";
+        }
 
-        name.style.display =
-            "block";
+        if (password) {
+            password.placeholder = "Password";
+        }
 
+        if (switchText) {
 
-        switchText.innerHTML =
-            "Already have an account? " +
-            "<b>Login</b>";
+            switchText.innerHTML =
+                "Already have an account? <b>Login</b>";
 
-    }
+        }
 
-    else {
+    } else {
 
-        title.textContent =
-            "Login";
+        if (title) {
+            title.textContent = "Login";
+        }
 
+        if (name) {
+            name.style.display = "block";
+            name.placeholder = "Name";
+        }
 
-        name.style.display =
-            "none";
+        if (password) {
+            password.placeholder = "Password";
+        }
 
+        if (switchText) {
 
-        switchText.innerHTML =
-            "Don't have an account? " +
-            "<b>Register</b>";
+            switchText.innerHTML =
+                "Don't have an account? <b>Register</b>";
+
+        }
 
     }
 
@@ -140,93 +180,217 @@ function toggleAuth() {
 
 /* ================= LOGIN BUTTON ================= */
 
-document
-    .getElementById("loginButton")
-    .addEventListener(
+const loginButton = get("loginButton");
+
+if (loginButton) {
+
+    loginButton.addEventListener(
         "click",
         function () {
 
-            openAuth();
+            if (currentUser) {
+
+                auth.signOut();
+
+            } else {
+
+                openAuth("login");
+
+            }
 
         }
     );
+
+}
 
 
 /* ================= AUTH SUBMIT ================= */
 
 async function submitAuth() {
 
-    const name =
-        document
-            .getElementById(
-                "authName"
-            )
-            .value
-            .trim();
+    if (!auth || !db) {
 
+        showMessage(
+            "Firebase is not connected yet."
+        );
+
+        return;
+    }
+
+
+    const nameInput = get("authName");
+    const passwordInput = get("authPassword");
+
+    const name =
+        nameInput
+            ? nameInput.value.trim()
+            : "";
 
     const password =
-        document
-            .getElementById(
-                "authPassword"
-            )
-            .value
-            .trim();
+        passwordInput
+            ? passwordInput.value
+            : "";
 
 
-    if (registerMode && !name) {
+    if (!validName(name)) {
 
-        alert(
-            "Please enter your name."
+        showMessage(
+            "Name must be 3–30 characters and may contain letters, numbers, dot, underscore or hyphen."
         );
 
         return;
-
     }
 
 
-    if (!password) {
+    if (password.length < 6) {
 
-        alert(
-            "Please enter your password."
+        showMessage(
+            "Password must be at least 6 characters."
         );
 
         return;
-
     }
 
 
-    /*
-       IMPORTANT:
-
-       Real Name + Password authentication
-       ko secure banane ke liye Firebase/backend
-       integration zaroori hai.
-
-       Password ko Firestore mein plain text
-       kabhi store mat karein.
-    */
+    const email = syntheticEmail(name);
 
 
-    if (
-        typeof window.firebaseAuthHandler ===
-        "function"
-    ) {
+    try {
 
-        await window
-            .firebaseAuthHandler(
-                name,
-                password,
-                registerMode
+        if (registerMode) {
+
+            /*
+               CREATE ACCOUNT
+            */
+
+            const credential =
+                await auth.createUserWithEmailAndPassword(
+                    email,
+                    password
+                );
+
+
+            await credential.user.updateProfile({
+
+                displayName: name
+
+            });
+
+
+            await db
+                .collection("users")
+                .doc(credential.user.uid)
+                .set({
+
+                    uid: credential.user.uid,
+
+                    name: name,
+
+                    createdAt:
+                        firebase.firestore.FieldValue
+                            .serverTimestamp()
+
+                }, {
+
+                    merge: true
+
+                });
+
+
+            showMessage(
+                "Account created successfully."
             );
 
+
+            closeAuth();
+
+
+        } else {
+
+            /*
+               LOGIN
+            */
+
+            await auth.signInWithEmailAndPassword(
+                email,
+                password
+            );
+
+
+            closeAuth();
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Authentication error:",
+            error
+        );
+
+
+        const code =
+            error.code || "";
+
+
+        if (
+            code.includes(
+                "email-already-in-use"
+            )
+        ) {
+
+            showMessage(
+                "This name is already registered."
+            );
+
+        } else if (
+
+            code.includes(
+                "invalid-credential"
+            ) ||
+            code.includes(
+                "wrong-password"
+            ) ||
+            code.includes(
+                "user-not-found"
+            )
+
+        ) {
+
+            showMessage(
+                "Invalid name or password."
+            );
+
+        } else {
+
+            showMessage(
+                error.message ||
+                "Authentication failed."
+            );
+
+        }
+
     }
 
-    else {
+}
 
-        alert(
-            "Firebase Authentication is not configured yet."
-        );
+
+/* ================= AUTH STATE ================= */
+
+function renderAuthState() {
+
+    const button = get("loginButton");
+
+    if (!button) return;
+
+
+    if (currentUser) {
+
+        button.textContent = "Logout";
+
+    } else {
+
+        button.textContent = "Login";
 
     }
 
@@ -235,53 +399,38 @@ async function submitAuth() {
 
 /* ================= DOWNLOAD ================= */
 
-function startDownload() {
+async function startDownload() {
 
     /*
-       Login check
-
-       Firebase connected hone par
-       currentUser automatically check hoga.
+       Login required
     */
 
-    if (
-        window.firebaseCurrentUser &&
-        !window.firebaseCurrentUser()
-    ) {
+    if (!currentUser) {
 
-        alert(
+        showMessage(
             "Please Login/Register before downloading."
         );
 
-        openAuth();
+        openAuth("login");
 
         return;
-
     }
 
 
     const modal =
-        document.getElementById(
-            "downloadModal"
-        );
-
+        get("downloadModal");
 
     const countdown =
-        document.getElementById(
-            "countdown"
-        );
-
+        get("countdown");
 
     const progress =
-        document.getElementById(
-            "countdownProgress"
-        );
-
+        get("countdownProgress");
 
     const status =
-        document.getElementById(
-            "downloadStatus"
-        );
+        get("downloadStatus");
+
+
+    if (!modal) return;
 
 
     modal.classList.add("show");
@@ -290,30 +439,47 @@ function startDownload() {
     let seconds = 5;
 
 
-    countdown.textContent =
-        seconds;
+    if (countdown) {
+        countdown.textContent = seconds;
+    }
 
 
-    progress.style.transform =
-        "scaleX(1)";
+    if (progress) {
+
+        progress.style.transform =
+            "scaleX(1)";
+
+    }
 
 
-    status.textContent =
-        "Please wait...";
+    if (status) {
+
+        status.textContent =
+            "Please wait...";
+
+    }
 
 
     const timer =
-        setInterval(function () {
+        setInterval(async function () {
 
             seconds--;
 
 
-            countdown.textContent =
-                seconds;
+            if (countdown) {
+
+                countdown.textContent =
+                    seconds;
+
+            }
 
 
-            progress.style.transform =
-                `scaleX(${seconds / 5})`;
+            if (progress) {
+
+                progress.style.transform =
+                    `scaleX(${seconds / 5})`;
+
+            }
 
 
             if (seconds <= 0) {
@@ -321,60 +487,56 @@ function startDownload() {
                 clearInterval(timer);
 
 
-                status.textContent =
-                    "Starting download...";
+                if (status) {
 
-
-                /*
-                   REAL DOWNLOAD COUNT
-
-                   Firebase function yahan call hogi.
-                */
-
-                if (
-                    typeof window
-                        .increaseFirebaseDownloadCount
-                    === "function"
-                ) {
-
-                    window
-                        .increaseFirebaseDownloadCount();
+                    status.textContent =
+                        "Starting download...";
 
                 }
 
 
-                /* ================= APK DOWNLOAD ================= */
+                /*
+                   Increase Firestore download count
+                */
 
-                const link =
-                    document.createElement(
-                        "a"
+                try {
+
+                    await increaseFirebaseDownloadCount();
+
+                } catch (error) {
+
+                    console.error(
+                        "Download count error:",
+                        error
                     );
 
+                }
 
-                link.href =
-                    APK_URL;
 
+                /*
+                   APK DOWNLOAD
+                */
+
+                const link =
+                    document.createElement("a");
+
+
+                link.href = APK_URL;
 
                 link.download =
                     "super-video-player.apk";
 
 
-                document.body.appendChild(
-                    link
-                );
-
+                document.body.appendChild(link);
 
                 link.click();
-
 
                 link.remove();
 
 
                 setTimeout(function () {
 
-                    modal.classList.remove(
-                        "show"
-                    );
+                    modal.classList.remove("show");
 
                 }, 1000);
 
@@ -385,75 +547,600 @@ function startDownload() {
 }
 
 
+/* ================= FIRESTORE DOWNLOAD COUNT ================= */
+
+async function increaseFirebaseDownloadCount() {
+
+    if (!db || !currentUser) {
+
+        throw new Error(
+            "Firebase authentication required."
+        );
+
+    }
+
+
+    const ref =
+        db
+            .collection("stats")
+            .doc("main");
+
+
+    await db.runTransaction(
+        async function (transaction) {
+
+            const snapshot =
+                await transaction.get(ref);
+
+
+            let downloads = 0;
+
+
+            if (snapshot.exists) {
+
+                downloads =
+                    Number(
+                        snapshot.data().downloads || 0
+                    );
+
+            }
+
+
+            transaction.set(
+
+                ref,
+
+                {
+
+                    downloads:
+                        downloads + 1,
+
+                    updatedAt:
+                        firebase.firestore
+                            .FieldValue
+                            .serverTimestamp()
+
+                },
+
+                {
+
+                    merge: true
+
+                }
+
+            );
+
+        }
+    );
+
+
+    await loadDownloadCount();
+
+}
+
+
+/* ================= LOAD DOWNLOAD COUNT ================= */
+
+async function loadDownloadCount() {
+
+    if (!db) return;
+
+
+    try {
+
+        const snapshot =
+            await db
+                .collection("stats")
+                .doc("main")
+                .get();
+
+
+        const countElement =
+            get("downloadCount");
+
+
+        if (!countElement) return;
+
+
+        if (snapshot.exists) {
+
+            const downloads =
+                Number(
+                    snapshot.data().downloads || 0
+                );
+
+
+            countElement.textContent =
+                downloads.toLocaleString();
+
+        } else {
+
+            countElement.textContent =
+                "0";
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Download count load error:",
+            error
+        );
+
+
+        const countElement =
+            get("downloadCount");
+
+
+        if (countElement) {
+
+            countElement.textContent =
+                "0";
+
+        }
+
+    }
+
+}
+
+
 /* ================= REVIEWS ================= */
 
 async function submitReview() {
 
+    if (!currentUser) {
+
+        showMessage(
+            "Please Login/Register before submitting a review."
+        );
+
+        openAuth("login");
+
+        return;
+    }
+
+
+    const nameInput =
+        get("reviewName");
+
+    const textInput =
+        get("reviewText");
+
+
     const name =
-        document
-            .getElementById(
-                "reviewName"
-            )
-            .value
-            .trim();
+        nameInput
+            ? nameInput.value.trim()
+            : "";
 
 
     const text =
-        document
-            .getElementById(
-                "reviewText"
-            )
-            .value
-            .trim();
+        textInput
+            ? textInput.value.trim()
+            : "";
 
 
     if (!name) {
 
-        alert(
+        showMessage(
             "Please enter your name."
         );
 
         return;
-
     }
 
 
     if (!text) {
 
-        alert(
+        showMessage(
             "Please write a review."
         );
 
         return;
+    }
+
+
+    if (text.length > 1000) {
+
+        showMessage(
+            "Review is too long. Maximum 1000 characters."
+        );
+
+        return;
+    }
+
+
+    try {
+
+        await db
+            .collection("reviews")
+            .add({
+
+                uid:
+                    currentUser.uid,
+
+                name:
+                    name,
+
+                text:
+                    text,
+
+                rating:
+                    5,
+
+                createdAt:
+                    firebase.firestore
+                        .FieldValue
+                        .serverTimestamp()
+
+            });
+
+
+        if (textInput) {
+            textInput.value = "";
+        }
+
+
+        showMessage(
+            "Review posted successfully."
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Review error:",
+            error
+        );
+
+
+        showMessage(
+            "Could not post review. Please try again."
+        );
+
+    }
+
+}
+
+
+/* ================= LOAD REVIEWS ================= */
+
+function loadReviews() {
+
+    if (!db) return;
+
+
+    if (reviewsUnsubscribe) {
+
+        reviewsUnsubscribe();
+
+        reviewsUnsubscribe = null;
 
     }
 
 
-    /*
-       Firebase configured hone par
-       ye function Firebase Firestore mein
-       review save karega.
-    */
+    reviewsUnsubscribe =
+        db
+            .collection("reviews")
+            .orderBy(
+                "createdAt",
+                "desc"
+            )
+            .limit(50)
+            .onSnapshot(
 
-    if (
-        typeof window
-            .submitFirebaseReview
-        === "function"
-    ) {
+                function (snapshot) {
 
-        await window
-            .submitFirebaseReview(
-                name,
-                text
+                    renderReviews(snapshot);
+
+                },
+
+                function (error) {
+
+                    console.error(
+                        "Reviews load error:",
+                        error
+                    );
+
+
+                    const list =
+                        get("reviewsList");
+
+
+                    if (list) {
+
+                        list.innerHTML =
+                            '<p>Unable to load reviews.</p>';
+
+                    }
+
+                }
+
             );
 
+}
+
+
+/* ================= RENDER REVIEWS ================= */
+
+function renderReviews(snapshot) {
+
+    const list =
+        get("reviewsList");
+
+
+    if (!list) return;
+
+
+    if (snapshot.empty) {
+
+        list.innerHTML =
+            "<p>No reviews yet. Be the first to review!</p>";
+
+        return;
     }
 
-    else {
 
-        alert(
-            "Firebase Reviews is not configured yet."
+    list.innerHTML = "";
+
+
+    snapshot.forEach(function (doc) {
+
+        const data =
+            doc.data();
+
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            "review-card";
+
+
+        const name =
+            escapeHtml(
+                data.name || "User"
+            );
+
+
+        const text =
+            escapeHtml(
+                data.text || ""
+            );
+
+
+        const date =
+            data.createdAt &&
+            data.createdAt.toDate
+                ? data.createdAt
+                    .toDate()
+                    .toLocaleDateString()
+                : "Just now";
+
+
+        card.innerHTML = `
+
+            <div class="review-header">
+
+                <strong>
+                    ${name}
+                </strong>
+
+                <span>
+                    ${date}
+                </span>
+
+            </div>
+
+            <p>
+                ${text}
+            </p>
+
+        `;
+
+
+        /*
+           ONLY OWNER sees delete button
+        */
+
+        if (
+            currentUser &&
+            currentUser.uid === OWNER_UID
+        ) {
+
+            const deleteButton =
+                document.createElement("button");
+
+
+            deleteButton.className =
+                "delete-review";
+
+
+            deleteButton.textContent =
+                "Delete";
+
+
+            deleteButton.addEventListener(
+                "click",
+                async function () {
+
+                    const confirmed =
+                        confirm(
+                            "Delete this review?"
+                        );
+
+
+                    if (!confirmed) return;
+
+
+                    try {
+
+                        await db
+                            .collection("reviews")
+                            .doc(doc.id)
+                            .delete();
+
+
+                    } catch (error) {
+
+                        console.error(
+                            "Delete review error:",
+                            error
+                        );
+
+
+                        showMessage(
+                            "Could not delete review."
+                        );
+
+                    }
+
+                }
+            );
+
+
+            card.appendChild(
+                deleteButton
+            );
+
+        }
+
+
+        list.appendChild(card);
+
+    });
+
+}
+
+
+/* ================= ESCAPE HTML ================= */
+
+function escapeHtml(value) {
+
+    return String(value)
+        .replace(
+            /[&<>'"]/g,
+            function (character) {
+
+                return {
+
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    "'": "&#39;",
+                    '"': "&quot;"
+
+                }[character];
+
+            }
         );
+
+}
+
+
+/* ================= FIREBASE INIT ================= */
+
+function initializeFirebase() {
+
+    try {
+
+        if (
+            typeof firebase ===
+            "undefined"
+        ) {
+
+            throw new Error(
+                "Firebase SDK not loaded."
+            );
+
+        }
+
+
+        if (
+            typeof FIREBASE_CONFIG ===
+            "undefined"
+        ) {
+
+            throw new Error(
+                "firebase-config.js not loaded."
+            );
+
+        }
+
+
+        firebase.initializeApp(
+            FIREBASE_CONFIG
+        );
+
+
+        auth =
+            firebase.auth();
+
+
+        db =
+            firebase.firestore();
+
+
+        auth.onAuthStateChanged(
+            async function (user) {
+
+                currentUser =
+                    user || null;
+
+
+                renderAuthState();
+
+
+                /*
+                   Load reviews again so
+                   owner delete button updates
+                */
+
+                loadReviews();
+
+
+                await loadDownloadCount();
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Firebase initialization error:",
+            error
+        );
+
+
+        currentUser = null;
+
+
+        renderAuthState();
+
+
+        const count =
+            get("downloadCount");
+
+
+        if (count) {
+
+            count.textContent =
+                "0";
+
+        }
+
+
+        const reviews =
+            get("reviewsList");
+
+
+        if (reviews) {
+
+            reviews.innerHTML =
+                "<p>Firebase connection failed.</p>";
+
+        }
 
     }
 
@@ -468,22 +1155,37 @@ document.addEventListener(
 
         if (event.key === "Escape") {
 
-            document
-                .getElementById(
-                    "authModal"
-                )
-                .classList
-                .remove("show");
+            const authModal =
+                get("authModal");
 
 
-            document
-                .getElementById(
-                    "downloadModal"
-                )
-                .classList
-                .remove("show");
+            const downloadModal =
+                get("downloadModal");
+
+
+            if (authModal) {
+
+                authModal.classList.remove(
+                    "show"
+                );
+
+            }
+
+
+            if (downloadModal) {
+
+                downloadModal.classList.remove(
+                    "show"
+                );
+
+            }
 
         }
 
     }
 );
+
+
+/* ================= START FIREBASE ================= */
+
+initializeFirebase();
