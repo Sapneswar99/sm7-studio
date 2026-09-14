@@ -174,13 +174,6 @@ img {
     pointer-events: none;
 }
 
-#loadingScreen.hidden,
-#loadingScreen.hide {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
 .loading-logo {
     position: relative;
     z-index: 2;
@@ -1744,6 +1737,79 @@ nav a:hover::after {
 
 
 /* =========================================================
+   PLAY STORE STYLE STAR RATING
+   ========================================================= */
+
+#starRating {
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    min-height: 38px;
+}
+
+.rating-star {
+    width: 34px;
+    height: 34px;
+
+    padding: 0;
+
+    display: grid;
+    place-items: center;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    color: #4b5c76;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 25px;
+
+    line-height: 1;
+
+    transition:
+        color 0.15s ease,
+        transform 0.15s ease,
+        background 0.15s ease;
+}
+
+.rating-star:hover {
+    color: #ffc94a;
+
+    background: #ffc94a0c;
+
+    transform: scale(1.12);
+}
+
+.rating-star.active,
+.rating-star.selected {
+    color: #ffc94a;
+
+    text-shadow:
+        0 0 12px #ffc94a44;
+}
+
+.rating-star:focus-visible {
+    outline: 2px solid #13baff;
+
+    outline-offset: 2px;
+}
+
+@media (hover: none) and (pointer: coarse) {
+
+    .rating-star:hover {
+        transform: none;
+    }
+}
+
+
+/* =========================================================
    REVIEW LIST
    ========================================================= */
 
@@ -1890,6 +1956,135 @@ nav a:hover::after {
     text-align: center;
 
     background: #07132955;
+}
+
+
+/* =========================================================
+   PROFILE
+   ========================================================= */
+
+.profile-avatar,
+#profileAvatar,
+#profileModalAvatar {
+    overflow: hidden;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #176eff,
+            #8b20ff
+        );
+
+    font-weight: 800;
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#profileButton {
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+#profileAvatar {
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid #2877ff;
+
+    box-shadow:
+        0 0 18px #176eff33;
+
+    font-size: 13px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#profileButton:hover #profileAvatar {
+    transform: scale(1.05);
+
+    box-shadow:
+        0 0 24px #176eff66;
+}
+
+.profile-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 22px;
+}
+
+.profile-header-avatar {
+    width: 70px;
+    height: 70px;
+
+    flex-shrink: 0;
+}
+
+.profile-header-info {
+    min-width: 0;
+}
+
+.profile-header-info h3 {
+    color: #ffffff;
+
+    font-size: 18px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+.profile-header-info p {
+    margin-top: 4px;
+
+    color: #71829e;
+
+    font-size: 12px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+.profile-field {
+    margin-bottom: 14px;
+}
+
+.profile-field label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #9aaac2;
+
+    font-size: 12px;
+
+    font-weight: 600;
 }
 
 
@@ -2077,16 +2272,19 @@ nav a:hover::after {
 }
 
 #registerForm,
-#forgotForm {
+#forgotForm,
+#profileForm {
     margin-top: 18px;
 }
 
 #registerForm input,
-#forgotForm input {
+#forgotForm input,
+#profileForm input {
     margin-bottom: 12px;
 }
 
-#authForm input {
+#authForm input,
+#loginForm input {
     margin-bottom: 12px;
 }
 
@@ -2134,13 +2332,15 @@ nav a:hover::after {
 }
 
 #registerMessage,
-#forgotMessage {
+#forgotMessage,
+#profileMessage {
     text-align: center;
 }
 
 
 /* =========================================================
    DOWNLOAD COUNTDOWN MODAL
+   JS IS ALLOWED TO CREATE THIS DYNAMICALLY
    ========================================================= */
 
 .download-modal {
@@ -2363,6 +2563,13 @@ footer {
         font-size: 12px;
     }
 
+    #profileAvatar {
+        width: 38px;
+        height: 38px;
+
+        font-size: 12px;
+    }
+
     .hero {
         min-height: auto;
 
@@ -2533,6 +2740,11 @@ footer {
         font-size: 11px;
     }
 
+    #profileAvatar {
+        width: 36px;
+        height: 36px;
+    }
+
     .hero {
         padding:
             55px 5% 60px;
@@ -2630,6 +2842,17 @@ footer {
         padding: 18px;
     }
 
+    #starRating {
+        gap: 3px;
+    }
+
+    .rating-star {
+        width: 32px;
+        height: 32px;
+
+        font-size: 23px;
+    }
+
     .review-top {
         align-items: flex-start;
 
@@ -2668,6 +2891,11 @@ footer {
     .modal-logo img {
         width: 58px;
         height: 58px;
+    }
+
+    .profile-header-avatar {
+        width: 60px;
+        height: 60px;
     }
 
     .countdown {
@@ -2723,6 +2951,11 @@ footer {
         font-size: 10px;
     }
 
+    #profileAvatar {
+        width: 34px;
+        height: 34px;
+    }
+
     .hero h1 {
         font-size: 41px;
     }
@@ -2763,6 +2996,17 @@ footer {
         padding:
             22px 14px;
     }
+
+    #starRating {
+        gap: 1px;
+    }
+
+    .rating-star {
+        width: 30px;
+        height: 30px;
+
+        font-size: 21px;
+    }
 }
 
 
@@ -2785,6 +3029,14 @@ footer {
     }
 
     nav a:hover {
+        transform: none;
+    }
+
+    #profileButton:hover #profileAvatar {
+        transform: none;
+    }
+
+    .delete-review:hover {
         transform: none;
     }
 }
