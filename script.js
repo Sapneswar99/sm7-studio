@@ -1,8 +1,18 @@
 /* =========================================================
    SUPER VIDEO PLAYER WEBSITE
    FULL REPLACE JAVASCRIPT
-   FIREBASE AUTH + PROFILE + REVIEWS + DOWNLOAD COUNTER
-   5 SECOND COUNTDOWN + INSTANT APK DOWNLOAD
+
+   FIREBASE AUTH
+   EMAIL / PASSWORD LOGIN
+   GOOGLE LOGIN
+   REGISTER
+   FORGOT PASSWORD
+   PROFILE + USERNAME
+   FIRESTORE REVIEWS
+   OWNER REVIEW DELETE
+   FIRESTORE DOWNLOAD COUNTER
+   5 SECOND DOWNLOAD COUNTDOWN
+   AUTOMATIC APK DOWNLOAD
    ========================================================= */
 
 
@@ -11,7 +21,7 @@
    ========================================================= */
 
 const DEFAULT_APK_URL =
-    "https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk";
+    "https://github.com/Sapnes99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk";
 
 const LOCAL_OWNER_UID = "yZsy5oOxhjU7BFnaCH67FOL3rjB2";
 
@@ -24,6 +34,13 @@ let auth = null;
 let db = null;
 
 let currentUser = null;
+
+let currentProfile = {
+    name: "",
+    username: "",
+    email: "",
+    photoURL: ""
+};
 
 let reviewsUnsubscribe = null;
 
@@ -46,20 +63,24 @@ function get(id) {
 
 function setFormMessage(element, text, success = false) {
 
-    if (!element) return;
+    if (!element) {
+        return;
+    }
 
     element.textContent = text;
 
     element.classList.toggle(
         "success",
-        success
+        Boolean(success)
     );
 }
 
 
 function clearElementMessage(element) {
 
-    if (!element) return;
+    if (!element) {
+        return;
+    }
 
     element.textContent = "";
 
@@ -204,11 +225,13 @@ function generateUsername(name, uid = "") {
 
     base = base.substring(0, 20);
 
-    const suffix =
+    const cleanUID =
         String(uid || "")
             .replace(/[^a-zA-Z0-9]/g, "")
-            .substring(0, 8)
             .toLowerCase();
+
+    const suffix =
+        cleanUID.substring(0, 8);
 
     let username =
         suffix
@@ -221,10 +244,12 @@ function generateUsername(name, uid = "") {
         username.substring(0, 30);
 
     if (username.length < 3) {
+
         username =
             `user_${Math.floor(
                 1000 + Math.random() * 9000
             )}`;
+
     }
 
     return username;
@@ -248,6 +273,7 @@ function generateUsername(name, uid = "") {
             "aria-hidden",
             "true"
         );
+
     }
 
     if (mainApp) {
@@ -258,6 +284,7 @@ function generateUsername(name, uid = "") {
             "aria-hidden",
             "true"
         );
+
     }
 
 })();
@@ -272,25 +299,33 @@ function generateUsername(name, uid = "") {
 
     const loading = get("loadingScreen");
 
-    if (!loading) return;
+    if (!loading) {
+        return;
+    }
 
-    window.setTimeout(function () {
+    window.setTimeout(
+        function () {
 
-        loading.classList.add("hidden");
-        loading.classList.add("hide");
+            loading.classList.add("hidden");
+            loading.classList.add("hide");
 
-        window.setTimeout(function () {
+            window.setTimeout(
+                function () {
 
-            if (
-                loading &&
-                loading.parentNode
-            ) {
-                loading.remove();
-            }
+                    if (
+                        loading &&
+                        loading.parentNode
+                    ) {
+                        loading.remove();
+                    }
 
-        }, 750);
+                },
+                750
+            );
 
-    }, 3000);
+        },
+        3000
+    );
 
 })();
 
@@ -303,7 +338,9 @@ function generateUsername(name, uid = "") {
 
     const year = get("year");
 
-    if (!year) return;
+    if (!year) {
+        return;
+    }
 
     year.textContent =
         new Date().getFullYear();
@@ -328,6 +365,7 @@ function showLoginScreen() {
             "aria-hidden",
             "false"
         );
+
     }
 
     if (mainApp) {
@@ -338,6 +376,7 @@ function showLoginScreen() {
             "aria-hidden",
             "true"
         );
+
     }
 
 }
@@ -356,6 +395,7 @@ function showMainApp() {
             "aria-hidden",
             "true"
         );
+
     }
 
     if (mainApp) {
@@ -366,6 +406,7 @@ function showMainApp() {
             "aria-hidden",
             "false"
         );
+
     }
 
 }
@@ -381,11 +422,13 @@ function clearAuthMessages() {
         get("loginMessage"),
         get("registerMessage"),
         get("forgotMessage")
-    ].forEach(function (element) {
+    ].forEach(
+        function (element) {
 
-        clearElementMessage(element);
+            clearElementMessage(element);
 
-    });
+        }
+    );
 
 }
 
@@ -397,10 +440,13 @@ function clearAuthMessages() {
 function getFirebaseAuthErrorMessage(error) {
 
     if (!error) {
+
         return "Authentication failed. Please try again.";
+
     }
 
-    const code = error.code || "";
+    const code =
+        error.code || "";
 
     switch (code) {
 
@@ -443,11 +489,15 @@ function getFirebaseAuthErrorMessage(error) {
         case "auth/operation-not-allowed":
             return "This sign-in method is not enabled in Firebase Authentication.";
 
+        case "auth/user-disabled":
+            return "This account has been disabled.";
+
         default:
             return (
                 error.message ||
                 "Authentication failed. Please try again."
             );
+
     }
 
 }
@@ -459,11 +509,17 @@ function getFirebaseAuthErrorMessage(error) {
 
 async function loginWithEmailPassword() {
 
-    const emailInput = get("loginEmail");
-    const passwordInput = get("loginPassword");
+    const emailInput =
+        get("loginEmail");
 
-    const message = get("loginMessage");
-    const submit = get("loginSubmit");
+    const passwordInput =
+        get("loginPassword");
+
+    const message =
+        get("loginMessage");
+
+    const submit =
+        get("loginSubmit");
 
     if (!auth) {
 
@@ -473,6 +529,7 @@ async function loginWithEmailPassword() {
         );
 
         return;
+
     }
 
     const email =
@@ -493,6 +550,7 @@ async function loginWithEmailPassword() {
         );
 
         return;
+
     }
 
     if (!password) {
@@ -503,6 +561,7 @@ async function loginWithEmailPassword() {
         );
 
         return;
+
     }
 
     if (submit) {
@@ -549,7 +608,9 @@ async function loginWithEmailPassword() {
    GOOGLE SIGN IN
    ========================================================= */
 
-async function signInWithGoogle(messageElementId) {
+async function signInWithGoogle(
+    messageElementId
+) {
 
     const message =
         get(messageElementId);
@@ -562,16 +623,29 @@ async function signInWithGoogle(messageElementId) {
         );
 
         return;
+
     }
 
     let button = null;
 
-    if (messageElementId === "loginMessage") {
-        button = get("googleLoginButton");
+    if (
+        messageElementId ===
+        "loginMessage"
+    ) {
+
+        button =
+            get("googleLoginButton");
+
     }
 
-    if (messageElementId === "registerMessage") {
-        button = get("googleRegisterButton");
+    if (
+        messageElementId ===
+        "registerMessage"
+    ) {
+
+        button =
+            get("googleRegisterButton");
+
     }
 
     if (button) {
@@ -591,9 +665,14 @@ async function signInWithGoogle(messageElementId) {
         });
 
         const result =
-            await auth.signInWithPopup(provider);
+            await auth.signInWithPopup(
+                provider
+            );
 
-        if (result && result.user) {
+        if (
+            result &&
+            result.user
+        ) {
 
             await ensureUserProfile(
                 result.user
@@ -601,8 +680,13 @@ async function signInWithGoogle(messageElementId) {
 
         }
 
-        if (messageElementId === "registerMessage") {
+        if (
+            messageElementId ===
+            "registerMessage"
+        ) {
+
             closeRegisterModal();
+
         }
 
     } catch (error) {
@@ -639,17 +723,25 @@ async function signInWithGoogle(messageElementId) {
 
 
 /* =========================================================
-   REGISTER WITH EMAIL + PASSWORD
+   REGISTER
    ========================================================= */
 
 async function registerWithEmailPassword() {
 
-    const nameInput = get("registerName");
-    const emailInput = get("registerEmail");
-    const passwordInput = get("registerPassword");
+    const nameInput =
+        get("registerName");
 
-    const message = get("registerMessage");
-    const submit = get("registerSubmit");
+    const emailInput =
+        get("registerEmail");
+
+    const passwordInput =
+        get("registerPassword");
+
+    const message =
+        get("registerMessage");
+
+    const submit =
+        get("registerSubmit");
 
     if (!auth || !db) {
 
@@ -659,6 +751,7 @@ async function registerWithEmailPassword() {
         );
 
         return;
+
     }
 
     const name =
@@ -684,6 +777,7 @@ async function registerWithEmailPassword() {
         );
 
         return;
+
     }
 
     if (!email) {
@@ -694,6 +788,7 @@ async function registerWithEmailPassword() {
         );
 
         return;
+
     }
 
     if (!validPassword(password)) {
@@ -704,12 +799,14 @@ async function registerWithEmailPassword() {
         );
 
         return;
+
     }
 
     if (submit) {
 
         submit.disabled = true;
-        submit.textContent = "Creating Account...";
+        submit.textContent =
+            "Creating Account...";
 
     }
 
@@ -721,7 +818,8 @@ async function registerWithEmailPassword() {
                 password
             );
 
-        const user = credential.user;
+        const user =
+            credential.user;
 
         if (user) {
 
@@ -743,12 +841,16 @@ async function registerWithEmailPassword() {
         );
 
         if (registerForm) {
+
             registerForm.reset();
+
         }
 
         window.setTimeout(
             function () {
+
                 closeRegisterModal();
+
             },
             700
         );
@@ -770,7 +872,8 @@ async function registerWithEmailPassword() {
         if (submit) {
 
             submit.disabled = false;
-            submit.textContent = "Create Account";
+            submit.textContent =
+                "Create Account";
 
         }
 
@@ -780,7 +883,7 @@ async function registerWithEmailPassword() {
 
 
 /* =========================================================
-   ENSURE / SAVE USER PROFILE
+   ENSURE USER PROFILE
    ========================================================= */
 
 async function ensureUserProfile(
@@ -789,11 +892,12 @@ async function ensureUserProfile(
 ) {
 
     if (!user || !db) {
-        return;
+        return null;
     }
 
     const userRef =
-        db.collection("users").doc(user.uid);
+        db.collection("users")
+            .doc(user.uid);
 
     try {
 
@@ -806,7 +910,7 @@ async function ensureUserProfile(
                 : {};
 
         const name =
-            (
+            String(
                 existing.name ||
                 user.displayName ||
                 fallbackName ||
@@ -814,7 +918,7 @@ async function ensureUserProfile(
             ).trim();
 
         const username =
-            (
+            String(
                 existing.username ||
                 generateUsername(
                     name,
@@ -856,9 +960,9 @@ async function ensureUserProfile(
         };
 
         /*
-           createdAt only once.
-           Existing value will not be overwritten.
-        */
+         * createdAt is only created
+         * when the user document does not exist.
+         */
 
         if (!snapshot.exists) {
 
@@ -876,16 +980,27 @@ async function ensureUserProfile(
             }
         );
 
+        currentProfile = {
+
+            name:
+                name,
+
+            username:
+                username,
+
+            email:
+                user.email || "",
+
+            photoURL:
+                user.photoURL || ""
+
+        };
+
         updateUserUI(
-            {
-                name: name,
-                username: username,
-                email:
-                    user.email || "",
-                photoURL:
-                    user.photoURL || ""
-            }
+            currentProfile
         );
+
+        return currentProfile;
 
     } catch (error) {
 
@@ -893,6 +1008,8 @@ async function ensureUserProfile(
             "User profile error:",
             error
         );
+
+        return null;
 
     }
 
@@ -903,7 +1020,9 @@ async function ensureUserProfile(
    UPDATE USER UI
    ========================================================= */
 
-function updateUserUI(profileData = {}) {
+function updateUserUI(
+    profileData = {}
+) {
 
     const name =
         profileData.name ||
@@ -940,26 +1059,48 @@ function updateUserUI(profileData = {}) {
     const profileUsername =
         get("profileUsername");
 
+
     if (loggedUserName) {
-        loggedUserName.textContent = name;
+
+        loggedUserName.textContent =
+            name;
+
     }
+
 
     if (reviewUserName) {
-        reviewUserName.textContent = name;
+
+        reviewUserName.textContent =
+            username
+                ? `@${username}`
+                : name;
+
     }
+
 
     if (profileEmail) {
+
         profileEmail.textContent =
             email || "—";
+
     }
+
 
     if (profileName) {
-        profileName.value = name;
+
+        profileName.value =
+            name;
+
     }
 
+
     if (profileUsername) {
-        profileUsername.value = username;
+
+        profileUsername.value =
+            username;
+
     }
+
 
     setAvatar(
         get("profileAvatar"),
@@ -1015,7 +1156,9 @@ function setAvatar(
     photoURL
 ) {
 
-    if (!element) return;
+    if (!element) {
+        return;
+    }
 
     element.textContent =
         getInitials(name);
@@ -1192,6 +1335,7 @@ async function sendPasswordReset() {
         );
 
         return;
+
     }
 
     const email =
@@ -1207,6 +1351,7 @@ async function sendPasswordReset() {
         );
 
         return;
+
     }
 
     if (submit) {
@@ -1245,7 +1390,8 @@ async function sendPasswordReset() {
         if (submit) {
 
             submit.disabled = false;
-            submit.textContent = "Send Reset Link";
+            submit.textContent =
+                "Send Reset Link";
 
         }
 
@@ -1263,11 +1409,14 @@ function openRegisterModal() {
     const modal =
         get("registerModal");
 
-    if (!modal) return;
+    if (!modal) {
+        return;
+    }
 
     clearAuthMessages();
 
     modal.classList.add("show");
+    modal.classList.add("active");
 
     modal.setAttribute(
         "aria-hidden",
@@ -1282,9 +1431,12 @@ function closeRegisterModal() {
     const modal =
         get("registerModal");
 
-    if (!modal) return;
+    if (!modal) {
+        return;
+    }
 
     modal.classList.remove("show");
+    modal.classList.remove("active");
 
     modal.setAttribute(
         "aria-hidden",
@@ -1301,7 +1453,9 @@ if (openRegisterButton) {
 
     openRegisterButton.addEventListener(
         "click",
-        function () {
+        function (event) {
+
+            event.preventDefault();
 
             openRegisterModal();
 
@@ -1318,7 +1472,9 @@ if (registerClose) {
 
     registerClose.addEventListener(
         "click",
-        function () {
+        function (event) {
+
+            event.preventDefault();
 
             closeRegisterModal();
 
@@ -1335,7 +1491,9 @@ if (backToLoginButton) {
 
     backToLoginButton.addEventListener(
         "click",
-        function () {
+        function (event) {
+
+            event.preventDefault();
 
             closeRegisterModal();
 
@@ -1356,7 +1514,9 @@ function openForgotModal() {
     const modal =
         get("forgotModal");
 
-    if (!modal) return;
+    if (!modal) {
+        return;
+    }
 
     clearAuthMessages();
 
@@ -1378,6 +1538,7 @@ function openForgotModal() {
     }
 
     modal.classList.add("show");
+    modal.classList.add("active");
 
     modal.setAttribute(
         "aria-hidden",
@@ -1392,9 +1553,12 @@ function closeForgotModal() {
     const modal =
         get("forgotModal");
 
-    if (!modal) return;
+    if (!modal) {
+        return;
+    }
 
     modal.classList.remove("show");
+    modal.classList.remove("active");
 
     modal.setAttribute(
         "aria-hidden",
@@ -1411,7 +1575,9 @@ if (forgotClose) {
 
     forgotClose.addEventListener(
         "click",
-        function () {
+        function (event) {
+
+            event.preventDefault();
 
             closeForgotModal();
 
@@ -1428,7 +1594,9 @@ if (forgotBackLogin) {
 
     forgotBackLogin.addEventListener(
         "click",
-        function () {
+        function (event) {
+
+            event.preventDefault();
 
             closeForgotModal();
 
@@ -1447,9 +1615,15 @@ function openProfileModal() {
     const modal =
         get("profileModal");
 
-    if (!modal || !currentUser) return;
+    if (
+        !modal ||
+        !currentUser
+    ) {
+        return;
+    }
 
     modal.classList.add("show");
+    modal.classList.add("active");
 
     modal.setAttribute(
         "aria-hidden",
@@ -1466,9 +1640,12 @@ function closeProfileModal() {
     const modal =
         get("profileModal");
 
-    if (!modal) return;
+    if (!modal) {
+        return;
+    }
 
     modal.classList.remove("show");
+    modal.classList.remove("active");
 
     modal.setAttribute(
         "aria-hidden",
@@ -1480,7 +1657,9 @@ function closeProfileModal() {
 
 async function loadProfileIntoModal() {
 
-    if (!currentUser) return;
+    if (!currentUser) {
+        return;
+    }
 
     const email =
         get("profileEmail");
@@ -1501,12 +1680,27 @@ async function loadProfileIntoModal() {
     if (name) {
 
         name.value =
+            currentProfile.name ||
             currentUser.displayName ||
             "User";
 
     }
 
-    if (!db) return;
+    if (username) {
+
+        username.value =
+            currentProfile.username ||
+            generateUsername(
+                currentProfile.name ||
+                currentUser.displayName,
+                currentUser.uid
+            );
+
+    }
+
+    if (!db) {
+        return;
+    }
 
     try {
 
@@ -1516,33 +1710,43 @@ async function loadProfileIntoModal() {
                 .doc(currentUser.uid)
                 .get();
 
-        if (!snapshot.exists) return;
+        if (!snapshot.exists) {
+            return;
+        }
 
         const data =
             snapshot.data() || {};
 
-        if (name) {
+        currentProfile = {
 
-            name.value =
+            name:
                 data.name ||
                 currentUser.displayName ||
-                "User";
+                "User",
 
-        }
-
-        if (username) {
-
-            username.value =
+            username:
                 data.username ||
                 generateUsername(
                     data.name ||
                     currentUser.displayName,
                     currentUser.uid
-                );
+                ),
 
-        }
+            email:
+                data.email ||
+                currentUser.email ||
+                "",
 
-        updateUserUI(data);
+            photoURL:
+                data.photoURL ||
+                currentUser.photoURL ||
+                ""
+
+        };
+
+        updateUserUI(
+            currentProfile
+        );
 
     } catch (error) {
 
@@ -1615,10 +1819,11 @@ if (profileForm) {
 
 async function saveProfileChanges() {
 
-    if (!currentUser || !db) {
-
+    if (
+        !currentUser ||
+        !db
+    ) {
         return;
-
     }
 
     const nameInput =
@@ -1708,7 +1913,8 @@ async function saveProfileChanges() {
                 }
             );
 
-        updateUserUI({
+        currentProfile = {
+
             name:
                 name,
 
@@ -1720,7 +1926,12 @@ async function saveProfileChanges() {
 
             photoURL:
                 currentUser.photoURL || ""
-        });
+
+        };
+
+        updateUserUI(
+            currentProfile
+        );
 
         setFormMessage(
             message,
@@ -1745,7 +1956,8 @@ async function saveProfileChanges() {
         if (saveButton) {
 
             saveButton.disabled = false;
-            saveButton.textContent = "Save Changes";
+            saveButton.textContent =
+                "Save Changes";
 
         }
 
@@ -1767,7 +1979,9 @@ if (logoutButton) {
         "click",
         async function () {
 
-            if (!auth) return;
+            if (!auth) {
+                return;
+            }
 
             try {
 
@@ -1820,7 +2034,6 @@ function updateStars(rating) {
 
             star.setAttribute(
                 "aria-checked",
-                active &&
                 value === rating
                     ? "true"
                     : "false"
@@ -1842,9 +2055,7 @@ function setRating(rating) {
         value < 1 ||
         value > 5
     ) {
-
         return;
-
     }
 
     selectedRating =
@@ -1860,7 +2071,9 @@ function setRating(rating) {
 
     }
 
-    updateStars(value);
+    updateStars(
+        value
+    );
 
 }
 
@@ -1939,7 +2152,7 @@ if (starRating) {
 
 
 /* =========================================================
-   REVIEW SUBMIT
+   REVIEW FORM
    ========================================================= */
 
 const reviewForm =
@@ -1960,6 +2173,10 @@ if (reviewForm) {
 
 }
 
+
+/* =========================================================
+   SUBMIT REVIEW
+   ========================================================= */
 
 async function submitReview() {
 
@@ -2026,12 +2243,6 @@ async function submitReview() {
 
     }
 
-    /*
-       IMPORTANT:
-       Rating must actually be selected.
-       No automatic 5-star rating.
-    */
-
     if (
         !Number.isInteger(rating) ||
         rating < 1 ||
@@ -2057,11 +2268,19 @@ async function submitReview() {
     try {
 
         let userName =
+            currentProfile.name ||
             currentUser.displayName ||
             currentUser.email ||
             "User";
 
-        let username = "";
+        let username =
+            currentProfile.username ||
+            "";
+
+        /*
+         * Always try to get the latest
+         * username from Firestore.
+         */
 
         try {
 
@@ -2082,7 +2301,7 @@ async function submitReview() {
 
                 username =
                     userData.username ||
-                    "";
+                    username;
 
             }
 
@@ -2094,6 +2313,7 @@ async function submitReview() {
             );
 
         }
+
 
         await db
             .collection("reviews")
@@ -2121,11 +2341,13 @@ async function submitReview() {
                 }
             );
 
+
         if (textInput) {
 
             textInput.value = "";
 
         }
+
 
         selectedRating = 0;
 
@@ -2139,6 +2361,7 @@ async function submitReview() {
         }
 
         updateStars(0);
+
 
         setFormMessage(
             message,
@@ -2163,7 +2386,8 @@ async function submitReview() {
         if (submit) {
 
             submit.disabled = false;
-            submit.textContent = "Submit Review";
+            submit.textContent =
+                "Submit Review";
 
         }
 
@@ -2178,13 +2402,16 @@ async function submitReview() {
 
 function loadReviews() {
 
-    if (!db) return;
+    if (!db) {
+        return;
+    }
 
     if (reviewsUnsubscribe) {
 
         reviewsUnsubscribe();
 
-        reviewsUnsubscribe = null;
+        reviewsUnsubscribe =
+            null;
 
     }
 
@@ -2250,9 +2477,12 @@ function renderReviews(snapshot) {
     const list =
         get("reviewsList");
 
-    if (!list) return;
+    if (!list) {
+        return;
+    }
 
     list.innerHTML = "";
+
 
     if (
         !snapshot ||
@@ -2278,6 +2508,7 @@ function renderReviews(snapshot) {
 
     }
 
+
     snapshot.forEach(
         function (doc) {
 
@@ -2294,104 +2525,58 @@ function renderReviews(snapshot) {
 
 
             /* =========================================
-               TOP
+               HEADER
+               USERNAME LEFT
+               DELETE RIGHT
                ========================================= */
 
-            const top =
+            const header =
                 document.createElement(
                     "div"
                 );
 
-            top.className =
-                "review-top";
+            header.className =
+                "review-header";
 
 
-            const info =
-                document.createElement(
-                    "div"
-                );
-
-
-            const nameElement =
-                document.createElement(
-                    "b"
-                );
-
-            nameElement.textContent =
-                data.name ||
-                "User";
-
-
-            const dateElement =
-                document.createElement(
-                    "small"
-                );
-
-            dateElement.textContent =
-                formatReviewDate(
-                    data.createdAt
-                );
-
-
-            info.appendChild(
-                nameElement
-            );
-
-            info.appendChild(
-                dateElement
-            );
-
-
-            const ratingElement =
+            const usernameElement =
                 document.createElement(
                     "span"
                 );
 
-            const rating =
-                normalizeRating(
-                    data.rating
-                );
-
-            ratingElement.textContent =
-                "★".repeat(rating) +
-                "☆".repeat(5 - rating);
+            usernameElement.className =
+                "review-username";
 
 
-            top.appendChild(
-                info
-            );
-
-            top.appendChild(
-                ratingElement
-            );
+            const reviewUsername =
+                String(
+                    data.username || ""
+                ).trim();
 
 
-            /* =========================================
-               TEXT
-               ========================================= */
+            if (reviewUsername) {
 
-            const textElement =
-                document.createElement(
-                    "p"
-                );
+                usernameElement.textContent =
+                    `@${reviewUsername}`;
 
-            textElement.textContent =
-                data.text ||
-                "";
+            } else {
+
+                usernameElement.textContent =
+                    data.name ||
+                    "User";
+
+            }
 
 
-            card.appendChild(
-                top
-            );
-
-            card.appendChild(
-                textElement
+            header.appendChild(
+                usernameElement
             );
 
 
-            /* =========================================
-               OWNER DELETE
-               ========================================= */
+            /*
+             * OWNER DELETE BUTTON
+             * TOP-RIGHT
+             */
 
             if (
                 isCurrentUserOwner()
@@ -2406,10 +2591,15 @@ function renderReviews(snapshot) {
                     "button";
 
                 deleteButton.className =
-                    "delete-review";
+                    "review-delete";
 
                 deleteButton.textContent =
                     "Delete";
+
+                deleteButton.setAttribute(
+                    "aria-label",
+                    "Delete this review"
+                );
 
                 deleteButton.addEventListener(
                     "click",
@@ -2422,12 +2612,88 @@ function renderReviews(snapshot) {
                     }
                 );
 
-                card.appendChild(
+                header.appendChild(
                     deleteButton
                 );
 
             }
 
+
+            /* =========================================
+               RATING
+               ========================================= */
+
+            const rating =
+                normalizeRating(
+                    data.rating
+                );
+
+            const ratingElement =
+                document.createElement(
+                    "div"
+                );
+
+            ratingElement.className =
+                "review-rating";
+
+            ratingElement.textContent =
+                "★".repeat(rating) +
+                "☆".repeat(5 - rating);
+
+
+            /* =========================================
+               DATE
+               ========================================= */
+
+            const dateElement =
+                document.createElement(
+                    "small"
+                );
+
+            dateElement.className =
+                "review-date";
+
+            dateElement.textContent =
+                formatReviewDate(
+                    data.createdAt
+                );
+
+
+            /* =========================================
+               REVIEW TEXT
+               ========================================= */
+
+            const textElement =
+                document.createElement(
+                    "p"
+                );
+
+            textElement.className =
+                "review-text";
+
+            textElement.textContent =
+                data.text || "";
+
+
+            /* =========================================
+               APPEND
+               ========================================= */
+
+            card.appendChild(
+                header
+            );
+
+            card.appendChild(
+                ratingElement
+            );
+
+            card.appendChild(
+                dateElement
+            );
+
+            card.appendChild(
+                textElement
+            );
 
             list.appendChild(
                 card
@@ -2471,7 +2737,8 @@ function formatReviewDate(timestamp) {
 
     if (
         !timestamp ||
-        typeof timestamp.toDate !== "function"
+        typeof timestamp.toDate !==
+        "function"
     ) {
 
         return "Just now";
@@ -2504,16 +2771,21 @@ function formatReviewDate(timestamp) {
    DELETE REVIEW
    ========================================================= */
 
-async function deleteReview(reviewId) {
+async function deleteReview(
+    reviewId
+) {
 
-    if (!currentUser || !db) {
+    if (
+        !currentUser ||
+        !db
+    ) {
         return;
     }
 
     if (!isCurrentUserOwner()) {
 
         window.alert(
-            "You are not allowed to delete reviews."
+            "Only the owner can delete reviews."
         );
 
         return;
@@ -2557,81 +2829,17 @@ async function deleteReview(reviewId) {
 
 
 /* =========================================================
-   DOWNLOAD MODAL
-   DYNAMICALLY CREATED
+   DOWNLOAD COUNTDOWN MODAL
    ========================================================= */
 
-function createDownloadModal() {
+function getDownloadModal() {
 
-    let modal =
+    const modal =
         get("downloadModal");
 
-    if (modal) {
-        return modal;
+    if (!modal) {
+        return null;
     }
-
-    modal =
-        document.createElement(
-            "div"
-        );
-
-    modal.id =
-        "downloadModal";
-
-    modal.className =
-        "modal download-modal";
-
-    modal.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-    modal.innerHTML = `
-        <div class="modal-box download-modal-box">
-
-            <div class="modal-logo">
-                <img
-                    src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
-                    alt="Super Video Player">
-            </div>
-
-            <h2>
-                Preparing Download
-            </h2>
-
-            <p id="downloadStatus">
-                Your download will start automatically.
-            </p>
-
-            <div
-                class="download-countdown"
-                aria-live="polite">
-
-                <span id="countdown">
-                    5
-                </span>
-
-            </div>
-
-            <div class="download-progress-wrap">
-
-                <div
-                    id="countdownProgress"
-                    class="download-progress">
-                </div>
-
-            </div>
-
-            <small>
-                Please wait...
-            </small>
-
-        </div>
-    `;
-
-    document.body.appendChild(
-        modal
-    );
 
     return modal;
 
@@ -2639,77 +2847,27 @@ function createDownloadModal() {
 
 
 /* =========================================================
-   START DOWNLOAD
+   UPDATE DOWNLOAD COUNTDOWN UI
    ========================================================= */
 
-function startDownload() {
-
-    if (!currentUser) {
-
-        return;
-
-    }
-
-    if (downloadInProgress) {
-        return;
-    }
-
-    const modal =
-        createDownloadModal();
+function updateDownloadCountdown(
+    seconds
+) {
 
     const countdown =
+        get("downloadCountdown");
+
+    const oldCountdown =
         get("countdown");
 
-    const progress =
-        get("countdownProgress");
+    const text =
+        get("downloadCountdownText");
 
     const status =
         get("downloadStatus");
 
-
-    downloadInProgress =
-        true;
-
-
-    /*
-       IMPORTANT:
-       Blank tab is opened immediately from
-       the original user click.
-
-       This helps prevent browser popup blocking.
-    */
-
-    let downloadWindow = null;
-
-    try {
-
-        downloadWindow =
-            window.open(
-                "about:blank",
-                "_blank"
-            );
-
-    } catch (error) {
-
-        console.warn(
-            "Could not open download tab:",
-            error
-        );
-
-    }
-
-
-    modal.classList.add(
-        "show"
-    );
-
-    modal.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-
-    let seconds = 5;
+    const progress =
+        get("countdownProgress");
 
 
     if (countdown) {
@@ -2720,10 +2878,20 @@ function startDownload() {
     }
 
 
-    if (progress) {
+    if (oldCountdown) {
 
-        progress.style.transform =
-            "scaleX(1)";
+        oldCountdown.textContent =
+            String(seconds);
+
+    }
+
+
+    if (text) {
+
+        text.textContent =
+            seconds > 0
+                ? `Download starts in ${seconds} second${seconds === 1 ? "" : "s"}`
+                : "Starting download...";
 
     }
 
@@ -2731,188 +2899,49 @@ function startDownload() {
     if (status) {
 
         status.textContent =
-            "Your download will start automatically.";
+            seconds > 0
+                ? `Your download will start automatically.`
+                : "Starting download...";
 
     }
 
 
-    if (downloadTimer) {
+    if (progress) {
 
-        clearInterval(
-            downloadTimer
-        );
+        progress.style.transform =
+            `scaleX(${Math.max(
+                0,
+                Math.min(
+                    1,
+                    seconds / 5
+                )
+            )})`;
 
     }
-
-
-    downloadTimer =
-        window.setInterval(
-            function () {
-
-                seconds--;
-
-
-                if (countdown) {
-
-                    countdown.textContent =
-                        String(seconds);
-
-                }
-
-
-                if (progress) {
-
-                    progress.style.transform =
-                        `scaleX(${Math.max(
-                            0,
-                            seconds / 5
-                        )})`;
-
-                }
-
-
-                if (seconds > 0) {
-
-                    return;
-
-                }
-
-
-                clearInterval(
-                    downloadTimer
-                );
-
-                downloadTimer =
-                    null;
-
-
-                if (status) {
-
-                    status.textContent =
-                        "Starting download...";
-
-                }
-
-
-                /*
-                   FIRST start APK navigation.
-                   Do NOT wait for Firestore.
-                   This keeps the download instant.
-                */
-
-                navigateToAPK(
-                    downloadWindow
-                );
-
-
-                /*
-                   Firestore count happens asynchronously
-                   and never blocks APK download.
-                */
-
-                increaseFirebaseDownloadCount()
-                    .catch(
-                        function (error) {
-
-                            console.error(
-                                "Download counter error:",
-                                error
-                            );
-
-                        }
-                    );
-
-
-                if (status) {
-
-                    status.textContent =
-                        "Download started ✓";
-
-                }
-
-
-                window.setTimeout(
-                    function () {
-
-                        closeDownloadModal();
-
-                    },
-                    900
-                );
-
-            },
-            1000
-        );
 
 }
 
 
 /* =========================================================
-   NAVIGATE TO APK
+   OPEN DOWNLOAD MODAL
    ========================================================= */
 
-function navigateToAPK(downloadWindow) {
+function openDownloadModal() {
 
-    const apkURL =
-        getAPKURL();
+    const modal =
+        getDownloadModal();
 
-    if (!apkURL) {
-
-        throw new Error(
-            "APK URL is not configured."
-        );
-
+    if (!modal) {
+        return;
     }
 
+    modal.classList.add("show");
+    modal.classList.add("active");
 
-    /*
-       Use already-created tab first.
-    */
-
-    if (
-        downloadWindow &&
-        !downloadWindow.closed
-    ) {
-
-        try {
-
-            downloadWindow.location.href =
-                apkURL;
-
-            return;
-
-        } catch (error) {
-
-            console.warn(
-                "Download tab navigation failed:",
-                error
-            );
-
-        }
-
-    }
-
-
-    /*
-       Fallback if browser did not allow
-       the blank tab.
-    */
-
-    try {
-
-        window.location.href =
-            apkURL;
-
-    } catch (error) {
-
-        console.error(
-            "APK navigation failed:",
-            error
-        );
-
-        throw error;
-
-    }
+    modal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
 
 }
 
@@ -2924,13 +2953,12 @@ function navigateToAPK(downloadWindow) {
 function closeDownloadModal() {
 
     const modal =
-        get("downloadModal");
+        getDownloadModal();
 
     if (modal) {
 
-        modal.classList.remove(
-            "show"
-        );
+        modal.classList.remove("show");
+        modal.classList.remove("active");
 
         modal.setAttribute(
             "aria-hidden",
@@ -2938,9 +2966,6 @@ function closeDownloadModal() {
         );
 
     }
-
-    downloadInProgress =
-        false;
 
     if (downloadTimer) {
 
@@ -2957,516 +2982,101 @@ function closeDownloadModal() {
 
 
 /* =========================================================
-   DOWNLOAD BUTTONS
+   NAVIGATE TO APK
    ========================================================= */
 
-const heroDownloadButton =
-    get("heroDownloadButton");
+function navigateToAPK(
+    downloadWindow
+) {
 
-if (heroDownloadButton) {
+    const apkURL =
+        getAPKURL();
 
-    heroDownloadButton.addEventListener(
-        "click",
-        function () {
+    if (!apkURL) {
 
-            startDownload();
-
-        }
-    );
-
-}
-
-
-const downloadButton =
-    get("downloadButton");
-
-if (downloadButton) {
-
-    downloadButton.addEventListener(
-        "click",
-        function () {
-
-            startDownload();
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   FIRESTORE DOWNLOAD COUNTER
-   ========================================================= */
-
-async function increaseFirebaseDownloadCount() {
-
-    if (!db) {
         throw new Error(
-            "Firestore is not initialized."
+            "APK URL is not configured."
         );
+
     }
-
-    if (!currentUser) {
-        throw new Error(
-            "Authentication required."
-        );
-    }
-
-    const ref =
-        db
-            .collection("stats")
-            .doc("main");
-
-
-    await db.runTransaction(
-        async function (transaction) {
-
-            const snapshot =
-                await transaction.get(
-                    ref
-                );
-
-
-            if (!snapshot.exists) {
-
-                transaction.set(
-                    ref,
-                    {
-                        downloads:
-                            1,
-
-                        updatedAt:
-                            firebase.firestore
-                                .FieldValue
-                                .serverTimestamp()
-                    }
-                );
-
-                return;
-            }
-
-
-            const data =
-                snapshot.data() || {};
-
-
-            let downloads =
-                Number(
-                    data.downloads || 0
-                );
-
-
-            if (
-                !Number.isFinite(downloads) ||
-                downloads < 0
-            ) {
-
-                downloads = 0;
-
-            }
-
-
-            transaction.update(
-                ref,
-                {
-                    downloads:
-                        downloads + 1,
-
-                    updatedAt:
-                        firebase.firestore
-                            .FieldValue
-                            .serverTimestamp()
-                }
-            );
-
-        }
-    );
 
 
     /*
-       Update visible counter after transaction.
-    */
+     * Use the tab opened during
+     * the original button click.
+     */
 
-    await loadDownloadCount();
+    if (
+        downloadWindow &&
+        !downloadWindow.closed
+    ) {
 
-}
+        try {
 
-
-/* =========================================================
-   LOAD DOWNLOAD COUNT
-   ========================================================= */
-
-async function loadDownloadCount() {
-
-    const countElement =
-        get("downloadCount");
-
-    if (!countElement) {
-        return;
-    }
-
-    if (!db) {
-
-        countElement.textContent =
-            "0";
-
-        return;
-
-    }
-
-    try {
-
-        const snapshot =
-            await db
-                .collection("stats")
-                .doc("main")
-                .get();
-
-
-        if (!snapshot.exists) {
-
-            countElement.textContent =
-                "0";
+            downloadWindow.location.href =
+                apkURL;
 
             return;
 
-        }
+        } catch (error) {
 
-
-        const data =
-            snapshot.data() || {};
-
-
-        let downloads =
-            Number(
-                data.downloads || 0
+            console.warn(
+                "Download window navigation failed:",
+                error
             );
 
-
-        if (
-            !Number.isFinite(downloads) ||
-            downloads < 0
-        ) {
-
-            downloads = 0;
-
         }
 
+    }
 
-        countElement.textContent =
-            downloads.toLocaleString();
+
+    /*
+     * Fallback.
+     */
+
+    try {
+
+        window.location.href =
+            apkURL;
 
     } catch (error) {
 
         console.error(
-            "Download count load error:",
+            "APK navigation failed:",
             error
         );
 
-        countElement.textContent =
-            "0";
-
     }
 
 }
 
 
 /* =========================================================
-   MODAL OUTSIDE CLICK
+   START DOWNLOAD
    ========================================================= */
 
-document.addEventListener(
-    "click",
-    function (event) {
+function startDownload() {
 
-        const registerModal =
-            get("registerModal");
+    if (!currentUser) {
 
-        const forgotModal =
-            get("forgotModal");
-
-        const profileModal =
-            get("profileModal");
-
-
-        if (
-            registerModal &&
-            event.target === registerModal
-        ) {
-
-            closeRegisterModal();
-
-        }
-
-
-        if (
-            forgotModal &&
-            event.target === forgotModal
-        ) {
-
-            closeForgotModal();
-
-        }
-
-
-        if (
-            profileModal &&
-            event.target === profileModal
-        ) {
-
-            closeProfileModal();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   ESC KEY
-   ========================================================= */
-
-document.addEventListener(
-    "keydown",
-    function (event) {
-
-        if (event.key !== "Escape") {
-            return;
-        }
-
-        closeRegisterModal();
-
-        closeForgotModal();
-
-        closeProfileModal();
-
-        /*
-           Download countdown intentionally
-           does not close with ESC.
-        */
-
-    }
-);
-
-
-/* =========================================================
-   AUTH STATE
-   ========================================================= */
-
-function renderAuthState() {
-
-    const reviewUser =
-        get("reviewUser");
-
-    const reviewText =
-        get("reviewText");
-
-    const reviewSubmit =
-        get("reviewSubmit");
-
-
-    if (currentUser) {
-
-        showMainApp();
-
-
-        if (reviewUser) {
-
-            reviewUser.hidden =
-                false;
-
-        }
-
-
-        if (reviewText) {
-
-            reviewText.disabled =
-                false;
-
-        }
-
-
-        if (reviewSubmit) {
-
-            reviewSubmit.disabled =
-                false;
-
-        }
-
-
-        loadReviews();
-
-        loadDownloadCount();
-
-
-    } else {
-
-        showLoginScreen();
-
-
-        if (reviewUser) {
-
-            reviewUser.hidden =
-                true;
-
-        }
-
-
-        if (reviewText) {
-
-            reviewText.disabled =
-                true;
-
-        }
-
-
-        if (reviewSubmit) {
-
-            reviewSubmit.disabled =
-                false;
-
-        }
-
-
-        if (reviewsUnsubscribe) {
-
-            reviewsUnsubscribe();
-
-            reviewsUnsubscribe =
-                null;
-
-        }
-
-    }
-
-}
-
-
-/* =========================================================
-   FIREBASE INITIALIZATION
-   ========================================================= */
-
-function initializeFirebase() {
-
-    try {
-
-        if (
-            typeof firebase ===
-            "undefined"
-        ) {
-
-            throw new Error(
-                "Firebase SDK not loaded."
-            );
-
-        }
-
-
-        const config =
-            getFirebaseConfig();
-
-
-        if (!config) {
-
-            throw new Error(
-                "Firebase config not found. Check firebase-config.js."
-            );
-
-        }
-
-
-        if (!firebase.apps.length) {
-
-            firebase.initializeApp(
-                config
-            );
-
-        }
-
-
-        auth =
-            firebase.auth();
-
-
-        db =
-            firebase.firestore();
-
-
-        auth.onAuthStateChanged(
-            async function (user) {
-
-                currentUser =
-                    user || null;
-
-
-                if (currentUser) {
-
-                    await ensureUserProfile(
-                        currentUser
-                    );
-
-                    updateUserUI({
-                        name:
-                            currentUser.displayName ||
-                            currentUser.email ||
-                            "User",
-
-                        email:
-                            currentUser.email ||
-                            "",
-
-                        photoURL:
-                            currentUser.photoURL ||
-                            ""
-                    });
-
-                }
-
-
-                renderAuthState();
-
-            }
+        window.alert(
+            "Please login to download the APK."
         );
 
-
-    } catch (error) {
-
-        console.error(
-            "Firebase initialization error:",
-            error
-        );
-
-
-        auth = null;
-        db = null;
-        currentUser = null;
-
-
-        showLoginScreen();
-
-
-        const count =
-            get("downloadCount");
-
-        if (count) {
-
-            count.textContent =
-                "0";
-
-        }
+        return;
 
     }
 
-}
+    if (downloadInProgress) {
+        return;
+    }
 
 
-/* =========================================================
-   INITIALIZE FIREBASE
-   ========================================================= */
-
-initializeFirebase();
+    downloadInProgress =
+        true;
 
 
-/* =========================================================
-   END OF SCRIPT
-   ========================================================= */
+    /*
+     * Open blank tab immediately
+     * from the user's click.
+     *
