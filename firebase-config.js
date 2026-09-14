@@ -10,7 +10,7 @@ const FIREBASE_CONFIG = {
 };
 
 // Owner Firebase Auth UID yahan baad mein add karenge.
-const OWNER_UID = "PASTE_OWNER_FIREBASE_UID";
+const OWNER_UID = "yZsy5oOxhjU7BFnaCH67FOL3rjB2";
 
 // APK ka path
 const APK_URL = "apk/super-video-player.apk";
