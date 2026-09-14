@@ -1,875 +1,465 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta charset="UTF-8">
+    <title>Super Video Player - Android</title>
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+    <meta name="description"
+          content="Download Super Video Player for Android">
 
-  <meta
-    name="theme-color"
-    content="#3867f6"
-  >
+    <meta name="theme-color" content="#030611">
 
-  <title>Super Video Player</title>
-
-  <link
-    rel="icon"
-    type="image/png"
-    sizes="32x32"
-    href="favicon.png"
-  >
-
-  <link
-    rel="icon"
-    type="image/png"
-    sizes="192x192"
-    href="favicon.png"
-  >
-
-  <link
-    rel="apple-touch-icon"
-    sizes="180x180"
-    href="favicon.png"
-  >
-
-  <link
-    rel="shortcut icon"
-    href="favicon.png"
-  >
-
-  <link
-    rel="stylesheet"
-    href="style.css"
-  >
-
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
+<!-- ================= LOADING SCREEN ================= -->
 
-  <!-- =========================================
-       FULL SCREEN PAGE LOADER
-  ========================================== -->
+<div id="loadingScreen">
 
-  <div
-    id="pageLoader"
-    class="page-loader"
-    aria-label="Loading Super Video Player"
-  >
-
-    <div class="loader-content">
-
-      <img
-        src="https://i.imgur.com/JQQtXXS.png"
-        alt="Super Video Player"
-        class="loader-logo"
-      >
-
-      <div
-        class="loader-spinner"
-        aria-hidden="true"
-      ></div>
-
-      <p class="loader-text">
-        Loading Super Video Player...
-      </p>
-
+    <div class="loading-logo">
+        ▶
     </div>
 
-  </div>
+    <h1>
+        <span>Super</span> Video Player
+    </h1>
 
+    <p>Loading...</p>
 
-
-  <!-- =========================================
-       REGISTER / LOGIN SCREEN
-  ========================================== -->
-
-  <div
-    id="authScreen"
-    class="auth-screen"
-  >
-
-    <div class="auth-card">
-
-
-      <!-- APP LOGO -->
-
-      <div class="auth-logo">
-
-        <img
-          src="https://i.imgur.com/JQQtXXS.png"
-          alt="Super Video Player"
-        >
-
-      </div>
-
-
-      <h1>
-        Super Video Player
-      </h1>
-
-
-      <p id="authSubtitle">
-        Create your account to continue
-      </p>
-
-
-
-      <!-- =====================================
-           REGISTER
-      ====================================== -->
-
-      <form
-        id="registerForm"
-      >
-
-        <input
-          id="registerName"
-          type="text"
-          placeholder="Enter your name"
-          autocomplete="name"
-          minlength="2"
-          required
-        >
-
-
-        <input
-          id="registerPassword"
-          type="password"
-          placeholder="Create password"
-          autocomplete="new-password"
-          minlength="4"
-          required
-        >
-
-
-        <input
-          id="registerConfirm"
-          type="password"
-          placeholder="Confirm password"
-          autocomplete="new-password"
-          minlength="4"
-          required
-        >
-
-
-        <button
-          type="submit"
-          class="primary-btn"
-        >
-          Register
-        </button>
-
-      </form>
-
-
-
-      <!-- =====================================
-           LOGIN
-      ====================================== -->
-
-      <form
-        id="loginForm"
-        class="hidden"
-      >
-
-        <input
-          id="loginName"
-          type="text"
-          placeholder="Enter your name"
-          autocomplete="username"
-          required
-        >
-
-
-        <input
-          id="loginPassword"
-          type="password"
-          placeholder="Enter password"
-          autocomplete="current-password"
-          required
-        >
-
-
-        <button
-          type="submit"
-          class="primary-btn"
-        >
-          Login
-        </button>
-
-      </form>
-
-
-
-      <!-- SWITCH LOGIN / REGISTER -->
-
-      <button
-        id="switchAuth"
-        class="switch-btn"
-        type="button"
-      >
-        Already have an account? Login
-      </button>
-
-
-      <p
-        id="authMessage"
-        class="auth-message"
-      ></p>
-
-
+    <div class="loading-bar">
+        <div class="loading-progress"></div>
     </div>
 
-  </div>
+</div>
 
 
+<!-- ================= NAVBAR ================= -->
 
-  <!-- =========================================
-       MAIN APP SCREEN
-  ========================================== -->
+<header>
 
-  <div
-    id="appScreen"
-    class="hidden"
-  >
+    <div class="logo">
 
-
-    <!-- =======================================
-         TOP BAR
-    ======================================== -->
-
-    <header class="topbar">
-
-
-      <div class="brand">
-
-        <img
-          src="https://i.imgur.com/JQQtXXS.png"
-          alt="App Icon"
-        >
-
+        <div class="logo-icon">
+            ▶
+        </div>
 
         <div>
-
-          <strong>
-            Super Video Player
-          </strong>
-
-          <small>
-            Official Web Page
-          </small>
-
-        </div>
-
-      </div>
-
-
-
-      <button
-        id="logoutBtn"
-        class="logout-btn"
-        type="button"
-      >
-        Logout
-      </button>
-
-
-    </header>
-
-
-
-    <!-- =======================================
-         MAIN CONTAINER
-    ======================================== -->
-
-    <main class="container">
-
-
-
-      <!-- =====================================
-           APP INFORMATION
-      ====================================== -->
-
-      <section class="app-card">
-
-
-        <div class="app-header">
-
-
-          <img
-            src="https://i.imgur.com/JQQtXXS.png"
-            class="app-icon"
-            alt="Super Video Player"
-          >
-
-
-          <div class="app-info">
-
-
             <h2>
-              Super Video Player
+                <span>Super</span> Video Player
             </h2>
 
-
-            <p class="developer">
-              SM Studio
-            </p>
-
-
-            <!-- RATING -->
-
-            <div class="rating-line">
-
-              <strong id="averageRating">
-                0.0
-              </strong>
-
-              <span class="stars">
-                ★★★★★
-              </span>
-
-            </div>
-
-
-            <!-- DOWNLOAD COUNT -->
-
-            <p class="downloads">
-
-              <span id="downloadCount">
-                0
-              </span>
-
-              downloads
-
-            </p>
-
-
-          </div>
-
-
+            <small>
+                Play Everything. Anywhere.
+            </small>
         </div>
 
+    </div>
 
 
-        <!-- APP DETAILS -->
-
-        <div class="app-details">
-
-
-          <div>
-
-            <strong>
-              1.0.1
-            </strong>
-
-            <span>
-              Version
-            </span>
-
-          </div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#download">Download</a>
+        <a href="#reviews">Reviews</a>
+    </nav>
 
 
-          <div>
+    <button
+        class="login-btn"
+        id="loginButton">
+        Login
+    </button>
 
-            <strong>
-              Android
-            </strong>
-
-            <span>
-              Platform
-            </span>
-
-          </div>
+</header>
 
 
-          <div>
+<!-- ================= HERO ================= -->
 
-            <strong>
-              Offline
-            </strong>
+<section class="hero" id="home">
 
-            <span>
-              Type
-            </span>
+    <div class="hero-content">
 
-          </div>
-
-
+        <div class="badge">
+            ✦ OFFICIAL ANDROID APP
         </div>
 
-
-
-        <!-- ===================================
-             DOWNLOAD BUTTON
-        ==================================== -->
-
-        <a
-          id="downloadButton"
-          href="https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk"
-          class="download-btn"
-          download="SuperVideoPlayer.apk"
-        >
-
-          <span
-            class="download-icon"
-          >
-            ↓
-          </span>
-
-
-          <span
-            class="download-content"
-          >
-            Download APK
-          </span>
-
-
-          <!-- 5 SECOND PROGRESS -->
-
-          <span
-            class="download-progress"
-          ></span>
-
-
-        </a>
-
-
-        <!-- DOWNLOAD STATUS -->
-
-        <p
-          id="downloadStatus"
-          class="download-status"
-        ></p>
-
-
-      </section>
-
-
-
-      <!-- =====================================
-           ABOUT APP
-      ====================================== -->
-
-      <section class="section-card">
-
+        <h1>
+            <span>Super</span><br>
+            Video Player
+        </h1>
 
         <h2>
-          About this app
+            Play Everything. Anywhere.
         </h2>
 
-
         <p>
-
-          Super Video Player is a fast and simple
-          offline video player for Android. Play
-          your local videos without requiring an
-          internet connection.
-
+            A fast, powerful and lightweight video player
+            for Android. Enjoy movies, videos and series
+            with smooth playback and a modern interface.
         </p>
 
 
-      </section>
+        <button
+            class="download-btn"
+            onclick="startDownload()">
+
+            ⇩ Download APK
+
+        </button>
 
 
+        <div class="specs">
 
-      <!-- =====================================
-           FEATURES
-      ====================================== -->
+            <span>Android 5.0+</span>
 
-      <section class="section-card">
+            <span>•</span>
 
+            <span>~30 MB</span>
 
-        <h2>
-          Features
-        </h2>
+            <span>•</span>
 
-
-        <div class="features">
-
-
-          <div class="feature">
-
-            <span>
-              🎬
-            </span>
-
-            <div>
-
-              <strong>
-                Offline Player
-              </strong>
-
-              <small>
-                Play local videos
-              </small>
-
-            </div>
-
-          </div>
-
-
-
-          <div class="feature">
-
-            <span>
-              ⚡
-            </span>
-
-            <div>
-
-              <strong>
-                Fast Playback
-              </strong>
-
-              <small>
-                Smooth video playback
-              </small>
-
-            </div>
-
-          </div>
-
-
-
-          <div class="feature">
-
-            <span>
-              📁
-            </span>
-
-            <div>
-
-              <strong>
-                Video Folders
-              </strong>
-
-              <small>
-                Browse your videos
-              </small>
-
-            </div>
-
-          </div>
-
-
-
-          <div class="feature">
-
-            <span>
-              📱
-            </span>
-
-            <div>
-
-              <strong>
-                Android
-              </strong>
-
-              <small>
-                Optimized for mobile
-              </small>
-
-            </div>
-
-          </div>
-
+            <span>Safe & Secure</span>
 
         </div>
 
-
-      </section>
-
+    </div>
 
 
-      <!-- =====================================
-           RATINGS & REVIEWS
-      ====================================== -->
+    <div class="hero-art">
 
-      <section class="section-card">
+        <div class="app-icon-big">
+            ▶
+        </div>
 
+    </div>
 
-        <h2>
-          Ratings & reviews
-        </h2>
-
+</section>
 
 
-        <!-- RATING SUMMARY -->
+<!-- ================= FEATURES ================= -->
 
-        <div class="rating-summary">
+<section
+    class="features"
+    id="features">
+
+    <div class="feature">
+
+        <div class="feature-icon">
+            ϟ
+        </div>
+
+        <h3>
+            HD Playback
+        </h3>
+
+        <p>
+            High quality smooth video playback.
+        </p>
+
+    </div>
 
 
-          <!-- BIG RATING -->
+    <div class="feature">
 
-          <div class="big-rating">
+        <div class="feature-icon">
+            ⚡
+        </div>
+
+        <h3>
+            Fast & Smooth
+        </h3>
+
+        <p>
+            Optimized for fast performance.
+        </p>
+
+    </div>
 
 
-            <strong id="bigRating">
-              0.0
-            </strong>
+    <div class="feature">
+
+        <div class="feature-icon">
+            ▣
+        </div>
+
+        <h3>
+            All Formats
+        </h3>
+
+        <p>
+            MP4, MKV, AVI, FLV, MOV and more.
+        </p>
+
+    </div>
 
 
-            <div id="bigStars">
-              ☆☆☆☆☆
-            </div>
+    <div class="feature">
 
+        <div class="feature-icon">
+            ▰
+        </div>
+
+        <h3>
+            Folder Support
+        </h3>
+
+        <p>
+            Browse and manage video folders.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="feature-icon">
+            ★
+        </div>
+
+        <h3>
+            Clean UI
+        </h3>
+
+        <p>
+            Simple modern interface.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= DOWNLOAD ================= -->
+
+<section
+    class="download-section"
+    id="download">
+
+    <div class="download-card">
+
+        <div class="download-card-icon">
+            ▶
+        </div>
+
+
+        <div class="download-card-content">
 
             <small>
-
-              <span id="totalReviews">
-                0
-              </span>
-
-              reviews
-
+                ANDROID APP
             </small>
 
+            <h2>
+                Download Super Video Player
+            </h2>
 
-          </div>
-
-
-
-          <!-- RATING BARS -->
-
-          <div class="rating-bars">
-
-
-            <div class="rating-row">
-
-              <span>
-                5
-              </span>
-
-              <div class="bar">
-
-                <div
-                  id="bar5"
-                ></div>
-
-              </div>
-
-            </div>
-
-
-
-            <div class="rating-row">
-
-              <span>
-                4
-              </span>
-
-              <div class="bar">
-
-                <div
-                  id="bar4"
-                ></div>
-
-              </div>
-
-            </div>
-
-
-
-            <div class="rating-row">
-
-              <span>
-                3
-              </span>
-
-              <div class="bar">
-
-                <div
-                  id="bar3"
-                ></div>
-
-              </div>
-
-            </div>
-
-
-
-            <div class="rating-row">
-
-              <span>
-                2
-              </span>
-
-              <div class="bar">
-
-                <div
-                  id="bar2"
-                ></div>
-
-              </div>
-
-            </div>
-
-
-
-            <div class="rating-row">
-
-              <span>
-                1
-              </span>
-
-              <div class="bar">
-
-                <div
-                  id="bar1"
-                ></div>
-
-              </div>
-
-            </div>
-
-
-          </div>
-
+            <p>
+                Get the latest Android APK and enjoy
+                smooth video playback.
+            </p>
 
         </div>
 
 
+        <button
+            class="download-btn"
+            onclick="startDownload()">
 
-        <!-- ===================================
-             WRITE REVIEW
-        ==================================== -->
+            ⇩ Download APK
 
-        <div class="write-review">
+        </button>
 
+    </div>
 
-          <h3>
-            Rate this app
-          </h3>
-
-
-
-          <!-- STAR SELECTOR -->
-
-          <div
-            id="starSelector"
-            class="star-selector"
-          >
+</section>
 
 
-            <button
-              type="button"
-              data-rating="1"
-            >
-              ☆
-            </button>
+<!-- ================= DOWNLOAD COUNT ================= -->
+
+<section class="stats">
+
+    <div class="counter-card">
+
+        <h2 id="downloadCount">
+            0
+        </h2>
+
+        <p>
+            Total Downloads
+        </p>
+
+    </div>
+
+</section>
 
 
-            <button
-              type="button"
-              data-rating="2"
-            >
-              ☆
-            </button>
+<!-- ================= REVIEWS ================= -->
+
+<section
+    class="reviews"
+    id="reviews">
+
+    <h2>
+        User Reviews
+    </h2>
 
 
-            <button
-              type="button"
-              data-rating="3"
-            >
-              ☆
-            </button>
+    <div class="review-form">
+
+        <input
+            type="text"
+            id="reviewName"
+            placeholder="Your Name">
 
 
-            <button
-              type="button"
-              data-rating="4"
-            >
-              ☆
-            </button>
-
-
-            <button
-              type="button"
-              data-rating="5"
-            >
-              ☆
-            </button>
-
-
-          </div>
-
-
-
-          <!-- REVIEW -->
-
-          <textarea
+        <textarea
             id="reviewText"
-            placeholder="Write a review..."
-            maxlength="500"
-          ></textarea>
+            placeholder="Write your review..."></textarea>
 
 
+        <button
+            class="review-submit"
+            onclick="submitReview()">
 
-          <button
-            id="submitReview"
-            class="primary-btn"
-            type="button"
-          >
             Submit Review
-          </button>
+
+        </button>
+
+    </div>
 
 
+    <div id="reviewsList">
 
-          <p
-            id="reviewMessage"
-          ></p>
+        <!-- Reviews will load here -->
+
+    </div>
+
+</section>
 
 
-        </div>
+<!-- ================= AUTH MODAL ================= -->
+
+<div
+    class="modal"
+    id="authModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeAuth()">
+
+            ×
+
+        </button>
 
 
+        <h2 id="authTitle">
+            Login
+        </h2>
 
-        <!-- ===================================
-             REVIEWS LIST
-        ==================================== -->
+
+        <input
+            type="text"
+            id="authName"
+            placeholder="Name"
+            style="display:none">
+
+
+        <input
+            type="password"
+            id="authPassword"
+            placeholder="Password">
+
+
+        <button
+            class="modal-action"
+            onclick="submitAuth()">
+
+            Continue
+
+        </button>
+
 
         <div
-          id="reviewsList"
-          class="reviews-list"
-        ></div>
+            class="switch"
+            onclick="toggleAuth()"
+            id="authSwitch">
+
+            Don't have an account?
+            <b>Register</b>
+
+        </div>
+
+    </div>
+
+</div>
 
 
-      </section>
+<!-- ================= DOWNLOAD MODAL ================= -->
+
+<div
+    class="modal"
+    id="downloadModal">
+
+    <div class="modal-box download-modal">
+
+        <h2>
+            Preparing Download
+        </h2>
+
+        <p>
+            Your download will start automatically.
+        </p>
 
 
+        <div
+            class="countdown"
+            id="countdown">
 
-      <!-- =====================================
-           FOOTER
-      ====================================== -->
+            5
 
-      <footer>
-
-        © 2026 Super Video Player
-
-      </footer>
+        </div>
 
 
-    </main>
+        <div class="countdown-bar">
+
+            <div
+                id="countdownProgress">
+            </div>
+
+        </div>
 
 
-  </div>
+        <p id="downloadStatus">
+            Please wait...
+        </p>
+
+    </div>
+
+</div>
 
 
+<!-- ================= FOOTER ================= -->
 
-  <!-- =========================================
-       JAVASCRIPT
-  ========================================== -->
+<footer>
 
-  <script src="script.js"></script>
+    <div>
+        © <span id="year"></span>
+        Super Video Player
+    </div>
 
+    <div>
+        Android 5.0+ • APK Download
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
 
 </body>
-
 </html>
