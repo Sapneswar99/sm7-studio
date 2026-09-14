@@ -26,7 +26,6 @@ body {
         sans-serif;
 
     min-height: 100vh;
-
     color: #ffffff;
 
     background:
@@ -78,11 +77,12 @@ img {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(
-        180deg,
-        #176eff,
-        #8b20ff
-    );
+    background:
+        linear-gradient(
+            180deg,
+            #176eff,
+            #8b20ff
+        );
 
     border-radius: 20px;
 }
@@ -160,7 +160,6 @@ img {
     content: "";
 
     position: absolute;
-
     inset: 0;
 
     background:
@@ -205,7 +204,6 @@ img {
     font-weight: 800;
 
     line-height: 1.2;
-
     letter-spacing: -0.6px;
 }
 
@@ -351,7 +349,6 @@ img {
     content: "";
 
     position: fixed;
-
     inset: 0;
 
     background:
@@ -523,7 +520,6 @@ img {
     opacity: 0.55;
 
     cursor: not-allowed;
-
     transform: none;
 }
 
@@ -688,7 +684,6 @@ img {
     opacity: 0.55;
 
     cursor: not-allowed;
-
     transform: none;
 }
 
@@ -788,7 +783,6 @@ select:disabled {
 
 select {
     cursor: pointer;
-
     appearance: auto;
 }
 
@@ -1802,7 +1796,6 @@ nav a:hover::after {
 }
 
 @media (hover: none) and (pointer: coarse) {
-
     .rating-star:hover {
         transform: none;
     }
@@ -1856,6 +1849,139 @@ nav a:hover::after {
         0 8px 25px #00000022;
 }
 
+
+/* =========================================================
+   REVIEW HEADER
+   USERNAME LEFT + DELETE TOP RIGHT
+   ========================================================= */
+
+.review-header {
+    width: 100%;
+
+    min-height: 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+}
+
+.review-username {
+    min-width: 0;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    color: #12bdff;
+
+    font-size: 14px;
+
+    font-weight: 750;
+}
+
+.review-delete {
+    flex-shrink: 0;
+
+    margin-left: auto;
+
+    padding: 6px 11px;
+
+    border: 1px solid #59223a;
+
+    border-radius: 8px;
+
+    color: #ff5577;
+
+    background: #ff17400b;
+
+    cursor: pointer;
+
+    font-size: 11px;
+    font-weight: 650;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.review-delete:hover {
+    border-color: #a72b52;
+
+    background: #ff17401c;
+
+    box-shadow:
+        0 0 15px #ff174018;
+
+    transform: translateY(-1px);
+}
+
+.review-delete:active {
+    transform: translateY(0);
+}
+
+.review-meta {
+    margin-top: 7px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    color: #61728e;
+
+    font-size: 11px;
+}
+
+.review-meta-name {
+    color: #8998b5;
+
+    font-weight: 600;
+}
+
+.review-meta-date {
+    color: #61728e;
+}
+
+.review-rating {
+    margin-top: 8px;
+
+    color: #ffc94a;
+
+    font-size: 15px;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+
+    text-shadow:
+        0 0 10px #ffc94a22;
+}
+
+.review-card p,
+.review p {
+    margin-top: 10px;
+
+    color: #a1aec4;
+
+    line-height: 1.6;
+
+    font-size: 13px;
+
+    overflow-wrap: anywhere;
+}
+
+/* Legacy compatibility */
 .review-top {
     display: flex;
 
@@ -1895,21 +2021,6 @@ nav a:hover::after {
     white-space: nowrap;
 }
 
-.review-card p,
-.review p {
-    margin-top: 10px;
-
-    padding-right: 65px;
-
-    color: #a1aec4;
-
-    line-height: 1.6;
-
-    font-size: 13px;
-
-    overflow-wrap: anywhere;
-}
-
 .delete-review {
     position: absolute;
 
@@ -1929,19 +2040,6 @@ nav a:hover::after {
     cursor: pointer;
 
     font-size: 11px;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
-}
-
-.delete-review:hover {
-    border-color: #a72b52;
-
-    background: #ff17401c;
-
-    transform: translateY(-1px);
 }
 
 .empty-state {
@@ -2340,7 +2438,6 @@ nav a:hover::after {
 
 /* =========================================================
    DOWNLOAD COUNTDOWN MODAL
-   JS IS ALLOWED TO CREATE THIS DYNAMICALLY
    ========================================================= */
 
 .download-modal {
@@ -2457,7 +2554,6 @@ nav a:hover::after {
     min-height: 20px;
 
     margin-top: 15px;
-
     margin-bottom: 0;
 
     color: #13baff;
@@ -2853,6 +2949,24 @@ footer {
         font-size: 23px;
     }
 
+    .review-header {
+        align-items: flex-start;
+    }
+
+    .review-username {
+        max-width: calc(100% - 80px);
+    }
+
+    .review-delete {
+        padding: 5px 9px;
+
+        font-size: 10px;
+    }
+
+    .review-meta {
+        padding-right: 0;
+    }
+
     .review-top {
         align-items: flex-start;
 
@@ -3007,6 +3121,20 @@ footer {
 
         font-size: 21px;
     }
+
+    .review-header {
+        gap: 8px;
+    }
+
+    .review-username {
+        font-size: 12px;
+    }
+
+    .review-delete {
+        padding: 5px 8px;
+
+        font-size: 9px;
+    }
 }
 
 
@@ -3036,7 +3164,8 @@ footer {
         transform: none;
     }
 
-    .delete-review:hover {
+    .delete-review:hover,
+    .review-delete:hover {
         transform: none;
     }
 }
