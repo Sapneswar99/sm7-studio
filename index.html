@@ -17,10 +17,30 @@
 
   <title>Super Video Player</title>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
-<link rel="shortcut icon" href="favicon.png">
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="favicon.png"
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="192x192"
+    href="favicon.png"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="favicon.png"
+  >
+
+  <link
+    rel="shortcut icon"
+    href="favicon.png"
+  >
 
   <link
     rel="stylesheet"
@@ -31,6 +51,39 @@
 
 
 <body>
+
+
+  <!-- =========================================
+       FULL SCREEN PAGE LOADER
+  ========================================== -->
+
+  <div
+    id="pageLoader"
+    class="page-loader"
+    aria-label="Loading Super Video Player"
+  >
+
+    <div class="loader-content">
+
+      <img
+        src="https://i.imgur.com/JQQtXXS.png"
+        alt="Super Video Player"
+        class="loader-logo"
+      >
+
+      <div
+        class="loader-spinner"
+        aria-hidden="true"
+      ></div>
+
+      <p class="loader-text">
+        Loading Super Video Player...
+      </p>
+
+    </div>
+
+  </div>
+
 
 
   <!-- =========================================
@@ -810,7 +863,9 @@
 
 
 
-  <!-- JAVASCRIPT -->
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================== -->
 
   <script src="script.js"></script>
 
