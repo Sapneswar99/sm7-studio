@@ -17,14 +17,6 @@ const APP_LOGO_URL =
     "https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png";
 
 
-/*
-   OWNER_UID intentionally NOT used for review deletion.
-
-   Review delete permission is based on:
-   review.uid === currentUser.uid
-*/
-
-
 /* =========================================================
    FIREBASE
 ========================================================= */
@@ -309,7 +301,6 @@ document.addEventListener(
 function initializeApp() {
 
     if (yearElement) {
-
         yearElement.textContent =
             new Date().getFullYear();
     }
@@ -333,22 +324,18 @@ function initializeFirebase() {
         if (
             typeof firebase === "undefined"
         ) {
-
             throw new Error(
                 "Firebase SDK could not be loaded."
             );
         }
 
-
         if (
             typeof FIREBASE_CONFIG === "undefined"
         ) {
-
             throw new Error(
                 "FIREBASE_CONFIG is missing from firebase-config.js."
             );
         }
-
 
         if (!firebase.apps.length) {
 
@@ -356,7 +343,6 @@ function initializeFirebase() {
                 FIREBASE_CONFIG
             );
         }
-
 
         auth =
             firebase.auth();
@@ -366,7 +352,7 @@ function initializeFirebase() {
 
 
         /*
-         * Keep user signed in.
+         * Keep user logged in.
          */
         auth.setPersistence(
             firebase.auth.Auth.Persistence.LOCAL
@@ -377,6 +363,53 @@ function initializeFirebase() {
                 error
             );
         });
+
+
+        /*
+         * Handle Google redirect result.
+         */
+        auth.getRedirectResult()
+            .then(function(result) {
+
+                if (result && result.user) {
+
+                    currentUser =
+                        result.user;
+
+                    ensureUserProfile()
+                        .then(function() {
+                            updateUserUI();
+                        })
+                        .catch(function(error) {
+                            console.warn(
+                                "Redirect profile setup:",
+                                error
+                            );
+                        });
+                }
+
+            })
+            .catch(function(error) {
+
+                if (
+                    error &&
+                    error.code
+                ) {
+
+                    console.error(
+                        "Google redirect result error:",
+                        error
+                    );
+
+                    setMessage(
+                        loginMessage,
+                        getFirebaseErrorMessage(
+                            error
+                        ),
+                        "error"
+                    );
+                }
+            });
 
 
         /*
@@ -453,12 +486,13 @@ async function handleAuthState() {
         return;
     }
 
-
     updateUserUI();
 
     await ensureUserProfile();
 
     updateUserUI();
+
+    await updateReviewUserName();
 
     loadDownloadCount();
 
@@ -476,9 +510,7 @@ function tryRenderApp() {
         return;
     }
 
-
     hideLoadingScreen();
-
 
     if (currentUser) {
 
@@ -501,13 +533,11 @@ function hideLoadingScreen() {
         return;
     }
 
-
     loadingScreen.classList.add("hidden");
 
     loadingScreen.style.opacity = "0";
     loadingScreen.style.visibility = "hidden";
     loadingScreen.style.pointerEvents = "none";
-
 
     setTimeout(function() {
 
@@ -525,7 +555,6 @@ function showLoginScreen() {
 
     closeAllModals();
 
-
     if (mainApp) {
 
         mainApp.classList.remove("show");
@@ -535,7 +564,6 @@ function showLoginScreen() {
             "true"
         );
     }
-
 
     if (loginScreen) {
 
@@ -558,7 +586,6 @@ function showMainApp() {
         return;
     }
 
-
     if (loginScreen) {
 
         loginScreen.classList.remove("show");
@@ -569,7 +596,6 @@ function showMainApp() {
         );
     }
 
-
     if (mainApp) {
 
         mainApp.classList.add("show");
@@ -579,7 +605,6 @@ function showMainApp() {
             "false"
         );
     }
-
 
     updateUserUI();
 }
@@ -594,7 +619,6 @@ function getUserDisplayName(user) {
     if (!user) {
         return "User";
     }
-
 
     return (
         user.displayName ||
@@ -611,15 +635,12 @@ function getInitials(name) {
             .trim()
             .replace(/\s+/g, " ");
 
-
     if (!cleanName) {
         return "U";
     }
 
-
     const parts =
         cleanName.split(" ");
-
 
     if (parts.length === 1) {
 
@@ -627,7 +648,6 @@ function getInitials(name) {
             .substring(0, 1)
             .toUpperCase();
     }
-
 
     return (
         parts[0].substring(0, 1) +
@@ -642,14 +662,11 @@ function updateUserUI() {
         return;
     }
 
-
     const name =
         getUserDisplayName(currentUser);
 
-
     const initials =
         getInitials(name);
-
 
     if (loggedUserName) {
 
@@ -657,13 +674,11 @@ function updateUserUI() {
             name;
     }
 
-
     if (profileModalAvatar) {
 
         profileModalAvatar.textContent =
             initials;
     }
-
 
     if (profileEmail) {
 
@@ -671,17 +686,6 @@ function updateUserUI() {
             currentUser.email || "—";
     }
 
-
-    if (reviewUserName) {
-
-        reviewUserName.textContent =
-            name;
-    }
-
-
-    /*
-     * Google profile photo.
-     */
     if (
         currentUser.photoURL &&
         profileAvatar
@@ -695,10 +699,8 @@ function updateUserUI() {
         profileAvatar.style.padding = "0";
         profileAvatar.style.overflow = "hidden";
 
-
         const image =
             profileAvatar.querySelector("img");
-
 
         if (image) {
 
@@ -728,7 +730,6 @@ async function ensureUserProfile() {
         return;
     }
 
-
     try {
 
         const ref =
@@ -736,38 +737,39 @@ async function ensureUserProfile() {
                 .collection("users")
                 .doc(currentUser.uid);
 
-
         const snapshot =
             await ref.get();
-
 
         if (snapshot.exists) {
 
             const data =
                 snapshot.data() || {};
 
+            const savedName =
+                safeText(
+                    data.name ||
+                    currentUser.displayName ||
+                    ""
+                ).trim();
+
+            const savedUsername =
+                safeText(
+                    data.username ||
+                    ""
+                ).trim();
 
             if (profileName) {
 
                 profileName.value =
-                    data.name ||
-                    currentUser.displayName ||
-                    "";
+                    savedName;
             }
-
 
             if (profileUsername) {
 
                 profileUsername.value =
-                    data.username ||
-                    "";
+                    savedUsername;
             }
 
-
-            /*
-             * If existing Firestore profile has a
-             * name, show it in the website UI.
-             */
             if (
                 data.name &&
                 currentUser.displayName !==
@@ -789,6 +791,15 @@ async function ensureUserProfile() {
                 }
             }
 
+            if (reviewUserName) {
+
+                reviewUserName.textContent =
+                    savedUsername ||
+                    savedName ||
+                    getUserDisplayName(
+                        currentUser
+                    );
+            }
 
             updateUserUI();
 
@@ -801,12 +812,10 @@ async function ensureUserProfile() {
             currentUser.email?.split("@")[0] ||
             "User";
 
-
         const defaultUsername =
             createDefaultUsername(
                 currentUser
             );
-
 
         await ref.set({
 
@@ -837,10 +846,15 @@ async function ensureUserProfile() {
                 defaultName;
         }
 
-
         if (profileUsername) {
 
             profileUsername.value =
+                defaultUsername;
+        }
+
+        if (reviewUserName) {
+
+            reviewUserName.textContent =
                 defaultUsername;
         }
 
@@ -866,16 +880,71 @@ function createDefaultUsername(user) {
         .replace(/[^a-z0-9]/g, "")
         .substring(0, 20);
 
-
     const suffix =
         safeText(user.uid)
             .substring(0, 5)
             .toLowerCase();
 
-
     return (
         base || "user"
     ) + suffix;
+}
+
+
+/* =========================================================
+   REVIEW USERNAME UI
+========================================================= */
+
+async function updateReviewUserName() {
+
+    if (
+        !currentUser ||
+        !db ||
+        !reviewUserName
+    ) {
+        return;
+    }
+
+    try {
+
+        const snapshot =
+            await db
+                .collection("users")
+                .doc(currentUser.uid)
+                .get();
+
+        if (snapshot.exists) {
+
+            const data =
+                snapshot.data() || {};
+
+            const username =
+                safeText(
+                    data.username ||
+                    data.name ||
+                    getUserDisplayName(
+                        currentUser
+                    )
+                ).trim();
+
+            reviewUserName.textContent =
+                username || "User";
+
+            return;
+        }
+
+    } catch (error) {
+
+        console.warn(
+            "Could not update review username:",
+            error
+        );
+    }
+
+    reviewUserName.textContent =
+        getUserDisplayName(
+            currentUser
+        );
 }
 
 
@@ -910,7 +979,12 @@ function setupEventListeners() {
 
 
     /*
-     * Forgot Password from Login
+     * FORGOT PASSWORD
+     *
+     * IMPORTANT:
+     * Modal opens INSTANTLY.
+     *
+     * No Firebase request is made here.
      */
     if (loginForgotPassword) {
 
@@ -921,19 +995,16 @@ function setupEventListeners() {
                 const email =
                     loginEmail?.value?.trim() || "";
 
-
                 if (forgotEmail) {
 
                     forgotEmail.value =
                         email;
                 }
 
-
                 setMessage(
                     forgotMessage,
                     ""
                 );
-
 
                 openModal(
                     forgotModal
@@ -944,7 +1015,12 @@ function setupEventListeners() {
 
 
     /*
-     * Open Register
+     * REGISTER
+     *
+     * IMPORTANT:
+     * Modal opens INSTANTLY.
+     *
+     * No Firebase request is made here.
      */
     if (openRegisterButton) {
 
@@ -1185,10 +1261,8 @@ function setupEventListeners() {
                 function(event) {
 
                     if (
-                        event.key ===
-                            "ArrowRight" ||
-                        event.key ===
-                            "ArrowUp"
+                        event.key === "ArrowRight" ||
+                        event.key === "ArrowUp"
                     ) {
 
                         event.preventDefault();
@@ -1209,10 +1283,8 @@ function setupEventListeners() {
 
 
                     if (
-                        event.key ===
-                            "ArrowLeft" ||
-                        event.key ===
-                            "ArrowDown"
+                        event.key === "ArrowLeft" ||
+                        event.key === "ArrowDown"
                     ) {
 
                         event.preventDefault();
@@ -1269,7 +1341,6 @@ function setupEventListeners() {
                 return;
             }
 
-
             if (
                 downloadModal &&
                 downloadModal.classList.contains(
@@ -1279,7 +1350,6 @@ function setupEventListeners() {
 
                 return;
             }
-
 
             closeAllModals();
         }
@@ -1295,7 +1365,6 @@ async function handleEmailLogin(event) {
 
     event.preventDefault();
 
-
     if (!auth) {
 
         setMessage(
@@ -1307,25 +1376,20 @@ async function handleEmailLogin(event) {
         return;
     }
 
-
     const email =
         loginEmail.value.trim();
 
-
     const password =
         loginPassword.value;
-
 
     if (!email || !password) {
         return;
     }
 
-
     setMessage(
         loginMessage,
         "Signing in..."
     );
-
 
     setButtonLoading(
         loginSubmit,
@@ -1334,7 +1398,6 @@ async function handleEmailLogin(event) {
         "Login"
     );
 
-
     try {
 
         await auth.signInWithEmailAndPassword(
@@ -1342,16 +1405,13 @@ async function handleEmailLogin(event) {
             password
         );
 
-
         setMessage(
             loginMessage,
             "Login successful.",
             "success"
         );
 
-
         loginForm.reset();
-
 
     } catch (error) {
 
@@ -1359,7 +1419,6 @@ async function handleEmailLogin(event) {
             "Email login error:",
             error
         );
-
 
         setMessage(
             loginMessage,
@@ -1417,7 +1476,6 @@ async function signInWithGoogle(
         return;
     }
 
-
     setButtonLoading(
         button,
         true,
@@ -1425,33 +1483,27 @@ async function signInWithGoogle(
         "Continue with Google"
     );
 
-
     setMessage(
         messageElement,
         "Opening Google Sign-In..."
     );
-
 
     try {
 
         const provider =
             new firebase.auth.GoogleAuthProvider();
 
-
         provider.setCustomParameters({
             prompt: "select_account"
         });
-
 
         await auth.signInWithPopup(
             provider
         );
 
-
         closeModal(
             registerModal
         );
-
 
     } catch (error) {
 
@@ -1462,7 +1514,7 @@ async function signInWithGoogle(
 
 
         /*
-         * Mobile browser popup fallback.
+         * Mobile browser fallback.
          */
         if (
             error &&
@@ -1470,9 +1522,7 @@ async function signInWithGoogle(
                 error.code ===
                     "auth/popup-blocked" ||
                 error.code ===
-                    "auth/popup-cancelled" ||
-                error.code ===
-                    "auth/popup-closed-by-user"
+                    "auth/popup-cancelled"
             )
         ) {
 
@@ -1481,19 +1531,15 @@ async function signInWithGoogle(
                 const provider =
                     new firebase.auth.GoogleAuthProvider();
 
-
                 provider.setCustomParameters({
                     prompt: "select_account"
                 });
-
 
                 await auth.signInWithRedirect(
                     provider
                 );
 
-
                 return;
-
 
             } catch (redirectError) {
 
@@ -1501,7 +1547,6 @@ async function signInWithGoogle(
                     "Google redirect error:",
                     redirectError
                 );
-
 
                 setMessage(
                     messageElement,
@@ -1511,7 +1556,6 @@ async function signInWithGoogle(
                     "error"
                 );
             }
-
 
         } else {
 
@@ -1544,7 +1588,6 @@ async function handleEmailRegistration(event) {
 
     event.preventDefault();
 
-
     if (!auth) {
 
         setMessage(
@@ -1556,22 +1599,16 @@ async function handleEmailRegistration(event) {
         return;
     }
 
-
     const name =
         registerName.value.trim();
 
-
     const email =
         registerEmail.value.trim();
-
 
     const password =
         registerPassword.value;
 
 
-    /*
-     * Name validation
-     */
     if (name.length < 2) {
 
         setMessage(
@@ -1596,9 +1633,34 @@ async function handleEmailRegistration(event) {
     }
 
 
-    /*
-     * Password validation
-     */
+    if (!email) {
+
+        setMessage(
+            registerMessage,
+            "Please enter your email.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if (
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+            email
+        )
+    ) {
+
+        setMessage(
+            registerMessage,
+            "Please enter a valid email address.",
+            "error"
+        );
+
+        return;
+    }
+
+
     if (password.length < 6) {
 
         setMessage(
@@ -1618,7 +1680,6 @@ async function handleEmailRegistration(event) {
         "Create Account"
     );
 
-
     setMessage(
         registerMessage,
         "Creating your account..."
@@ -1628,7 +1689,7 @@ async function handleEmailRegistration(event) {
     try {
 
         /*
-         * REAL Firebase Authentication account.
+         * REAL Firebase Authentication.
          */
         const credential =
             await auth.createUserWithEmailAndPassword(
@@ -1650,15 +1711,25 @@ async function handleEmailRegistration(event) {
 
 
         /*
-         * Save name into Firebase Auth profile.
+         * Save full name to Firebase Auth.
          */
-        await user.updateProfile({
-            displayName: name
-        });
+        try {
+
+            await user.updateProfile({
+                displayName: name
+            });
+
+        } catch (profileError) {
+
+            console.warn(
+                "Auth profile update failed:",
+                profileError
+            );
+        }
 
 
         /*
-         * Create user profile in Firestore.
+         * Create Firestore user profile.
          */
         if (db) {
 
@@ -1667,42 +1738,50 @@ async function handleEmailRegistration(event) {
                     user
                 );
 
+            try {
 
-            await db
-                .collection("users")
-                .doc(user.uid)
-                .set({
+                await db
+                    .collection("users")
+                    .doc(user.uid)
+                    .set({
 
-                    uid:
-                        user.uid,
+                        uid:
+                            user.uid,
 
-                    name:
-                        name,
+                        name:
+                            name,
 
-                    username:
-                        username,
+                        username:
+                            username,
 
-                    email:
-                        user.email || email,
+                        email:
+                            user.email || email,
 
-                    createdAt:
-                        firebase.firestore.FieldValue.serverTimestamp(),
+                        createdAt:
+                            firebase.firestore.FieldValue.serverTimestamp(),
 
-                    updatedAt:
-                        firebase.firestore.FieldValue.serverTimestamp()
+                        updatedAt:
+                            firebase.firestore.FieldValue.serverTimestamp()
 
-                }, {
-                    merge: true
-                });
+                    }, {
+                        merge: true
+                    });
+
+            } catch (firestoreError) {
+
+                /*
+                 * Auth account is already created.
+                 * ensureUserProfile() can repair the
+                 * Firestore profile later.
+                 */
+                console.error(
+                    "User profile save failed:",
+                    firestoreError
+                );
+            }
         }
 
 
-        /*
-         * Registration complete.
-         *
-         * Firebase Auth automatically signs the
-         * newly created user in.
-         */
         setMessage(
             registerMessage,
             "Account created successfully.",
@@ -1713,10 +1792,6 @@ async function handleEmailRegistration(event) {
         registerForm.reset();
 
 
-        /*
-         * Main app will be shown by
-         * onAuthStateChanged().
-         */
         closeModal(
             registerModal
         );
@@ -1728,7 +1803,6 @@ async function handleEmailRegistration(event) {
             "Registration error:",
             error
         );
-
 
         setMessage(
             registerMessage,
@@ -1751,13 +1825,12 @@ async function handleEmailRegistration(event) {
 
 
 /* =========================================================
-   FORGOT PASSWORD - REAL FIREBASE RESET EMAIL
+   FORGOT PASSWORD - REAL FIREBASE
 ========================================================= */
 
 async function handleForgotPassword(event) {
 
     event.preventDefault();
-
 
     if (!auth) {
 
@@ -1769,7 +1842,6 @@ async function handleForgotPassword(event) {
 
         return;
     }
-
 
     const email =
         forgotEmail.value.trim();
@@ -1787,9 +1859,6 @@ async function handleForgotPassword(event) {
     }
 
 
-    /*
-     * Basic email validation.
-     */
     if (
         !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
             email
@@ -1813,7 +1882,6 @@ async function handleForgotPassword(event) {
         "Send Reset Link"
     );
 
-
     setMessage(
         forgotMessage,
         "Sending password reset email..."
@@ -1823,7 +1891,7 @@ async function handleForgotPassword(event) {
     try {
 
         /*
-         * REAL Firebase password reset email.
+         * REAL Firebase password reset.
          */
         await auth.sendPasswordResetEmail(
             email
@@ -1837,10 +1905,6 @@ async function handleForgotPassword(event) {
         );
 
 
-        /*
-         * Keep email visible so user knows
-         * which account was used.
-         */
         if (forgotEmail) {
 
             forgotEmail.value =
@@ -1854,7 +1918,6 @@ async function handleForgotPassword(event) {
             "Password reset error:",
             error
         );
-
 
         setMessage(
             forgotMessage,
@@ -1886,26 +1949,19 @@ async function handleLogout() {
         return;
     }
 
-
     try {
 
         stopReviewsListener();
 
-
         await auth.signOut();
-
 
         currentUser = null;
 
-
         resetReviewForm();
-
 
         closeAllModals();
 
-
         showLoginScreen();
-
 
     } catch (error) {
 
@@ -1913,7 +1969,6 @@ async function handleLogout() {
             "Logout error:",
             error
         );
-
 
         window.alert(
             getFirebaseErrorMessage(
@@ -1937,18 +1992,14 @@ async function openProfile() {
         return;
     }
 
-
     await ensureUserProfile();
 
-
     updateUserUI();
-
 
     setMessage(
         profileMessage,
         ""
     );
-
 
     openModal(
         profileModal
@@ -1959,7 +2010,6 @@ async function openProfile() {
 async function handleProfileSave(event) {
 
     event.preventDefault();
-
 
     if (!currentUser || !db) {
 
@@ -1972,10 +2022,8 @@ async function handleProfileSave(event) {
         return;
     }
 
-
     const name =
         profileName.value.trim();
-
 
     const username =
         profileUsername.value.trim();
@@ -2049,20 +2097,30 @@ async function handleProfileSave(event) {
             name
         ) {
 
-            await currentUser.updateProfile({
-                displayName: name
-            });
+            try {
+
+                await currentUser.updateProfile({
+                    displayName: name
+                });
+
+            } catch (profileError) {
+
+                console.warn(
+                    "Auth name update failed:",
+                    profileError
+                );
+            }
         }
-
-
-        updateUserUI();
 
 
         if (reviewUserName) {
 
             reviewUserName.textContent =
-                name;
+                username;
         }
+
+
+        updateUserUI();
 
 
         setMessage(
@@ -2078,7 +2136,6 @@ async function handleProfileSave(event) {
             "Profile update error:",
             error
         );
-
 
         setMessage(
             profileMessage,
@@ -2131,16 +2188,13 @@ function selectRating(rating) {
                     star.dataset.rating
                 );
 
-
             const active =
                 starValue <= rating;
-
 
             star.classList.toggle(
                 "active",
                 active
             );
-
 
             star.setAttribute(
                 "aria-checked",
@@ -2170,7 +2224,6 @@ function resetRating() {
                 "active"
             );
 
-
             star.setAttribute(
                 "aria-checked",
                 "false"
@@ -2189,7 +2242,6 @@ function startReviewsListener() {
     if (!db || !currentUser) {
         return;
     }
-
 
     stopReviewsListener();
 
@@ -2215,7 +2267,6 @@ function startReviewsListener() {
                         "Reviews listener:",
                         error
                     );
-
 
                     if (reviewsList) {
 
@@ -2288,10 +2339,14 @@ function renderReviews(snapshot) {
 
 
             /*
-             * Username/name saved in Firestore
-             * is displayed as review name.
+             * REVIEW NAME
+             *
+             * Username is preferred.
+             * Existing old reviews using name
+             * will still display correctly.
              */
             const name =
+                data.username ||
                 data.name ||
                 "User";
 
@@ -2325,12 +2380,9 @@ function renderReviews(snapshot) {
 
 
             /*
-             * IMPORTANT:
+             * ONLY REVIEW OWNER CAN DELETE.
              *
-             * Only the user who created the review
-             * can see the delete button.
-             *
-             * No OWNER_UID.
+             * OWNER_UID is NOT used.
              */
             const canDelete =
                 Boolean(
@@ -2393,15 +2445,11 @@ function renderReviews(snapshot) {
 
     reviewsList.innerHTML = "";
 
-
     reviewsList.appendChild(
         fragment
     );
 
 
-    /*
-     * Delete handlers.
-     */
     reviewsList
         .querySelectorAll(
             ".review-delete"
@@ -2415,7 +2463,6 @@ function renderReviews(snapshot) {
 
                         const id =
                             button.dataset.reviewId;
-
 
                         deleteReview(
                             id
@@ -2499,12 +2546,10 @@ async function handleReviewSubmit(event) {
 
 
     /*
-     * IMPORTANT:
-     * Review name comes from user's Firestore
-     * profile.
+     * Review Name = Firestore Username.
      */
-    const name =
-        await getReviewName();
+    const username =
+        await getReviewUsername();
 
 
     setButtonLoading(
@@ -2531,7 +2576,10 @@ async function handleReviewSubmit(event) {
                     currentUser.uid,
 
                 name:
-                    name,
+                    username,
+
+                username:
+                    username,
 
                 text:
                     text,
@@ -2584,10 +2632,10 @@ async function handleReviewSubmit(event) {
 
 
 /* =========================================================
-   GET REVIEW NAME
+   GET REVIEW USERNAME
 ========================================================= */
 
-async function getReviewName() {
+async function getReviewUsername() {
 
     if (!currentUser) {
         return "User";
@@ -2612,25 +2660,8 @@ async function getReviewName() {
 
 
                 /*
-                 * Full Name stored in user profile
-                 * is used as review Name.
-                 */
-                if (
-                    data.name &&
-                    String(
-                        data.name
-                    ).trim()
-                ) {
-
-                    return String(
-                        data.name
-                    ).trim();
-                }
-
-
-                /*
-                 * Fallback to username if name
-                 * is unavailable.
+                 * IMPORTANT:
+                 * Username is the Review Name.
                  */
                 if (
                     data.username &&
@@ -2643,13 +2674,30 @@ async function getReviewName() {
                         data.username
                     ).trim();
                 }
+
+
+                /*
+                 * Fallback only if username
+                 * does not exist.
+                 */
+                if (
+                    data.name &&
+                    String(
+                        data.name
+                    ).trim()
+                ) {
+
+                    return String(
+                        data.name
+                    ).trim();
+                }
             }
         }
 
     } catch (error) {
 
         console.warn(
-            "Could not get profile name:",
+            "Could not get profile username:",
             error
         );
     }
@@ -2678,12 +2726,7 @@ function resetReviewForm() {
 
     if (reviewUserName) {
 
-        reviewUserName.textContent =
-            currentUser
-                ? getUserDisplayName(
-                    currentUser
-                )
-                : "User";
+        updateReviewUserName();
     }
 }
 
@@ -2723,9 +2766,6 @@ async function deleteReview(reviewId) {
 
     try {
 
-        /*
-         * Read the review first.
-         */
         const reviewRef =
             db
                 .collection("reviews")
@@ -2753,8 +2793,8 @@ async function deleteReview(reviewId) {
         /*
          * Client-side ownership check.
          *
-         * Firestore Security Rules MUST also
-         * enforce the same condition.
+         * Firestore Security Rules MUST
+         * enforce this too.
          */
         if (
             data.uid !==
@@ -2769,9 +2809,6 @@ async function deleteReview(reviewId) {
         }
 
 
-        /*
-         * Real Firestore deletion.
-         */
         await reviewRef.delete();
 
 
@@ -2869,10 +2906,6 @@ function increaseFirebaseDownloadCount() {
             .doc("main");
 
 
-    /*
-     * This is intentionally NOT awaited
-     * by the APK download.
-     */
     return db.runTransaction(
         async function(transaction) {
 
@@ -2991,8 +3024,8 @@ function startDownload() {
 
 
     /*
-     * Open blank tab immediately from the click
-     * to reduce popup-blocking problems.
+     * Open download tab immediately from
+     * user's click to reduce popup blocking.
      */
     let downloadWindow =
         null;
@@ -3044,7 +3077,6 @@ function startDownload() {
 
                 remaining--;
 
-
                 updateDownloadCountdown(
                     remaining
                 );
@@ -3058,8 +3090,8 @@ function startDownload() {
 
 
                     /*
-                     * APK navigation happens immediately
-                     * at zero.
+                     * APK starts immediately
+                     * when countdown reaches 0.
                      */
                     navigateToAPK(
                         downloadWindow
@@ -3067,13 +3099,12 @@ function startDownload() {
 
 
                     /*
-                     * Count does NOT block download.
+                     * Download counter never blocks APK.
                      */
                     increaseFirebaseDownloadCount();
 
 
                     closeDownloadModal();
-
 
                     downloadInProgress =
                         false;
@@ -3229,6 +3260,13 @@ function openModal(modal) {
     }
 
 
+    /*
+     * INSTANT OPEN.
+     *
+     * No Firebase request.
+     * No await.
+     * No setTimeout.
+     */
     modal.classList.add(
         "show"
     );
@@ -3254,7 +3292,8 @@ function closeModal(modal) {
 
 
     /*
-     * Countdown cannot be manually closed.
+     * Download countdown cannot be
+     * manually closed.
      */
     if (
         modal === downloadModal &&
@@ -3427,12 +3466,28 @@ function getFirebaseErrorMessage(
             return "Please enter your email address.";
 
 
+        case "auth/missing-password":
+            return "Please enter your password.";
+
+
         case "auth/invalid-password":
             return "Please enter a valid password.";
 
 
         case "auth/account-exists-with-different-credential":
             return "An account already exists with this email using another sign-in method.";
+
+
+        case "auth/credential-already-in-use":
+            return "This account is already linked with another user.";
+
+
+        case "auth/invalid-continue-uri":
+            return "Password reset link configuration is invalid.";
+
+
+        case "auth/unauthorized-continue-uri":
+            return "This website is not authorized for password reset links.";
 
 
         default:
