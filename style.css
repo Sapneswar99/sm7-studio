@@ -1,6 +1,7 @@
 /* =========================================================
    SUPER VIDEO PLAYER
    Premium Responsive Website
+   FULL RESPONSIVE CSS
 ========================================================= */
 
 
@@ -23,10 +24,13 @@
   --accent-3: #3b82f6;
 
   --border: rgba(255, 255, 255, 0.08);
+  --border-soft: rgba(255, 255, 255, 0.05);
   --border-hover: rgba(139, 92, 246, 0.45);
 
   --radius: 24px;
   --container: 1180px;
+
+  --header-height: 78px;
 
   --transition: 0.3s ease;
 }
@@ -36,19 +40,27 @@
    RESET
 ========================================================= */
 
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 html {
+  width: 100%;
+  overflow-x: hidden;
+
   scroll-behavior: smooth;
-  scroll-padding-top: 90px;
+  scroll-padding-top: 95px;
 }
 
 body {
+  width: 100%;
   min-width: 320px;
+  min-height: 100vh;
+
   overflow-x: hidden;
 
   background:
@@ -71,7 +83,10 @@ body {
     sans-serif;
 
   line-height: 1.6;
+
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
   text-rendering: optimizeLegibility;
 }
 
@@ -85,13 +100,25 @@ a {
   text-decoration: none;
 }
 
-button {
+button,
+input,
+textarea,
+select {
   font: inherit;
+}
+
+button {
+  border: 0;
 }
 
 ::selection {
   background: rgba(139, 92, 246, 0.35);
   color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid #a78bfa;
+  outline-offset: 3px;
 }
 
 
@@ -115,31 +142,46 @@ button {
 
 .header {
   position: fixed;
+
   top: 0;
   left: 0;
   right: 0;
+
+  width: 100%;
 
   z-index: 1000;
 
   border-bottom: 1px solid transparent;
 
-  background: rgba(5, 5, 7, 0.55);
+  background: rgba(5, 5, 7, 0.72);
 
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 
   transition:
     background var(--transition),
-    border-color var(--transition);
+    border-color var(--transition),
+    box-shadow var(--transition);
 }
 
 .header.scrolled {
-  background: rgba(5, 5, 7, 0.90);
+  background: rgba(5, 5, 7, 0.94);
+
   border-color: var(--border);
+
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.18);
 }
 
 .nav-container {
-  height: 78px;
+  width: min(
+    calc(100% - 48px),
+    var(--container)
+  );
+
+  height: var(--header-height);
+
+  margin-inline: auto;
 
   display: flex;
   align-items: center;
@@ -169,6 +211,8 @@ button {
   display: grid;
   place-items: center;
 
+  flex-shrink: 0;
+
   border-radius: 13px;
 
   background:
@@ -185,6 +229,7 @@ button {
 
   font-size: 14px;
   font-weight: 900;
+
   letter-spacing: -0.5px;
 }
 
@@ -192,13 +237,18 @@ button {
   display: flex;
   flex-direction: column;
 
+  min-width: 0;
+
   line-height: 1;
 }
 
 .brand-text strong {
   font-size: 15px;
   font-weight: 900;
+
   letter-spacing: 0.8px;
+
+  white-space: nowrap;
 }
 
 .brand-text span {
@@ -208,7 +258,10 @@ button {
 
   font-size: 8px;
   font-weight: 700;
+
   letter-spacing: 1.5px;
+
+  white-space: nowrap;
 }
 
 
@@ -233,6 +286,8 @@ button {
 
   font-size: 14px;
   font-weight: 600;
+
+  white-space: nowrap;
 
   transition:
     color var(--transition);
@@ -260,7 +315,8 @@ button {
 
   transform: translateX(-50%);
 
-  transition: width var(--transition);
+  transition:
+    width var(--transition);
 }
 
 .desktop-nav a:hover {
@@ -292,6 +348,10 @@ button {
 
   font-size: 14px;
   font-weight: 800;
+
+  white-space: nowrap;
+
+  cursor: pointer;
 
   transition:
     transform var(--transition),
@@ -328,7 +388,8 @@ button {
 
   border: 1px solid var(--border);
 
-  background: rgba(255, 255, 255, 0.035);
+  background:
+    rgba(255, 255, 255, 0.035);
 }
 
 .secondary-btn:hover {
@@ -336,7 +397,8 @@ button {
 
   border-color: var(--border-hover);
 
-  background: rgba(139, 92, 246, 0.08);
+  background:
+    rgba(139, 92, 246, 0.08);
 }
 
 .nav-download {
@@ -353,12 +415,12 @@ button {
 }
 
 .nav-download:hover {
+  transform: translateY(-1px);
+
   border-color: var(--accent);
 
   background:
     rgba(139, 92, 246, 0.20);
-
-  transform: translateY(-1px);
 }
 
 
@@ -374,21 +436,42 @@ button {
 
   align-items: center;
   justify-content: center;
+
   flex-direction: column;
 
   gap: 5px;
 
+  flex-shrink: 0;
+
   border: 1px solid var(--border);
+
   border-radius: 13px;
 
-  background: rgba(255, 255, 255, 0.04);
+  background:
+    rgba(255, 255, 255, 0.04);
+
+  color: #ffffff;
 
   cursor: pointer;
+
+  transition:
+    background var(--transition),
+    border-color var(--transition);
+}
+
+.menu-btn:hover {
+  background:
+    rgba(139, 92, 246, 0.10);
+
+  border-color:
+    rgba(139, 92, 246, 0.30);
 }
 
 .menu-btn span {
   width: 19px;
   height: 2px;
+
+  display: block;
 
   border-radius: 99px;
 
@@ -400,7 +483,9 @@ button {
 }
 
 .menu-btn.active span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+  transform:
+    translateY(7px)
+    rotate(45deg);
 }
 
 .menu-btn.active span:nth-child(2) {
@@ -408,23 +493,32 @@ button {
 }
 
 .menu-btn.active span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+  transform:
+    translateY(-7px)
+    rotate(-45deg);
 }
 
 
 /* =========================================================
-   MOBILE NAVIGATION
+   MOBILE MENU
 ========================================================= */
 
 .mobile-menu {
   display: none;
 
-  padding: 12px 24px 24px;
+  width: 100%;
+
+  padding:
+    12px 24px
+    24px;
 
   border-top: 1px solid var(--border);
 
   background:
     rgba(5, 5, 7, 0.97);
+
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.30);
 }
 
 .mobile-menu a {
@@ -437,7 +531,12 @@ button {
   font-size: 15px;
   font-weight: 650;
 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.045);
+
+  transition:
+    color var(--transition);
 }
 
 .mobile-menu a:hover {
@@ -489,6 +588,7 @@ button {
   content: "";
 
   position: absolute;
+
   inset: 0;
 
   pointer-events: none;
@@ -525,18 +625,22 @@ button {
   top: 100px;
   left: -220px;
 
-  background: var(--accent);
+  background:
+    var(--accent);
 }
 
 .glow-two {
   right: -220px;
   bottom: 50px;
 
-  background: var(--accent-2);
+  background:
+    var(--accent-2);
 }
 
 .hero-grid {
   position: relative;
+
+  width: 100%;
 
   display: grid;
 
@@ -551,7 +655,10 @@ button {
 
 .hero-content {
   position: relative;
+
   z-index: 2;
+
+  min-width: 0;
 }
 
 .hero-badge {
@@ -562,9 +669,13 @@ button {
 
   gap: 9px;
 
-  padding: 8px 13px;
+  padding:
+    8px 13px;
 
-  border: 1px solid rgba(139, 92, 246, 0.25);
+  border:
+    1px solid
+    rgba(139, 92, 246, 0.25);
+
   border-radius: 99px;
 
   color: #cfc7ff;
@@ -574,6 +685,7 @@ button {
 
   font-size: 11px;
   font-weight: 800;
+
   letter-spacing: 1.1px;
 }
 
@@ -581,12 +693,15 @@ button {
   width: 7px;
   height: 7px;
 
+  flex-shrink: 0;
+
   border-radius: 50%;
 
   background: #a78bfa;
 
   box-shadow:
-    0 0 12px rgba(167, 139, 250, 0.9);
+    0 0 12px
+    rgba(167, 139, 250, 0.9);
 }
 
 .hero h1 {
@@ -594,11 +709,8 @@ button {
 
   margin-top: 25px;
 
-  font-size: clamp(
-    48px,
-    6vw,
-    78px
-  );
+  font-size:
+    clamp(48px, 6vw, 78px);
 
   line-height: 0.98;
 
@@ -630,6 +742,7 @@ button {
   color: var(--muted);
 
   font-size: 17px;
+
   line-height: 1.8;
 }
 
@@ -667,22 +780,24 @@ button {
 
 .info-icon {
   color: #a78bfa;
+
   font-weight: 900;
 }
 
 
 /* =========================================================
-   HERO PHONE
+   HERO DEVICE
 ========================================================= */
 
 .hero-device {
   position: relative;
 
+  min-width: 0;
+  min-height: 600px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-
-  min-height: 600px;
 }
 
 .device-glow {
@@ -713,6 +828,8 @@ button {
 
   padding: 8px;
 
+  flex-shrink: 0;
+
   border-radius: 44px;
 
   background:
@@ -723,11 +840,15 @@ button {
       #050507 75%
     );
 
-  border: 1px solid rgba(255, 255, 255, 0.17);
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.17);
 
   box-shadow:
-    0 45px 100px rgba(0, 0, 0, 0.7),
-    0 0 70px rgba(139, 92, 246, 0.16);
+    0 45px 100px
+    rgba(0, 0, 0, 0.7),
+    0 0 70px
+    rgba(139, 92, 246, 0.16);
 
   z-index: 2;
 }
@@ -736,13 +857,16 @@ button {
   content: "";
 
   position: absolute;
+
   inset: 3px;
 
   border-radius: 41px;
 
   pointer-events: none;
 
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.06);
 }
 
 .phone-notch {
@@ -784,8 +908,6 @@ button {
   width: 100%;
   height: 100%;
 
-  display: block;
-
   object-fit: cover;
   object-position: center;
 
@@ -807,9 +929,13 @@ button {
 
   gap: 9px;
 
-  padding: 11px 14px;
+  padding:
+    11px 14px;
 
-  border: 1px solid var(--border);
+  border:
+    1px solid
+    var(--border);
+
   border-radius: 14px;
 
   background:
@@ -819,7 +945,8 @@ button {
   -webkit-backdrop-filter: blur(14px);
 
   box-shadow:
-    0 15px 35px rgba(0, 0, 0, 0.35);
+    0 15px 35px
+    rgba(0, 0, 0, 0.35);
 
   color: #ffffff;
 
@@ -830,11 +957,13 @@ button {
 }
 
 .floating-card span {
+  width: 27px;
+  height: 27px;
+
   display: grid;
   place-items: center;
 
-  min-width: 27px;
-  height: 27px;
+  flex-shrink: 0;
 
   border-radius: 9px;
 
@@ -863,13 +992,15 @@ button {
 
 
 /* =========================================================
-   SECTION
+   GENERAL SECTIONS
 ========================================================= */
 
 .section {
   position: relative;
 
   padding: 110px 0;
+
+  scroll-margin-top: 90px;
 }
 
 .section-heading {
@@ -885,16 +1016,14 @@ button {
 
   font-size: 11px;
   font-weight: 900;
+
   letter-spacing: 1.7px;
 }
 
 .section-heading h2,
 .highlight-content h2 {
-  font-size: clamp(
-    38px,
-    5vw,
-    58px
-  );
+  font-size:
+    clamp(38px, 5vw, 58px);
 
   line-height: 1.05;
 
@@ -917,6 +1046,8 @@ button {
   color: var(--muted);
 
   font-size: 16px;
+
+  line-height: 1.75;
 }
 
 
@@ -936,13 +1067,17 @@ button {
 .feature-card {
   position: relative;
 
+  min-width: 0;
   min-height: 235px;
 
   padding: 28px;
 
   overflow: hidden;
 
-  border: 1px solid var(--border);
+  border:
+    1px solid
+    var(--border);
+
   border-radius: var(--radius);
 
   background:
@@ -982,7 +1117,8 @@ button {
 .feature-card:hover {
   transform: translateY(-5px);
 
-  border-color: var(--border-hover);
+  border-color:
+    var(--border-hover);
 
   background:
     linear-gradient(
@@ -1012,7 +1148,9 @@ button {
       rgba(236, 72, 153, 0.16)
     );
 
-  border: 1px solid rgba(139, 92, 246, 0.22);
+  border:
+    1px solid
+    rgba(139, 92, 246, 0.22);
 
   font-size: 17px;
   font-weight: 900;
@@ -1029,12 +1167,13 @@ button {
   color: var(--muted);
 
   font-size: 13px;
+
   line-height: 1.7;
 }
 
 
 /* =========================================================
-   APP SHOWCASE
+   SHOWCASE
 ========================================================= */
 
 .showcase-section {
@@ -1071,13 +1210,16 @@ button {
 
   border-radius: 27px;
 
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.10);
 
   background:
     #09090d;
 
   box-shadow:
-    0 25px 70px rgba(0, 0, 0, 0.35);
+    0 25px 70px
+    rgba(0, 0, 0, 0.35);
 
   transition:
     transform var(--transition),
@@ -1089,6 +1231,7 @@ button {
   content: "";
 
   position: absolute;
+
   inset: 0;
 
   pointer-events: none;
@@ -1096,22 +1239,25 @@ button {
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,0.06),
+      rgba(255, 255, 255, 0.06),
       transparent 18%,
       transparent 80%,
-      rgba(0,0,0,0.12)
+      rgba(0, 0, 0, 0.12)
     );
 }
 
-.real-screenshot-card:hover .real-screenshot-frame {
+.real-screenshot-card:hover
+.real-screenshot-frame {
   transform: translateY(-7px);
 
   border-color:
     rgba(139, 92, 246, 0.42);
 
   box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.48),
-    0 0 45px rgba(139, 92, 246, 0.08);
+    0 30px 80px
+    rgba(0, 0, 0, 0.48),
+    0 0 45px
+    rgba(139, 92, 246, 0.08);
 }
 
 .real-screenshot-frame img {
@@ -1131,7 +1277,8 @@ button {
 }
 
 .screenshot-info {
-  padding: 19px 4px 0;
+  padding:
+    19px 4px 0;
 }
 
 .screenshot-info h3 {
@@ -1149,7 +1296,7 @@ button {
 
 
 /* =========================================================
-   HIGHLIGHT SECTION
+   HIGHLIGHT
 ========================================================= */
 
 .highlight-section {
@@ -1194,9 +1341,13 @@ button {
 }
 
 .large-player-card {
+  width: 100%;
+
   overflow: hidden;
 
-  border: 1px solid var(--border);
+  border:
+    1px solid
+    var(--border);
 
   border-radius: 27px;
 
@@ -1204,7 +1355,8 @@ button {
     #0c0c11;
 
   box-shadow:
-    0 30px 90px rgba(0, 0, 0, 0.48);
+    0 30px 90px
+    rgba(0, 0, 0, 0.48);
 }
 
 .large-video {
@@ -1215,7 +1367,12 @@ button {
 
   overflow: hidden;
 
-  background: #050507;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    #050507;
 }
 
 .large-video img {
@@ -1227,40 +1384,8 @@ button {
   object-fit: contain;
   object-position: center;
 
-  background: #050507;
-}
-
-.large-play {
-  position: absolute;
-
-  top: 50%;
-  left: 50%;
-
-  width: 66px;
-  height: 66px;
-
-  display: grid;
-  place-items: center;
-
-  transform: translate(-50%, -50%);
-
-  border-radius: 50%;
-
-  color: #ffffff;
-
   background:
-    linear-gradient(
-      135deg,
-      var(--accent),
-      var(--accent-2)
-    );
-
-  box-shadow:
-    0 15px 40px rgba(139, 92, 246, 0.35);
-
-  font-size: 21px;
-
-  cursor: pointer;
+    #050507;
 }
 
 .large-controls {
@@ -1272,9 +1397,12 @@ button {
 
   gap: 20px;
 
-  padding: 18px 22px;
+  padding:
+    18px 22px;
 
-  border-top: 1px solid var(--border);
+  border-top:
+    1px solid
+    var(--border);
 }
 
 .large-player-info {
@@ -1282,6 +1410,8 @@ button {
   flex-direction: column;
 
   min-width: 0;
+
+  flex: 1;
 }
 
 .large-player-info strong {
@@ -1306,6 +1436,8 @@ button {
   display: flex;
   align-items: center;
 
+  flex-shrink: 0;
+
   gap: 11px;
 }
 
@@ -1317,11 +1449,14 @@ button {
   display: grid;
   place-items: center;
 
+  flex-shrink: 0;
+
   border-radius: 10px;
 
   color: var(--muted);
 
-  background: rgba(255,255,255,0.045);
+  background:
+    rgba(255, 255, 255, 0.045);
 
   font-size: 12px;
 }
@@ -1358,6 +1493,7 @@ button {
   color: var(--muted);
 
   font-size: 15px;
+
   line-height: 1.8;
 }
 
@@ -1377,6 +1513,8 @@ button {
   align-items: center;
 
   gap: 9px;
+
+  min-width: 0;
 
   color: #cfcfd7;
 
@@ -1400,7 +1538,9 @@ button {
   background:
     rgba(139, 92, 246, 0.18);
 
-  border: 1px solid rgba(139, 92, 246, 0.25);
+  border:
+    1px solid
+    rgba(139, 92, 246, 0.25);
 
   font-size: 11px;
   font-weight: 900;
@@ -1415,7 +1555,9 @@ button {
   margin-top: 24px;
   padding-top: 24px;
 
-  border-top: 1px solid rgba(255,255,255,0.07);
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.07);
 }
 
 .highlight-icon {
@@ -1438,7 +1580,9 @@ button {
       rgba(236, 72, 153, 0.18)
     );
 
-  border: 1px solid rgba(139, 92, 246, 0.25);
+  border:
+    1px solid
+    rgba(139, 92, 246, 0.25);
 
   font-size: 12px;
   font-weight: 900;
@@ -1455,19 +1599,20 @@ button {
   color: var(--muted);
 
   font-size: 12px;
+
   line-height: 1.65;
 }
 
 
 /* =========================================================
-   INSTALLATION GUIDE
+   GUIDE
 ========================================================= */
 
 .guide-section {
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,0.01),
+      rgba(255, 255, 255, 0.01),
       transparent
     );
 }
@@ -1484,25 +1629,34 @@ button {
 .step {
   position: relative;
 
-  padding: 30px;
-
+  min-width: 0;
   min-height: 220px;
 
-  border: 1px solid var(--border);
+  padding: 30px;
+
+  border:
+    1px solid
+    var(--border);
+
   border-radius: var(--radius);
 
   background:
-    rgba(255,255,255,0.025);
+    rgba(255, 255, 255, 0.025);
 
   transition:
     transform var(--transition),
-    border-color var(--transition);
+    border-color var(--transition),
+    background var(--transition);
 }
 
 .step:hover {
   transform: translateY(-5px);
 
-  border-color: var(--border-hover);
+  border-color:
+    var(--border-hover);
+
+  background:
+    rgba(139, 92, 246, 0.04);
 }
 
 .step-number {
@@ -1510,6 +1664,7 @@ button {
 
   font-size: 12px;
   font-weight: 900;
+
   letter-spacing: 1px;
 }
 
@@ -1526,6 +1681,7 @@ button {
   color: var(--muted);
 
   font-size: 13px;
+
   line-height: 1.7;
 }
 
@@ -1535,6 +1691,7 @@ button {
 ========================================================= */
 
 .faq-container {
+  width: 100%;
   max-width: 900px;
 }
 
@@ -1548,11 +1705,14 @@ button {
 .faq-item {
   overflow: hidden;
 
-  border: 1px solid var(--border);
+  border:
+    1px solid
+    var(--border);
+
   border-radius: 17px;
 
   background:
-    rgba(255,255,255,0.025);
+    rgba(255, 255, 255, 0.025);
 
   transition:
     border-color var(--transition),
@@ -1576,7 +1736,8 @@ button {
 
   gap: 20px;
 
-  padding: 20px 22px;
+  padding:
+    20px 22px;
 
   border: 0;
 
@@ -1592,7 +1753,13 @@ button {
   font-weight: 750;
 }
 
+.faq-question span:first-child {
+  min-width: 0;
+}
+
 .faq-question span:last-child {
+  flex-shrink: 0;
+
   color: #a78bfa;
 
   font-size: 22px;
@@ -1621,11 +1788,13 @@ button {
 
   overflow: hidden;
 
-  padding: 0 22px;
+  padding:
+    0 22px;
 
   color: var(--muted);
 
   font-size: 13px;
+
   line-height: 1.75;
 
   transition:
@@ -1650,7 +1819,9 @@ button {
 .download-section {
   position: relative;
 
-  padding: 90px 0 120px;
+  padding:
+    90px 0
+    120px;
 }
 
 .download-box {
@@ -1668,7 +1839,9 @@ button {
 
   overflow: hidden;
 
-  border: 1px solid rgba(139, 92, 246, 0.18);
+  border:
+    1px solid
+    rgba(139, 92, 246, 0.18);
 
   border-radius: 32px;
 
@@ -1686,13 +1859,15 @@ button {
     #0c0c12;
 
   box-shadow:
-    0 30px 80px rgba(0,0,0,0.3);
+    0 30px 80px
+    rgba(0, 0, 0, 0.3);
 }
 
 .download-box::before {
   content: "";
 
   position: absolute;
+
   inset: 0;
 
   pointer-events: none;
@@ -1701,7 +1876,7 @@ button {
     linear-gradient(
       110deg,
       transparent,
-      rgba(255,255,255,0.025),
+      rgba(255, 255, 255, 0.025),
       transparent
     );
 }
@@ -1711,15 +1886,14 @@ button {
 
   max-width: 600px;
 
+  min-width: 0;
+
   z-index: 2;
 }
 
 .download-content h2 {
-  font-size: clamp(
-    40px,
-    5vw,
-    58px
-  );
+  font-size:
+    clamp(40px, 5vw, 58px);
 
   line-height: 1;
 
@@ -1736,6 +1910,8 @@ button {
   color: var(--muted);
 
   font-size: 15px;
+
+  line-height: 1.7;
 }
 
 .download-content .primary-btn {
@@ -1758,8 +1934,8 @@ button {
   background:
     radial-gradient(
       circle,
-      rgba(139,92,246,0.25),
-      rgba(139,92,246,0.05) 50%,
+      rgba(139, 92, 246, 0.25),
+      rgba(139, 92, 246, 0.05) 50%,
       transparent 70%
     );
 }
@@ -1768,14 +1944,18 @@ button {
   content: "";
 
   position: absolute;
+
   inset: 20px;
 
   border-radius: 50%;
 
-  border: 1px solid rgba(139,92,246,0.22);
+  border:
+    1px solid
+    rgba(139, 92, 246, 0.22);
 
   box-shadow:
-    0 0 60px rgba(139,92,246,0.12);
+    0 0 60px
+    rgba(139, 92, 246, 0.12);
 }
 
 .download-orb > div {
@@ -1795,7 +1975,8 @@ button {
     );
 
   box-shadow:
-    0 20px 50px rgba(139,92,246,0.35);
+    0 20px 50px
+    rgba(139, 92, 246, 0.35);
 
   color: #ffffff;
 
@@ -1809,7 +1990,9 @@ button {
 ========================================================= */
 
 .footer {
-  border-top: 1px solid var(--border);
+  border-top:
+    1px solid
+    var(--border);
 
   background:
     #07070a;
@@ -1825,15 +2008,24 @@ button {
 
   gap: 60px;
 
-  padding: 70px 0;
+  padding:
+    70px 0;
+}
+
+.footer-brand {
+  min-width: 0;
 }
 
 .footer-brand p {
+  max-width: 420px;
+
   margin-top: 17px;
 
   color: var(--muted);
 
   font-size: 13px;
+
+  line-height: 1.7;
 }
 
 .footer-column {
@@ -1868,13 +2060,17 @@ button {
 }
 
 .footer-bottom {
-  padding: 20px 0;
+  padding:
+    20px 0;
 
-  border-top: 1px solid var(--border);
+  border-top:
+    1px solid
+    var(--border);
 
   color: var(--muted-2);
 
   font-size: 11px;
+
   text-align: center;
 }
 
@@ -1891,26 +2087,35 @@ button {
 
   z-index: 2000;
 
-  max-width: calc(100% - 32px);
+  width: max-content;
+  max-width:
+    calc(100% - 32px);
 
-  padding: 13px 18px;
+  padding:
+    13px 18px;
 
-  border: 1px solid var(--border);
+  border:
+    1px solid
+    var(--border);
+
   border-radius: 13px;
 
   background:
-    rgba(15,15,22,0.95);
+    rgba(15, 15, 22, 0.95);
 
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 
   box-shadow:
-    0 15px 45px rgba(0,0,0,0.4);
+    0 15px 45px
+    rgba(0, 0, 0, 0.4);
 
   color: #ffffff;
 
   font-size: 12px;
   font-weight: 650;
+
+  text-align: center;
 
   opacity: 0;
   visibility: hidden;
@@ -1926,6 +2131,7 @@ button {
 
 .toast.show {
   opacity: 1;
+
   visibility: visible;
 
   transform:
@@ -1940,7 +2146,8 @@ button {
 .reveal {
   opacity: 0;
 
-  transform: translateY(25px);
+  transform:
+    translateY(25px);
 
   transition:
     opacity 0.7s ease,
@@ -1950,21 +2157,49 @@ button {
 .reveal.visible {
   opacity: 1;
 
-  transform: translateY(0);
+  transform:
+    translateY(0);
 }
 
 
 /* =========================================================
-   TABLET
+   LARGE DESKTOP
 ========================================================= */
 
-@media (max-width: 1050px) {
+@media (min-width: 1400px) {
 
-  .container {
-    width: min(
-      calc(100% - 40px),
-      var(--container)
-    );
+  .hero {
+    min-height: 820px;
+  }
+
+  .hero-grid {
+    gap: 110px;
+  }
+
+  .phone {
+    width: 315px;
+    height: 635px;
+  }
+
+  .hero-device {
+    min-height: 650px;
+  }
+}
+
+
+/* =========================================================
+   TABLET / SMALL LAPTOP
+========================================================= */
+
+@media (max-width: 1100px) {
+
+  .container,
+  .nav-container {
+    width:
+      min(
+        calc(100% - 40px),
+        var(--container)
+      );
   }
 
   .desktop-nav {
@@ -1976,11 +2211,8 @@ button {
   }
 
   .hero h1 {
-    font-size: clamp(
-      48px,
-      6vw,
-      65px
-    );
+    font-size:
+      clamp(48px, 6vw, 65px);
   }
 
   .hero-device {
@@ -2002,10 +2234,10 @@ button {
 
 
 /* =========================================================
-   TABLET / SMALL LAPTOP
+   TABLET
 ========================================================= */
 
-@media (max-width: 850px) {
+@media (max-width: 900px) {
 
   .desktop-nav,
   .nav-download {
@@ -2025,7 +2257,7 @@ button {
 
     text-align: center;
 
-    gap: 60px;
+    gap: 55px;
   }
 
   .hero-content {
@@ -2061,7 +2293,7 @@ button {
     grid-template-columns:
       repeat(3, minmax(0, 1fr));
 
-    gap: 14px;
+    gap: 15px;
   }
 
   .highlight-grid {
@@ -2088,6 +2320,10 @@ button {
   .download-box {
     min-height: 320px;
   }
+
+  .footer-grid {
+    gap: 40px;
+  }
 }
 
 
@@ -2098,14 +2334,20 @@ button {
 @media (max-width: 650px) {
 
   .container {
-    width: min(
-      calc(100% - 30px),
-      var(--container)
-    );
+    width:
+      calc(100% - 30px);
   }
 
   .nav-container {
+    width:
+      calc(100% - 30px);
+
     height: 70px;
+  }
+
+  .header {
+    background:
+      rgba(5, 5, 7, 0.88);
   }
 
   .brand-logo {
@@ -2128,7 +2370,9 @@ button {
   }
 
 
-  /* HERO */
+  /* -------------------------------------------------------
+     HERO
+  ------------------------------------------------------- */
 
   .hero {
     min-height: auto;
@@ -2143,20 +2387,23 @@ button {
   }
 
   .hero-badge {
-    font-size: 9px;
+    max-width: 100%;
 
     padding:
       7px 11px;
+
+    font-size: 9px;
+
+    text-align: center;
   }
 
   .hero h1 {
+    max-width: 100%;
+
     margin-top: 20px;
 
-    font-size: clamp(
-      42px,
-      12vw,
-      58px
-    );
+    font-size:
+      clamp(42px, 12vw, 58px);
 
     letter-spacing: -2.5px;
   }
@@ -2180,19 +2427,39 @@ button {
   }
 
   .hero-actions a {
-    width: min(100%, 340px);
+    width:
+      min(100%, 340px);
   }
 
   .hero-info {
-    gap: 11px 17px;
+    gap:
+      11px 17px;
 
     margin-top: 24px;
+
+    justify-content: center;
 
     font-size: 10px;
   }
 
+
+  /* -------------------------------------------------------
+     PHONE
+  ------------------------------------------------------- */
+
   .hero-device {
+    width: 100%;
+
     min-height: 565px;
+
+    transform: none;
+  }
+
+  .device-glow {
+    width: 260px;
+    height: 420px;
+
+    filter: blur(50px);
   }
 
   .phone {
@@ -2218,33 +2485,39 @@ button {
   }
 
   .floating-card {
-    padding: 9px 11px;
+    padding:
+      9px 11px;
 
     font-size: 9px;
   }
 
   .floating-card span {
-    min-width: 24px;
+    width: 24px;
     height: 24px;
+
+    min-width: 24px;
 
     font-size: 9px;
   }
 
   .card-one {
-    left: -2px;
+    left: 0;
     bottom: 90px;
   }
 
   .card-two {
-    right: -2px;
+    right: 0;
     top: 105px;
   }
 
 
-  /* SECTION */
+  /* -------------------------------------------------------
+     SECTIONS
+  ------------------------------------------------------- */
 
   .section {
-    padding: 80px 0;
+    padding:
+      80px 0;
   }
 
   .section-heading {
@@ -2252,6 +2525,8 @@ button {
   }
 
   .section-label {
+    margin-bottom: 10px;
+
     font-size: 9px;
   }
 
@@ -2266,10 +2541,14 @@ button {
     margin-top: 13px;
 
     font-size: 13px;
+
+    line-height: 1.7;
   }
 
 
-  /* FEATURES */
+  /* -------------------------------------------------------
+     FEATURES
+  ------------------------------------------------------- */
 
   .feature-grid {
     grid-template-columns: 1fr;
@@ -2281,6 +2560,8 @@ button {
     min-height: auto;
 
     padding: 24px;
+
+    border-radius: 21px;
   }
 
   .feature-icon {
@@ -2288,6 +2569,8 @@ button {
     height: 44px;
 
     margin-bottom: 18px;
+
+    border-radius: 13px;
   }
 
   .feature-card h3 {
@@ -2299,45 +2582,38 @@ button {
   }
 
 
-  /* SCREENSHOTS */
+  /* -------------------------------------------------------
+     SCREENSHOTS
+  ------------------------------------------------------- */
 
   .real-screenshot-grid {
-    display: flex;
+    display: grid;
 
-    width: calc(100vw - 15px);
+    grid-template-columns: 1fr;
 
-    margin-left: 0;
+    width: 100%;
 
-    overflow-x: auto;
+    gap: 25px;
 
-    gap: 13px;
-
-    padding:
-      3px 0
-      12px;
-
-    scroll-snap-type: x mandatory;
-
-    scrollbar-width: none;
-  }
-
-  .real-screenshot-grid::-webkit-scrollbar {
-    display: none;
+    overflow: visible;
   }
 
   .real-screenshot-card {
-    width: 245px;
-    min-width: 245px;
-
-    scroll-snap-align: start;
+    width: 100%;
+    min-width: 0;
   }
 
   .real-screenshot-frame {
+    width: 100%;
+
+    aspect-ratio: 9 / 16;
+
     border-radius: 23px;
   }
 
   .screenshot-info {
-    padding-top: 14px;
+    padding:
+      14px 3px 0;
   }
 
   .screenshot-info h3 {
@@ -2349,10 +2625,13 @@ button {
   }
 
 
-  /* HIGHLIGHT */
+  /* -------------------------------------------------------
+     HIGHLIGHT
+  ------------------------------------------------------- */
 
   .highlight-section {
-    padding: 80px 0;
+    padding:
+      80px 0;
   }
 
   .highlight-grid {
@@ -2372,10 +2651,16 @@ button {
 
     padding:
       14px 15px;
+
+    gap: 10px;
   }
 
   .large-player-info strong {
     font-size: 12px;
+  }
+
+  .large-player-info small {
+    font-size: 9px;
   }
 
   .large-buttons {
@@ -2421,7 +2706,9 @@ button {
   }
 
 
-  /* GUIDE */
+  /* -------------------------------------------------------
+     GUIDE
+  ------------------------------------------------------- */
 
   .steps-grid {
     grid-template-columns: 1fr;
@@ -2433,6 +2720,8 @@ button {
     min-height: auto;
 
     padding: 22px;
+
+    border-radius: 21px;
   }
 
   .step h3 {
@@ -2446,7 +2735,9 @@ button {
   }
 
 
-  /* FAQ */
+  /* -------------------------------------------------------
+     FAQ
+  ------------------------------------------------------- */
 
   .faq-list {
     gap: 8px;
@@ -2456,7 +2747,13 @@ button {
     padding:
       17px 16px;
 
+    gap: 15px;
+
     font-size: 13px;
+  }
+
+  .faq-question span:last-child {
+    font-size: 20px;
   }
 
   .faq-answer p {
@@ -2465,14 +2762,17 @@ button {
     font-size: 12px;
   }
 
-  .faq-item.active .faq-answer p {
+  .faq-item.active
+  .faq-answer p {
     padding:
       0 16px
       17px;
   }
 
 
-  /* DOWNLOAD */
+  /* -------------------------------------------------------
+     DOWNLOAD
+  ------------------------------------------------------- */
 
   .download-section {
     padding:
@@ -2489,9 +2789,14 @@ button {
 
     gap: 20px;
 
-    padding: 35px 25px;
+    padding:
+      35px 25px;
 
     border-radius: 25px;
+  }
+
+  .download-content {
+    width: 100%;
   }
 
   .download-content h2 {
@@ -2521,7 +2826,9 @@ button {
   }
 
 
-  /* FOOTER */
+  /* -------------------------------------------------------
+     FOOTER
+  ------------------------------------------------------- */
 
   .footer-grid {
     grid-template-columns: 1fr;
@@ -2547,10 +2854,24 @@ button {
   }
 
   .footer-bottom {
-    font-size: 9px;
-
     padding:
       17px 10px;
+
+    font-size: 9px;
+  }
+
+
+  /* -------------------------------------------------------
+     TOAST
+  ------------------------------------------------------- */
+
+  .toast {
+    bottom: 18px;
+
+    padding:
+      12px 15px;
+
+    font-size: 11px;
   }
 }
 
@@ -2562,7 +2883,13 @@ button {
 @media (max-width: 400px) {
 
   .container {
-    width: calc(100% - 24px);
+    width:
+      calc(100% - 24px);
+  }
+
+  .nav-container {
+    width:
+      calc(100% - 24px);
   }
 
   .hero {
@@ -2582,7 +2909,8 @@ button {
   .hero-info {
     font-size: 9px;
 
-    gap: 9px 12px;
+    gap:
+      9px 12px;
   }
 
   .hero-device {
@@ -2624,17 +2952,23 @@ button {
     font-size: 32px;
   }
 
-  .real-screenshot-card {
-    width: 225px;
-    min-width: 225px;
-  }
-
   .large-video {
     height: 315px;
   }
 
+  .large-controls {
+    padding:
+      12px;
+  }
+
+  .large-player-info {
+    max-width:
+      calc(100% - 125px);
+  }
+
   .download-box {
-    padding: 30px 20px;
+    padding:
+      30px 20px;
   }
 
   .download-content h2 {
@@ -2651,6 +2985,20 @@ button {
 
   .brand-text span {
     display: none;
+  }
+
+  .brand-text strong {
+    font-size: 13px;
+  }
+
+  .brand-logo {
+    width: 37px;
+    height: 37px;
+  }
+
+  .menu-btn {
+    width: 41px;
+    height: 41px;
   }
 
   .hero h1 {
@@ -2670,13 +3018,30 @@ button {
     display: none;
   }
 
-  .real-screenshot-card {
-    width: 210px;
-    min-width: 210px;
-  }
-
   .large-video {
     height: 285px;
+  }
+
+  .large-controls {
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 12px;
+  }
+
+  .large-player-info {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .large-buttons {
+    width: 100%;
+
+    justify-content: flex-end;
+  }
+
+  .download-content h2 {
+    font-size: 33px;
   }
 }
 
