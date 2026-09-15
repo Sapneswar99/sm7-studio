@@ -95,6 +95,7 @@
                 Login to continue
             </p>
 
+            <!-- REAL FIREBASE GOOGLE LOGIN -->
             <button
                 type="button"
                 id="googleLoginButton"
@@ -112,12 +113,16 @@
                 <span></span>
             </div>
 
+            <!-- REAL FIREBASE EMAIL LOGIN -->
             <form
                 id="loginForm"
                 autocomplete="on">
 
                 <div class="auth-field">
-                    <label for="loginEmail">Email</label>
+
+                    <label for="loginEmail">
+                        Email
+                    </label>
 
                     <input
                         type="email"
@@ -126,10 +131,14 @@
                         placeholder="Enter your email"
                         autocomplete="email"
                         required>
+
                 </div>
 
                 <div class="auth-field">
-                    <label for="loginPassword">Password</label>
+
+                    <label for="loginPassword">
+                        Password
+                    </label>
 
                     <input
                         type="password"
@@ -139,9 +148,11 @@
                         autocomplete="current-password"
                         minlength="6"
                         required>
+
                 </div>
 
                 <div class="forgot-row">
+
                     <button
                         type="button"
                         id="loginForgotPassword"
@@ -150,6 +161,7 @@
                         Forgot Password?
 
                     </button>
+
                 </div>
 
                 <button
@@ -171,7 +183,9 @@
 
             <div class="auth-bottom-text">
 
-                <span>Don't have an account?</span>
+                <span>
+                    Don't have an account?
+                </span>
 
                 <button
                     type="button"
@@ -203,18 +217,24 @@
     class="main-app"
     aria-hidden="true">
 
-    <!-- NAVBAR -->
+    <!-- =================================================
+         NAVBAR
+    ================================================== -->
+
     <header>
 
         <div class="logo">
 
             <div class="logo-icon">
+
                 <img
                     src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
                     alt="Super Video Player">
+
             </div>
 
             <div>
+
                 <h2>
                     <span>Super</span> Video Player
                 </h2>
@@ -222,18 +242,32 @@
                 <small>
                     Play Everything. Anywhere.
                 </small>
+
             </div>
 
         </div>
 
+
         <nav id="nav">
 
-            <a href="#home">Home</a>
-            <a href="#features">Features</a>
-            <a href="#download">Download</a>
-            <a href="#reviews">Reviews</a>
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#features">
+                Features
+            </a>
+
+            <a href="#download">
+                Download
+            </a>
+
+            <a href="#reviews">
+                Reviews
+            </a>
 
         </nav>
+
 
         <div class="auth-buttons">
 
@@ -261,6 +295,7 @@
 
             </button>
 
+
             <button
                 class="logout-btn"
                 id="logoutButton"
@@ -275,7 +310,10 @@
     </header>
 
 
-    <!-- HERO -->
+    <!-- =================================================
+         HERO
+    ================================================== -->
+
     <section
         class="hero"
         id="home">
@@ -311,14 +349,27 @@
             </button>
 
             <div class="specs">
-                <span>Android 7.0+</span>
+
+                <span>
+                    Android 7.0+
+                </span>
+
                 <span>•</span>
-                <span>28 MB</span>
+
+                <span>
+                    28 MB
+                </span>
+
                 <span>•</span>
-                <span>Safe & Secure</span>
+
+                <span>
+                    Safe & Secure
+                </span>
+
             </div>
 
         </div>
+
 
         <div class="hero-art">
 
@@ -335,45 +386,105 @@
     </section>
 
 
-    <!-- FEATURES -->
+    <!-- =================================================
+         FEATURES
+    ================================================== -->
+
     <section
         class="features"
         id="features">
 
         <div class="feature">
-            <div class="feature-icon">ϟ</div>
-            <h3>HD Playback</h3>
-            <p>High quality smooth video playback.</p>
+
+            <div class="feature-icon">
+                ϟ
+            </div>
+
+            <h3>
+                HD Playback
+            </h3>
+
+            <p>
+                High quality smooth video playback.
+            </p>
+
         </div>
 
-        <div class="feature">
-            <div class="feature-icon">⚡</div>
-            <h3>Fast & Smooth</h3>
-            <p>Optimized for fast performance.</p>
-        </div>
 
         <div class="feature">
-            <div class="feature-icon">▣</div>
-            <h3>All Formats</h3>
-            <p>MP4, MKV, AVI, FLV, MOV and more.</p>
+
+            <div class="feature-icon">
+                ⚡
+            </div>
+
+            <h3>
+                Fast & Smooth
+            </h3>
+
+            <p>
+                Optimized for fast performance.
+            </p>
+
         </div>
 
-        <div class="feature">
-            <div class="feature-icon">▰</div>
-            <h3>Video Support</h3>
-            <p>Browse and manage video.</p>
-        </div>
 
         <div class="feature">
-            <div class="feature-icon">★</div>
-            <h3>Clean UI</h3>
-            <p>Simple modern interface.</p>
+
+            <div class="feature-icon">
+                ▣
+            </div>
+
+            <h3>
+                All Formats
+            </h3>
+
+            <p>
+                MP4, MKV, AVI, FLV, MOV and more.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                ▰
+            </div>
+
+            <h3>
+                Video Support
+            </h3>
+
+            <p>
+                Browse and manage video.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                ★
+            </div>
+
+            <h3>
+                Clean UI
+            </h3>
+
+            <p>
+                Simple modern interface.
+            </p>
+
         </div>
 
     </section>
 
 
-    <!-- DOWNLOAD -->
+    <!-- =================================================
+         DOWNLOAD
+    ================================================== -->
+
     <section
         class="download-section"
         id="download">
@@ -388,9 +499,12 @@
 
             </div>
 
+
             <div class="download-card-content">
 
-                <small>ANDROID APP</small>
+                <small>
+                    ANDROID APP
+                </small>
 
                 <h2>
                     Download Super Video Player
@@ -402,6 +516,7 @@
                 </p>
 
             </div>
+
 
             <button
                 class="download-btn"
@@ -417,40 +532,56 @@
     </section>
 
 
-    <!-- DOWNLOAD COUNT -->
+    <!-- =================================================
+         DOWNLOAD COUNT
+    ================================================== -->
+
     <section class="stats">
 
         <div class="counter-card">
 
-            <h2 id="downloadCount">0</h2>
+            <h2 id="downloadCount">
+                0
+            </h2>
 
-            <p>Total Downloads</p>
+            <p>
+                Total Downloads
+            </p>
 
         </div>
 
     </section>
 
 
-    <!-- REVIEWS -->
+    <!-- =================================================
+         REVIEWS
+    ================================================== -->
+
     <section
         class="reviews"
         id="reviews">
 
-        <h2>User Reviews</h2>
+        <h2>
+            User Reviews
+        </h2>
 
         <p class="reviews-subtitle">
             Share your experience with Super Video Player.
         </p>
 
+
         <form
             class="review-form"
             id="reviewForm">
 
+            <!-- CURRENT USER -->
             <div
                 class="review-user"
                 id="reviewUser">
 
-                <span>Reviewing as</span>
+                <span>
+                    Reviewing as
+                </span>
 
                 <strong id="reviewUserName">
                     User
@@ -458,9 +589,13 @@
 
             </div>
 
+
+            <!-- PLAY STORE STYLE RATING -->
             <div class="rating-box">
 
-                <label>Rating</label>
+                <label>
+                    Rating
+                </label>
 
                 <div
                     class="star-rating"
@@ -474,7 +609,11 @@
                         data-rating="1"
                         aria-label="1 star"
                         aria-checked="false"
-                        role="radio">★</button>
+                        role="radio">
+
+                        ★
+
+                    </button>
 
                     <button
                         type="button"
@@ -482,7 +621,11 @@
                         data-rating="2"
                         aria-label="2 stars"
                         aria-checked="false"
-                        role="radio">★</button>
+                        role="radio">
+
+                        ★
+
+                    </button>
 
                     <button
                         type="button"
@@ -490,7 +633,11 @@
                         data-rating="3"
                         aria-label="3 stars"
                         aria-checked="false"
-                        role="radio">★</button>
+                        role="radio">
+
+                        ★
+
+                    </button>
 
                     <button
                         type="button"
@@ -498,7 +645,11 @@
                         data-rating="4"
                         aria-label="4 stars"
                         aria-checked="false"
-                        role="radio">★</button>
+                        role="radio">
+
+                        ★
+
+                    </button>
 
                     <button
                         type="button"
@@ -506,9 +657,14 @@
                         data-rating="5"
                         aria-label="5 stars"
                         aria-checked="false"
-                        role="radio">★</button>
+                        role="radio">
+
+                        ★
+
+                    </button>
 
                 </div>
+
 
                 <input
                     type="hidden"
@@ -518,12 +674,16 @@
 
             </div>
 
+
+            <!-- REVIEW TEXT -->
             <textarea
                 id="reviewText"
                 placeholder="Write your review..."
                 maxlength="500"
                 required></textarea>
 
+
+            <!-- SUBMIT -->
             <button
                 class="review-submit"
                 id="reviewSubmit"
@@ -533,6 +693,7 @@
 
             </button>
 
+
             <p
                 id="reviewMessage"
                 class="form-message"
@@ -541,6 +702,8 @@
 
         </form>
 
+
+        <!-- REVIEWS ARE LOADED FROM FIRESTORE -->
         <div
             id="reviewsList"
             aria-live="polite">
@@ -554,7 +717,10 @@
     </section>
 
 
-    <!-- PROFILE MODAL -->
+    <!-- =================================================
+         PROFILE MODAL
+    ================================================== -->
+
     <div
         class="modal"
         id="profileModal"
@@ -575,9 +741,15 @@
 
             </button>
 
+
             <div class="profile-modal-avatar">
-                <span id="profileModalAvatar">U</span>
+
+                <span id="profileModalAvatar">
+                    U
+                </span>
+
             </div>
+
 
             <h2 id="profileModalTitle">
                 My Profile
@@ -587,11 +759,14 @@
                 Manage your account information.
             </p>
 
+
             <div class="profile-info">
 
                 <div class="profile-info-item">
 
-                    <span>Email</span>
+                    <span>
+                        Email
+                    </span>
 
                     <strong id="profileEmail">
                         —
@@ -600,6 +775,7 @@
                 </div>
 
             </div>
+
 
             <form
                 id="profileForm"
@@ -619,6 +795,7 @@
                         required>
 
                 </div>
+
 
                 <div class="auth-field">
 
@@ -640,6 +817,7 @@
 
                 </div>
 
+
                 <button
                     type="submit"
                     id="profileSaveButton"
@@ -648,6 +826,7 @@
                     Save Changes
 
                 </button>
+
 
                 <p
                     id="profileMessage"
@@ -662,7 +841,10 @@
     </div>
 
 
-    <!-- REGISTER MODAL -->
+    <!-- =================================================
+         REGISTER MODAL
+    ================================================== -->
+
     <div
         class="modal"
         id="registerModal"
@@ -683,6 +865,7 @@
 
             </button>
 
+
             <div class="modal-logo">
 
                 <img
@@ -690,6 +873,7 @@
                     alt="Super Video Player">
 
             </div>
+
 
             <h2 id="registerModalTitle">
                 Create Account
@@ -699,23 +883,38 @@
                 Create your Super Video Player account.
             </p>
 
+
+            <!-- REAL FIREBASE GOOGLE REGISTER -->
             <button
                 type="button"
                 id="googleRegisterButton"
                 class="google-login-btn">
 
-                <span class="google-icon">G</span>
+                <span class="google-icon">
+                    G
+                </span>
 
-                <span>Continue with Google</span>
+                <span>
+                    Continue with Google
+                </span>
 
             </button>
 
+
             <div class="auth-divider">
+
                 <span></span>
-                <small>OR</small>
+
+                <small>
+                    OR
+                </small>
+
                 <span></span>
+
             </div>
 
+
+            <!-- REAL FIREBASE EMAIL REGISTER -->
             <form
                 id="registerForm"
                 autocomplete="on">
@@ -728,12 +927,14 @@
                     maxlength="50"
                     required>
 
+
                 <input
                     type="email"
                     id="registerEmail"
                     placeholder="Email"
                     autocomplete="email"
                     required>
+
 
                 <input
                     type="password"
@@ -742,6 +943,7 @@
                     autocomplete="new-password"
                     minlength="6"
                     required>
+
 
                 <button
                     class="modal-action"
@@ -754,11 +956,13 @@
 
             </form>
 
+
             <p
                 id="registerMessage"
                 class="form-message"
                 aria-live="polite">
             </p>
+
 
             <button
                 class="switch"
@@ -766,7 +970,9 @@
                 type="button">
 
                 Already have an account?
-                <b>Login</b>
+                <b>
+                    Login
+                </b>
 
             </button>
 
@@ -775,7 +981,10 @@
     </div>
 
 
-    <!-- FORGOT PASSWORD -->
+    <!-- =================================================
+         FORGOT PASSWORD
+    ================================================== -->
+
     <div
         class="modal"
         id="forgotModal"
@@ -796,6 +1005,7 @@
 
             </button>
 
+
             <div class="modal-logo">
 
                 <img
@@ -804,15 +1014,19 @@
 
             </div>
 
+
             <h2 id="forgotModalTitle">
                 Forgot Password?
             </h2>
+
 
             <p>
                 Enter your registered email and we will send
                 you a password reset link.
             </p>
 
+
+            <!-- REAL FIREBASE PASSWORD RESET -->
             <form
                 id="forgotForm"
                 autocomplete="on">
@@ -823,6 +1037,7 @@
                     placeholder="Enter your email"
                     autocomplete="email"
                     required>
+
 
                 <button
                     class="modal-action"
@@ -835,18 +1050,22 @@
 
             </form>
 
+
             <p
                 id="forgotMessage"
                 class="form-message"
                 aria-live="polite">
             </p>
 
+
             <button
                 class="switch"
                 id="forgotBackLogin"
                 type="button">
 
-                <b>Back to Login</b>
+                <b>
+                    Back to Login
+                </b>
 
             </button>
 
@@ -855,7 +1074,10 @@
     </div>
 
 
-    <!-- DOWNLOAD COUNTDOWN -->
+    <!-- =================================================
+         DOWNLOAD COUNTDOWN
+    ================================================== -->
+
     <div
         class="modal"
         id="downloadModal"
@@ -874,13 +1096,16 @@
 
             </div>
 
+
             <h2 id="downloadModalTitle">
                 Preparing Download
             </h2>
 
+
             <p id="downloadCountdownText">
                 Your download will start in
             </p>
+
 
             <div
                 id="downloadCountdown"
@@ -891,6 +1116,7 @@
 
             </div>
 
+
             <p class="download-countdown-hint">
                 Please wait...
             </p>
@@ -900,22 +1126,34 @@
     </div>
 
 
-    <!-- FOOTER -->
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
+
     <footer>
 
         <div>
+
             © <span id="year"></span>
             Super Video Player
+
         </div>
 
+
         <div>
+
             Android 7.0+ • APK Download
+
         </div>
 
     </footer>
 
 </div>
 
+
+<!-- =====================================================
+     FIREBASE CONFIG + MAIN JAVASCRIPT
+===================================================== -->
 
 <script src="firebase-config.js"></script>
 <script src="script.js"></script>
