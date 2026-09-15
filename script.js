@@ -9,7 +9,7 @@
 ========================================================= */
 
 // Replace this later with your real APK URL.
-const APK_DOWNLOAD_URL = "#";
+const APK_DOWNLOAD_URL = "https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk";
 
 
 /* =========================================================
