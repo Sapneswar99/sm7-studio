@@ -1,403 +1,446 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+    <meta charset="UTF-8">
 
-  <meta
-    name="theme-color"
-    content="#07070b"
-  >
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-  <meta
-    name="description"
-    content="SUPER VIDEO PLAYER — a modern Android video player designed for smooth and comfortable playback."
-  >
+    <meta
+        name="theme-color"
+        content="#07070b"
+    >
 
-  <meta
-    property="og:title"
-    content="SUPER VIDEO PLAYER — Watch. Play. Enjoy."
-  >
+    <meta
+        name="description"
+        content="SUPER VIDEO PLAYER — a modern Android video player designed for smooth and comfortable playback."
+    >
 
-  <meta
-    property="og:description"
-    content="A modern Android video player for a better viewing experience."
-  >
+    <meta
+        property="og:title"
+        content="SUPER VIDEO PLAYER — Watch. Play. Enjoy."
+    >
 
-  <meta
-    property="og:type"
-    content="website"
-  >
+    <meta
+        property="og:description"
+        content="A modern Android video player for a better viewing experience."
+    >
 
-  <title>
-    SUPER VIDEO PLAYER — Watch. Play. Enjoy.
-  </title>
+    <meta
+        property="og:type"
+        content="website"
+    >
 
-  <link
-    rel="stylesheet"
-    href="style.css"
-  >
+    <meta
+        property="og:url"
+        content="https://sm7-studio.online/"
+    >
+
+    <title>
+        SUPER VIDEO PLAYER — Watch. Play. Enjoy.
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
-  <!-- =========================================================
-       HEADER
-  ========================================================= -->
 
-  <header
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header
     class="header"
     id="header"
-  >
+>
 
     <div class="container nav-container">
 
-      <a
-        href="#home"
-        class="brand"
-      >
 
-        <div class="brand-logo">
-          SV
-        </div>
+        <!-- BRAND -->
 
-        <div class="brand-text">
+        <a
+            href="#home"
+            class="brand"
+            aria-label="SUPER VIDEO PLAYER Home"
+        >
 
-          <strong>
-            SUPER
-          </strong>
+            <div class="brand-logo">
+                SV
+            </div>
 
-          <span>
-            VIDEO PLAYER
-          </span>
+            <div class="brand-text">
 
-        </div>
+                <strong>
+                    SUPER
+                </strong>
 
-      </a>
+                <small>
+                    VIDEO PLAYER
+                </small>
+
+            </div>
+
+        </a>
 
 
-      <!-- Desktop Navigation -->
+        <!-- DESKTOP NAVIGATION -->
 
-      <nav class="desktop-nav">
+        <nav
+            class="desktop-nav"
+            aria-label="Main navigation"
+        >
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#features">
+                Features
+            </a>
+
+            <a href="#screenshots">
+                Screenshots
+            </a>
+
+            <a href="#guide">
+                Guide
+            </a>
+
+            <a href="#faq">
+                FAQ
+            </a>
+
+        </nav>
+
+
+        <!-- DESKTOP DOWNLOAD -->
+
+        <a
+            href="https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk"
+            class="nav-download download-btn"
+            aria-label="Download SUPER VIDEO PLAYER APK"
+        >
+            Download APK
+        </a>
+
+
+        <!-- MOBILE MENU BUTTON -->
+
+        <button
+            class="menu-btn"
+            id="menuBtn"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+        >
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </div>
+
+
+    <!-- MOBILE NAVIGATION -->
+
+    <div
+        class="mobile-menu"
+        id="mobileMenu"
+    >
 
         <a href="#home">
-          Home
+            Home
         </a>
 
         <a href="#features">
-          Features
+            Features
         </a>
 
         <a href="#screenshots">
-          Screenshots
+            Screenshots
         </a>
 
         <a href="#guide">
-          Guide
+            Guide
         </a>
 
         <a href="#faq">
-          FAQ
+            FAQ
         </a>
 
-      </nav>
-
-
-      <!-- Desktop Download -->
-
-      <a
-        href="https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk"
-        class="nav-download download-btn"
-      >
-        Download APK
-      </a>
-
-
-      <!-- Mobile Menu Button -->
-
-      <button
-        class="menu-btn"
-        id="menuBtn"
-        aria-label="Open navigation menu"
-        aria-expanded="false"
-        type="button"
-      >
-
-        <span></span>
-        <span></span>
-        <span></span>
-
-      </button>
+        <a
+            href="https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk"
+            class="mobile-download download-btn"
+        >
+            Download APK
+        </a>
 
     </div>
 
-
-    <!-- Mobile Navigation -->
-
-    <div
-      class="mobile-menu"
-      id="mobileMenu"
-    >
-
-      <a href="#home">
-        Home
-      </a>
-
-      <a href="#features">
-        Features
-      </a>
-
-      <a href="#screenshots">
-        Screenshots
-      </a>
-
-      <a href="#guide">
-        Guide
-      </a>
-
-      <a href="#faq">
-        FAQ
-      </a>
-
-      <a
-        href="https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk"
-        class="mobile-download download-btn"
-      >
-        Download APK
-      </a>
-
-    </div>
-
-  </header>
+</header>
 
 
-  <main>
+
+<main>
 
 
-    <!-- =========================================================
-         HERO
-    ========================================================= -->
+<!-- =========================================================
+     HERO
+========================================================= -->
 
-    <section
-      class="hero"
-      id="home"
-    >
+<section
+    class="hero"
+    id="home"
+>
 
-      <div class="hero-glow glow-one"></div>
-      <div class="hero-glow glow-two"></div>
-
-
-      <div class="container hero-grid">
+    <div class="hero-glow glow-one"></div>
+    <div class="hero-glow glow-two"></div>
 
 
-        <!-- Hero Content -->
+    <div class="container hero-grid">
+
+
+        <!-- HERO CONTENT -->
 
         <div class="hero-content reveal">
 
-          <div class="hero-badge">
 
-            <span class="status-dot"></span>
+            <div class="hero-badge">
 
-            ANDROID VIDEO PLAYER
+                <span class="status-dot"></span>
 
-          </div>
-
-
-          <h1>
-
-            Your Movies.
-
-            <br>
-
-            <span>
-              Your Videos.
-            </span>
-
-            <br>
-
-            Your Way.
-
-          </h1>
-
-
-          <p class="hero-description">
-
-            Experience a clean, modern and powerful video player
-            designed for smooth playback and comfortable viewing.
-
-          </p>
-
-
-          <div class="hero-actions">
-
-            <a
-              href="https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk"
-              class="primary-btn download-btn"
-            >
-
-              <span>
-                ↓
-              </span>
-
-              Download APK
-
-            </a>
-
-
-            <a
-              href="#features"
-              class="secondary-btn"
-            >
-
-              Explore Features
-
-              <span>
-                →
-              </span>
-
-            </a>
-
-          </div>
-
-
-          <div class="hero-info">
-
-            <div>
-
-              <span class="info-icon">
-                ✓
-              </span>
-
-              Android App
+                ANDROID VIDEO PLAYER
 
             </div>
 
 
-            <div>
+            <h1>
 
-              <span class="info-icon">
-                ⚡
-              </span>
+                Your Movies.
 
-              Fast Playback
+                <br>
+
+                <span>
+                    Your Videos.
+                </span>
+
+                <br>
+
+                Your Way.
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                Experience a clean, modern and powerful video player
+                designed for smooth playback and comfortable viewing.
+
+            </p>
+
+
+            <div class="hero-actions">
+
+
+                <a
+                    href="https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk"
+                    class="primary-btn download-btn"
+                    aria-label="Download SUPER VIDEO PLAYER APK"
+                >
+
+                    <span>
+                        ↓
+                    </span>
+
+                    Download APK
+
+                </a>
+
+
+                <a
+                    href="#features"
+                    class="secondary-btn"
+                >
+
+                    Explore Features
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
 
             </div>
 
 
-            <div>
+            <div class="hero-info">
 
-              <span class="info-icon">
-                ◈
-              </span>
 
-              Multiple Formats
+                <div>
+
+                    <span class="info-icon">
+                        ✓
+                    </span>
+
+                    Android App
+
+                </div>
+
+
+                <div>
+
+                    <span class="info-icon">
+                        ⚡
+                    </span>
+
+                    Fast Playback
+
+                </div>
+
+
+                <div>
+
+                    <span class="info-icon">
+                        ◈
+                    </span>
+
+                    Multiple Formats
+
+                </div>
 
             </div>
-
-          </div>
 
         </div>
 
 
-        <!-- =====================================================
-             HERO PHONE
-        ===================================================== -->
+
+        <!-- HERO DEVICE -->
 
         <div class="hero-device reveal">
 
-          <div class="device-glow"></div>
+            <div class="device-glow"></div>
 
 
-          <div class="phone">
+            <div class="phone">
 
-            <div class="phone-notch"></div>
+                <div class="phone-notch"></div>
 
 
-            <div class="phone-screen">
+                <div class="phone-screen">
 
-              <img
-                src="https://i.ibb.co/5PVJ34Z/IMG-20260916-030625.jpg"
-                alt="SUPER VIDEO PLAYER App Screenshot"
-                class="app-screenshot"
-              >
+                    <img
+                        src="https://i.ibb.co/5PVJ34Z/IMG-20260916-030625.jpg"
+                        alt="SUPER VIDEO PLAYER Android App"
+                        class="app-screenshot"
+                    >
+
+                </div>
 
             </div>
 
-          </div>
+
+            <!-- FLOATING CARD 1 -->
+
+            <div class="floating-card card-one">
+
+                <span class="floating-icon">
+                    ⚡
+                </span>
+
+                <div>
+
+                    <strong>
+                        Smooth Playback
+                    </strong>
+
+                    <small>
+                        Fast & comfortable
+                    </small>
+
+                </div>
+
+            </div>
 
 
-          <!-- Floating Card 1 -->
+            <!-- FLOATING CARD 2 -->
 
-          <div class="floating-card card-one">
+            <div class="floating-card card-two">
 
-            <span>
-              ⚡
-            </span>
+                <span class="floating-icon">
+                    HD
+                </span>
 
-            Smooth Playback
+                <div>
 
-          </div>
+                    <strong>
+                        High Quality
+                    </strong>
 
+                    <small>
+                        Clear video
+                    </small>
 
-          <!-- Floating Card 2 -->
+                </div>
 
-          <div class="floating-card card-two">
-
-            <span>
-              HD
-            </span>
-
-            High Quality
-
-          </div>
+            </div>
 
         </div>
 
-      </div>
+    </div>
 
-    </section>
+</section>
 
 
 
-    <!-- =========================================================
-         FEATURES
-    ========================================================= -->
+<!-- =========================================================
+     FEATURES
+========================================================= -->
 
-    <section
-      class="section"
-      id="features"
-    >
+<section
+    class="section features-section"
+    id="features"
+>
 
-      <div class="container">
+    <div class="container">
 
 
         <div class="section-heading reveal">
 
-          <div class="section-label">
-            FEATURES
-          </div>
+            <div class="section-label">
+                FEATURES
+            </div>
 
 
-          <h2>
+            <h2>
 
-            Everything You Need
-            <span>
-              to Watch
-            </span>
+                Everything You Need
+                <span>
+                    to Watch
+                </span>
 
-          </h2>
+            </h2>
 
 
-          <p>
+            <p>
 
-            A focused video player experience with the tools
-            you need and nothing you don't.
+                A focused video player experience with the tools
+                you need and nothing you don't.
 
-          </p>
+            </p>
 
         </div>
 
@@ -406,185 +449,180 @@
         <div class="feature-grid">
 
 
-          <!-- Feature 1 -->
+            <!-- FEATURE 1 -->
 
-          <article class="feature-card reveal">
+            <article class="feature-card reveal">
 
-            <div class="feature-icon">
-              ▶
-            </div>
+                <div class="feature-icon">
+                    ▶
+                </div>
 
-            <h3>
-              Smooth Playback
-            </h3>
+                <h3>
+                    Smooth Playback
+                </h3>
 
-            <p>
+                <p>
 
-              Enjoy a smooth and comfortable video playback
-              experience on your Android device.
+                    Enjoy a smooth and comfortable video playback
+                    experience on your Android device.
 
-            </p>
+                </p>
 
-          </article>
-
-
-
-          <!-- Feature 2 -->
-
-          <article class="feature-card reveal">
-
-            <div class="feature-icon">
-              ▣
-            </div>
-
-            <h3>
-              Multiple Formats
-            </h3>
-
-            <p>
-
-              Play supported video formats from your device
-              with a simple and convenient interface.
-
-            </p>
-
-          </article>
+            </article>
 
 
+            <!-- FEATURE 2 -->
 
-          <!-- Feature 3 -->
+            <article class="feature-card reveal">
 
-          <article class="feature-card reveal">
+                <div class="feature-icon">
+                    ▣
+                </div>
 
-            <div class="feature-icon">
-              CC
-            </div>
+                <h3>
+                    Multiple Formats
+                </h3>
 
-            <h3>
-              Subtitle Support
-            </h3>
+                <p>
 
-            <p>
+                    Play supported video formats from your device
+                    with a simple and convenient interface.
 
-              Watch your favorite content comfortably with
-              subtitle support.
+                </p>
 
-            </p>
-
-          </article>
-
+            </article>
 
 
-          <!-- Feature 4 -->
+            <!-- FEATURE 3 -->
 
-          <article class="feature-card reveal">
+            <article class="feature-card reveal">
 
-            <div class="feature-icon">
-              ↕
-            </div>
+                <div class="feature-icon">
+                    CC
+                </div>
 
-            <h3>
-              Gesture Controls
-            </h3>
+                <h3>
+                    Subtitle Support
+                </h3>
 
-            <p>
+                <p>
 
-              Control your playback with intuitive and
-              convenient gesture interactions.
+                    Watch your favorite content comfortably with
+                    subtitle support.
 
-            </p>
+                </p>
 
-          </article>
-
-
-
-          <!-- Feature 5 -->
-
-          <article class="feature-card reveal">
-
-            <div class="feature-icon">
-              ◉
-            </div>
-
-            <h3>
-              Easy Experience
-            </h3>
-
-            <p>
-
-              Quickly access your videos through a clean,
-              distraction-free interface.
-
-            </p>
-
-          </article>
+            </article>
 
 
+            <!-- FEATURE 4 -->
 
-          <!-- Feature 6 -->
+            <article class="feature-card reveal">
 
-          <article class="feature-card reveal">
+                <div class="feature-icon">
+                    ↕
+                </div>
 
-            <div class="feature-icon">
-              ✦
-            </div>
+                <h3>
+                    Gesture Controls
+                </h3>
 
-            <h3>
-              Modern Player
-            </h3>
+                <p>
 
-            <p>
+                    Control your playback with intuitive and
+                    convenient gesture interactions.
 
-              A premium player interface designed around
-              comfortable viewing.
+                </p>
 
-            </p>
+            </article>
 
-          </article>
+
+            <!-- FEATURE 5 -->
+
+            <article class="feature-card reveal">
+
+                <div class="feature-icon">
+                    ◉
+                </div>
+
+                <h3>
+                    Easy Experience
+                </h3>
+
+                <p>
+
+                    Quickly access your videos through a clean,
+                    distraction-free interface.
+
+                </p>
+
+            </article>
+
+
+            <!-- FEATURE 6 -->
+
+            <article class="feature-card reveal">
+
+                <div class="feature-icon">
+                    ✦
+                </div>
+
+                <h3>
+                    Modern Player
+                </h3>
+
+                <p>
+
+                    A premium player interface designed around
+                    comfortable viewing.
+
+                </p>
+
+            </article>
 
 
         </div>
 
-      </div>
+    </div>
 
-    </section>
+</section>
 
 
 
-    <!-- =========================================================
-         APP SHOWCASE
-    ========================================================= -->
+<!-- =========================================================
+     APP SHOWCASE
+========================================================= -->
 
-    <section
-      class="section showcase-section"
-      id="screenshots"
-    >
+<section
+    class="section showcase-section"
+    id="screenshots"
+>
 
-      <div class="container">
+    <div class="container">
 
 
         <div class="section-heading reveal">
 
-          <div class="section-label">
-            APP SHOWCASE
-          </div>
+            <div class="section-label">
+                APP SHOWCASE
+            </div>
 
 
-          <h2>
+            <h2>
 
-            Built for a Better
-            <span>
-              Viewing Experience
-            </span>
+                Built for a Better
+                <span>
+                    Viewing Experience
+                </span>
 
-          </h2>
+            </h2>
 
 
-          <p>
+            <p>
 
-            Explore the real SUPER VIDEO PLAYER interface.
+                Explore the real SUPER VIDEO PLAYER interface.
 
-          </p>
+            </p>
 
         </div>
 
@@ -593,391 +631,346 @@
         <div class="real-screenshot-grid">
 
 
-          <!-- ===================================================
-               HOME
-          =================================================== -->
+            <!-- HOME -->
 
-          <div class="real-screenshot-card reveal">
+            <article class="real-screenshot-card reveal">
 
-            <div class="real-screenshot-frame">
+                <div class="real-screenshot-frame">
 
-              <img
-                src="https://i.ibb.co/pvmPM898/IMG-20260916-030644.jpg"
-                alt="SUPER VIDEO PLAYER Home Screen"
-                loading="lazy"
-              >
+                    <img
+                        src="https://i.ibb.co/pvmPM898/IMG-20260916-030644.jpg"
+                        alt="SUPER VIDEO PLAYER Home Screen"
+                        loading="lazy"
+                    >
 
-            </div>
+                </div>
 
 
-            <div class="screenshot-info">
+                <div class="screenshot-info">
 
-              <h3>
-                Home
-              </h3>
+                    <h3>
+                        Home
+                    </h3>
 
-              <p>
-                Clean and simple home interface.
-              </p>
+                    <p>
+                        Clean and simple home interface.
+                    </p>
 
-            </div>
+                </div>
 
-          </div>
+            </article>
 
 
 
-          <!-- ===================================================
-               PLAYER
-          =================================================== -->
+            <!-- VIDEO PLAYER -->
 
-          <div class="real-screenshot-card reveal">
+            <article class="real-screenshot-card reveal">
 
-            <div class="real-screenshot-frame">
+                <div class="real-screenshot-frame">
 
-              <img
-                src="https://i.ibb.co/1ttcMb8Y/IMG-20260916-030303.jpg"
-                alt="SUPER VIDEO PLAYER Video Player Screen"
-                loading="lazy"
-              >
+                    <img
+                        src="https://i.ibb.co/1ttcMb8Y/IMG-20260916-030303.jpg"
+                        alt="SUPER VIDEO PLAYER Video Player Screen"
+                        loading="lazy"
+                    >
 
-            </div>
+                </div>
 
 
-            <div class="screenshot-info">
+                <div class="screenshot-info">
 
-              <h3>
-                Video Player
-              </h3>
+                    <h3>
+                        Video Player
+                    </h3>
 
-              <p>
-                Modern player interface for comfortable playback.
-              </p>
+                    <p>
+                        Modern player interface for comfortable playback.
+                    </p>
 
-            </div>
+                </div>
 
-          </div>
+            </article>
 
 
 
-          <!-- ===================================================
-               SETTINGS
-          =================================================== -->
+            <!-- SETTINGS -->
 
-          <div class="real-screenshot-card reveal">
+            <article class="real-screenshot-card reveal">
 
-            <div class="real-screenshot-frame">
+                <div class="real-screenshot-frame">
 
-              <img
-                src="https://i.ibb.co/TqxtH4PX/IMG-20260916-030324.jpg"
-                alt="SUPER VIDEO PLAYER Settings Screen"
-                loading="lazy"
-              >
+                    <img
+                        src="https://i.ibb.co/TqxtH4PX/IMG-20260916-030324.jpg"
+                        alt="SUPER VIDEO PLAYER Settings Screen"
+                        loading="lazy"
+                    >
 
-            </div>
+                </div>
 
 
-            <div class="screenshot-info">
+                <div class="screenshot-info">
 
-              <h3>
-                Settings
-              </h3>
+                    <h3>
+                        Settings
+                    </h3>
 
-              <p>
-                Simple controls and playback preferences.
-              </p>
+                    <p>
+                        Simple controls and playback preferences.
+                    </p>
 
-            </div>
+                </div>
 
-          </div>
+            </article>
 
 
         </div>
 
-      </div>
+    </div>
 
-    </section>
-
-
-
-    <!-- =========================================================
-         HIGHLIGHT
-    ========================================================= -->
-
-    <section class="highlight-section">
-
-      <div class="container highlight-grid">
+</section>
 
 
-        <!-- =====================================================
-             HIGHLIGHT VISUAL
-        ===================================================== -->
+
+<!-- =========================================================
+     HIGHLIGHT
+========================================================= -->
+
+<section
+    class="section highlight-section"
+>
+
+    <div class="container highlight-grid">
+
+
+        <!-- VISUAL -->
 
         <div class="highlight-visual reveal">
 
-          <div class="large-player-card">
+            <div class="large-player-card">
 
 
-            <div class="large-video">
+                <div class="large-video">
 
-              <img
-                src="https://i.ibb.co/tpJG89Yy/IMG-20260916-030230.jpg"
-                alt="SUPER VIDEO PLAYER Full Screen"
-                loading="lazy"
-              >
+                    <img
+                        src="https://i.ibb.co/tpJG89Yy/IMG-20260916-030230.jpg"
+                        alt="SUPER VIDEO PLAYER Full Screen Player"
+                        loading="lazy"
+                    >
 
+                </div>
+
+
+                <div class="large-controls">
+
+
+                    <div class="large-player-info">
+
+                        <h3>
+                            SUPER VIDEO PLAYER
+                        </h3>
+
+                        <p>
+                            Now Playing
+                        </p>
+
+                    </div>
+
+
+                    <div class="large-buttons">
+
+                        <button
+                            type="button"
+                            aria-label="Previous"
+                        >
+                            &laquo;
+                        </button>
+
+                        <button
+                            type="button"
+                            aria-label="Play"
+                        >
+                            ▶
+                        </button>
+
+                        <button
+                            type="button"
+                            aria-label="Next"
+                        >
+                            &raquo;
+                        </button>
+
+                    </div>
+
+                </div>
 
             </div>
-
-
-
-            <div class="large-controls">
-
-
-              <div class="large-player-info">
-
-                <strong>
-                  SUPER VIDEO PLAYER
-                </strong>
-
-                <small>
-                  Now Playing
-                </small>
-
-              </div>
-
-
-
-              <div class="large-buttons">
-
-                <span>
-                  &laquo;
-                </span>
-
-                <b>
-                  ▶
-                </b>
-
-                <span>
-                  &raquo;
-                </span>
-
-              </div>
-
-
-            </div>
-
-          </div>
 
         </div>
 
 
 
-        <!-- =====================================================
-             HIGHLIGHT CONTENT
-        ===================================================== -->
+        <!-- CONTENT -->
 
         <div class="highlight-content reveal">
 
-          <div class="section-label">
-            SIMPLE BY DESIGN
-          </div>
 
-
-          <h2>
-
-            Simple on the outside.
-
-            <span>
-              Powerful when you need it.
-            </span>
-
-          </h2>
-
-
-          <p>
-
-            SUPER VIDEO PLAYER focuses on the essentials,
-            giving you a clean interface without unnecessary
-            distractions.
-
-          </p>
-
-
-
-          <!-- Check List -->
-
-          <div class="check-list">
-
-            <div>
-
-              <span>
-                ✓
-              </span>
-
-              Clean interface
-
+            <div class="section-label">
+                SIMPLE BY DESIGN
             </div>
 
 
-            <div>
+            <h2>
 
-              <span>
-                ✓
-              </span>
+                Simple on the outside.
 
-              Fast access to your videos
+                <span>
+                    Powerful when you need it.
+                </span>
 
-            </div>
-
-
-            <div>
-
-              <span>
-                ✓
-              </span>
-
-              Comfortable controls
-
-            </div>
+            </h2>
 
 
-            <div>
+            <p>
 
-              <span>
-                ✓
-              </span>
+                SUPER VIDEO PLAYER focuses on the essentials,
+                giving you a clean interface without unnecessary
+                distractions.
 
-              Designed for Android
-
-            </div>
-
-          </div>
+            </p>
 
 
-
-          <!-- Highlight Feature 1 -->
-
-          <div class="highlight-feature">
-
-            <div class="highlight-icon">
-              ▶
-            </div>
-
-            <div>
-
-              <h3>
-                Smooth Playback
-              </h3>
-
-              <p>
-
-                Enjoy your videos with a smooth and comfortable
-                playback experience.
-
-              </p>
-
-            </div>
-
-          </div>
+            <div class="check-list">
 
 
+                <div class="highlight-feature">
 
-          <!-- Highlight Feature 2 -->
+                    <span class="highlight-icon">
+                        ✓
+                    </span>
 
-          <div class="highlight-feature">
+                    <div>
 
-            <div class="highlight-icon">
-              HD
-            </div>
+                        <h4>
+                            Clean interface
+                        </h4>
 
-            <div>
+                        <p>
+                            Simple and distraction-free design.
+                        </p>
 
-              <h3>
-                High Quality
-              </h3>
+                    </div>
 
-              <p>
-
-                Experience your favorite content with clear,
-                immersive video quality.
-
-              </p>
-
-            </div>
-
-          </div>
+                </div>
 
 
+                <div class="highlight-feature">
 
-          <!-- Highlight Feature 3 -->
+                    <span class="highlight-icon">
+                        ✓
+                    </span>
 
-          <div class="highlight-feature">
+                    <div>
 
-            <div class="highlight-icon">
-              ⚡
-            </div>
+                        <h4>
+                            Fast access to your videos
+                        </h4>
 
-            <div>
+                        <p>
+                            Find and start watching quickly.
+                        </p>
 
-              <h3>
-                Simple Controls
-              </h3>
+                    </div>
 
-              <p>
+                </div>
 
-                Everything stays simple so you can focus on
-                watching your videos.
 
-              </p>
+                <div class="highlight-feature">
+
+                    <span class="highlight-icon">
+                        ✓
+                    </span>
+
+                    <div>
+
+                        <h4>
+                            Comfortable controls
+                        </h4>
+
+                        <p>
+                            Easy controls designed for viewing.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="highlight-feature">
+
+                    <span class="highlight-icon">
+                        ✓
+                    </span>
+
+                    <div>
+
+                        <h4>
+                            Designed for Android
+                        </h4>
+
+                        <p>
+                            Built around the Android experience.
+                        </p>
+
+                    </div>
+
+                </div>
 
             </div>
-
-          </div>
 
 
         </div>
 
-      </div>
+    </div>
 
-    </section>
+</section>
 
 
 
-    <!-- =========================================================
-         INSTALLATION GUIDE
-    ========================================================= -->
+<!-- =========================================================
+     GUIDE
+========================================================= -->
 
-    <section
-      class="section guide-section"
-      id="guide"
-    >
+<section
+    class="section guide-section"
+    id="guide"
+>
 
-      <div class="container">
+    <div class="container">
 
 
         <div class="section-heading reveal">
 
-          <div class="section-label">
-            INSTALLATION
-          </div>
+            <div class="section-label">
+                INSTALLATION
+            </div>
 
 
-          <h2>
+            <h2>
 
-            Get Started in
-            <span>
-              Three Steps
-            </span>
+                Get Started in
+                <span>
+                    Three Steps
+                </span>
 
-          </h2>
+            </h2>
 
 
-          <p>
+            <p>
 
-            Install SUPER VIDEO PLAYER and start watching
-            your videos in just a few simple steps.
+                Install SUPER VIDEO PLAYER and start watching
+                your videos in just a few simple steps.
 
-          </p>
+            </p>
 
         </div>
 
@@ -986,106 +979,112 @@
         <div class="steps-grid">
 
 
-          <!-- Step 1 -->
+            <!-- STEP 1 -->
 
-          <div class="step reveal">
+            <div class="step reveal">
 
-            <div class="step-number">
-              01
+                <div class="step-number">
+                    01
+                </div>
+
+                <h3>
+                    Download
+                </h3>
+
+                <p>
+
+                    Download the latest SUPER VIDEO PLAYER APK.
+
+                </p>
+
             </div>
 
-            <h3>
-              Download
-            </h3>
 
-            <p>
+            <!-- STEP 2 -->
 
-              Download the latest SUPER VIDEO PLAYER APK.
+            <div class="step reveal">
 
-            </p>
+                <div class="step-number">
+                    02
+                </div>
 
-          </div>
+                <h3>
+                    Install
+                </h3>
 
+                <p>
 
+                    Open the APK and complete the Android installation.
 
-          <!-- Step 2 -->
+                </p>
 
-          <div class="step reveal">
-
-            <div class="step-number">
-              02
             </div>
 
-            <h3>
-              Install
-            </h3>
 
-            <p>
+            <!-- STEP 3 -->
 
-              Open the APK and complete the Android installation.
+            <div class="step reveal">
 
-            </p>
+                <div class="step-number">
+                    03
+                </div>
 
-          </div>
+                <h3>
+                    Start Watching
+                </h3>
 
+                <p>
 
+                    Open the app and start enjoying your videos.
 
-          <!-- Step 3 -->
+                </p>
 
-          <div class="step reveal">
-
-            <div class="step-number">
-              03
             </div>
-
-            <h3>
-              Start Watching
-            </h3>
-
-            <p>
-
-              Open the app and start enjoying your videos.
-
-            </p>
-
-          </div>
 
 
         </div>
 
-      </div>
+    </div>
 
-    </section>
+</section>
 
 
 
-    <!-- =========================================================
-         FAQ
-    ========================================================= -->
+<!-- =========================================================
+     FAQ
+========================================================= -->
 
-    <section
-      class="section faq-section"
-      id="faq"
-    >
+<section
+    class="section faq-section"
+    id="faq"
+>
 
-      <div class="container faq-container">
+    <div class="container faq-container">
 
 
         <div class="section-heading reveal">
 
-          <div class="section-label">
-            FAQ
-          </div>
+            <div class="section-label">
+                FAQ
+            </div>
 
 
-          <h2>
+            <h2>
 
-            Frequently Asked
-            <span>
-              Questions
-            </span>
+                Frequently Asked
+                <span>
+                    Questions
+                </span>
 
-          </h2>
+            </h2>
+
+
+            <p>
+
+                Everything you need to know about
+                SUPER VIDEO PLAYER.
+
+            </p>
 
         </div>
 
@@ -1094,366 +1093,395 @@
         <div class="faq-list">
 
 
-          <!-- FAQ 1 -->
+            <!-- FAQ 1 -->
 
-          <div class="faq-item reveal">
+            <div class="faq-item reveal">
 
-            <button
-              class="faq-question"
-              type="button"
-            >
+                <button
+                    class="faq-question"
+                    type="button"
+                    aria-expanded="false"
+                >
 
-              <span>
-                What is SUPER VIDEO PLAYER?
-              </span>
+                    <span>
+                        What is SUPER VIDEO PLAYER?
+                    </span>
 
-              <span>
-                +
-              </span>
+                    <span
+                        class="faq-symbol"
+                        aria-hidden="true"
+                    >
+                        +
+                    </span>
 
-            </button>
-
-
-            <div class="faq-answer">
-
-              <p>
-
-                SUPER VIDEO PLAYER is a modern Android video
-                player designed for a clean and comfortable
-                viewing experience.
-
-              </p>
-
-            </div>
-
-          </div>
+                </button>
 
 
+                <div class="faq-answer">
 
-          <!-- FAQ 2 -->
+                    <p>
 
-          <div class="faq-item reveal">
+                        SUPER VIDEO PLAYER is a modern Android
+                        video player designed for a clean and
+                        comfortable viewing experience.
 
-            <button
-              class="faq-question"
-              type="button"
-            >
+                    </p>
 
-              <span>
-                Which devices can use the app?
-              </span>
-
-              <span>
-                +
-              </span>
-
-            </button>
-
-
-            <div class="faq-answer">
-
-              <p>
-
-                The application is designed for compatible
-                Android devices.
-
-              </p>
+                </div>
 
             </div>
 
-          </div>
 
 
+            <!-- FAQ 2 -->
 
-          <!-- FAQ 3 -->
+            <div class="faq-item reveal">
 
-          <div class="faq-item reveal">
+                <button
+                    class="faq-question"
+                    type="button"
+                    aria-expanded="false"
+                >
 
-            <button
-              class="faq-question"
-              type="button"
-            >
+                    <span>
+                        Which devices can use the app?
+                    </span>
 
-              <span>
-                How do I install the APK?
-              </span>
+                    <span
+                        class="faq-symbol"
+                        aria-hidden="true"
+                    >
+                        +
+                    </span>
 
-              <span>
-                +
-              </span>
-
-            </button>
-
-
-            <div class="faq-answer">
-
-              <p>
-
-                Download the APK, open the downloaded file,
-                and follow Android's installation instructions.
-
-              </p>
-
-            </div>
-
-          </div>
+                </button>
 
 
+                <div class="faq-answer">
 
-          <!-- FAQ 4 -->
+                    <p>
 
-          <div class="faq-item reveal">
+                        The application is designed for compatible
+                        Android devices.
 
-            <button
-              class="faq-question"
-              type="button"
-            >
+                    </p>
 
-              <span>
-                Is the website mobile responsive?
-              </span>
-
-              <span>
-                +
-              </span>
-
-            </button>
-
-
-            <div class="faq-answer">
-
-              <p>
-
-                Yes. The website is designed to work across
-                mobile phones, tablets and desktop screens.
-
-              </p>
+                </div>
 
             </div>
 
-          </div>
+
+
+            <!-- FAQ 3 -->
+
+            <div class="faq-item reveal">
+
+                <button
+                    class="faq-question"
+                    type="button"
+                    aria-expanded="false"
+                >
+
+                    <span>
+                        How do I install the APK?
+                    </span>
+
+                    <span
+                        class="faq-symbol"
+                        aria-hidden="true"
+                    >
+                        +
+                    </span>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        Download the APK, open the downloaded file,
+                        and follow Android's installation instructions.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FAQ 4 -->
+
+            <div class="faq-item reveal">
+
+                <button
+                    class="faq-question"
+                    type="button"
+                    aria-expanded="false"
+                >
+
+                    <span>
+                        Is the website mobile responsive?
+                    </span>
+
+                    <span
+                        class="faq-symbol"
+                        aria-hidden="true"
+                    >
+                        +
+                    </span>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    <p>
+
+                        Yes. The website is designed to work across
+                        mobile phones, tablets and desktop screens.
+
+                    </p>
+
+                </div>
+
+            </div>
 
 
         </div>
 
-      </div>
+    </div>
 
-    </section>
+</section>
 
 
 
-    <!-- =========================================================
-         DOWNLOAD CTA
-    ========================================================= -->
+<!-- =========================================================
+     DOWNLOAD CTA
+========================================================= -->
 
-    <section
-      class="download-section"
-      id="download"
-    >
+<section
+    class="download-section"
+    id="download"
+>
 
-      <div class="container">
+    <div class="container">
 
 
         <div class="download-box reveal">
 
 
-          <div class="download-content">
+            <div class="download-content">
 
-            <div class="section-label">
-              SUPER VIDEO PLAYER
+
+                <div class="section-label">
+                    SUPER VIDEO PLAYER
+                </div>
+
+
+                <h2>
+
+                    Ready to
+                    <span>
+                        Watch?
+                    </span>
+
+                </h2>
+
+
+                <p>
+
+                    Get SUPER VIDEO PLAYER and enjoy a cleaner
+                    way to watch your videos.
+
+                </p>
+
+
+                <a
+                    href="https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk"
+                    class="primary-btn download-btn"
+                    aria-label="Download SUPER VIDEO PLAYER APK"
+                >
+
+                    ↓
+
+                    <span>
+                        Download APK
+                    </span>
+
+                </a>
+
             </div>
 
 
-            <h2>
+            <div class="download-orb">
 
-              Ready to
-              <span>
-                Watch?
-              </span>
+                <div>
+                    SV
+                </div>
 
-            </h2>
-
-
-            <p>
-
-              Get SUPER VIDEO PLAYER and enjoy a cleaner
-              way to watch your videos.
-
-            </p>
-
-
-            <a
-              href="https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk"
-              class="primary-btn download-btn"
-            >
-
-              ↓
-              &nbsp;
-              Download APK
-
-            </a>
-
-          </div>
-
-
-
-          <div class="download-orb">
-
-            <div>
-              SV
             </div>
-
-          </div>
-
 
         </div>
 
-      </div>
+    </div>
 
-    </section>
-
-  </main>
+</section>
 
 
+</main>
 
-  <!-- =========================================================
-       FOOTER
-  ========================================================= -->
 
-  <footer class="footer">
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer">
 
     <div class="container footer-grid">
 
 
-      <!-- Footer Brand -->
+        <!-- FOOTER BRAND -->
 
-      <div class="footer-brand">
+        <div class="footer-brand">
 
-        <a
-          href="#home"
-          class="brand"
-        >
+            <a
+                href="#home"
+                class="brand"
+            >
 
-          <div class="brand-logo">
-            SV
-          </div>
-
-
-          <div class="brand-text">
-
-            <strong>
-              SUPER
-            </strong>
-
-            <span>
-              VIDEO PLAYER
-            </span>
-
-          </div>
-
-        </a>
+                <div class="brand-logo">
+                    SV
+                </div>
 
 
-        <p>
-          Watch. Play. Enjoy.
-        </p>
+                <div class="brand-text">
 
-      </div>
+                    <strong>
+                        SUPER
+                    </strong>
+
+                    <small>
+                        VIDEO PLAYER
+                    </small>
+
+                </div>
+
+            </a>
 
 
+            <p>
+                Watch. Play. Enjoy.
+            </p>
 
-      <!-- Footer Navigation -->
-
-      <div class="footer-column">
-
-        <h4>
-          Navigation
-        </h4>
-
-        <a href="#home">
-          Home
-        </a>
-
-        <a href="#features">
-          Features
-        </a>
-
-        <a href="#screenshots">
-          Screenshots
-        </a>
-
-        <a href="#guide">
-          Guide
-        </a>
-
-      </div>
+        </div>
 
 
 
-      <!-- Footer Legal -->
+        <!-- NAVIGATION -->
 
-      <div class="footer-column">
+        <div class="footer-column">
 
-        <h4>
-          Legal
-        </h4>
+            <h4>
+                Navigation
+            </h4>
 
-        <a href="#">
-          Privacy Policy
-        </a>
+            <a href="#home">
+                Home
+            </a>
 
-        <a href="#">
-          Terms & Conditions
-        </a>
+            <a href="#features">
+                Features
+            </a>
 
-        <a href="#">
-          DMCA
-        </a>
+            <a href="#screenshots">
+                Screenshots
+            </a>
 
-      </div>
+            <a href="#guide">
+                Guide
+            </a>
+
+            <a href="#faq">
+                FAQ
+            </a>
+
+        </div>
+
+
+
+        <!-- DOWNLOAD -->
+
+        <div class="footer-column">
+
+            <h4>
+                Get The App
+            </h4>
+
+            <a
+                href="https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk"
+                class="download-btn"
+            >
+                Download APK
+            </a>
+
+            <a href="#guide">
+                Installation Guide
+            </a>
+
+            <a href="#features">
+                Features
+            </a>
+
+        </div>
 
 
     </div>
 
 
 
-    <!-- Footer Bottom -->
+    <!-- FOOTER BOTTOM -->
 
     <div class="footer-bottom">
 
-      <div class="container">
+        <div class="container">
 
-        ©
-        <span id="year"></span>
-        SUPER VIDEO PLAYER.
-        All rights reserved.
+            ©
+            <span id="year"></span>
+            SUPER VIDEO PLAYER.
+            All rights reserved.
 
-      </div>
+        </div>
 
     </div>
 
-  </footer>
+</footer>
 
 
 
-  <!-- =========================================================
-       TOAST
-  ========================================================= -->
+<!-- =========================================================
+     TOAST
+========================================================= -->
 
-  <div
+<div
     class="toast"
     id="toast"
-  >
-    APK download link will be available soon.
-  </div>
+    role="status"
+    aria-live="polite"
+>
+</div>
 
 
 
-  <!-- =========================================================
-       JAVASCRIPT
-  ========================================================= -->
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
+
 
 </body>
+
 </html>
