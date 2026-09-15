@@ -46,6 +46,7 @@ html {
 
 body {
     min-height: 100vh;
+
     background:
         radial-gradient(
             circle at 15% 10%,
@@ -140,9 +141,12 @@ a {
     border-radius: 25px;
 
     filter:
-        drop-shadow(0 0 24px rgba(75, 125, 255, 0.5));
+        drop-shadow(
+            0 0 24px rgba(75, 125, 255, 0.5)
+        );
 
-    animation: loadingPulse 1.5s ease-in-out infinite;
+    animation:
+        loadingPulse 1.5s ease-in-out infinite;
 }
 
 #loadingScreen h1 {
@@ -150,6 +154,7 @@ a {
 
     font-size: 28px;
     font-weight: 800;
+
     letter-spacing: -0.8px;
 }
 
@@ -164,6 +169,7 @@ a {
 
     -webkit-background-clip: text;
     background-clip: text;
+
     color: transparent;
 }
 
@@ -171,6 +177,7 @@ a {
     margin-top: 8px;
 
     color: var(--muted);
+
     font-size: 14px;
 }
 
@@ -180,11 +187,12 @@ a {
 
     margin-top: 24px;
 
-    border-radius: 999px;
-
     overflow: hidden;
 
-    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+
+    background:
+        rgba(255, 255, 255, 0.08);
 }
 
 .loading-progress {
@@ -201,7 +209,8 @@ a {
             var(--pink)
         );
 
-    animation: loadingProgress 3s linear forwards;
+    animation:
+        loadingProgress 3s linear forwards;
 }
 
 @keyframes loadingProgress {
@@ -296,6 +305,7 @@ a {
 
     -webkit-background-clip: text;
     background-clip: text;
+
     color: transparent;
 }
 
@@ -303,6 +313,7 @@ a {
     margin-top: 6px;
 
     color: var(--muted);
+
     font-size: 14px;
 }
 
@@ -338,6 +349,7 @@ a {
     margin-top: 7px;
 
     color: var(--muted);
+
     font-size: 14px;
 }
 
@@ -348,6 +360,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+
     gap: 12px;
 
     margin-top: 22px;
@@ -390,6 +403,7 @@ a {
     border-radius: 50%;
 
     background: #fff;
+
     color: #4285f4;
 
     font-size: 16px;
@@ -399,6 +413,7 @@ a {
 .auth-divider {
     display: flex;
     align-items: center;
+
     gap: 12px;
 
     margin: 22px 0;
@@ -493,6 +508,7 @@ a {
 
 .forgot-password {
     border: 0;
+
     background: transparent;
 
     color: #67aaff;
@@ -508,6 +524,7 @@ a {
     min-height: 50px;
 
     border: 0;
+
     border-radius: 13px;
 
     background:
@@ -533,6 +550,7 @@ a {
 .modal-action:hover,
 .review-submit:hover {
     transform: translateY(-2px);
+
     filter: brightness(1.08);
 }
 
@@ -541,7 +559,9 @@ a {
 .review-submit:disabled,
 .google-login-btn:disabled {
     opacity: 0.55;
+
     cursor: not-allowed;
+
     transform: none;
 }
 
@@ -553,6 +573,7 @@ a {
     color: #8fbfff;
 
     font-size: 13px;
+
     line-height: 1.5;
 }
 
@@ -567,6 +588,7 @@ a {
 .auth-bottom-text {
     display: flex;
     justify-content: center;
+
     gap: 5px;
 
     margin-top: 22px;
@@ -578,6 +600,7 @@ a {
 
 .auth-bottom-text button {
     border: 0;
+
     background: transparent;
 
     color: #69aaff;
@@ -614,6 +637,7 @@ a {
 header {
     position: sticky;
     top: 0;
+
     z-index: 1000;
 
     min-height: 76px;
@@ -638,6 +662,7 @@ header {
 .logo {
     display: flex;
     align-items: center;
+
     gap: 11px;
 
     min-width: 0;
@@ -649,9 +674,9 @@ header {
 
     flex: 0 0 auto;
 
-    border-radius: 12px;
-
     overflow: hidden;
+
+    border-radius: 12px;
 
     box-shadow:
         0 0 20px rgba(54, 113, 255, 0.2);
@@ -666,6 +691,7 @@ header {
 
 .logo h2 {
     font-size: 16px;
+
     white-space: nowrap;
 }
 
@@ -686,6 +712,7 @@ header {
 nav {
     display: flex;
     align-items: center;
+
     gap: 27px;
 }
 
@@ -695,7 +722,8 @@ nav a {
     font-size: 13px;
     font-weight: 700;
 
-    transition: color 0.2s ease;
+    transition:
+        color 0.2s ease;
 }
 
 nav a:hover {
@@ -705,15 +733,18 @@ nav a:hover {
 .auth-buttons {
     display: flex;
     align-items: center;
+
     gap: 10px;
 }
 
 .profile-button {
     display: flex;
     align-items: center;
+
     gap: 8px;
 
     border: 0;
+
     background: transparent;
 
     color: #fff;
@@ -745,7 +776,9 @@ nav a:hover {
     max-width: 100px;
 
     overflow: hidden;
+
     text-overflow: ellipsis;
+
     white-space: nowrap;
 
     font-size: 13px;
@@ -798,7 +831,9 @@ nav a:hover {
         80px;
 
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
+
+    grid-template-columns:
+        1.15fr 0.85fr;
 
     align-items: center;
 
@@ -830,6 +865,7 @@ nav a:hover {
 
 .hero-content {
     position: relative;
+
     z-index: 1;
 }
 
@@ -850,6 +886,7 @@ nav a:hover {
 
     font-size: 10px;
     font-weight: 900;
+
     letter-spacing: 0.8px;
 }
 
@@ -877,6 +914,7 @@ nav a:hover {
 
     -webkit-background-clip: text;
     background-clip: text;
+
     color: transparent;
 }
 
@@ -896,6 +934,7 @@ nav a:hover {
     color: #818ca8;
 
     font-size: 15px;
+
     line-height: 1.8;
 }
 
@@ -907,6 +946,7 @@ nav a:hover {
     padding: 0 25px;
 
     border: 0;
+
     border-radius: 14px;
 
     background:
@@ -930,11 +970,13 @@ nav a:hover {
 
 .download-btn:hover {
     transform: translateY(-3px);
+
     filter: brightness(1.1);
 }
 
 .specs {
     display: flex;
+
     flex-wrap: wrap;
 
     gap: 10px;
@@ -956,6 +998,7 @@ nav a:hover {
 
 .app-icon-big {
     width: min(330px, 70vw);
+
     aspect-ratio: 1;
 
     display: grid;
@@ -1081,6 +1124,7 @@ nav a:hover {
     color: #737f9c;
 
     font-size: 12px;
+
     line-height: 1.55;
 }
 
@@ -1102,7 +1146,8 @@ nav a:hover {
 .download-card {
     display: grid;
 
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns:
+        auto 1fr auto;
 
     align-items: center;
 
@@ -1151,6 +1196,7 @@ nav a:hover {
 
     font-size: 10px;
     font-weight: 900;
+
     letter-spacing: 1px;
 }
 
@@ -1181,6 +1227,7 @@ nav a:hover {
 
 .stats {
     display: flex;
+
     justify-content: center;
 
     padding:
@@ -1218,6 +1265,7 @@ nav a:hover {
 
     -webkit-background-clip: text;
     background-clip: text;
+
     color: transparent;
 }
 
@@ -1277,6 +1325,7 @@ nav a:hover {
 .review-user {
     display: flex;
     align-items: center;
+
     gap: 7px;
 
     color: #7e89a5;
@@ -1306,6 +1355,7 @@ nav a:hover {
 .star-rating {
     display: flex;
     align-items: center;
+
     gap: 3px;
 }
 
@@ -1317,6 +1367,7 @@ nav a:hover {
     place-items: center;
 
     border: 0;
+
     border-radius: 10px;
 
     background:
@@ -1344,6 +1395,7 @@ nav a:hover {
 
 #reviewText {
     width: 100%;
+
     min-height: 130px;
 
     margin-top: 18px;
@@ -1373,6 +1425,11 @@ nav a:hover {
     margin-top: 14px;
 }
 
+
+/* =========================================================
+   REVIEW LIST
+========================================================= */
+
 #reviewsList {
     display: grid;
 
@@ -1380,6 +1437,11 @@ nav a:hover {
 
     margin-top: 25px;
 }
+
+
+/* =========================================================
+   REVIEW CARD
+========================================================= */
 
 .review-card,
 .review {
@@ -1394,6 +1456,19 @@ nav a:hover {
 
     background:
         rgba(9, 15, 31, 0.68);
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.review-card:hover,
+.review:hover {
+    border-color:
+        rgba(92, 132, 233, 0.24);
+
+    background:
+        rgba(11, 18, 38, 0.78);
 }
 
 .review-header {
@@ -1409,6 +1484,8 @@ nav a:hover {
 
     font-size: 14px;
     font-weight: 800;
+
+    overflow-wrap: anywhere;
 }
 
 .review-stars {
@@ -1427,9 +1504,11 @@ nav a:hover {
     color: #909bb5;
 
     font-size: 13px;
+
     line-height: 1.65;
 
     white-space: pre-wrap;
+
     overflow-wrap: anywhere;
 }
 
@@ -1441,10 +1520,25 @@ nav a:hover {
     font-size: 10px;
 }
 
+
+/* =========================================================
+   OWN REVIEW DELETE BUTTON
+   Only JS should render this button when:
+   review.uid === currentUser.uid
+========================================================= */
+
 .review-delete {
     flex: 0 0 auto;
 
-    padding: 5px 9px;
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 28px;
+
+    padding:
+        5px 10px;
 
     border:
         1px solid rgba(255, 90, 110, 0.22);
@@ -1458,12 +1552,39 @@ nav a:hover {
 
     font-size: 10px;
     font-weight: 800;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .review-delete:hover {
+    border-color:
+        rgba(255, 90, 110, 0.38);
+
     background:
         rgba(255, 75, 100, 0.13);
+
+    transform: translateY(-1px);
 }
+
+.review-delete:active {
+    transform: translateY(0);
+}
+
+.review-delete:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
 
 .empty-state {
     padding: 25px;
@@ -1487,7 +1608,9 @@ nav a:hover {
 
 .modal {
     position: fixed;
+
     inset: 0;
+
     z-index: 5000;
 
     display: none;
@@ -1511,9 +1634,11 @@ nav a:hover {
     position: relative;
 
     width: 100%;
+
     max-width: 430px;
 
-    max-height: calc(100vh - 36px);
+    max-height:
+        calc(100vh - 36px);
 
     overflow-y: auto;
 
@@ -1544,17 +1669,24 @@ nav a:hover {
 @keyframes modalIn {
     from {
         opacity: 0;
-        transform: translateY(14px) scale(0.97);
+
+        transform:
+            translateY(14px)
+            scale(0.97);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+
+        transform:
+            translateY(0)
+            scale(1);
     }
 }
 
 .close {
     position: absolute;
+
     top: 12px;
     right: 14px;
 
@@ -1565,6 +1697,7 @@ nav a:hover {
     place-items: center;
 
     border: 0;
+
     border-radius: 50%;
 
     background:
@@ -1577,12 +1710,14 @@ nav a:hover {
 
 .close:hover {
     color: #fff;
+
     background:
         rgba(255, 255, 255, 0.09);
 }
 
 .modal-logo {
     display: flex;
+
     justify-content: center;
 
     margin-bottom: 17px;
@@ -1612,6 +1747,7 @@ nav a:hover {
     color: #77839e;
 
     font-size: 13px;
+
     line-height: 1.6;
 }
 
@@ -1622,6 +1758,7 @@ nav a:hover {
 #registerForm,
 #forgotForm {
     display: grid;
+
     gap: 12px;
 }
 
@@ -1634,6 +1771,7 @@ nav a:hover {
     margin-top: 18px;
 
     border: 0;
+
     background: transparent;
 
     color: #6d7b98;
@@ -1645,8 +1783,14 @@ nav a:hover {
     color: #6aaaff;
 }
 
+
+/* =========================================================
+   PROFILE MODAL
+========================================================= */
+
 .profile-modal-avatar {
     display: flex;
+
     justify-content: center;
 
     margin-bottom: 14px;
@@ -1706,6 +1850,7 @@ nav a:hover {
 
     font-size: 10px;
     font-weight: 800;
+
     text-transform: uppercase;
 }
 
@@ -1776,7 +1921,8 @@ nav a:hover {
     box-shadow:
         0 0 40px rgba(58, 113, 255, 0.2);
 
-    animation: countdownPulse 1s ease-in-out infinite;
+    animation:
+        countdownPulse 1s ease-in-out infinite;
 }
 
 .download-countdown-hint {
@@ -1811,6 +1957,7 @@ footer {
         35px;
 
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
@@ -1826,7 +1973,7 @@ footer {
 
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE - TABLET
 ========================================================= */
 
 @media (max-width: 1050px) {
@@ -1846,10 +1993,15 @@ footer {
 }
 
 
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
 @media (max-width: 800px) {
 
     header {
-        padding: 11px 18px;
+        padding:
+            11px 18px;
     }
 
     nav {
@@ -1868,7 +2020,9 @@ footer {
 
     .hero-content {
         display: flex;
+
         flex-direction: column;
+
         align-items: center;
     }
 
@@ -1903,7 +2057,8 @@ footer {
     }
 
     .download-card .download-btn {
-        grid-column: 1 / -1;
+        grid-column:
+            1 / -1;
 
         width: 100%;
     }
@@ -1914,6 +2069,10 @@ footer {
     }
 }
 
+
+/* =========================================================
+   RESPONSIVE - SMALL MOBILE
+========================================================= */
 
 @media (max-width: 560px) {
 
@@ -1953,6 +2112,7 @@ footer {
 
     .hero p {
         font-size: 13px;
+
         line-height: 1.7;
     }
 
@@ -1986,6 +2146,17 @@ footer {
         max-width: 100%;
     }
 
+    .review-header {
+        align-items: flex-start;
+    }
+
+    .review-delete {
+        padding:
+            5px 8px;
+
+        font-size: 9px;
+    }
+
     footer {
         flex-direction: column;
 
@@ -1993,14 +2164,20 @@ footer {
     }
 
     .login-card {
-        padding: 23px 18px;
+        padding:
+            23px 18px;
     }
 
     .modal-box {
-        padding: 27px 19px;
+        padding:
+            27px 19px;
     }
 }
 
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
 
 @media (max-width: 380px) {
 
@@ -2030,6 +2207,11 @@ footer {
         width: 35px;
         height: 35px;
     }
+
+    .review-card,
+    .review {
+        padding: 15px;
+    }
 }
 
 
@@ -2044,7 +2226,8 @@ footer {
     .google-login-btn:hover,
     .primary-auth-btn:hover,
     .modal-action:hover,
-    .review-submit:hover {
+    .review-submit:hover,
+    .review-delete:hover {
         transform: none;
     }
 }
@@ -2060,8 +2243,14 @@ footer {
     *::before,
     *::after {
         scroll-behavior: auto !important;
-        animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.001ms !important;
+
+        animation-duration:
+            0.001ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.001ms !important;
     }
 }
