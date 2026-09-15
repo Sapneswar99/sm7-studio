@@ -1,575 +1,1104 @@
-/* =========================================================
-   SUPER VIDEO PLAYER WEBSITE
-   FULL REPLACE JAVASCRIPT
+"use strict";
 
-   FIREBASE AUTH
-   EMAIL / PASSWORD LOGIN
-   GOOGLE LOGIN
-   REGISTER
-   FORGOT PASSWORD
-   PROFILE + USERNAME
-   FIRESTORE REVIEWS
-   OWNER REVIEW DELETE
-   FIRESTORE DOWNLOAD COUNTER
-   5 SECOND DOWNLOAD COUNTDOWN
-   AUTOMATIC APK DOWNLOAD
-   ========================================================= */
+/* =========================================================
+   SUPER VIDEO PLAYER
+   Firebase Authentication + Firestore
+========================================================= */
 
 
 /* =========================================================
    CONFIG
-   ========================================================= */
+========================================================= */
 
 const DEFAULT_APK_URL =
-    "https://github.com/Sapnes99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk";
+    "https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk";
 
-const LOCAL_OWNER_UID = "yZsy5oOxhjU7BFnaCH67FOL3rjB2";
+const APP_LOGO_URL =
+    "https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png";
+
+
+/*
+   OWNER_UID intentionally blank.
+
+   Jab actual owner UID available ho:
+   firebase-config.js me OWNER_UID set karein.
+*/
+const LOCAL_OWNER_UID =
+    typeof OWNER_UID !== "undefined"
+        ? String(OWNER_UID || "").trim()
+        : "";
 
 
 /* =========================================================
-   FIREBASE VARIABLES
-   ========================================================= */
+   FIREBASE
+========================================================= */
 
 let auth = null;
 let db = null;
 
 let currentUser = null;
 
-let currentProfile = {
-    name: "",
-    username: "",
-    email: "",
-    photoURL: ""
-};
-
 let reviewsUnsubscribe = null;
 
-let downloadTimer = null;
+let loadingFinished = false;
+let authReady = false;
+
 let downloadInProgress = false;
 
 
 /* =========================================================
-   DOM HELPER
-   ========================================================= */
+   HELPERS
+========================================================= */
 
 function get(id) {
     return document.getElementById(id);
 }
 
+function safeText(value) {
+    return String(value ?? "");
+}
 
-/* =========================================================
-   MESSAGE HELPER
-   ========================================================= */
-
-function setFormMessage(element, text, success = false) {
+function setMessage(element, message, type = "") {
 
     if (!element) {
         return;
     }
 
-    element.textContent = text;
+    element.textContent = message || "";
 
-    element.classList.toggle(
-        "success",
-        Boolean(success)
+    element.classList.remove(
+        "error",
+        "success"
     );
+
+    if (type) {
+        element.classList.add(type);
+    }
 }
 
+function setButtonLoading(button, loading, loadingText, normalText) {
 
-function clearElementMessage(element) {
-
-    if (!element) {
+    if (!button) {
         return;
     }
 
-    element.textContent = "";
+    button.disabled = loading;
 
-    element.classList.remove("success");
+    if (loading) {
+        button.dataset.originalText =
+            button.textContent;
+
+        button.textContent =
+            loadingText || "Please wait...";
+    } else {
+        button.textContent =
+            normalText ||
+            button.dataset.originalText ||
+            "Submit";
+    }
+}
+
+function escapeHtml(value) {
+
+    return safeText(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
 
 /* =========================================================
-   FIREBASE CONFIG
-   ========================================================= */
+   DOM
+========================================================= */
 
-function getFirebaseConfig() {
+const loadingScreen = get("loadingScreen");
 
-    if (
-        typeof FIREBASE_CONFIG !== "undefined" &&
-        FIREBASE_CONFIG
-    ) {
-        return FIREBASE_CONFIG;
+const loginScreen = get("loginScreen");
+const mainApp = get("mainApp");
+
+const googleLoginButton =
+    get("googleLoginButton");
+
+const loginForm =
+    get("loginForm");
+
+const loginEmail =
+    get("loginEmail");
+
+const loginPassword =
+    get("loginPassword");
+
+const loginForgotPassword =
+    get("loginForgotPassword");
+
+const loginSubmit =
+    get("loginSubmit");
+
+const loginMessage =
+    get("loginMessage");
+
+const openRegisterButton =
+    get("openRegisterButton");
+
+const logoutButton =
+    get("logoutButton");
+
+const profileButton =
+    get("profileButton");
+
+const profileAvatar =
+    get("profileAvatar");
+
+const loggedUserName =
+    get("loggedUserName");
+
+const heroDownloadButton =
+    get("heroDownloadButton");
+
+const downloadButton =
+    get("downloadButton");
+
+const downloadCount =
+    get("downloadCount");
+
+const reviewForm =
+    get("reviewForm");
+
+const reviewUser =
+    get("reviewUser");
+
+const reviewUserName =
+    get("reviewUserName");
+
+const starRating =
+    get("starRating");
+
+const ratingStars =
+    document.querySelectorAll(".rating-star");
+
+const reviewRating =
+    get("reviewRating");
+
+const reviewText =
+    get("reviewText");
+
+const reviewSubmit =
+    get("reviewSubmit");
+
+const reviewMessage =
+    get("reviewMessage");
+
+const reviewsList =
+    get("reviewsList");
+
+const profileModal =
+    get("profileModal");
+
+const profileClose =
+    get("profileClose");
+
+const profileModalAvatar =
+    get("profileModalAvatar");
+
+const profileEmail =
+    get("profileEmail");
+
+const profileForm =
+    get("profileForm");
+
+const profileName =
+    get("profileName");
+
+const profileUsername =
+    get("profileUsername");
+
+const profileSaveButton =
+    get("profileSaveButton");
+
+const profileMessage =
+    get("profileMessage");
+
+const registerModal =
+    get("registerModal");
+
+const registerClose =
+    get("registerClose");
+
+const googleRegisterButton =
+    get("googleRegisterButton");
+
+const registerForm =
+    get("registerForm");
+
+const registerName =
+    get("registerName");
+
+const registerEmail =
+    get("registerEmail");
+
+const registerPassword =
+    get("registerPassword");
+
+const registerSubmit =
+    get("registerSubmit");
+
+const registerMessage =
+    get("registerMessage");
+
+const backToLoginButton =
+    get("backToLoginButton");
+
+const forgotModal =
+    get("forgotModal");
+
+const forgotClose =
+    get("forgotClose");
+
+const forgotForm =
+    get("forgotForm");
+
+const forgotEmail =
+    get("forgotEmail");
+
+const forgotSubmit =
+    get("forgotSubmit");
+
+const forgotMessage =
+    get("forgotMessage");
+
+const forgotBackLogin =
+    get("forgotBackLogin");
+
+const downloadModal =
+    get("downloadModal");
+
+const downloadCountdown =
+    get("downloadCountdown");
+
+const downloadCountdownText =
+    get("downloadCountdownText");
+
+const yearElement =
+    get("year");
+
+
+/* =========================================================
+   INITIALIZATION
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    initializeApp
+);
+
+function initializeApp() {
+
+    if (yearElement) {
+        yearElement.textContent =
+            new Date().getFullYear();
     }
 
-    if (
-        typeof firebaseConfig !== "undefined" &&
-        firebaseConfig
-    ) {
-        return firebaseConfig;
-    }
+    setupEventListeners();
 
-    return null;
+    initializeFirebase();
+
+    startThreeSecondLoading();
 }
 
 
 /* =========================================================
-   APK URL
-   ========================================================= */
+   FIREBASE INITIALIZATION
+========================================================= */
 
-function getAPKURL() {
+function initializeFirebase() {
 
-    if (
-        typeof APK_URL !== "undefined" &&
-        typeof APK_URL === "string" &&
-        APK_URL.trim()
-    ) {
-        return APK_URL.trim();
-    }
+    try {
 
-    return DEFAULT_APK_URL;
-}
+        if (
+            typeof firebase === "undefined"
+        ) {
+            throw new Error(
+                "Firebase SDK could not be loaded."
+            );
+        }
 
+        if (
+            typeof FIREBASE_CONFIG === "undefined"
+        ) {
+            throw new Error(
+                "FIREBASE_CONFIG is missing from firebase-config.js."
+            );
+        }
 
-/* =========================================================
-   OWNER UID
-   ========================================================= */
+        if (!firebase.apps.length) {
+            firebase.initializeApp(
+                FIREBASE_CONFIG
+            );
+        }
 
-function getOwnerUID() {
+        auth = firebase.auth();
+        db = firebase.firestore();
 
-    if (
-        typeof OWNER_UID !== "undefined" &&
-        typeof OWNER_UID === "string" &&
-        OWNER_UID.trim()
-    ) {
-        return OWNER_UID.trim();
-    }
+        /*
+         * Keep the user logged in across visits.
+         */
+        auth.setPersistence(
+            firebase.auth.Auth.Persistence.LOCAL
+        ).catch(function(error) {
 
-    if (
-        typeof LOCAL_OWNER_UID === "string" &&
-        LOCAL_OWNER_UID.trim()
-    ) {
-        return LOCAL_OWNER_UID.trim();
-    }
+            console.warn(
+                "Auth persistence error:",
+                error
+            );
 
-    return "";
-}
+        });
 
+        auth.onAuthStateChanged(
+            async function(user) {
 
-function isCurrentUserOwner() {
+                currentUser = user || null;
 
-    const ownerUID = getOwnerUID();
+                authReady = true;
 
-    return Boolean(
-        ownerUID &&
-        currentUser &&
-        currentUser.uid === ownerUID
-    );
-}
+                await handleAuthState();
 
+                tryRenderApp();
 
-/* =========================================================
-   VALIDATION
-   ========================================================= */
-
-function validName(name) {
-
-    if (typeof name !== "string") {
-        return false;
-    }
-
-    const value = name.trim();
-
-    return (
-        value.length >= 2 &&
-        value.length <= 50
-    );
-}
-
-
-function validUsername(username) {
-
-    if (typeof username !== "string") {
-        return false;
-    }
-
-    return /^[a-zA-Z0-9_]{3,30}$/.test(
-        username.trim()
-    );
-}
-
-
-function validPassword(password) {
-
-    return (
-        typeof password === "string" &&
-        password.length >= 6
-    );
-}
-
-
-/* =========================================================
-   USERNAME GENERATOR
-   ========================================================= */
-
-function generateUsername(name, uid = "") {
-
-    let base =
-        String(name || "user")
-            .trim()
-            .toLowerCase()
-            .replace(/[^a-z0-9_]/g, "");
-
-    if (!base) {
-        base = "user";
-    }
-
-    base = base.substring(0, 20);
-
-    const cleanUID =
-        String(uid || "")
-            .replace(/[^a-zA-Z0-9]/g, "")
-            .toLowerCase();
-
-    const suffix =
-        cleanUID.substring(0, 8);
-
-    let username =
-        suffix
-            ? `${base}_${suffix}`
-            : `${base}_${Math.floor(
-                1000 + Math.random() * 9000
-            )}`;
-
-    username =
-        username.substring(0, 30);
-
-    if (username.length < 3) {
-
-        username =
-            `user_${Math.floor(
-                1000 + Math.random() * 9000
-            )}`;
-
-    }
-
-    return username;
-}
-
-
-/* =========================================================
-   INITIAL SCREEN
-   ========================================================= */
-
-(function prepareInitialScreen() {
-
-    const loginScreen = get("loginScreen");
-    const mainApp = get("mainApp");
-
-    if (loginScreen) {
-
-        loginScreen.style.display = "none";
-
-        loginScreen.setAttribute(
-            "aria-hidden",
-            "true"
+            }
         );
 
+    } catch (error) {
+
+        console.error(
+            "Firebase initialization failed:",
+            error
+        );
+
+        authReady = true;
+
+        setTimeout(function() {
+
+            if (!loadingFinished) {
+                return;
+            }
+
+            showLoginScreen();
+
+            setMessage(
+                loginMessage,
+                "Firebase could not be initialized. Please check firebase-config.js.",
+                "error"
+            );
+
+        }, 50);
+    }
+}
+
+
+/* =========================================================
+   THREE SECOND LOADING
+========================================================= */
+
+function startThreeSecondLoading() {
+
+    /*
+     * Loading animation always runs for 3 seconds.
+     */
+    setTimeout(function() {
+
+        loadingFinished = true;
+
+        tryRenderApp();
+
+    }, 3000);
+}
+
+
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+async function handleAuthState() {
+
+    if (!currentUser) {
+
+        stopReviewsListener();
+
+        return;
     }
 
+    updateUserUI();
+
+    await ensureUserProfile();
+
+    loadDownloadCount();
+
+    startReviewsListener();
+}
+
+
+function tryRenderApp() {
+
+    if (!loadingFinished) {
+        return;
+    }
+
+    if (!authReady) {
+        return;
+    }
+
+    hideLoadingScreen();
+
+    if (currentUser) {
+        showMainApp();
+    } else {
+        showLoginScreen();
+    }
+}
+
+
+/* =========================================================
+   SCREEN MANAGEMENT
+========================================================= */
+
+function hideLoadingScreen() {
+
+    if (!loadingScreen) {
+        return;
+    }
+
+    loadingScreen.classList.add("hidden");
+
+    loadingScreen.style.opacity = "0";
+    loadingScreen.style.visibility = "hidden";
+    loadingScreen.style.pointerEvents = "none";
+
+    setTimeout(function() {
+
+        if (loadingScreen) {
+            loadingScreen.style.display = "none";
+        }
+
+    }, 600);
+}
+
+
+function showLoginScreen() {
+
+    closeAllModals();
+
     if (mainApp) {
-
-        mainApp.style.display = "none";
-
+        mainApp.classList.remove("show");
         mainApp.setAttribute(
             "aria-hidden",
             "true"
         );
-
     }
-
-})();
-
-
-/* =========================================================
-   LOADING SCREEN
-   EXACTLY 3 SECONDS
-   ========================================================= */
-
-(function startLoadingScreen() {
-
-    const loading = get("loadingScreen");
-
-    if (!loading) {
-        return;
-    }
-
-    window.setTimeout(
-        function () {
-
-            loading.classList.add("hidden");
-            loading.classList.add("hide");
-
-            window.setTimeout(
-                function () {
-
-                    if (
-                        loading &&
-                        loading.parentNode
-                    ) {
-                        loading.remove();
-                    }
-
-                },
-                750
-            );
-
-        },
-        3000
-    );
-
-})();
-
-
-/* =========================================================
-   CURRENT YEAR
-   ========================================================= */
-
-(function setCurrentYear() {
-
-    const year = get("year");
-
-    if (!year) {
-        return;
-    }
-
-    year.textContent =
-        new Date().getFullYear();
-
-})();
-
-
-/* =========================================================
-   SCREEN CONTROL
-   ========================================================= */
-
-function showLoginScreen() {
-
-    const loginScreen = get("loginScreen");
-    const mainApp = get("mainApp");
 
     if (loginScreen) {
 
-        loginScreen.style.display = "flex";
+        loginScreen.classList.add("show");
 
         loginScreen.setAttribute(
             "aria-hidden",
             "false"
         );
-
     }
-
-    if (mainApp) {
-
-        mainApp.style.display = "none";
-
-        mainApp.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-    }
-
 }
 
 
 function showMainApp() {
 
-    const loginScreen = get("loginScreen");
-    const mainApp = get("mainApp");
+    if (!currentUser) {
+        showLoginScreen();
+        return;
+    }
 
     if (loginScreen) {
 
-        loginScreen.style.display = "none";
+        loginScreen.classList.remove("show");
 
         loginScreen.setAttribute(
             "aria-hidden",
             "true"
         );
-
     }
 
     if (mainApp) {
 
-        mainApp.style.display = "block";
+        mainApp.classList.add("show");
 
         mainApp.setAttribute(
             "aria-hidden",
             "false"
         );
-
     }
 
+    updateUserUI();
 }
 
 
 /* =========================================================
-   AUTH MESSAGES
-   ========================================================= */
+   USER UI
+========================================================= */
 
-function clearAuthMessages() {
+function getUserDisplayName(user) {
 
-    [
-        get("loginMessage"),
-        get("registerMessage"),
-        get("forgotMessage")
-    ].forEach(
-        function (element) {
+    if (!user) {
+        return "User";
+    }
 
-            clearElementMessage(element);
+    return (
+        user.displayName ||
+        user.email?.split("@")[0] ||
+        "User"
+    );
+}
 
+
+function getInitials(name) {
+
+    const cleanName =
+        safeText(name)
+            .trim()
+            .replace(/\s+/g, " ");
+
+    if (!cleanName) {
+        return "U";
+    }
+
+    const parts =
+        cleanName.split(" ");
+
+    if (parts.length === 1) {
+        return parts[0]
+            .substring(0, 1)
+            .toUpperCase();
+    }
+
+    return (
+        parts[0].substring(0, 1) +
+        parts[parts.length - 1].substring(0, 1)
+    ).toUpperCase();
+}
+
+
+function updateUserUI() {
+
+    if (!currentUser) {
+        return;
+    }
+
+    const name =
+        getUserDisplayName(currentUser);
+
+    const initials =
+        getInitials(name);
+
+    if (loggedUserName) {
+        loggedUserName.textContent = name;
+    }
+
+    if (profileAvatar) {
+        profileAvatar.textContent = initials;
+    }
+
+    if (profileModalAvatar) {
+        profileModalAvatar.textContent = initials;
+    }
+
+    if (profileEmail) {
+        profileEmail.textContent =
+            currentUser.email || "—";
+    }
+
+    if (reviewUserName) {
+        reviewUserName.textContent = name;
+    }
+
+    /*
+     * If Google has profile photo, use it.
+     * Otherwise initials remain visible.
+     */
+    if (
+        currentUser.photoURL &&
+        profileAvatar
+    ) {
+
+        profileAvatar.innerHTML =
+            '<img src="' +
+            escapeHtml(currentUser.photoURL) +
+            '" alt="Profile">';
+
+        profileAvatar.style.padding = "0";
+        profileAvatar.style.overflow = "hidden";
+
+        const image =
+            profileAvatar.querySelector("img");
+
+        if (image) {
+
+            image.style.width = "100%";
+            image.style.height = "100%";
+            image.style.objectFit = "cover";
+        }
+    }
+}
+
+
+/* =========================================================
+   USER PROFILE
+========================================================= */
+
+async function ensureUserProfile() {
+
+    if (!currentUser || !db) {
+        return;
+    }
+
+    try {
+
+        const ref =
+            db.collection("users")
+                .doc(currentUser.uid);
+
+        const snapshot =
+            await ref.get();
+
+        if (snapshot.exists) {
+
+            const data =
+                snapshot.data() || {};
+
+            if (profileName) {
+                profileName.value =
+                    data.name ||
+                    currentUser.displayName ||
+                    "";
+            }
+
+            if (profileUsername) {
+                profileUsername.value =
+                    data.username ||
+                    "";
+            }
+
+            return;
+        }
+
+        const defaultName =
+            currentUser.displayName ||
+            currentUser.email?.split("@")[0] ||
+            "User";
+
+        const defaultUsername =
+            createDefaultUsername(
+                currentUser
+            );
+
+        await ref.set({
+
+            uid: currentUser.uid,
+
+            name: defaultName,
+
+            username: defaultUsername,
+
+            email:
+                currentUser.email || "",
+
+            createdAt:
+                firebase.firestore.FieldValue.serverTimestamp(),
+
+            updatedAt:
+                firebase.firestore.FieldValue.serverTimestamp()
+
+        });
+
+        if (profileName) {
+            profileName.value = defaultName;
+        }
+
+        if (profileUsername) {
+            profileUsername.value =
+                defaultUsername;
+        }
+
+    } catch (error) {
+
+        console.error(
+            "ensureUserProfile:",
+            error
+        );
+    }
+}
+
+
+function createDefaultUsername(user) {
+
+    const base =
+        (
+            user.displayName ||
+            user.email?.split("@")[0] ||
+            "user"
+        )
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, "")
+        .substring(0, 20);
+
+    const suffix =
+        safeText(user.uid)
+            .substring(0, 5)
+            .toLowerCase();
+
+    return (
+        base || "user"
+    ) + suffix;
+}
+
+
+/* =========================================================
+   EVENT LISTENERS
+========================================================= */
+
+function setupEventListeners() {
+
+    if (loginForm) {
+
+        loginForm.addEventListener(
+            "submit",
+            handleEmailLogin
+        );
+    }
+
+    if (googleLoginButton) {
+
+        googleLoginButton.addEventListener(
+            "click",
+            handleGoogleLogin
+        );
+    }
+
+    if (loginForgotPassword) {
+
+        loginForgotPassword.addEventListener(
+            "click",
+            function() {
+
+                const email =
+                    loginEmail?.value?.trim() || "";
+
+                if (forgotEmail) {
+                    forgotEmail.value = email;
+                }
+
+                openModal(forgotModal);
+
+            }
+        );
+    }
+
+    if (openRegisterButton) {
+
+        openRegisterButton.addEventListener(
+            "click",
+            function() {
+
+                setMessage(
+                    registerMessage,
+                    ""
+                );
+
+                openModal(registerModal);
+
+            }
+        );
+    }
+
+    if (registerForm) {
+
+        registerForm.addEventListener(
+            "submit",
+            handleEmailRegistration
+        );
+    }
+
+    if (googleRegisterButton) {
+
+        googleRegisterButton.addEventListener(
+            "click",
+            handleGoogleRegistration
+        );
+    }
+
+    if (backToLoginButton) {
+
+        backToLoginButton.addEventListener(
+            "click",
+            function() {
+
+                closeModal(registerModal);
+
+                setMessage(
+                    loginMessage,
+                    ""
+                );
+
+            }
+        );
+    }
+
+    if (forgotForm) {
+
+        forgotForm.addEventListener(
+            "submit",
+            handleForgotPassword
+        );
+    }
+
+    if (forgotBackLogin) {
+
+        forgotBackLogin.addEventListener(
+            "click",
+            function() {
+
+                closeModal(forgotModal);
+
+            }
+        );
+    }
+
+    if (logoutButton) {
+
+        logoutButton.addEventListener(
+            "click",
+            handleLogout
+        );
+    }
+
+    if (profileButton) {
+
+        profileButton.addEventListener(
+            "click",
+            openProfile
+        );
+    }
+
+    if (profileClose) {
+
+        profileClose.addEventListener(
+            "click",
+            function() {
+
+                closeModal(profileModal);
+
+            }
+        );
+    }
+
+    if (profileForm) {
+
+        profileForm.addEventListener(
+            "submit",
+            handleProfileSave
+        );
+    }
+
+    if (registerClose) {
+
+        registerClose.addEventListener(
+            "click",
+            function() {
+
+                closeModal(registerModal);
+
+            }
+        );
+    }
+
+    if (forgotClose) {
+
+        forgotClose.addEventListener(
+            "click",
+            function() {
+
+                closeModal(forgotModal);
+
+            }
+        );
+    }
+
+    if (heroDownloadButton) {
+
+        heroDownloadButton.addEventListener(
+            "click",
+            startDownload
+        );
+    }
+
+    if (downloadButton) {
+
+        downloadButton.addEventListener(
+            "click",
+            startDownload
+        );
+    }
+
+    if (reviewForm) {
+
+        reviewForm.addEventListener(
+            "submit",
+            handleReviewSubmit
+        );
+    }
+
+    ratingStars.forEach(
+        function(star) {
+
+            star.addEventListener(
+                "click",
+                function() {
+
+                    const rating =
+                        Number(
+                            star.dataset.rating
+                        );
+
+                    selectRating(rating);
+
+                }
+            );
+
+            star.addEventListener(
+                "keydown",
+                function(event) {
+
+                    if (
+                        event.key === "ArrowRight" ||
+                        event.key === "ArrowUp"
+                    ) {
+
+                        event.preventDefault();
+
+                        const current =
+                            Number(
+                                reviewRating?.value || 0
+                            );
+
+                        selectRating(
+                            Math.min(5, current + 1)
+                        );
+                    }
+
+                    if (
+                        event.key === "ArrowLeft" ||
+                        event.key === "ArrowDown"
+                    ) {
+
+                        event.preventDefault();
+
+                        const current =
+                            Number(
+                                reviewRating?.value || 1
+                            );
+
+                        selectRating(
+                            Math.max(1, current - 1)
+                        );
+                    }
+                }
+            );
         }
     );
 
-}
+
+    /*
+     * Modal backdrop click.
+     */
+    document.addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target.classList &&
+                event.target.classList.contains("modal")
+            ) {
+
+                closeModal(event.target);
+
+            }
+        }
+    );
 
 
-/* =========================================================
-   FIREBASE AUTH ERROR
-   ========================================================= */
+    /*
+     * Escape closes normal modals.
+     * Download countdown is not cancellable.
+     */
+    document.addEventListener(
+        "keydown",
+        function(event) {
 
-function getFirebaseAuthErrorMessage(error) {
+            if (event.key !== "Escape") {
+                return;
+            }
 
-    if (!error) {
+            if (
+                downloadModal &&
+                downloadModal.classList.contains("show")
+            ) {
+                return;
+            }
 
-        return "Authentication failed. Please try again.";
+            closeAllModals();
 
-    }
-
-    const code =
-        error.code || "";
-
-    switch (code) {
-
-        case "auth/invalid-email":
-            return "Please enter a valid email address.";
-
-        case "auth/user-not-found":
-            return "No account was found with this email.";
-
-        case "auth/wrong-password":
-            return "Incorrect password.";
-
-        case "auth/invalid-credential":
-            return "Incorrect email or password.";
-
-        case "auth/email-already-in-use":
-            return "An account with this email already exists.";
-
-        case "auth/weak-password":
-            return "Password is too weak. Use at least 6 characters.";
-
-        case "auth/network-request-failed":
-            return "Network error. Please check your internet connection.";
-
-        case "auth/too-many-requests":
-            return "Too many attempts. Please wait and try again.";
-
-        case "auth/popup-blocked":
-            return "Google login popup was blocked. Please allow popups and try again.";
-
-        case "auth/popup-closed-by-user":
-            return "Google login was cancelled.";
-
-        case "auth/account-exists-with-different-credential":
-            return "An account already exists with a different sign-in method.";
-
-        case "auth/unauthorized-domain":
-            return "This website domain is not authorized in Firebase Authentication.";
-
-        case "auth/operation-not-allowed":
-            return "This sign-in method is not enabled in Firebase Authentication.";
-
-        case "auth/user-disabled":
-            return "This account has been disabled.";
-
-        default:
-            return (
-                error.message ||
-                "Authentication failed. Please try again."
-            );
-
-    }
-
+        }
+    );
 }
 
 
 /* =========================================================
    EMAIL LOGIN
-   ========================================================= */
+========================================================= */
 
-async function loginWithEmailPassword() {
+async function handleEmailLogin(event) {
 
-    const emailInput =
-        get("loginEmail");
-
-    const passwordInput =
-        get("loginPassword");
-
-    const message =
-        get("loginMessage");
-
-    const submit =
-        get("loginSubmit");
+    event.preventDefault();
 
     if (!auth) {
 
-        setFormMessage(
-            message,
-            "Firebase is not connected."
+        setMessage(
+            loginMessage,
+            "Firebase is not ready yet.",
+            "error"
         );
 
         return;
-
     }
 
     const email =
-        emailInput
-            ? emailInput.value.trim()
-            : "";
+        loginEmail.value.trim();
 
     const password =
-        passwordInput
-            ? passwordInput.value
-            : "";
+        loginPassword.value;
 
-    if (!email) {
-
-        setFormMessage(
-            message,
-            "Please enter your email."
-        );
-
+    if (!email || !password) {
         return;
-
     }
 
-    if (!password) {
+    setMessage(
+        loginMessage,
+        "Signing in..."
+    );
 
-        setFormMessage(
-            message,
-            "Please enter your password."
-        );
-
-        return;
-
-    }
-
-    if (submit) {
-
-        submit.disabled = true;
-        submit.textContent = "Logging in...";
-
-    }
+    setButtonLoading(
+        loginSubmit,
+        true,
+        "Signing in...",
+        "Login"
+    );
 
     try {
 
@@ -578,6 +1107,14 @@ async function loginWithEmailPassword() {
             password
         );
 
+        setMessage(
+            loginMessage,
+            "Login successful.",
+            "success"
+        );
+
+        loginForm.reset();
+
     } catch (error) {
 
         console.error(
@@ -585,75 +1122,73 @@ async function loginWithEmailPassword() {
             error
         );
 
-        setFormMessage(
-            message,
-            getFirebaseAuthErrorMessage(error)
+        setMessage(
+            loginMessage,
+            getFirebaseErrorMessage(error),
+            "error"
         );
 
     } finally {
 
-        if (submit) {
-
-            submit.disabled = false;
-            submit.textContent = "Login";
-
-        }
-
+        setButtonLoading(
+            loginSubmit,
+            false,
+            "",
+            "Login"
+        );
     }
-
 }
 
 
 /* =========================================================
-   GOOGLE SIGN IN
-   ========================================================= */
+   GOOGLE LOGIN
+========================================================= */
+
+async function handleGoogleLogin() {
+
+    await signInWithGoogle(
+        loginMessage,
+        googleLoginButton
+    );
+}
+
+
+async function handleGoogleRegistration() {
+
+    await signInWithGoogle(
+        registerMessage,
+        googleRegisterButton
+    );
+}
+
 
 async function signInWithGoogle(
-    messageElementId
+    messageElement,
+    button
 ) {
-
-    const message =
-        get(messageElementId);
 
     if (!auth) {
 
-        setFormMessage(
-            message,
-            "Firebase is not connected."
+        setMessage(
+            messageElement,
+            "Firebase is not ready yet.",
+            "error"
         );
 
         return;
-
     }
 
-    let button = null;
+    setButtonLoading(
+        button,
+        true,
+        "Connecting...",
+        "Continue with Google"
+    );
 
-    if (
-        messageElementId ===
-        "loginMessage"
-    ) {
-
-        button =
-            get("googleLoginButton");
-
-    }
-
-    if (
-        messageElementId ===
-        "registerMessage"
-    ) {
-
-        button =
-            get("googleRegisterButton");
-
-    }
-
-    if (button) {
-
-        button.disabled = true;
-        button.style.opacity = "0.6";
-
-    }
+    setMessage(
+        messageElement,
+        "Opening Google Sign-In..."
+    );
 
     try {
 
@@ -664,151 +1199,149 @@ async function signInWithGoogle(
             prompt: "select_account"
         });
 
-        const result =
-            await auth.signInWithPopup(
-                provider
-            );
+        await auth.signInWithPopup(
+            provider
+        );
 
-        if (
-            result &&
-            result.user
-        ) {
+        closeModal(registerModal);
 
-            await ensureUserProfile(
-                result.user
-            );
-
-        }
-
-        if (
-            messageElementId ===
-            "registerMessage"
-        ) {
-
-            closeRegisterModal();
-
-        }
+        setMessage(
+            messageElement,
+            "Google login successful.",
+            "success"
+        );
 
     } catch (error) {
 
         console.error(
-            "Google authentication error:",
+            "Google login error:",
             error
         );
 
+        /*
+         * On mobile browsers popup can be blocked.
+         * Redirect fallback handles that case.
+         */
         if (
-            error.code !==
-            "auth/popup-closed-by-user"
+            error &&
+            (
+                error.code ===
+                    "auth/popup-blocked" ||
+                error.code ===
+                    "auth/popup-cancelled"
+            )
         ) {
 
-            setFormMessage(
-                message,
-                getFirebaseAuthErrorMessage(error)
-            );
+            try {
 
+                const provider =
+                    new firebase.auth.GoogleAuthProvider();
+
+                await auth.signInWithRedirect(
+                    provider
+                );
+
+                return;
+
+            } catch (redirectError) {
+
+                console.error(
+                    "Google redirect error:",
+                    redirectError
+                );
+
+                setMessage(
+                    messageElement,
+                    getFirebaseErrorMessage(
+                        redirectError
+                    ),
+                    "error"
+                );
+
+            }
+
+        } else {
+
+            setMessage(
+                messageElement,
+                getFirebaseErrorMessage(error),
+                "error"
+            );
         }
 
     } finally {
 
-        if (button) {
-
-            button.disabled = false;
-            button.style.opacity = "";
-
-        }
-
+        setButtonLoading(
+            button,
+            false,
+            "",
+            "Continue with Google"
+        );
     }
-
 }
 
 
 /* =========================================================
    REGISTER
-   ========================================================= */
+========================================================= */
 
-async function registerWithEmailPassword() {
+async function handleEmailRegistration(event) {
 
-    const nameInput =
-        get("registerName");
+    event.preventDefault();
 
-    const emailInput =
-        get("registerEmail");
+    if (!auth) {
 
-    const passwordInput =
-        get("registerPassword");
-
-    const message =
-        get("registerMessage");
-
-    const submit =
-        get("registerSubmit");
-
-    if (!auth || !db) {
-
-        setFormMessage(
-            message,
-            "Firebase is not connected."
+        setMessage(
+            registerMessage,
+            "Firebase is not ready yet.",
+            "error"
         );
 
         return;
-
     }
 
     const name =
-        nameInput
-            ? nameInput.value.trim()
-            : "";
+        registerName.value.trim();
 
     const email =
-        emailInput
-            ? emailInput.value.trim()
-            : "";
+        registerEmail.value.trim();
 
     const password =
-        passwordInput
-            ? passwordInput.value
-            : "";
+        registerPassword.value;
 
-    if (!validName(name)) {
+    if (name.length < 2) {
 
-        setFormMessage(
-            message,
-            "Name must be between 2 and 50 characters."
+        setMessage(
+            registerMessage,
+            "Please enter your full name.",
+            "error"
         );
 
         return;
-
     }
 
-    if (!email) {
+    if (password.length < 6) {
 
-        setFormMessage(
-            message,
-            "Please enter your email."
+        setMessage(
+            registerMessage,
+            "Password must contain at least 6 characters.",
+            "error"
         );
 
         return;
-
     }
 
-    if (!validPassword(password)) {
+    setButtonLoading(
+        registerSubmit,
+        true,
+        "Creating...",
+        "Create Account"
+    );
 
-        setFormMessage(
-            message,
-            "Password must be at least 6 characters."
-        );
-
-        return;
-
-    }
-
-    if (submit) {
-
-        submit.disabled = true;
-        submit.textContent =
-            "Creating Account...";
-
-    }
+    setMessage(
+        registerMessage,
+        "Creating your account..."
+    );
 
     try {
 
@@ -821,39 +1354,49 @@ async function registerWithEmailPassword() {
         const user =
             credential.user;
 
-        if (user) {
+        /*
+         * Set Firebase Auth display name.
+         */
+        await user.updateProfile({
+            displayName: name
+        });
 
-            await user.updateProfile({
-                displayName: name
-            });
+        /*
+         * Create Firestore profile.
+         */
+        if (db) {
 
-            await ensureUserProfile(
-                user,
-                name
-            );
+            const username =
+                createDefaultUsername(user);
 
+            await db
+                .collection("users")
+                .doc(user.uid)
+                .set({
+
+                    uid: user.uid,
+
+                    name: name,
+
+                    username: username,
+
+                    email:
+                        user.email || email,
+
+                    createdAt:
+                        firebase.firestore.FieldValue.serverTimestamp(),
+
+                    updatedAt:
+                        firebase.firestore.FieldValue.serverTimestamp()
+
+                }, {
+                    merge: true
+                });
         }
 
-        setFormMessage(
-            message,
-            "Account created successfully.",
-            true
-        );
+        registerForm.reset();
 
-        if (registerForm) {
-
-            registerForm.reset();
-
-        }
-
-        window.setTimeout(
-            function () {
-
-                closeRegisterModal();
-
-            },
-            700
-        );
+        closeModal(registerModal);
 
     } catch (error) {
 
@@ -862,504 +1405,61 @@ async function registerWithEmailPassword() {
             error
         );
 
-        setFormMessage(
-            message,
-            getFirebaseAuthErrorMessage(error)
+        setMessage(
+            registerMessage,
+            getFirebaseErrorMessage(error),
+            "error"
         );
 
     } finally {
 
-        if (submit) {
-
-            submit.disabled = false;
-            submit.textContent =
-                "Create Account";
-
-        }
-
-    }
-
-}
-
-
-/* =========================================================
-   ENSURE USER PROFILE
-   ========================================================= */
-
-async function ensureUserProfile(
-    user,
-    fallbackName = ""
-) {
-
-    if (!user || !db) {
-        return null;
-    }
-
-    const userRef =
-        db.collection("users")
-            .doc(user.uid);
-
-    try {
-
-        const snapshot =
-            await userRef.get();
-
-        const existing =
-            snapshot.exists
-                ? snapshot.data() || {}
-                : {};
-
-        const name =
-            String(
-                existing.name ||
-                user.displayName ||
-                fallbackName ||
-                "User"
-            ).trim();
-
-        const username =
-            String(
-                existing.username ||
-                generateUsername(
-                    name,
-                    user.uid
-                )
-            ).trim();
-
-        const provider =
-            user.providerData &&
-            user.providerData[0]
-                ? user.providerData[0].providerId
-                : "password";
-
-        const data = {
-
-            uid:
-                user.uid,
-
-            name:
-                name,
-
-            username:
-                username,
-
-            email:
-                user.email || "",
-
-            photoURL:
-                user.photoURL || "",
-
-            provider:
-                provider,
-
-            updatedAt:
-                firebase.firestore
-                    .FieldValue
-                    .serverTimestamp()
-
-        };
-
-        /*
-         * createdAt is only created
-         * when the user document does not exist.
-         */
-
-        if (!snapshot.exists) {
-
-            data.createdAt =
-                firebase.firestore
-                    .FieldValue
-                    .serverTimestamp();
-
-        }
-
-        await userRef.set(
-            data,
-            {
-                merge: true
-            }
+        setButtonLoading(
+            registerSubmit,
+            false,
+            "",
+            "Create Account"
         );
-
-        currentProfile = {
-
-            name:
-                name,
-
-            username:
-                username,
-
-            email:
-                user.email || "",
-
-            photoURL:
-                user.photoURL || ""
-
-        };
-
-        updateUserUI(
-            currentProfile
-        );
-
-        return currentProfile;
-
-    } catch (error) {
-
-        console.error(
-            "User profile error:",
-            error
-        );
-
-        return null;
-
     }
-
-}
-
-
-/* =========================================================
-   UPDATE USER UI
-   ========================================================= */
-
-function updateUserUI(
-    profileData = {}
-) {
-
-    const name =
-        profileData.name ||
-        currentUser?.displayName ||
-        currentUser?.email ||
-        "User";
-
-    const username =
-        profileData.username ||
-        "";
-
-    const email =
-        profileData.email ||
-        currentUser?.email ||
-        "";
-
-    const photoURL =
-        profileData.photoURL ||
-        currentUser?.photoURL ||
-        "";
-
-    const loggedUserName =
-        get("loggedUserName");
-
-    const reviewUserName =
-        get("reviewUserName");
-
-    const profileEmail =
-        get("profileEmail");
-
-    const profileName =
-        get("profileName");
-
-    const profileUsername =
-        get("profileUsername");
-
-
-    if (loggedUserName) {
-
-        loggedUserName.textContent =
-            name;
-
-    }
-
-
-    if (reviewUserName) {
-
-        reviewUserName.textContent =
-            username
-                ? `@${username}`
-                : name;
-
-    }
-
-
-    if (profileEmail) {
-
-        profileEmail.textContent =
-            email || "—";
-
-    }
-
-
-    if (profileName) {
-
-        profileName.value =
-            name;
-
-    }
-
-
-    if (profileUsername) {
-
-        profileUsername.value =
-            username;
-
-    }
-
-
-    setAvatar(
-        get("profileAvatar"),
-        name,
-        photoURL
-    );
-
-    setAvatar(
-        get("profileModalAvatar"),
-        name,
-        photoURL
-    );
-
-}
-
-
-/* =========================================================
-   AVATAR
-   ========================================================= */
-
-function getInitials(name) {
-
-    const value =
-        String(name || "User")
-            .trim();
-
-    if (!value) {
-        return "U";
-    }
-
-    const parts =
-        value.split(/\s+/);
-
-    if (parts.length === 1) {
-
-        return parts[0]
-            .substring(0, 2)
-            .toUpperCase();
-
-    }
-
-    return (
-        parts[0].charAt(0) +
-        parts[parts.length - 1].charAt(0)
-    ).toUpperCase();
-
-}
-
-
-function setAvatar(
-    element,
-    name,
-    photoURL
-) {
-
-    if (!element) {
-        return;
-    }
-
-    element.textContent =
-        getInitials(name);
-
-    element.style.backgroundImage =
-        "";
-
-    element.style.backgroundSize =
-        "cover";
-
-    element.style.backgroundPosition =
-        "center";
-
-    if (photoURL) {
-
-        element.style.backgroundImage =
-            `url("${photoURL}")`;
-
-        element.textContent = "";
-
-    }
-
-}
-
-
-/* =========================================================
-   LOGIN FORM
-   ========================================================= */
-
-const loginForm =
-    get("loginForm");
-
-if (loginForm) {
-
-    loginForm.addEventListener(
-        "submit",
-        function (event) {
-
-            event.preventDefault();
-
-            loginWithEmailPassword();
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   GOOGLE LOGIN
-   ========================================================= */
-
-const googleLoginButton =
-    get("googleLoginButton");
-
-if (googleLoginButton) {
-
-    googleLoginButton.addEventListener(
-        "click",
-        function () {
-
-            signInWithGoogle(
-                "loginMessage"
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   REGISTER FORM
-   ========================================================= */
-
-const registerForm =
-    get("registerForm");
-
-if (registerForm) {
-
-    registerForm.addEventListener(
-        "submit",
-        function (event) {
-
-            event.preventDefault();
-
-            registerWithEmailPassword();
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   GOOGLE REGISTER
-   ========================================================= */
-
-const googleRegisterButton =
-    get("googleRegisterButton");
-
-if (googleRegisterButton) {
-
-    googleRegisterButton.addEventListener(
-        "click",
-        function () {
-
-            signInWithGoogle(
-                "registerMessage"
-            );
-
-        }
-    );
-
 }
 
 
 /* =========================================================
    FORGOT PASSWORD
-   ========================================================= */
+========================================================= */
 
-const loginForgotPassword =
-    get("loginForgotPassword");
+async function handleForgotPassword(event) {
 
-if (loginForgotPassword) {
-
-    loginForgotPassword.addEventListener(
-        "click",
-        function () {
-
-            openForgotModal();
-
-        }
-    );
-
-}
-
-
-const forgotForm =
-    get("forgotForm");
-
-if (forgotForm) {
-
-    forgotForm.addEventListener(
-        "submit",
-        async function (event) {
-
-            event.preventDefault();
-
-            await sendPasswordReset();
-
-        }
-    );
-
-}
-
-
-async function sendPasswordReset() {
-
-    const emailInput =
-        get("forgotEmail");
-
-    const message =
-        get("forgotMessage");
-
-    const submit =
-        get("forgotSubmit");
+    event.preventDefault();
 
     if (!auth) {
 
-        setFormMessage(
-            message,
-            "Firebase is not connected."
+        setMessage(
+            forgotMessage,
+            "Firebase is not ready yet.",
+            "error"
         );
 
         return;
-
     }
 
     const email =
-        emailInput
-            ? emailInput.value.trim()
-            : "";
+        forgotEmail.value.trim();
 
     if (!email) {
-
-        setFormMessage(
-            message,
-            "Please enter your registered email."
-        );
-
         return;
-
     }
 
-    if (submit) {
+    setButtonLoading(
+        forgotSubmit,
+        true,
+        "Sending...",
+        "Send Reset Link"
+    );
 
-        submit.disabled = true;
-        submit.textContent = "Sending...";
-
-    }
+    setMessage(
+        forgotMessage,
+        "Sending password reset email..."
+    );
 
     try {
 
@@ -1367,10 +1467,10 @@ async function sendPasswordReset() {
             email
         );
 
-        setFormMessage(
-            message,
-            "Password reset email sent. Please check your inbox.",
-            true
+        setMessage(
+            forgotMessage,
+            "Password reset link sent. Please check your email.",
+            "success"
         );
 
     } catch (error) {
@@ -1380,652 +1480,236 @@ async function sendPasswordReset() {
             error
         );
 
-        setFormMessage(
-            message,
-            getFirebaseAuthErrorMessage(error)
+        setMessage(
+            forgotMessage,
+            getFirebaseErrorMessage(error),
+            "error"
         );
 
     } finally {
 
-        if (submit) {
-
-            submit.disabled = false;
-            submit.textContent =
-                "Send Reset Link";
-
-        }
-
-    }
-
-}
-
-
-/* =========================================================
-   REGISTER MODAL
-   ========================================================= */
-
-function openRegisterModal() {
-
-    const modal =
-        get("registerModal");
-
-    if (!modal) {
-        return;
-    }
-
-    clearAuthMessages();
-
-    modal.classList.add("show");
-    modal.classList.add("active");
-
-    modal.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-}
-
-
-function closeRegisterModal() {
-
-    const modal =
-        get("registerModal");
-
-    if (!modal) {
-        return;
-    }
-
-    modal.classList.remove("show");
-    modal.classList.remove("active");
-
-    modal.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-}
-
-
-const openRegisterButton =
-    get("openRegisterButton");
-
-if (openRegisterButton) {
-
-    openRegisterButton.addEventListener(
-        "click",
-        function (event) {
-
-            event.preventDefault();
-
-            openRegisterModal();
-
-        }
-    );
-
-}
-
-
-const registerClose =
-    get("registerClose");
-
-if (registerClose) {
-
-    registerClose.addEventListener(
-        "click",
-        function (event) {
-
-            event.preventDefault();
-
-            closeRegisterModal();
-
-        }
-    );
-
-}
-
-
-const backToLoginButton =
-    get("backToLoginButton");
-
-if (backToLoginButton) {
-
-    backToLoginButton.addEventListener(
-        "click",
-        function (event) {
-
-            event.preventDefault();
-
-            closeRegisterModal();
-
-            clearAuthMessages();
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   FORGOT MODAL
-   ========================================================= */
-
-function openForgotModal() {
-
-    const modal =
-        get("forgotModal");
-
-    if (!modal) {
-        return;
-    }
-
-    clearAuthMessages();
-
-    const loginEmail =
-        get("loginEmail");
-
-    const forgotEmail =
-        get("forgotEmail");
-
-    if (
-        loginEmail &&
-        forgotEmail &&
-        loginEmail.value.trim()
-    ) {
-
-        forgotEmail.value =
-            loginEmail.value.trim();
-
-    }
-
-    modal.classList.add("show");
-    modal.classList.add("active");
-
-    modal.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-}
-
-
-function closeForgotModal() {
-
-    const modal =
-        get("forgotModal");
-
-    if (!modal) {
-        return;
-    }
-
-    modal.classList.remove("show");
-    modal.classList.remove("active");
-
-    modal.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-}
-
-
-const forgotClose =
-    get("forgotClose");
-
-if (forgotClose) {
-
-    forgotClose.addEventListener(
-        "click",
-        function (event) {
-
-            event.preventDefault();
-
-            closeForgotModal();
-
-        }
-    );
-
-}
-
-
-const forgotBackLogin =
-    get("forgotBackLogin");
-
-if (forgotBackLogin) {
-
-    forgotBackLogin.addEventListener(
-        "click",
-        function (event) {
-
-            event.preventDefault();
-
-            closeForgotModal();
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   PROFILE MODAL
-   ========================================================= */
-
-function openProfileModal() {
-
-    const modal =
-        get("profileModal");
-
-    if (
-        !modal ||
-        !currentUser
-    ) {
-        return;
-    }
-
-    modal.classList.add("show");
-    modal.classList.add("active");
-
-    modal.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-    loadProfileIntoModal();
-
-}
-
-
-function closeProfileModal() {
-
-    const modal =
-        get("profileModal");
-
-    if (!modal) {
-        return;
-    }
-
-    modal.classList.remove("show");
-    modal.classList.remove("active");
-
-    modal.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-}
-
-
-async function loadProfileIntoModal() {
-
-    if (!currentUser) {
-        return;
-    }
-
-    const email =
-        get("profileEmail");
-
-    const name =
-        get("profileName");
-
-    const username =
-        get("profileUsername");
-
-    if (email) {
-
-        email.textContent =
-            currentUser.email || "—";
-
-    }
-
-    if (name) {
-
-        name.value =
-            currentProfile.name ||
-            currentUser.displayName ||
-            "User";
-
-    }
-
-    if (username) {
-
-        username.value =
-            currentProfile.username ||
-            generateUsername(
-                currentProfile.name ||
-                currentUser.displayName,
-                currentUser.uid
-            );
-
-    }
-
-    if (!db) {
-        return;
-    }
-
-    try {
-
-        const snapshot =
-            await db
-                .collection("users")
-                .doc(currentUser.uid)
-                .get();
-
-        if (!snapshot.exists) {
-            return;
-        }
-
-        const data =
-            snapshot.data() || {};
-
-        currentProfile = {
-
-            name:
-                data.name ||
-                currentUser.displayName ||
-                "User",
-
-            username:
-                data.username ||
-                generateUsername(
-                    data.name ||
-                    currentUser.displayName,
-                    currentUser.uid
-                ),
-
-            email:
-                data.email ||
-                currentUser.email ||
-                "",
-
-            photoURL:
-                data.photoURL ||
-                currentUser.photoURL ||
-                ""
-
-        };
-
-        updateUserUI(
-            currentProfile
+        setButtonLoading(
+            forgotSubmit,
+            false,
+            "",
+            "Send Reset Link"
         );
-
-    } catch (error) {
-
-        console.error(
-            "Load profile error:",
-            error
-        );
-
     }
-
-}
-
-
-const profileButton =
-    get("profileButton");
-
-if (profileButton) {
-
-    profileButton.addEventListener(
-        "click",
-        function () {
-
-            openProfileModal();
-
-        }
-    );
-
-}
-
-
-const profileClose =
-    get("profileClose");
-
-if (profileClose) {
-
-    profileClose.addEventListener(
-        "click",
-        function () {
-
-            closeProfileModal();
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   PROFILE FORM
-   ========================================================= */
-
-const profileForm =
-    get("profileForm");
-
-if (profileForm) {
-
-    profileForm.addEventListener(
-        "submit",
-        async function (event) {
-
-            event.preventDefault();
-
-            await saveProfileChanges();
-
-        }
-    );
-
-}
-
-
-async function saveProfileChanges() {
-
-    if (
-        !currentUser ||
-        !db
-    ) {
-        return;
-    }
-
-    const nameInput =
-        get("profileName");
-
-    const usernameInput =
-        get("profileUsername");
-
-    const message =
-        get("profileMessage");
-
-    const saveButton =
-        get("profileSaveButton");
-
-    const name =
-        nameInput
-            ? nameInput.value.trim()
-            : "";
-
-    const username =
-        usernameInput
-            ? usernameInput.value.trim()
-            : "";
-
-    if (!validName(name)) {
-
-        setFormMessage(
-            message,
-            "Name must be between 2 and 50 characters."
-        );
-
-        return;
-
-    }
-
-    if (!validUsername(username)) {
-
-        setFormMessage(
-            message,
-            "Username must contain only letters, numbers and underscore, with 3–30 characters."
-        );
-
-        return;
-
-    }
-
-    if (saveButton) {
-
-        saveButton.disabled = true;
-        saveButton.textContent = "Saving...";
-
-    }
-
-    try {
-
-        await currentUser.updateProfile({
-            displayName: name
-        });
-
-        await db
-            .collection("users")
-            .doc(currentUser.uid)
-            .set(
-                {
-                    uid:
-                        currentUser.uid,
-
-                    name:
-                        name,
-
-                    username:
-                        username,
-
-                    email:
-                        currentUser.email || "",
-
-                    photoURL:
-                        currentUser.photoURL || "",
-
-                    updatedAt:
-                        firebase.firestore
-                            .FieldValue
-                            .serverTimestamp()
-                },
-                {
-                    merge: true
-                }
-            );
-
-        currentProfile = {
-
-            name:
-                name,
-
-            username:
-                username,
-
-            email:
-                currentUser.email || "",
-
-            photoURL:
-                currentUser.photoURL || ""
-
-        };
-
-        updateUserUI(
-            currentProfile
-        );
-
-        setFormMessage(
-            message,
-            "Profile updated successfully.",
-            true
-        );
-
-    } catch (error) {
-
-        console.error(
-            "Profile save error:",
-            error
-        );
-
-        setFormMessage(
-            message,
-            "Could not update profile. Please try again."
-        );
-
-    } finally {
-
-        if (saveButton) {
-
-            saveButton.disabled = false;
-            saveButton.textContent =
-                "Save Changes";
-
-        }
-
-    }
-
 }
 
 
 /* =========================================================
    LOGOUT
-   ========================================================= */
+========================================================= */
 
-const logoutButton =
-    get("logoutButton");
+async function handleLogout() {
 
-if (logoutButton) {
+    if (!auth) {
+        return;
+    }
 
-    logoutButton.addEventListener(
-        "click",
-        async function () {
+    try {
 
-            if (!auth) {
-                return;
-            }
+        stopReviewsListener();
 
-            try {
+        await auth.signOut();
 
-                await auth.signOut();
+        currentUser = null;
 
-            } catch (error) {
+        resetReviewForm();
 
-                console.error(
-                    "Logout error:",
-                    error
-                );
+        closeAllModals();
 
-            }
+        showLoginScreen();
 
-        }
+    } catch (error) {
+
+        console.error(
+            "Logout error:",
+            error
+        );
+
+        window.alert(
+            getFirebaseErrorMessage(error)
+        );
+    }
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+async function openProfile() {
+
+    if (!currentUser) {
+        showLoginScreen();
+        return;
+    }
+
+    await ensureUserProfile();
+
+    updateUserUI();
+
+    setMessage(
+        profileMessage,
+        ""
     );
 
+    openModal(profileModal);
+}
+
+
+async function handleProfileSave(event) {
+
+    event.preventDefault();
+
+    if (!currentUser || !db) {
+
+        setMessage(
+            profileMessage,
+            "Please login first.",
+            "error"
+        );
+
+        return;
+    }
+
+    const name =
+        profileName.value.trim();
+
+    const username =
+        profileUsername.value.trim();
+
+    if (name.length < 2) {
+
+        setMessage(
+            profileMessage,
+            "Please enter a valid full name.",
+            "error"
+        );
+
+        return;
+    }
+
+    if (!/^[a-zA-Z0-9._-]{3,30}$/.test(username)) {
+
+        setMessage(
+            profileMessage,
+            "Username can contain 3–30 letters, numbers, dots, underscores or hyphens.",
+            "error"
+        );
+
+        return;
+    }
+
+    setButtonLoading(
+        profileSaveButton,
+        true,
+        "Saving...",
+        "Save Changes"
+    );
+
+    try {
+
+        await db
+            .collection("users")
+            .doc(currentUser.uid)
+            .set({
+
+                uid: currentUser.uid,
+
+                name: name,
+
+                username: username,
+
+                email:
+                    currentUser.email || "",
+
+                updatedAt:
+                    firebase.firestore.FieldValue.serverTimestamp()
+
+            }, {
+                merge: true
+            });
+
+        if (
+            currentUser.displayName !== name
+        ) {
+
+            await currentUser.updateProfile({
+                displayName: name
+            });
+        }
+
+        updateUserUI();
+
+        if (reviewUserName) {
+            reviewUserName.textContent =
+                name;
+        }
+
+        setMessage(
+            profileMessage,
+            "Profile updated successfully.",
+            "success"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Profile update error:",
+            error
+        );
+
+        setMessage(
+            profileMessage,
+            getFirebaseErrorMessage(error),
+            "error"
+        );
+
+    } finally {
+
+        setButtonLoading(
+            profileSaveButton,
+            false,
+            "",
+            "Save Changes"
+        );
+    }
 }
 
 
 /* =========================================================
    STAR RATING
-   ========================================================= */
+========================================================= */
 
-let selectedRating = 0;
+function selectRating(rating) {
 
-
-function updateStars(rating) {
-
-    const stars =
-        document.querySelectorAll(
-            ".rating-star"
+    rating =
+        Math.max(
+            1,
+            Math.min(
+                5,
+                Number(rating)
+            )
         );
 
-    stars.forEach(
-        function (star) {
+    if (reviewRating) {
+        reviewRating.value =
+            String(rating);
+    }
 
-            const value =
+    ratingStars.forEach(
+        function(star) {
+
+            const starValue =
                 Number(
                     star.dataset.rating
                 );
 
             const active =
-                value <= rating;
+                starValue <= rating;
 
             star.classList.toggle(
                 "active",
@@ -2034,386 +1718,49 @@ function updateStars(rating) {
 
             star.setAttribute(
                 "aria-checked",
-                value === rating
+                active &&
+                starValue === rating
                     ? "true"
                     : "false"
             );
-
         }
     );
-
 }
 
 
-function setRating(rating) {
+function resetRating() {
 
-    const value =
-        Number(rating);
-
-    if (
-        !Number.isInteger(value) ||
-        value < 1 ||
-        value > 5
-    ) {
-        return;
+    if (reviewRating) {
+        reviewRating.value = "0";
     }
 
-    selectedRating =
-        value;
+    ratingStars.forEach(
+        function(star) {
 
-    const hidden =
-        get("reviewRating");
-
-    if (hidden) {
-
-        hidden.value =
-            String(value);
-
-    }
-
-    updateStars(
-        value
-    );
-
-}
-
-
-const ratingStars =
-    document.querySelectorAll(
-        ".rating-star"
-    );
-
-
-ratingStars.forEach(
-    function (star) {
-
-        star.addEventListener(
-            "mouseenter",
-            function () {
-
-                updateStars(
-                    Number(
-                        star.dataset.rating
-                    )
-                );
-
-            }
-        );
-
-
-        star.addEventListener(
-            "focus",
-            function () {
-
-                updateStars(
-                    Number(
-                        star.dataset.rating
-                    )
-                );
-
-            }
-        );
-
-
-        star.addEventListener(
-            "click",
-            function () {
-
-                setRating(
-                    Number(
-                        star.dataset.rating
-                    )
-                );
-
-            }
-        );
-
-    }
-);
-
-
-const starRating =
-    get("starRating");
-
-if (starRating) {
-
-    starRating.addEventListener(
-        "mouseleave",
-        function () {
-
-            updateStars(
-                selectedRating
+            star.classList.remove(
+                "active"
             );
 
+            star.setAttribute(
+                "aria-checked",
+                "false"
+            );
         }
     );
-
 }
 
 
 /* =========================================================
-   REVIEW FORM
-   ========================================================= */
+   REVIEWS
+========================================================= */
 
-const reviewForm =
-    get("reviewForm");
+function startReviewsListener() {
 
-if (reviewForm) {
-
-    reviewForm.addEventListener(
-        "submit",
-        async function (event) {
-
-            event.preventDefault();
-
-            await submitReview();
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   SUBMIT REVIEW
-   ========================================================= */
-
-async function submitReview() {
-
-    const message =
-        get("reviewMessage");
-
-    const textInput =
-        get("reviewText");
-
-    const submit =
-        get("reviewSubmit");
-
-    if (!currentUser) {
-
-        setFormMessage(
-            message,
-            "Please login to submit a review."
-        );
-
-        return;
-
-    }
-
-    if (!db) {
-
-        setFormMessage(
-            message,
-            "Firebase is not connected."
-        );
-
-        return;
-
-    }
-
-    const text =
-        textInput
-            ? textInput.value.trim()
-            : "";
-
-    const rating =
-        Number(
-            get("reviewRating")?.value || 0
-        );
-
-    if (!text) {
-
-        setFormMessage(
-            message,
-            "Please write a review."
-        );
-
-        return;
-
-    }
-
-    if (text.length > 500) {
-
-        setFormMessage(
-            message,
-            "Review is too long. Maximum 500 characters."
-        );
-
-        return;
-
-    }
-
-    if (
-        !Number.isInteger(rating) ||
-        rating < 1 ||
-        rating > 5
-    ) {
-
-        setFormMessage(
-            message,
-            "Please select a rating from 1 to 5."
-        );
-
-        return;
-
-    }
-
-    if (submit) {
-
-        submit.disabled = true;
-        submit.textContent = "Posting...";
-
-    }
-
-    try {
-
-        let userName =
-            currentProfile.name ||
-            currentUser.displayName ||
-            currentUser.email ||
-            "User";
-
-        let username =
-            currentProfile.username ||
-            "";
-
-        /*
-         * Always try to get the latest
-         * username from Firestore.
-         */
-
-        try {
-
-            const userSnapshot =
-                await db
-                    .collection("users")
-                    .doc(currentUser.uid)
-                    .get();
-
-            if (userSnapshot.exists) {
-
-                const userData =
-                    userSnapshot.data() || {};
-
-                userName =
-                    userData.name ||
-                    userName;
-
-                username =
-                    userData.username ||
-                    username;
-
-            }
-
-        } catch (profileError) {
-
-            console.warn(
-                "Review profile read warning:",
-                profileError
-            );
-
-        }
-
-
-        await db
-            .collection("reviews")
-            .add(
-                {
-                    uid:
-                        currentUser.uid,
-
-                    name:
-                        userName,
-
-                    username:
-                        username,
-
-                    text:
-                        text,
-
-                    rating:
-                        rating,
-
-                    createdAt:
-                        firebase.firestore
-                            .FieldValue
-                            .serverTimestamp()
-                }
-            );
-
-
-        if (textInput) {
-
-            textInput.value = "";
-
-        }
-
-
-        selectedRating = 0;
-
-        const hidden =
-            get("reviewRating");
-
-        if (hidden) {
-
-            hidden.value = "0";
-
-        }
-
-        updateStars(0);
-
-
-        setFormMessage(
-            message,
-            "Review posted successfully.",
-            true
-        );
-
-    } catch (error) {
-
-        console.error(
-            "Review submit error:",
-            error
-        );
-
-        setFormMessage(
-            message,
-            "Could not post review. Please try again."
-        );
-
-    } finally {
-
-        if (submit) {
-
-            submit.disabled = false;
-            submit.textContent =
-                "Submit Review";
-
-        }
-
-    }
-
-}
-
-
-/* =========================================================
-   LOAD REVIEWS
-   ========================================================= */
-
-function loadReviews() {
-
-    if (!db) {
+    if (!db || !currentUser) {
         return;
     }
 
-    if (reviewsUnsubscribe) {
-
-        reviewsUnsubscribe();
-
-        reviewsUnsubscribe =
-            null;
-
-    }
+    stopReviewsListener();
 
     reviewsUnsubscribe =
         db
@@ -2424,375 +1771,412 @@ function loadReviews() {
             )
             .limit(50)
             .onSnapshot(
-                function (snapshot) {
+                function(snapshot) {
 
                     renderReviews(
                         snapshot
                     );
 
                 },
-                function (error) {
+                function(error) {
 
                     console.error(
-                        "Reviews load error:",
+                        "Reviews listener:",
                         error
                     );
 
-                    const list =
-                        get("reviewsList");
+                    if (reviewsList) {
 
-                    if (list) {
-
-                        list.innerHTML = "";
-
-                        const empty =
-                            document.createElement(
-                                "div"
-                            );
-
-                        empty.className =
-                            "empty-state";
-
-                        empty.textContent =
-                            "Unable to load reviews.";
-
-                        list.appendChild(
-                            empty
-                        );
-
+                        reviewsList.innerHTML =
+                            '<div class="empty-state">' +
+                            'Unable to load reviews right now.' +
+                            "</div>";
                     }
-
                 }
             );
-
 }
 
 
-/* =========================================================
-   RENDER REVIEWS
-   ========================================================= */
+function stopReviewsListener() {
+
+    if (
+        typeof reviewsUnsubscribe ===
+        "function"
+    ) {
+
+        reviewsUnsubscribe();
+
+        reviewsUnsubscribe = null;
+    }
+}
+
 
 function renderReviews(snapshot) {
 
-    const list =
-        get("reviewsList");
-
-    if (!list) {
+    if (!reviewsList) {
         return;
     }
 
-    list.innerHTML = "";
+    if (snapshot.empty) {
 
-
-    if (
-        !snapshot ||
-        snapshot.empty
-    ) {
-
-        const empty =
-            document.createElement(
-                "div"
-            );
-
-        empty.className =
-            "empty-state";
-
-        empty.textContent =
-            "No reviews yet. Be the first to review.";
-
-        list.appendChild(
-            empty
-        );
+        reviewsList.innerHTML =
+            '<div class="empty-state">' +
+            "No reviews yet. Be the first to review!" +
+            "</div>";
 
         return;
-
     }
 
+    const fragment =
+        document.createDocumentFragment();
 
     snapshot.forEach(
-        function (doc) {
+        function(doc) {
 
             const data =
                 doc.data() || {};
 
             const card =
-                document.createElement(
-                    "article"
-                );
+                document.createElement("div");
 
             card.className =
                 "review-card";
 
-
-            /* =========================================
-               HEADER
-               USERNAME LEFT
-               DELETE RIGHT
-               ========================================= */
-
-            const header =
-                document.createElement(
-                    "div"
-                );
-
-            header.className =
-                "review-header";
-
-
-            const usernameElement =
-                document.createElement(
-                    "span"
-                );
-
-            usernameElement.className =
-                "review-username";
-
-
-            const reviewUsername =
-                String(
-                    data.username || ""
-                ).trim();
-
-
-            if (reviewUsername) {
-
-                usernameElement.textContent =
-                    `@${reviewUsername}`;
-
-            } else {
-
-                usernameElement.textContent =
-                    data.name ||
-                    "User";
-
-            }
-
-
-            header.appendChild(
-                usernameElement
-            );
-
-
-            /*
-             * OWNER DELETE BUTTON
-             * TOP-RIGHT
-             */
-
-            if (
-                isCurrentUserOwner()
-            ) {
-
-                const deleteButton =
-                    document.createElement(
-                        "button"
-                    );
-
-                deleteButton.type =
-                    "button";
-
-                deleteButton.className =
-                    "review-delete";
-
-                deleteButton.textContent =
-                    "Delete";
-
-                deleteButton.setAttribute(
-                    "aria-label",
-                    "Delete this review"
-                );
-
-                deleteButton.addEventListener(
-                    "click",
-                    function () {
-
-                        deleteReview(
-                            doc.id
-                        );
-
-                    }
-                );
-
-                header.appendChild(
-                    deleteButton
-                );
-
-            }
-
-
-            /* =========================================
-               RATING
-               ========================================= */
+            const name =
+                data.name ||
+                "User";
 
             const rating =
-                normalizeRating(
-                    data.rating
-                );
+                Number(data.rating || 0);
 
-            const ratingElement =
-                document.createElement(
-                    "div"
-                );
+            const text =
+                data.text || "";
 
-            ratingElement.className =
-                "review-rating";
-
-            ratingElement.textContent =
-                "★".repeat(rating) +
-                "☆".repeat(5 - rating);
-
-
-            /* =========================================
-               DATE
-               ========================================= */
-
-            const dateElement =
-                document.createElement(
-                    "small"
-                );
-
-            dateElement.className =
-                "review-date";
-
-            dateElement.textContent =
-                formatReviewDate(
+            const date =
+                formatFirestoreDate(
                     data.createdAt
                 );
 
-
-            /* =========================================
-               REVIEW TEXT
-               ========================================= */
-
-            const textElement =
-                document.createElement(
-                    "p"
+            const stars =
+                "★".repeat(
+                    Math.max(
+                        0,
+                        Math.min(
+                            5,
+                            rating
+                        )
+                    )
                 );
 
-            textElement.className =
-                "review-text";
+            const isOwner =
+                isCurrentUserOwner();
 
-            textElement.textContent =
-                data.text || "";
+            const deleteButton =
+                isOwner
+                    ? `
+                        <button
+                            type="button"
+                            class="review-delete"
+                            data-review-id="${escapeHtml(doc.id)}">
+                            Delete
+                        </button>
+                      `
+                    : "";
 
+            card.innerHTML = `
 
-            /* =========================================
-               APPEND
-               ========================================= */
+                <div class="review-header">
 
-            card.appendChild(
-                header
-            );
+                    <div>
 
-            card.appendChild(
-                ratingElement
-            );
+                        <div class="review-username">
+                            ${escapeHtml(name)}
+                        </div>
 
-            card.appendChild(
-                dateElement
-            );
+                        <div class="review-stars">
+                            ${stars}
+                        </div>
 
-            card.appendChild(
-                textElement
-            );
+                    </div>
 
-            list.appendChild(
-                card
-            );
+                    ${deleteButton}
 
+                </div>
+
+                <div class="review-text">
+                    ${escapeHtml(text)}
+                </div>
+
+                <div class="review-date">
+                    ${escapeHtml(date)}
+                </div>
+            `;
+
+            fragment.appendChild(card);
         }
     );
 
+    reviewsList.innerHTML = "";
+
+    reviewsList.appendChild(fragment);
+
+    /*
+     * Attach delete handlers after rendering.
+     */
+    reviewsList
+        .querySelectorAll(".review-delete")
+        .forEach(
+            function(button) {
+
+                button.addEventListener(
+                    "click",
+                    function() {
+
+                        const id =
+                            button.dataset.reviewId;
+
+                        deleteReview(id);
+
+                    }
+                );
+            }
+        );
 }
 
 
 /* =========================================================
-   NORMALIZE RATING
-   ========================================================= */
+   REVIEW SUBMIT
+========================================================= */
 
-function normalizeRating(value) {
+async function handleReviewSubmit(event) {
 
-    const rating =
-        Number(value);
+    event.preventDefault();
 
-    if (!Number.isInteger(rating)) {
-        return 1;
+    if (!currentUser || !db) {
+
+        setMessage(
+            reviewMessage,
+            "Please login to submit a review.",
+            "error"
+        );
+
+        return;
     }
 
-    return Math.max(
-        1,
-        Math.min(
-            5,
-            rating
-        )
+    const rating =
+        Number(
+            reviewRating?.value || 0
+        );
+
+    const text =
+        reviewText.value.trim();
+
+    if (
+        !Number.isInteger(rating) ||
+        rating < 1 ||
+        rating > 5
+    ) {
+
+        setMessage(
+            reviewMessage,
+            "Please select a rating from 1 to 5 stars.",
+            "error"
+        );
+
+        return;
+    }
+
+    if (!text) {
+
+        setMessage(
+            reviewMessage,
+            "Please write your review.",
+            "error"
+        );
+
+        return;
+    }
+
+    if (text.length > 500) {
+
+        setMessage(
+            reviewMessage,
+            "Review must be 500 characters or less.",
+            "error"
+        );
+
+        return;
+    }
+
+    const name =
+        await getReviewName();
+
+    setButtonLoading(
+        reviewSubmit,
+        true,
+        "Submitting...",
+        "Submit Review"
     );
 
+    setMessage(
+        reviewMessage,
+        "Submitting your review..."
+    );
+
+    try {
+
+        await db
+            .collection("reviews")
+            .add({
+
+                uid: currentUser.uid,
+
+                name: name,
+
+                text: text,
+
+                rating: rating,
+
+                createdAt:
+                    firebase.firestore.FieldValue.serverTimestamp()
+
+            });
+
+        resetReviewForm();
+
+        setMessage(
+            reviewMessage,
+            "Review submitted successfully.",
+            "success"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Review submit error:",
+            error
+        );
+
+        setMessage(
+            reviewMessage,
+            getFirebaseErrorMessage(error),
+            "error"
+        );
+
+    } finally {
+
+        setButtonLoading(
+            reviewSubmit,
+            false,
+            "",
+            "Submit Review"
+        );
+    }
 }
 
 
-/* =========================================================
-   REVIEW DATE
-   ========================================================= */
+async function getReviewName() {
 
-function formatReviewDate(timestamp) {
-
-    if (
-        !timestamp ||
-        typeof timestamp.toDate !==
-        "function"
-    ) {
-
-        return "Just now";
-
+    if (!currentUser) {
+        return "User";
     }
 
     try {
 
-        return timestamp
-            .toDate()
-            .toLocaleDateString(
-                undefined,
-                {
-                    day: "numeric",
-                    month: "short",
-                    year: "numeric"
+        if (db) {
+
+            const snapshot =
+                await db
+                    .collection("users")
+                    .doc(currentUser.uid)
+                    .get();
+
+            if (snapshot.exists) {
+
+                const data =
+                    snapshot.data() || {};
+
+                if (data.name) {
+                    return data.name;
                 }
-            );
+            }
+        }
 
     } catch (error) {
 
-        return "Just now";
-
+        console.warn(
+            "Could not get profile name:",
+            error
+        );
     }
 
+    return getUserDisplayName(
+        currentUser
+    );
+}
+
+
+function resetReviewForm() {
+
+    if (reviewForm) {
+        reviewForm.reset();
+    }
+
+    resetRating();
+
+    if (reviewUserName) {
+
+        reviewUserName.textContent =
+            currentUser
+                ? getUserDisplayName(
+                    currentUser
+                )
+                : "User";
+    }
+}
+
+
+/* =========================================================
+   OWNER CHECK
+========================================================= */
+
+function isCurrentUserOwner() {
+
+    if (!currentUser) {
+        return false;
+    }
+
+    if (!LOCAL_OWNER_UID) {
+        return false;
+    }
+
+    return (
+        currentUser.uid ===
+        LOCAL_OWNER_UID
+    );
 }
 
 
 /* =========================================================
    DELETE REVIEW
-   ========================================================= */
+========================================================= */
 
-async function deleteReview(
-    reviewId
-) {
+async function deleteReview(reviewId) {
 
-    if (
-        !currentUser ||
-        !db
-    ) {
+    if (!currentUser) {
         return;
     }
 
     if (!isCurrentUserOwner()) {
 
         window.alert(
-            "Only the owner can delete reviews."
+            "Only the website owner can delete reviews."
         );
 
         return;
-
     }
 
-    if (!reviewId) {
+    if (!reviewId || !db) {
         return;
     }
 
@@ -2820,240 +2204,172 @@ async function deleteReview(
         );
 
         window.alert(
-            "Could not delete review."
+            getFirebaseErrorMessage(error)
         );
-
     }
-
 }
 
 
 /* =========================================================
-   DOWNLOAD COUNTDOWN MODAL
-   ========================================================= */
+   DOWNLOAD COUNT
+========================================================= */
 
-function getDownloadModal() {
+async function loadDownloadCount() {
 
-    const modal =
-        get("downloadModal");
-
-    if (!modal) {
-        return null;
-    }
-
-    return modal;
-
-}
-
-
-/* =========================================================
-   UPDATE DOWNLOAD COUNTDOWN UI
-   ========================================================= */
-
-function updateDownloadCountdown(
-    seconds
-) {
-
-    const countdown =
-        get("downloadCountdown");
-
-    const oldCountdown =
-        get("countdown");
-
-    const text =
-        get("downloadCountdownText");
-
-    const status =
-        get("downloadStatus");
-
-    const progress =
-        get("countdownProgress");
-
-
-    if (countdown) {
-
-        countdown.textContent =
-            String(seconds);
-
-    }
-
-
-    if (oldCountdown) {
-
-        oldCountdown.textContent =
-            String(seconds);
-
-    }
-
-
-    if (text) {
-
-        text.textContent =
-            seconds > 0
-                ? `Download starts in ${seconds} second${seconds === 1 ? "" : "s"}`
-                : "Starting download...";
-
-    }
-
-
-    if (status) {
-
-        status.textContent =
-            seconds > 0
-                ? `Your download will start automatically.`
-                : "Starting download...";
-
-    }
-
-
-    if (progress) {
-
-        progress.style.transform =
-            `scaleX(${Math.max(
-                0,
-                Math.min(
-                    1,
-                    seconds / 5
-                )
-            )})`;
-
-    }
-
-}
-
-
-/* =========================================================
-   OPEN DOWNLOAD MODAL
-   ========================================================= */
-
-function openDownloadModal() {
-
-    const modal =
-        getDownloadModal();
-
-    if (!modal) {
+    if (!db || !downloadCount) {
         return;
     }
 
-    modal.classList.add("show");
-    modal.classList.add("active");
-
-    modal.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-}
-
-
-/* =========================================================
-   CLOSE DOWNLOAD MODAL
-   ========================================================= */
-
-function closeDownloadModal() {
-
-    const modal =
-        getDownloadModal();
-
-    if (modal) {
-
-        modal.classList.remove("show");
-        modal.classList.remove("active");
-
-        modal.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-    }
-
-    if (downloadTimer) {
-
-        clearInterval(
-            downloadTimer
-        );
-
-        downloadTimer =
-            null;
-
-    }
-
-}
-
-
-/* =========================================================
-   NAVIGATE TO APK
-   ========================================================= */
-
-function navigateToAPK(
-    downloadWindow
-) {
-
-    const apkURL =
-        getAPKURL();
-
-    if (!apkURL) {
-
-        throw new Error(
-            "APK URL is not configured."
-        );
-
-    }
-
-
-    /*
-     * Use the tab opened during
-     * the original button click.
-     */
-
-    if (
-        downloadWindow &&
-        !downloadWindow.closed
-    ) {
-
-        try {
-
-            downloadWindow.location.href =
-                apkURL;
-
-            return;
-
-        } catch (error) {
-
-            console.warn(
-                "Download window navigation failed:",
-                error
-            );
-
-        }
-
-    }
-
-
-    /*
-     * Fallback.
-     */
-
     try {
 
-        window.location.href =
-            apkURL;
+        const snapshot =
+            await db
+                .collection("stats")
+                .doc("main")
+                .get();
+
+        if (!snapshot.exists) {
+
+            downloadCount.textContent =
+                "0";
+
+            return;
+        }
+
+        const data =
+            snapshot.data() || {};
+
+        const count =
+            Number(
+                data.downloads || 0
+            );
+
+        downloadCount.textContent =
+            formatNumber(count);
 
     } catch (error) {
 
         console.error(
-            "APK navigation failed:",
+            "Download count error:",
             error
         );
 
+        /*
+         * Keep UI usable even if Firestore
+         * temporarily fails.
+         */
+        downloadCount.textContent =
+            "0";
+    }
+}
+
+
+function increaseFirebaseDownloadCount() {
+
+    if (!db || !currentUser) {
+        return Promise.resolve();
     }
 
+    const ref =
+        db
+            .collection("stats")
+            .doc("main");
+
+    /*
+     * IMPORTANT:
+     * This promise is intentionally NOT awaited
+     * by the download countdown.
+     */
+    return db.runTransaction(
+        async function(transaction) {
+
+            const snapshot =
+                await transaction.get(ref);
+
+            if (!snapshot.exists) {
+
+                transaction.set(
+                    ref,
+                    {
+                        downloads: 1
+                    }
+                );
+
+                return;
+            }
+
+            const data =
+                snapshot.data() || {};
+
+            const current =
+                Number(
+                    data.downloads || 0
+                );
+
+            transaction.update(
+                ref,
+                {
+                    downloads:
+                        current + 1
+                }
+            );
+        }
+    )
+    .then(
+        function() {
+
+            /*
+             * Update UI without blocking download.
+             */
+            loadDownloadCount();
+
+        }
+    )
+    .catch(
+        function(error) {
+
+            console.error(
+                "Download count increment failed:",
+                error
+            );
+        }
+    );
+}
+
+
+function formatNumber(number) {
+
+    const value =
+        Number(number);
+
+    if (!Number.isFinite(value)) {
+        return "0";
+    }
+
+    return value.toLocaleString(
+        "en-IN"
+    );
 }
 
 
 /* =========================================================
-   START DOWNLOAD
-   ========================================================= */
+   DOWNLOAD SYSTEM
+========================================================= */
+
+function getAPKUrl() {
+
+    if (
+        typeof APK_URL !== "undefined" &&
+        typeof APK_URL === "string" &&
+        APK_URL.trim()
+    ) {
+
+        return APK_URL.trim();
+    }
+
+    return DEFAULT_APK_URL;
+}
+
 
 function startDownload() {
 
@@ -3064,19 +2380,442 @@ function startDownload() {
         );
 
         return;
-
     }
 
     if (downloadInProgress) {
         return;
     }
 
-
-    downloadInProgress =
-        true;
-
+    downloadInProgress = true;
 
     /*
-     * Open blank tab immediately
-     * from the user's click.
-     *
+     * Open blank tab immediately from the user's
+     * click. This helps avoid popup blockers.
+     */
+    let downloadWindow = null;
+
+    try {
+
+        downloadWindow =
+            window.open(
+                "about:blank",
+                "_blank"
+            );
+
+        if (
+            downloadWindow &&
+            typeof downloadWindow.opener !==
+            "undefined"
+        ) {
+
+            downloadWindow.opener = null;
+        }
+
+    } catch (error) {
+
+        console.warn(
+            "Could not open download tab:",
+            error
+        );
+    }
+
+    openDownloadModal();
+
+    let remaining = 5;
+
+    updateDownloadCountdown(
+        remaining
+    );
+
+    const countdownTimer =
+        window.setInterval(
+            function() {
+
+                remaining--;
+
+                updateDownloadCountdown(
+                    remaining
+                );
+
+                if (remaining <= 0) {
+
+                    window.clearInterval(
+                        countdownTimer
+                    );
+
+                    /*
+                     * IMPORTANT:
+                     * APK navigation happens immediately
+                     * at zero.
+                     *
+                     * Firestore count is NOT awaited.
+                     */
+                    navigateToAPK(
+                        downloadWindow
+                    );
+
+                    increaseFirebaseDownloadCount();
+
+                    closeDownloadModal();
+
+                    downloadInProgress =
+                        false;
+                }
+
+            },
+            1000
+        );
+}
+
+
+function updateDownloadCountdown(
+    remaining
+) {
+
+    if (downloadCountdown) {
+
+        downloadCountdown.textContent =
+            String(
+                Math.max(
+                    0,
+                    remaining
+                )
+            );
+    }
+
+    if (downloadCountdownText) {
+
+        if (remaining > 0) {
+
+            downloadCountdownText.textContent =
+                "Your download will start in";
+
+        } else {
+
+            downloadCountdownText.textContent =
+                "Starting download...";
+        }
+    }
+}
+
+
+function navigateToAPK(
+    downloadWindow
+) {
+
+    const url =
+        getAPKUrl();
+
+    if (
+        downloadWindow &&
+        !downloadWindow.closed
+    ) {
+
+        try {
+
+            downloadWindow.location.href =
+                url;
+
+            return;
+
+        } catch (error) {
+
+            console.warn(
+                "Download tab navigation failed:",
+                error
+            );
+        }
+    }
+
+    /*
+     * Popup was blocked or tab navigation failed.
+     * Fallback to same-tab navigation.
+     */
+    window.location.href = url;
+}
+
+
+/* =========================================================
+   DOWNLOAD MODAL
+========================================================= */
+
+function openDownloadModal() {
+
+    if (!downloadModal) {
+        return;
+    }
+
+    downloadModal.classList.add("show");
+
+    downloadModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.classList.add(
+        "modal-open"
+    );
+}
+
+
+function closeDownloadModal() {
+
+    if (!downloadModal) {
+        return;
+    }
+
+    downloadModal.classList.remove(
+        "show"
+    );
+
+    downloadModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    /*
+     * Do not remove body lock if another modal
+     * is currently open.
+     */
+    if (
+        !document.querySelector(
+            ".modal.show"
+        )
+    ) {
+
+        document.body.classList.remove(
+            "modal-open"
+        );
+    }
+}
+
+
+/* =========================================================
+   MODAL MANAGEMENT
+========================================================= */
+
+function openModal(modal) {
+
+    if (!modal) {
+        return;
+    }
+
+    modal.classList.add("show");
+
+    modal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.classList.add(
+        "modal-open"
+    );
+}
+
+
+function closeModal(modal) {
+
+    if (!modal) {
+        return;
+    }
+
+    /*
+     * Countdown modal should only close
+     * after countdown completion.
+     */
+    if (
+        modal === downloadModal &&
+        downloadInProgress
+    ) {
+        return;
+    }
+
+    modal.classList.remove("show");
+
+    modal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    if (
+        !document.querySelector(
+            ".modal.show"
+        )
+    ) {
+
+        document.body.classList.remove(
+            "modal-open"
+        );
+    }
+}
+
+
+function closeAllModals() {
+
+    [
+        profileModal,
+        registerModal,
+        forgotModal
+    ].forEach(
+        function(modal) {
+
+            if (!modal) {
+                return;
+            }
+
+            modal.classList.remove(
+                "show"
+            );
+
+            modal.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+        }
+    );
+
+    if (!downloadInProgress) {
+
+        if (downloadModal) {
+
+            downloadModal.classList.remove(
+                "show"
+            );
+
+            downloadModal.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+        }
+
+        document.body.classList.remove(
+            "modal-open"
+        );
+    }
+}
+
+
+/* =========================================================
+   FIREBASE ERROR MESSAGES
+========================================================= */
+
+function getFirebaseErrorMessage(
+    error
+) {
+
+    if (!error) {
+        return "Something went wrong.";
+    }
+
+    const code =
+        error.code || "";
+
+    switch (code) {
+
+        case "auth/invalid-email":
+            return "Please enter a valid email address.";
+
+        case "auth/user-not-found":
+            return "No account found with this email.";
+
+        case "auth/wrong-password":
+            return "Incorrect password.";
+
+        case "auth/invalid-credential":
+            return "Invalid email or password.";
+
+        case "auth/email-already-in-use":
+            return "An account already exists with this email.";
+
+        case "auth/weak-password":
+            return "Password is too weak. Use at least 6 characters.";
+
+        case "auth/operation-not-allowed":
+            return "This sign-in method is not enabled in Firebase.";
+
+        case "auth/popup-blocked":
+            return "Google Sign-In popup was blocked by the browser.";
+
+        case "auth/popup-closed-by-user":
+            return "Google Sign-In was cancelled.";
+
+        case "auth/cancelled-popup-request":
+            return "Google Sign-In was cancelled.";
+
+        case "auth/unauthorized-domain":
+            return "This website domain is not authorized in Firebase Authentication.";
+
+        case "auth/network-request-failed":
+            return "Network error. Please check your internet connection.";
+
+        case "auth/too-many-requests":
+            return "Too many attempts. Please try again later.";
+
+        case "auth/user-disabled":
+            return "This account has been disabled.";
+
+        default:
+
+            return (
+                error.message ||
+                "Something went wrong. Please try again."
+            );
+    }
+}
+
+
+/* =========================================================
+   FIRESTORE DATE
+========================================================= */
+
+function formatFirestoreDate(
+    timestamp
+) {
+
+    if (!timestamp) {
+        return "Just now";
+    }
+
+    try {
+
+        let date = null;
+
+        if (
+            timestamp &&
+            typeof timestamp.toDate ===
+            "function"
+        ) {
+
+            date =
+                timestamp.toDate();
+
+        } else {
+
+            date =
+                new Date(timestamp);
+        }
+
+        if (
+            !date ||
+            Number.isNaN(
+                date.getTime()
+            )
+        ) {
+
+            return "Recently";
+        }
+
+        return date.toLocaleDateString(
+            "en-IN",
+            {
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+            }
+        );
+
+    } catch (error) {
+
+        return "Recently";
+    }
+}
