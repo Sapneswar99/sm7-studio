@@ -599,7 +599,7 @@ a:focus-visible {
   background:
     rgba(255, 255, 255, 0.035);
 
-  color: #ddddE5;
+  color: #dddde5;
 
   gap: 10px;
 }
@@ -728,7 +728,9 @@ a:focus-visible {
 
 
 /* =========================================================
-   REAL SCREENSHOT INSIDE PHONE
+   REAL APP SCREENSHOT
+   IMPORTANT:
+   FULL IMAGE VISIBLE - NO CROPPING
 ========================================================= */
 
 .phone-screen {
@@ -757,8 +759,16 @@ a:focus-visible {
 
   display: block;
 
-  object-fit: cover;
+  /*
+    contain = complete screenshot visible
+    no crop
+    no distortion
+  */
+  object-fit: contain;
+
   object-position: center;
+
+  background: #050507;
 
   border-radius: 35px;
 }
@@ -1297,6 +1307,7 @@ a:focus-visible {
 
 /* =========================================================
    REAL SCREENSHOT FRAME
+   FULL SCREENSHOT - NO CROP
 ========================================================= */
 
 .real-screenshot-frame {
@@ -1321,11 +1332,18 @@ a:focus-visible {
   display: block;
 
   width: 100%;
+
+  /*
+    Auto height preserves original screenshot ratio.
+    Complete image stays visible.
+  */
   height: auto;
 
   max-width: 100%;
 
   object-fit: contain;
+
+  object-position: center;
 
   background: #050507;
 
@@ -1335,7 +1353,7 @@ a:focus-visible {
 
 .real-screenshot-card:hover
 .real-screenshot-frame img {
-  transform: scale(1.025);
+  transform: scale(1.015);
 }
 
 
@@ -1366,279 +1384,6 @@ a:focus-visible {
   font-size: 12px;
 
   line-height: 1.5;
-}
-
-
-/* =========================================================
-   OLD SHOWCASE SUPPORT
-========================================================= */
-
-.showcase-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  gap: 20px;
-}
-
-.screenshot-card {
-  padding: 15px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius: 28px;
-
-  background:
-    rgba(255, 255, 255, 0.025);
-
-  transition: var(--transition);
-}
-
-.screenshot-card:hover {
-  transform: translateY(-6px);
-
-  border-color:
-    rgba(167, 139, 250, 0.25);
-}
-
-.mock-screen {
-  height: 410px;
-
-  border-radius: 20px;
-
-  overflow: hidden;
-
-  background:
-    linear-gradient(
-      145deg,
-      #161620,
-      #08080c
-    );
-
-  border:
-    1px solid rgba(255, 255, 255, 0.06);
-}
-
-.mock-header {
-  padding: 22px 18px;
-
-  display: flex;
-  justify-content: space-between;
-
-  font-size: 10px;
-}
-
-.mock-header span {
-  color: #9999a5;
-}
-
-.mock-banner {
-  margin: 5px 15px;
-
-  height: 140px;
-
-  padding: 25px;
-
-  border-radius: 17px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-
-  background:
-    radial-gradient(
-      circle at 70% 20%,
-      rgba(236, 72, 153, 0.5),
-      transparent 35%
-    ),
-    linear-gradient(
-      135deg,
-      #29234a,
-      #16121e
-    );
-}
-
-.mock-banner small {
-  color: #aaa1cf;
-
-  font-size: 8px;
-}
-
-.mock-banner strong {
-  margin-top: 5px;
-
-  font-size: 18px;
-}
-
-.mock-row {
-  display: flex;
-
-  gap: 10px;
-
-  padding: 20px 15px;
-}
-
-.mock-row i {
-  width: 70px;
-  height: 90px;
-
-  border-radius: 10px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #29293b,
-      #16161f
-    );
-}
-
-
-/* =========================================================
-   PLAYER MOCK
-========================================================= */
-
-.screen-player {
-  padding: 13px;
-}
-
-.mock-video {
-  height: 260px;
-
-  border-radius: 16px;
-
-  display: grid;
-  place-items: center;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(139, 92, 246, 0.45),
-      transparent 35%
-    ),
-    linear-gradient(
-      145deg,
-      #25203a,
-      #111118
-    );
-}
-
-.mock-video span {
-  width: 55px;
-  height: 55px;
-
-  display: grid;
-  place-items: center;
-
-  border-radius: 50%;
-
-  background:
-    rgba(255, 255, 255, 0.12);
-
-  font-size: 15px;
-}
-
-.mock-player-info {
-  display: flex;
-
-  flex-direction: column;
-
-  padding: 17px 3px 10px;
-}
-
-.mock-player-info strong {
-  font-size: 13px;
-}
-
-.mock-player-info small {
-  color: #70707b;
-
-  font-size: 8px;
-}
-
-.mock-progress {
-  height: 2px;
-
-  margin: 8px 3px;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--accent) 58%,
-      #282832 58%
-    );
-}
-
-.mock-player-buttons {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 25px;
-
-  margin-top: 15px;
-
-  color: #777783;
-}
-
-.mock-player-buttons b {
-  width: 38px;
-  height: 38px;
-
-  display: grid;
-  place-items: center;
-
-  border-radius: 50%;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--accent),
-      var(--accent-2)
-    );
-
-  color: white;
-
-  font-size: 11px;
-}
-
-
-/* =========================================================
-   SETTINGS MOCK
-========================================================= */
-
-.screen-settings {
-  padding: 22px 17px;
-}
-
-.settings-title {
-  margin-bottom: 30px;
-
-  font-size: 18px;
-
-  font-weight: 700;
-}
-
-.setting-item {
-  padding:
-    18px 4px;
-
-  display: flex;
-
-  justify-content: space-between;
-
-  border-bottom:
-    1px solid rgba(255, 255, 255, 0.06);
-
-  color: #b2b2bc;
-
-  font-size: 11px;
-}
-
-.setting-item span {
-  color: #666671;
 }
 
 
@@ -1688,11 +1433,21 @@ a:focus-visible {
     0 30px 80px rgba(0, 0, 0, 0.35);
 }
 
+
+/* =========================================================
+   LARGE VIDEO
+========================================================= */
+
 .large-video {
   position: relative;
 
   width: 100%;
-  height: 320px;
+
+  /*
+    Auto-style portrait container.
+    The image controls the height.
+  */
+  min-height: 320px;
 
   overflow: hidden;
 
@@ -1702,32 +1457,29 @@ a:focus-visible {
   place-items: center;
 
   background:
-    linear-gradient(
-      145deg,
-      #28213e,
-      #0e0e14 65%,
-      #25131f
-    );
+    #050507;
 }
 
-
-/* =========================================================
-   HIGHLIGHT REAL IMAGE
-========================================================= */
-
 .large-video img {
-  position: absolute;
+  position: relative;
 
-  inset: 0;
+  z-index: 1;
 
   width: 100%;
-  height: 100%;
+  height: auto;
+
+  max-width: 100%;
 
   display: block;
 
-  object-fit: cover;
+  /*
+    COMPLETE IMAGE VISIBLE
+  */
+  object-fit: contain;
 
   object-position: center;
+
+  background: #050507;
 
   border-radius: 20px;
 }
@@ -1740,12 +1492,13 @@ a:focus-visible {
 .large-play {
   position: absolute;
 
-  z-index: 2;
+  z-index: 3;
 
   top: 50%;
   left: 50%;
 
-  transform: translate(-50%, -50%);
+  transform:
+    translate(-50%, -50%);
 
   width: 70px;
   height: 70px;
@@ -2195,7 +1948,8 @@ a:focus-visible {
   right: 8%;
   top: 50%;
 
-  transform: translateY(-50%);
+  transform:
+    translateY(-50%);
 
   width: 250px;
   height: 250px;
@@ -2393,8 +2147,6 @@ a:focus-visible {
 
 @media (max-width: 1000px) {
 
-  /* NAV */
-
   .desktop-nav {
     display: none;
   }
@@ -2461,14 +2213,6 @@ a:focus-visible {
       repeat(2, minmax(0, 1fr));
 
     gap: 18px;
-  }
-
-
-  /* OLD SHOWCASE */
-
-  .showcase-grid {
-    grid-template-columns:
-      repeat(2, 1fr);
   }
 
 
@@ -2701,6 +2445,11 @@ a:focus-visible {
 
   .app-screenshot {
     border-radius: 29px;
+
+    /*
+      Full screenshot remains visible
+    */
+    object-fit: contain;
   }
 
   .phone-notch {
@@ -2801,11 +2550,19 @@ a:focus-visible {
     border-radius: 19px;
   }
 
+  /*
+    IMPORTANT:
+    Screenshot ki original height preserve hogi.
+    Isliye bottom/top crop nahi hoga.
+  */
   .real-screenshot-frame img {
     width: 100%;
+
     height: auto;
 
     object-fit: contain;
+
+    object-position: center;
   }
 
   .screenshot-info {
@@ -2819,17 +2576,6 @@ a:focus-visible {
 
   .screenshot-info p {
     font-size: 11px;
-  }
-
-
-  /* OLD SHOWCASE */
-
-  .showcase-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .mock-screen {
-    height: 430px;
   }
 
 
@@ -2849,13 +2595,27 @@ a:focus-visible {
     border-radius: 24px;
   }
 
+  /*
+    NO fixed height.
+    Real screenshot apni complete height ke saath show hoga.
+  */
   .large-video {
-    height: 230px;
+    min-height: 0;
+
+    height: auto;
 
     border-radius: 18px;
   }
 
   .large-video img {
+    width: 100%;
+
+    height: auto;
+
+    object-fit: contain;
+
+    object-position: center;
+
     border-radius: 18px;
   }
 
@@ -3043,11 +2803,21 @@ a:focus-visible {
     width: 230px;
     height: 470px;
   }
+
+  .phone-screen {
+    border-radius: 30px;
+  }
+
+  .app-screenshot {
+    border-radius: 30px;
+
+    object-fit: contain;
+  }
 }
 
 
 /* =========================================================
-   VERY SMALL WIDTH SAFETY
+   VERY SMALL WIDTH
 ========================================================= */
 
 @media (max-width: 320px) {
