@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -18,49 +17,24 @@
         name="theme-color"
         content="#030611">
 
-    <!-- ================= FAVICON ================= -->
+    <!-- FAVICON - DO NOT CHANGE -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
 
-    <!-- DO NOT CHANGE FAVICON -->
+    <link rel="stylesheet" href="style.css">
 
-    <link
-        rel="icon"
-        type="image/png"
-        href="favicon.png">
-
-    <link
-        rel="shortcut icon"
-        type="image/png"
-        href="favicon.png">
-
-    <link
-        rel="apple-touch-icon"
-        href="favicon.png">
-
-
-    <!-- ================= STYLESHEET ================= -->
-
-    <link
-        rel="stylesheet"
-        href="style.css">
-
-
-    <!-- ================= FIREBASE SDK ================= -->
-
+    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app-compat.js"></script>
-
     <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-auth-compat.js"></script>
-
     <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore-compat.js"></script>
-
 </head>
-
 
 <body>
 
-
-<!-- ==================================================
+<!-- =====================================================
      LOADING SCREEN
-     ================================================== -->
+===================================================== -->
 
 <div
     id="loadingScreen"
@@ -76,9 +50,7 @@
         <span>Super</span> Video Player
     </h1>
 
-    <p>
-        Loading...
-    </p>
+    <p>Loading...</p>
 
     <div class="loading-bar">
         <div class="loading-progress"></div>
@@ -87,10 +59,9 @@
 </div>
 
 
-
-<!-- ==================================================
+<!-- =====================================================
      LOGIN SCREEN
-     ================================================== -->
+===================================================== -->
 
 <section
     id="loginScreen"
@@ -99,19 +70,14 @@
 
     <div class="login-container">
 
-
         <div class="login-logo-wrap">
-
             <img
                 src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
                 alt="Super Video Player"
                 class="login-logo">
-
         </div>
 
-
         <div class="login-brand">
-
             <h1>
                 <span>Super</span> Video Player
             </h1>
@@ -119,63 +85,39 @@
             <p>
                 Play Everything. Anywhere.
             </p>
-
         </div>
-
 
         <div class="login-card">
 
-            <h2>
-                Welcome Back
-            </h2>
+            <h2>Welcome Back</h2>
 
             <p class="login-card-subtitle">
                 Login to continue
             </p>
-
-
-            <!-- GOOGLE LOGIN -->
 
             <button
                 type="button"
                 id="googleLoginButton"
                 class="google-login-btn">
 
-                <span class="google-icon">
-                    G
-                </span>
+                <span class="google-icon">G</span>
 
-                <span>
-                    Continue with Google
-                </span>
+                <span>Continue with Google</span>
 
             </button>
 
-
             <div class="auth-divider">
-
                 <span></span>
-
-                <small>
-                    OR
-                </small>
-
+                <small>OR</small>
                 <span></span>
-
             </div>
-
-
-            <!-- LOGIN FORM -->
 
             <form
                 id="loginForm"
                 autocomplete="on">
 
                 <div class="auth-field">
-
-                    <label for="loginEmail">
-                        Email
-                    </label>
+                    <label for="loginEmail">Email</label>
 
                     <input
                         type="email"
@@ -184,15 +126,10 @@
                         placeholder="Enter your email"
                         autocomplete="email"
                         required>
-
                 </div>
 
-
                 <div class="auth-field">
-
-                    <label for="loginPassword">
-                        Password
-                    </label>
+                    <label for="loginPassword">Password</label>
 
                     <input
                         type="password"
@@ -202,12 +139,9 @@
                         autocomplete="current-password"
                         minlength="6"
                         required>
-
                 </div>
 
-
                 <div class="forgot-row">
-
                     <button
                         type="button"
                         id="loginForgotPassword"
@@ -216,9 +150,7 @@
                         Forgot Password?
 
                     </button>
-
                 </div>
-
 
                 <button
                     type="submit"
@@ -229,7 +161,6 @@
 
                 </button>
 
-
                 <p
                     id="loginMessage"
                     class="form-message"
@@ -238,12 +169,9 @@
 
             </form>
 
-
             <div class="auth-bottom-text">
 
-                <span>
-                    Don't have an account?
-                </span>
+                <span>Don't have an account?</span>
 
                 <button
                     type="button"
@@ -257,7 +185,6 @@
 
         </div>
 
-
         <p class="login-footer-text">
             Safe & Secure Firebase Authentication
         </p>
@@ -267,1003 +194,731 @@
 </section>
 
 
-
-<!-- ==================================================
+<!-- =====================================================
      MAIN WEBSITE
-     ================================================== -->
+===================================================== -->
 
 <div
     id="mainApp"
     class="main-app"
     aria-hidden="true">
 
+    <!-- NAVBAR -->
+    <header>
 
-<!-- ==================================================
-     NAVBAR
-     ================================================== -->
+        <div class="logo">
 
-<header>
+            <div class="logo-icon">
+                <img
+                    src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
+                    alt="Super Video Player">
+            </div>
 
-    <div class="logo">
+            <div>
+                <h2>
+                    <span>Super</span> Video Player
+                </h2>
 
-        <div class="logo-icon">
-
-            <img
-                src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
-                alt="Super Video Player">
+                <small>
+                    Play Everything. Anywhere.
+                </small>
+            </div>
 
         </div>
 
-        <div>
+        <nav id="nav">
+
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#download">Download</a>
+            <a href="#reviews">Reviews</a>
+
+        </nav>
+
+        <div class="auth-buttons">
+
+            <button
+                type="button"
+                id="profileButton"
+                class="profile-button"
+                aria-label="Open Profile">
+
+                <span
+                    id="profileAvatar"
+                    class="profile-avatar">
+
+                    U
+
+                </span>
+
+                <span
+                    id="loggedUserName"
+                    class="logged-user-name">
+
+                    User
+
+                </span>
+
+            </button>
+
+            <button
+                class="logout-btn"
+                id="logoutButton"
+                type="button">
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+    <section
+        class="hero"
+        id="home">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                ✦ OFFICIAL ANDROID APP
+            </div>
+
+            <h1>
+                <span>Super</span><br>
+                Video Player
+            </h1>
 
             <h2>
-                <span>Super</span> Video Player
-            </h2>
-
-            <small>
                 Play Everything. Anywhere.
-            </small>
-
-        </div>
-
-    </div>
-
-
-    <nav id="nav">
-
-        <a href="#home">
-            Home
-        </a>
-
-        <a href="#features">
-            Features
-        </a>
-
-        <a href="#download">
-            Download
-        </a>
-
-        <a href="#reviews">
-            Reviews
-        </a>
-
-    </nav>
-
-
-    <div class="auth-buttons">
-
-        <!-- PROFILE -->
-
-        <button
-            type="button"
-            id="profileButton"
-            class="profile-button"
-            aria-label="Open Profile">
-
-            <span
-                id="profileAvatar"
-                class="profile-avatar">
-
-                U
-
-            </span>
-
-            <span
-                id="loggedUserName"
-                class="logged-user-name">
-
-                User
-
-            </span>
-
-        </button>
-
-
-        <button
-            class="logout-btn"
-            id="logoutButton"
-            type="button">
-
-            Logout
-
-        </button>
-
-    </div>
-
-</header>
-
-
-
-<!-- ==================================================
-     HERO
-     ================================================== -->
-
-<section
-    class="hero"
-    id="home">
-
-    <div class="hero-content">
-
-        <div class="badge">
-            ✦ OFFICIAL ANDROID APP
-        </div>
-
-
-        <h1>
-
-            <span>Super</span><br>
-
-            Video Player
-
-        </h1>
-
-
-        <h2>
-            Play Everything. Anywhere.
-        </h2>
-
-
-        <p>
-
-            A fast, powerful and lightweight video player
-            for Android. Enjoy movies, videos and series
-            with smooth playback and a modern interface.
-
-        </p>
-
-
-        <button
-            class="download-btn"
-            id="heroDownloadButton"
-            type="button">
-
-            ⇩ Download APK
-
-        </button>
-
-
-        <div class="specs">
-
-            <span>
-                Android 7.0+
-            </span>
-
-            <span>•</span>
-
-            <span>
-                28 MB
-            </span>
-
-            <span>•</span>
-
-            <span>
-                Safe & Secure
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <div class="hero-art">
-
-        <div class="app-icon-big">
-
-            <img
-                src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
-                alt="Super Video Player">
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ==================================================
-     FEATURES
-     ================================================== -->
-
-<section
-    class="features"
-    id="features">
-
-
-    <div class="feature">
-
-        <div class="feature-icon">
-            ϟ
-        </div>
-
-        <h3>
-            HD Playback
-        </h3>
-
-        <p>
-            High quality smooth video playback.
-        </p>
-
-    </div>
-
-
-    <div class="feature">
-
-        <div class="feature-icon">
-            ⚡
-        </div>
-
-        <h3>
-            Fast & Smooth
-        </h3>
-
-        <p>
-            Optimized for fast performance.
-        </p>
-
-    </div>
-
-
-    <div class="feature">
-
-        <div class="feature-icon">
-            ▣
-        </div>
-
-        <h3>
-            All Formats
-        </h3>
-
-        <p>
-            MP4, MKV, AVI, FLV, MOV and more.
-        </p>
-
-    </div>
-
-
-    <div class="feature">
-
-        <div class="feature-icon">
-            ▰
-        </div>
-
-        <h3>
-            Video Support
-        </h3>
-
-        <p>
-            Browse and manage video.
-        </p>
-
-    </div>
-
-
-    <div class="feature">
-
-        <div class="feature-icon">
-            ★
-        </div>
-
-        <h3>
-            Clean UI
-        </h3>
-
-        <p>
-            Simple modern interface.
-        </p>
-
-    </div>
-
-</section>
-
-
-
-<!-- ==================================================
-     DOWNLOAD
-     ================================================== -->
-
-<section
-    class="download-section"
-    id="download">
-
-    <div class="download-card">
-
-
-        <div class="download-card-icon">
-
-            <img
-                src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
-                alt="Super Video Player">
-
-        </div>
-
-
-        <div class="download-card-content">
-
-            <small>
-                ANDROID APP
-            </small>
-
-            <h2>
-                Download Super Video Player
             </h2>
 
             <p>
-                Get the latest Android APK and enjoy
-                smooth video playback.
+                A fast, powerful and lightweight video player
+                for Android. Enjoy movies, videos and series
+                with smooth playback and a modern interface.
             </p>
 
-        </div>
+            <button
+                class="download-btn"
+                id="heroDownloadButton"
+                type="button">
 
+                ⇩ Download APK
 
-        <button
-            class="download-btn"
-            id="downloadButton"
-            type="button">
+            </button>
 
-            ⇩ Download APK
-
-        </button>
-
-    </div>
-
-</section>
-
-
-
-<!-- ==================================================
-     DOWNLOAD COUNT
-     ================================================== -->
-
-<section class="stats">
-
-    <div class="counter-card">
-
-        <h2 id="downloadCount">
-            0
-        </h2>
-
-        <p>
-            Total Downloads
-        </p>
-
-    </div>
-
-</section>
-
-
-
-<!-- ==================================================
-     REVIEWS
-     ================================================== -->
-
-<section
-    class="reviews"
-    id="reviews">
-
-    <h2>
-        User Reviews
-    </h2>
-
-    <p class="reviews-subtitle">
-        Share your experience with Super Video Player.
-    </p>
-
-
-    <!-- REVIEW FORM -->
-
-    <form
-        class="review-form"
-        id="reviewForm">
-
-
-        <div
-            class="review-user"
-            id="reviewUser">
-
-            <span>
-                Reviewing as
-            </span>
-
-            <strong id="reviewUserName">
-                User
-            </strong>
+            <div class="specs">
+                <span>Android 7.0+</span>
+                <span>•</span>
+                <span>28 MB</span>
+                <span>•</span>
+                <span>Safe & Secure</span>
+            </div>
 
         </div>
 
+        <div class="hero-art">
 
-        <!-- PLAY STORE STYLE STAR RATING -->
+            <div class="app-icon-big">
 
-        <div class="rating-box">
-
-            <label>
-                Rating
-            </label>
-
-
-            <div
-                class="star-rating"
-                id="starRating"
-                role="radiogroup"
-                aria-label="Choose a rating">
-
-                <button
-                    type="button"
-                    class="rating-star"
-                    data-rating="1"
-                    aria-label="1 star"
-                    aria-checked="false"
-                    role="radio">
-
-                    ★
-
-                </button>
-
-
-                <button
-                    type="button"
-                    class="rating-star"
-                    data-rating="2"
-                    aria-label="2 stars"
-                    aria-checked="false"
-                    role="radio">
-
-                    ★
-
-                </button>
-
-
-                <button
-                    type="button"
-                    class="rating-star"
-                    data-rating="3"
-                    aria-label="3 stars"
-                    aria-checked="false"
-                    role="radio">
-
-                    ★
-
-                </button>
-
-
-                <button
-                    type="button"
-                    class="rating-star"
-                    data-rating="4"
-                    aria-label="4 stars"
-                    aria-checked="false"
-                    role="radio">
-
-                    ★
-
-                </button>
-
-
-                <button
-                    type="button"
-                    class="rating-star"
-                    data-rating="5"
-                    aria-label="5 stars"
-                    aria-checked="false"
-                    role="radio">
-
-                    ★
-
-                </button>
+                <img
+                    src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
+                    alt="Super Video Player">
 
             </div>
 
+        </div>
 
-            <input
-                type="hidden"
-                id="reviewRating"
-                value="0"
-                required>
+    </section>
+
+
+    <!-- FEATURES -->
+    <section
+        class="features"
+        id="features">
+
+        <div class="feature">
+            <div class="feature-icon">ϟ</div>
+            <h3>HD Playback</h3>
+            <p>High quality smooth video playback.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">⚡</div>
+            <h3>Fast & Smooth</h3>
+            <p>Optimized for fast performance.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">▣</div>
+            <h3>All Formats</h3>
+            <p>MP4, MKV, AVI, FLV, MOV and more.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">▰</div>
+            <h3>Video Support</h3>
+            <p>Browse and manage video.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">★</div>
+            <h3>Clean UI</h3>
+            <p>Simple modern interface.</p>
+        </div>
+
+    </section>
+
+
+    <!-- DOWNLOAD -->
+    <section
+        class="download-section"
+        id="download">
+
+        <div class="download-card">
+
+            <div class="download-card-icon">
+
+                <img
+                    src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
+                    alt="Super Video Player">
+
+            </div>
+
+            <div class="download-card-content">
+
+                <small>ANDROID APP</small>
+
+                <h2>
+                    Download Super Video Player
+                </h2>
+
+                <p>
+                    Get the latest Android APK and enjoy
+                    smooth video playback.
+                </p>
+
+            </div>
+
+            <button
+                class="download-btn"
+                id="downloadButton"
+                type="button">
+
+                ⇩ Download APK
+
+            </button>
 
         </div>
 
-
-        <textarea
-            id="reviewText"
-            placeholder="Write your review..."
-            maxlength="500"
-            required></textarea>
+    </section>
 
 
-        <button
-            class="review-submit"
-            id="reviewSubmit"
-            type="submit">
+    <!-- DOWNLOAD COUNT -->
+    <section class="stats">
 
-            Submit Review
+        <div class="counter-card">
 
-        </button>
+            <h2 id="downloadCount">0</h2>
+
+            <p>Total Downloads</p>
+
+        </div>
+
+    </section>
 
 
-        <p
-            id="reviewMessage"
-            class="form-message"
-            aria-live="polite">
+    <!-- REVIEWS -->
+    <section
+        class="reviews"
+        id="reviews">
+
+        <h2>User Reviews</h2>
+
+        <p class="reviews-subtitle">
+            Share your experience with Super Video Player.
         </p>
 
-    </form>
+        <form
+            class="review-form"
+            id="reviewForm">
 
+            <div
+                class="review-user"
+                id="reviewUser">
 
-    <!-- ==================================================
-         REVIEWS LIST
-         ================================================== -->
+                <span>Reviewing as</span>
 
-    <div
-        id="reviewsList"
-        aria-live="polite">
-
-        <div class="empty-state">
-            Loading reviews...
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ==================================================
-     PROFILE MODAL
-     ================================================== -->
-
-<div
-    class="modal"
-    id="profileModal"
-    aria-hidden="true"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="profileModalTitle">
-
-    <div class="modal-box profile-modal">
-
-
-        <button
-            class="close"
-            type="button"
-            id="profileClose"
-            aria-label="Close">
-
-            ×
-
-        </button>
-
-
-        <div class="profile-modal-avatar">
-
-            <span id="profileModalAvatar">
-                U
-            </span>
-
-        </div>
-
-
-        <h2 id="profileModalTitle">
-            My Profile
-        </h2>
-
-
-        <p class="profile-subtitle">
-            Manage your account information.
-        </p>
-
-
-        <div class="profile-info">
-
-            <div class="profile-info-item">
-
-                <span>
-                    Email
-                </span>
-
-                <strong id="profileEmail">
-                    —
+                <strong id="reviewUserName">
+                    User
                 </strong>
 
             </div>
 
-        </div>
+            <div class="rating-box">
 
+                <label>Rating</label>
 
-        <form
-            id="profileForm"
-            autocomplete="off">
+                <div
+                    class="star-rating"
+                    id="starRating"
+                    role="radiogroup"
+                    aria-label="Choose a rating">
 
+                    <button
+                        type="button"
+                        class="rating-star"
+                        data-rating="1"
+                        aria-label="1 star"
+                        aria-checked="false"
+                        role="radio">★</button>
 
-            <div class="auth-field">
+                    <button
+                        type="button"
+                        class="rating-star"
+                        data-rating="2"
+                        aria-label="2 stars"
+                        aria-checked="false"
+                        role="radio">★</button>
 
-                <label for="profileName">
-                    Full Name
-                </label>
+                    <button
+                        type="button"
+                        class="rating-star"
+                        data-rating="3"
+                        aria-label="3 stars"
+                        aria-checked="false"
+                        role="radio">★</button>
+
+                    <button
+                        type="button"
+                        class="rating-star"
+                        data-rating="4"
+                        aria-label="4 stars"
+                        aria-checked="false"
+                        role="radio">★</button>
+
+                    <button
+                        type="button"
+                        class="rating-star"
+                        data-rating="5"
+                        aria-label="5 stars"
+                        aria-checked="false"
+                        role="radio">★</button>
+
+                </div>
 
                 <input
-                    type="text"
-                    id="profileName"
-                    placeholder="Enter your name"
-                    maxlength="50"
+                    type="hidden"
+                    id="reviewRating"
+                    value="0"
                     required>
 
             </div>
 
-
-            <div class="auth-field">
-
-                <label for="profileUsername">
-                    Username
-                </label>
-
-                <input
-                    type="text"
-                    id="profileUsername"
-                    placeholder="Enter username"
-                    maxlength="30"
-                    minlength="3"
-                    required>
-
-                <small class="username-hint">
-                    3–30 characters
-                </small>
-
-            </div>
-
+            <textarea
+                id="reviewText"
+                placeholder="Write your review..."
+                maxlength="500"
+                required></textarea>
 
             <button
-                type="submit"
-                id="profileSaveButton"
-                class="modal-action">
+                class="review-submit"
+                id="reviewSubmit"
+                type="submit">
 
-                Save Changes
+                Submit Review
 
             </button>
 
-
             <p
-                id="profileMessage"
+                id="reviewMessage"
                 class="form-message"
                 aria-live="polite">
             </p>
 
         </form>
 
-    </div>
-
-</div>
-
-
-
-<!-- ==================================================
-     REGISTER MODAL
-     ================================================== -->
-
-<div
-    class="modal"
-    id="registerModal"
-    aria-hidden="true"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="registerModalTitle">
-
-    <div class="modal-box">
-
-
-        <button
-            class="close"
-            type="button"
-            id="registerClose"
-            aria-label="Close">
-
-            ×
-
-        </button>
-
-
-        <div class="modal-logo">
-
-            <img
-                src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
-                alt="Super Video Player">
-
-        </div>
-
-
-        <h2 id="registerModalTitle">
-            Create Account
-        </h2>
-
-
-        <p>
-            Create your Super Video Player account.
-        </p>
-
-
-        <button
-            type="button"
-            id="googleRegisterButton"
-            class="google-login-btn">
-
-            <span class="google-icon">
-                G
-            </span>
-
-            <span>
-                Continue with Google
-            </span>
-
-        </button>
-
-
-        <div class="auth-divider">
-
-            <span></span>
-
-            <small>
-                OR
-            </small>
-
-            <span></span>
-
-        </div>
-
-
-        <form
-            id="registerForm"
-            autocomplete="on">
-
-
-            <input
-                type="text"
-                id="registerName"
-                placeholder="Full Name"
-                autocomplete="name"
-                maxlength="50"
-                required>
-
-
-            <input
-                type="email"
-                id="registerEmail"
-                placeholder="Email"
-                autocomplete="email"
-                required>
-
-
-            <input
-                type="password"
-                id="registerPassword"
-                placeholder="Password"
-                autocomplete="new-password"
-                minlength="6"
-                required>
-
-
-            <button
-                class="modal-action"
-                id="registerSubmit"
-                type="submit">
-
-                Create Account
-
-            </button>
-
-        </form>
-
-
-        <p
-            id="registerMessage"
-            class="form-message"
-            aria-live="polite">
-        </p>
-
-
-        <button
-            class="switch"
-            id="backToLoginButton"
-            type="button">
-
-            Already have an account?
-            <b>Login</b>
-
-        </button>
-
-    </div>
-
-</div>
-
-
-
-<!-- ==================================================
-     FORGOT PASSWORD MODAL
-     ================================================== -->
-
-<div
-    class="modal"
-    id="forgotModal"
-    aria-hidden="true"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="forgotModalTitle">
-
-    <div class="modal-box">
-
-
-        <button
-            class="close"
-            type="button"
-            id="forgotClose"
-            aria-label="Close">
-
-            ×
-
-        </button>
-
-
-        <div class="modal-logo">
-
-            <img
-                src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
-                alt="Super Video Player">
-
-        </div>
-
-
-        <h2 id="forgotModalTitle">
-            Forgot Password?
-        </h2>
-
-
-        <p>
-            Enter your registered email and we will send
-            you a password reset link.
-        </p>
-
-
-        <form
-            id="forgotForm"
-            autocomplete="on">
-
-
-            <input
-                type="email"
-                id="forgotEmail"
-                placeholder="Enter your email"
-                autocomplete="email"
-                required>
-
-
-            <button
-                class="modal-action"
-                id="forgotSubmit"
-                type="submit">
-
-                Send Reset Link
-
-            </button>
-
-        </form>
-
-
-        <p
-            id="forgotMessage"
-            class="form-message"
-            aria-live="polite">
-        </p>
-
-
-        <button
-            class="switch"
-            id="forgotBackLogin"
-            type="button">
-
-            <b>
-                Back to Login
-            </b>
-
-        </button>
-
-    </div>
-
-</div>
-
-
-
-<!-- ==================================================
-     DOWNLOAD COUNTDOWN MODAL
-     ================================================== -->
-
-<div
-    class="modal"
-    id="downloadModal"
-    aria-hidden="true"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="downloadModalTitle">
-
-    <div class="modal-box download-countdown-box">
-
-        <div class="modal-logo">
-
-            <img
-                src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
-                alt="Super Video Player">
-
-        </div>
-
-
-        <h2 id="downloadModalTitle">
-            Preparing Download
-        </h2>
-
-
-        <p id="downloadCountdownText">
-            Your download will start in
-        </p>
-
-
         <div
-            id="downloadCountdown"
-            class="download-countdown"
-            aria-live="assertive">
+            id="reviewsList"
+            aria-live="polite">
 
-            5
+            <div class="empty-state">
+                Loading reviews...
+            </div>
 
         </div>
 
+    </section>
 
-        <p class="download-countdown-hint">
-            Please wait...
-        </p>
+
+    <!-- PROFILE MODAL -->
+    <div
+        class="modal"
+        id="profileModal"
+        aria-hidden="true"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="profileModalTitle">
+
+        <div class="modal-box profile-modal">
+
+            <button
+                class="close"
+                type="button"
+                id="profileClose"
+                aria-label="Close">
+
+                ×
+
+            </button>
+
+            <div class="profile-modal-avatar">
+                <span id="profileModalAvatar">U</span>
+            </div>
+
+            <h2 id="profileModalTitle">
+                My Profile
+            </h2>
+
+            <p class="profile-subtitle">
+                Manage your account information.
+            </p>
+
+            <div class="profile-info">
+
+                <div class="profile-info-item">
+
+                    <span>Email</span>
+
+                    <strong id="profileEmail">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+            <form
+                id="profileForm"
+                autocomplete="off">
+
+                <div class="auth-field">
+
+                    <label for="profileName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="profileName"
+                        placeholder="Enter your name"
+                        maxlength="50"
+                        required>
+
+                </div>
+
+                <div class="auth-field">
+
+                    <label for="profileUsername">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="profileUsername"
+                        placeholder="Enter username"
+                        maxlength="30"
+                        minlength="3"
+                        required>
+
+                    <small class="username-hint">
+                        3–30 characters
+                    </small>
+
+                </div>
+
+                <button
+                    type="submit"
+                    id="profileSaveButton"
+                    class="modal-action">
+
+                    Save Changes
+
+                </button>
+
+                <p
+                    id="profileMessage"
+                    class="form-message"
+                    aria-live="polite">
+                </p>
+
+            </form>
+
+        </div>
 
     </div>
+
+
+    <!-- REGISTER MODAL -->
+    <div
+        class="modal"
+        id="registerModal"
+        aria-hidden="true"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="registerModalTitle">
+
+        <div class="modal-box">
+
+            <button
+                class="close"
+                type="button"
+                id="registerClose"
+                aria-label="Close">
+
+                ×
+
+            </button>
+
+            <div class="modal-logo">
+
+                <img
+                    src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
+                    alt="Super Video Player">
+
+            </div>
+
+            <h2 id="registerModalTitle">
+                Create Account
+            </h2>
+
+            <p>
+                Create your Super Video Player account.
+            </p>
+
+            <button
+                type="button"
+                id="googleRegisterButton"
+                class="google-login-btn">
+
+                <span class="google-icon">G</span>
+
+                <span>Continue with Google</span>
+
+            </button>
+
+            <div class="auth-divider">
+                <span></span>
+                <small>OR</small>
+                <span></span>
+            </div>
+
+            <form
+                id="registerForm"
+                autocomplete="on">
+
+                <input
+                    type="text"
+                    id="registerName"
+                    placeholder="Full Name"
+                    autocomplete="name"
+                    maxlength="50"
+                    required>
+
+                <input
+                    type="email"
+                    id="registerEmail"
+                    placeholder="Email"
+                    autocomplete="email"
+                    required>
+
+                <input
+                    type="password"
+                    id="registerPassword"
+                    placeholder="Password"
+                    autocomplete="new-password"
+                    minlength="6"
+                    required>
+
+                <button
+                    class="modal-action"
+                    id="registerSubmit"
+                    type="submit">
+
+                    Create Account
+
+                </button>
+
+            </form>
+
+            <p
+                id="registerMessage"
+                class="form-message"
+                aria-live="polite">
+            </p>
+
+            <button
+                class="switch"
+                id="backToLoginButton"
+                type="button">
+
+                Already have an account?
+                <b>Login</b>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- FORGOT PASSWORD -->
+    <div
+        class="modal"
+        id="forgotModal"
+        aria-hidden="true"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="forgotModalTitle">
+
+        <div class="modal-box">
+
+            <button
+                class="close"
+                type="button"
+                id="forgotClose"
+                aria-label="Close">
+
+                ×
+
+            </button>
+
+            <div class="modal-logo">
+
+                <img
+                    src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
+                    alt="Super Video Player">
+
+            </div>
+
+            <h2 id="forgotModalTitle">
+                Forgot Password?
+            </h2>
+
+            <p>
+                Enter your registered email and we will send
+                you a password reset link.
+            </p>
+
+            <form
+                id="forgotForm"
+                autocomplete="on">
+
+                <input
+                    type="email"
+                    id="forgotEmail"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                    required>
+
+                <button
+                    class="modal-action"
+                    id="forgotSubmit"
+                    type="submit">
+
+                    Send Reset Link
+
+                </button>
+
+            </form>
+
+            <p
+                id="forgotMessage"
+                class="form-message"
+                aria-live="polite">
+            </p>
+
+            <button
+                class="switch"
+                id="forgotBackLogin"
+                type="button">
+
+                <b>Back to Login</b>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- DOWNLOAD COUNTDOWN -->
+    <div
+        class="modal"
+        id="downloadModal"
+        aria-hidden="true"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="downloadModalTitle">
+
+        <div class="modal-box download-countdown-box">
+
+            <div class="modal-logo">
+
+                <img
+                    src="https://i.ibb.co/KcSWFnx9/Super-Video-Player-Logo.png"
+                    alt="Super Video Player">
+
+            </div>
+
+            <h2 id="downloadModalTitle">
+                Preparing Download
+            </h2>
+
+            <p id="downloadCountdownText">
+                Your download will start in
+            </p>
+
+            <div
+                id="downloadCountdown"
+                class="download-countdown"
+                aria-live="assertive">
+
+                5
+
+            </div>
+
+            <p class="download-countdown-hint">
+                Please wait...
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div>
+            © <span id="year"></span>
+            Super Video Player
+        </div>
+
+        <div>
+            Android 7.0+ • APK Download
+        </div>
+
+    </footer>
 
 </div>
 
-
-
-<!-- ==================================================
-     FOOTER
-     ================================================== -->
-
-<footer>
-
-    <div>
-
-        ©
-        <span id="year"></span>
-        Super Video Player
-
-    </div>
-
-    <div>
-
-        Android 7.0+ • APK Download
-
-    </div>
-
-</footer>
-
-
-</div>
-<!-- END MAIN APP -->
-
-
-
-<!-- ==================================================
-     FIREBASE CONFIG
-     ================================================== -->
 
 <script src="firebase-config.js"></script>
-
-
-<!-- ==================================================
-     MAIN JAVASCRIPT
-     ================================================== -->
-
 <script src="script.js"></script>
-
 
 </body>
 </html>
