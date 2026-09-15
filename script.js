@@ -37,10 +37,8 @@ const header =
 ========================================================= */
 
 if (yearElement) {
-
   yearElement.textContent =
     new Date().getFullYear();
-
 }
 
 
@@ -76,7 +74,6 @@ function openMobileMenu() {
   document.body.classList.add(
     "menu-open"
   );
-
 }
 
 
@@ -98,13 +95,12 @@ function closeMobileMenu() {
   document.body.classList.remove(
     "menu-open"
   );
-
 }
 
 
 function toggleMobileMenu() {
 
-  if (!mobileMenu) {
+  if (!mobileMenu || !menuBtn) {
     return;
   }
 
@@ -119,18 +115,21 @@ function toggleMobileMenu() {
     openMobileMenu();
 
   }
-
 }
 
 
 if (menuBtn && mobileMenu) {
+
+  menuBtn.setAttribute(
+    "aria-expanded",
+    "false"
+  );
 
   menuBtn.addEventListener(
     "click",
     event => {
 
       event.preventDefault();
-
       event.stopPropagation();
 
       toggleMobileMenu();
@@ -209,7 +208,6 @@ downloadButtons.forEach(button => {
 
   /*
    * Always use the real APK URL.
-   * No fake/demo toast.
    */
 
   button.setAttribute(
@@ -219,42 +217,15 @@ downloadButtons.forEach(button => {
 
 
   /*
-   * Keep normal browser navigation.
-   *
-   * This is important because GitHub Releases
-   * redirects to the actual APK asset.
+   * Make sure the browser handles
+   * the GitHub Release download normally.
    */
 
   button.addEventListener(
     "click",
-    event => {
-
-      if (!APK_DOWNLOAD_URL) {
-
-        event.preventDefault();
-
-        showToast(
-          "APK download link is not configured."
-        );
-
-        return;
-
-      }
-
-
-      /*
-       * Close mobile menu before downloading.
-       */
+    () => {
 
       closeMobileMenu();
-
-
-      /*
-       * Do NOT preventDefault().
-       *
-       * Browser will follow the GitHub Release
-       * APK URL and download the file.
-       */
 
     }
   );
@@ -282,11 +253,9 @@ function showToast(message) {
     "show"
   );
 
-
   clearTimeout(
     toastTimer
   );
-
 
   toastTimer =
     setTimeout(
@@ -313,33 +282,62 @@ const faqItems =
   );
 
 
+/* -----------------------------------------
+   Get FAQ elements safely
+----------------------------------------- */
+
+function getFaqElements(item) {
+
+  if (!item) {
+    return {
+      question: null,
+      answer: null,
+      symbol: null
+    };
+  }
+
+  return {
+
+    question:
+      item.querySelector(
+        ".faq-question"
+      ),
+
+    answer:
+      item.querySelector(
+        ".faq-answer"
+      ),
+
+    symbol:
+      item.querySelector(
+        ".faq-symbol"
+      )
+
+  };
+
+}
+
+
+/* -----------------------------------------
+   Close FAQ
+----------------------------------------- */
+
 function closeFaq(item) {
 
   if (!item) {
     return;
   }
 
+  const {
+    question,
+    answer,
+    symbol
+  } = getFaqElements(item);
+
+
   item.classList.remove(
     "active"
   );
-
-
-  const question =
-    item.querySelector(
-      ".faq-question"
-    );
-
-
-  const answer =
-    item.querySelector(
-      ".faq-answer"
-    );
-
-
-  const symbol =
-    item.querySelector(
-      ".faq-symbol"
-    );
 
 
   if (question) {
@@ -370,28 +368,26 @@ function closeFaq(item) {
 }
 
 
+/* -----------------------------------------
+   Open FAQ
+----------------------------------------- */
+
 function openFaq(item) {
 
   if (!item) {
     return;
   }
 
-  const question =
-    item.querySelector(
-      ".faq-question"
-    );
+  const {
+    question,
+    answer,
+    symbol
+  } = getFaqElements(item);
 
 
-  const answer =
-    item.querySelector(
-      ".faq-answer"
-    );
-
-
-  const symbol =
-    item.querySelector(
-      ".faq-symbol"
-    );
+  if (!answer) {
+    return;
+  }
 
 
   item.classList.add(
@@ -409,14 +405,6 @@ function openFaq(item) {
   }
 
 
-  if (answer) {
-
-    answer.style.maxHeight =
-      answer.scrollHeight + "px";
-
-  }
-
-
   if (symbol) {
 
     symbol.textContent =
@@ -424,25 +412,56 @@ function openFaq(item) {
 
   }
 
+
+  /*
+   * Force browser to calculate the
+   * real answer height.
+   */
+
+  requestAnimationFrame(() => {
+
+    answer.style.maxHeight =
+      answer.scrollHeight + "px";
+
+  });
+
 }
 
 
+/* -----------------------------------------
+   Initialize FAQ
+----------------------------------------- */
+
 faqItems.forEach(item => {
 
-  const question =
-    item.querySelector(
-      ".faq-question"
-    );
-
-
-  const answer =
-    item.querySelector(
-      ".faq-answer"
-    );
+  const {
+    question,
+    answer
+  } = getFaqElements(item);
 
 
   if (!question || !answer) {
     return;
+  }
+
+
+  /*
+   * Accessibility attributes
+   */
+
+  if (
+    !question.hasAttribute(
+      "aria-expanded"
+    )
+  ) {
+
+    question.setAttribute(
+      "aria-expanded",
+      item.classList.contains("active")
+        ? "true"
+        : "false"
+    );
+
   }
 
 
@@ -458,15 +477,20 @@ faqItems.forEach(item => {
 
   } else {
 
-    answer.style.maxHeight =
-      "0px";
+    closeFaq(item);
 
   }
 
 
+  /* -----------------------------------------
+     FAQ Click
+  ----------------------------------------- */
+
   question.addEventListener(
     "click",
-    () => {
+    event => {
+
+      event.preventDefault();
 
       const isActive =
         item.classList.contains(
@@ -475,7 +499,7 @@ faqItems.forEach(item => {
 
 
       /*
-       * Close every other FAQ
+       * Close all other FAQs
        */
 
       faqItems.forEach(
@@ -516,6 +540,29 @@ faqItems.forEach(item => {
     }
   );
 
+
+  /* -----------------------------------------
+     Keyboard accessibility
+  ----------------------------------------- */
+
+  question.addEventListener(
+    "keydown",
+    event => {
+
+      if (
+        event.key === "Enter" ||
+        event.key === " "
+      ) {
+
+        event.preventDefault();
+
+        question.click();
+
+      }
+
+    }
+  );
+
 });
 
 
@@ -523,21 +570,40 @@ faqItems.forEach(item => {
    FAQ RESIZE FIX
 ========================================================= */
 
+let faqResizeTimer = null;
+
+
 window.addEventListener(
   "resize",
   () => {
 
-    const activeFaq =
-      document.querySelector(
-        ".faq-item.active .faq-answer"
+    clearTimeout(
+      faqResizeTimer
+    );
+
+
+    faqResizeTimer =
+      setTimeout(
+        () => {
+
+          const activeFaqs =
+            document.querySelectorAll(
+              ".faq-item.active .faq-answer"
+            );
+
+
+          activeFaqs.forEach(
+            answer => {
+
+              answer.style.maxHeight =
+                answer.scrollHeight + "px";
+
+            }
+          );
+
+        },
+        100
       );
-
-    if (activeFaq) {
-
-      activeFaq.style.maxHeight =
-        activeFaq.scrollHeight + "px";
-
-    }
 
   },
   {
@@ -556,15 +622,7 @@ const revealElements =
   );
 
 
-if (
-  prefersReducedMotion
-) {
-
-  /*
-   * Accessibility:
-   * Don't animate for users who prefer
-   * reduced motion.
-   */
+if (prefersReducedMotion) {
 
   revealElements.forEach(
     element => {
@@ -691,19 +749,22 @@ window.addEventListener(
    CLOSE MOBILE MENU ON DESKTOP
 ========================================================= */
 
+function handleResponsiveMenu() {
+
+  if (
+    window.innerWidth > 900
+  ) {
+
+    closeMobileMenu();
+
+  }
+
+}
+
+
 window.addEventListener(
   "resize",
-  () => {
-
-    if (
-      window.innerWidth > 900
-    ) {
-
-      closeMobileMenu();
-
-    }
-
-  },
+  handleResponsiveMenu,
   {
     passive: true
   }
@@ -719,42 +780,43 @@ document.addEventListener(
   event => {
 
     if (
-      event.key === "Escape"
+      event.key !== "Escape"
+    ) {
+      return;
+    }
+
+
+    /*
+     * Close mobile menu
+     */
+
+    if (
+      mobileMenu &&
+      mobileMenu.classList.contains(
+        "open"
+      )
     ) {
 
-      /*
-       * Close mobile menu
-       */
+      closeMobileMenu();
 
-      if (
-        mobileMenu &&
-        mobileMenu.classList.contains(
-          "open"
-        )
-      ) {
-
-        closeMobileMenu();
-
-      }
+    }
 
 
-      /*
-       * Close active FAQ
-       * when Escape is pressed.
-       */
+    /*
+     * Close active FAQ
+     */
 
-      const activeFaq =
-        document.querySelector(
-          ".faq-item.active"
-        );
+    const activeFaq =
+      document.querySelector(
+        ".faq-item.active"
+      );
 
-      if (activeFaq) {
 
-        closeFaq(
-          activeFaq
-        );
+    if (activeFaq) {
 
-      }
+      closeFaq(
+        activeFaq
+      );
 
     }
 
@@ -794,20 +856,31 @@ internalLinks.forEach(link => {
       }
 
 
-      const target =
-        document.querySelector(
-          targetId
-        );
+      let target = null;
+
+
+      /*
+       * Safely find target.
+       */
+
+      try {
+
+        target =
+          document.querySelector(
+            targetId
+          );
+
+      } catch (error) {
+
+        return;
+
+      }
 
 
       if (!target) {
         return;
       }
 
-
-      /*
-       * Use native smooth scrolling.
-       */
 
       event.preventDefault();
 
@@ -816,16 +889,19 @@ internalLinks.forEach(link => {
 
 
       target.scrollIntoView({
+
         behavior:
           prefersReducedMotion
             ? "auto"
             : "smooth",
+
         block: "start"
+
       });
 
 
       /*
-       * Update URL without jumping.
+       * Update URL without page jump.
        */
 
       if (
@@ -858,6 +934,7 @@ window.addEventListener(
       "menu-open"
     );
 
+
     if (mobileMenu) {
 
       mobileMenu.classList.remove(
@@ -865,6 +942,7 @@ window.addEventListener(
       );
 
     }
+
 
     if (menuBtn) {
 
@@ -910,9 +988,68 @@ images.forEach(image => {
 
 
 /* =========================================================
+   IMAGE LAZY LOADING SUPPORT
+========================================================= */
+
+images.forEach(image => {
+
+  /*
+   * Don't override an explicitly defined
+   * loading attribute.
+   */
+
+  if (
+    !image.hasAttribute(
+      "loading"
+    )
+  ) {
+
+    image.setAttribute(
+      "loading",
+      "lazy"
+    );
+
+  }
+
+});
+
+
+/* =========================================================
    INITIALIZE
 ========================================================= */
 
 document.documentElement.classList.add(
   "js-ready"
 );
+
+
+/* =========================================================
+   FINAL INITIALIZATION
+========================================================= */
+
+document.body.classList.remove(
+  "menu-open"
+);
+
+
+if (mobileMenu) {
+
+  mobileMenu.classList.remove(
+    "open"
+  );
+
+}
+
+
+if (menuBtn) {
+
+  menuBtn.classList.remove(
+    "open"
+  );
+
+  menuBtn.setAttribute(
+    "aria-expanded",
+    "false"
+  );
+
+}
