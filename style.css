@@ -19,6 +19,222 @@
   --transition: 0.3s ease;
 }
 
+/* =========================================================
+   REAL APP SCREENSHOTS
+========================================================= */
+
+.real-screenshot-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+
+/* Screenshot Card */
+
+.real-screenshot-card {
+  padding: 14px;
+
+  border: 1px solid var(--border);
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.015)
+    );
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+
+/* Hover */
+
+.real-screenshot-card:hover {
+  transform: translateY(-8px);
+
+  border-color:
+    rgba(167, 139, 250, 0.35);
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.35);
+}
+
+
+/* Screenshot Frame */
+
+.real-screenshot-frame {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  border-radius: 21px;
+
+  background: #050507;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+
+/* Real Screenshot Image */
+
+.real-screenshot-frame img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  max-width: 100%;
+
+  object-fit: contain;
+
+  background: #050507;
+
+  transition:
+    transform 0.5s ease;
+}
+
+
+/* Image Hover */
+
+.real-screenshot-card:hover
+.real-screenshot-frame img {
+  transform: scale(1.025);
+}
+
+
+/* Screenshot Text */
+
+.screenshot-info {
+  padding:
+    17px 5px 5px;
+}
+
+
+.screenshot-info h3 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+
+.screenshot-info p {
+  margin-top: 5px;
+
+  color: #7f7f89;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+  .real-screenshot-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    gap: 18px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+  .real-screenshot-grid {
+
+    display: flex;
+
+    gap: 16px;
+
+    overflow-x: auto;
+
+    padding:
+      5px 2px 18px;
+
+    scroll-snap-type: x mandatory;
+
+    scrollbar-width: none;
+  }
+
+
+  .real-screenshot-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+
+  .real-screenshot-card {
+
+    flex:
+      0 0 78%;
+
+    scroll-snap-align: center;
+
+    padding: 12px;
+
+    border-radius: 24px;
+  }
+
+
+  .real-screenshot-frame {
+    border-radius: 19px;
+  }
+
+
+  .screenshot-info {
+    padding:
+      15px 4px 4px;
+  }
+
+
+  .screenshot-info h3 {
+    font-size: 16px;
+  }
+
+
+  .screenshot-info p {
+    font-size: 11px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .real-screenshot-card {
+    flex-basis: 84%;
+  }
+
+}
+
 
 /* =========================================================
    RESET
