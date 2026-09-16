@@ -1,7 +1,13 @@
 /* =========================================================
    SUPER VIDEO PLAYER
-   Premium Responsive Website
+   PREMIUM RESPONSIVE WEBSITE
    FULL REPLACEMENT CSS
+   FULL-SIZE HORIZONTAL SCREENSHOTS
+========================================================= */
+
+
+/* =========================================================
+   ROOT
 ========================================================= */
 
 :root {
@@ -18,15 +24,15 @@
   --accent-2: #ec4899;
   --accent-3: #3b82f6;
 
-  --border: rgba(255,255,255,.08);
-  --border-soft: rgba(255,255,255,.05);
-  --border-hover: rgba(139,92,246,.45);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-soft: rgba(255, 255, 255, 0.05);
+  --border-hover: rgba(139, 92, 246, 0.45);
 
   --radius: 24px;
   --container: 1180px;
   --header-height: 78px;
 
-  --transition: .3s ease;
+  --transition: 0.3s ease;
 }
 
 
@@ -53,12 +59,13 @@ body {
   width: 100%;
   min-width: 320px;
   min-height: 100vh;
+
   overflow-x: hidden;
 
   background:
     radial-gradient(
       circle at 50% -10%,
-      rgba(139,92,246,.10),
+      rgba(139, 92, 246, 0.10),
       transparent 35%
     ),
     var(--bg);
@@ -105,13 +112,27 @@ button {
 }
 
 ::selection {
-  background: rgba(139,92,246,.35);
+  background: rgba(139, 92, 246, 0.35);
   color: #fff;
 }
 
 :focus-visible {
   outline: 2px solid #a78bfa;
   outline-offset: 3px;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container {
+  width: min(
+    calc(100% - 48px),
+    var(--container)
+  );
+
+  margin-inline: auto;
 }
 
 section {
@@ -121,29 +142,23 @@ section {
 
 
 /* =========================================================
-   CONTAINER
-========================================================= */
-
-.container {
-  width: min(calc(100% - 48px), var(--container));
-  margin-inline: auto;
-}
-
-
-/* =========================================================
    HEADER
 ========================================================= */
 
 .header {
   position: fixed;
-  inset: 0 0 auto 0;
+
+  top: 0;
+  left: 0;
+  right: 0;
 
   width: 100%;
+
   z-index: 1000;
 
   border-bottom: 1px solid transparent;
 
-  background: rgba(5,5,7,.72);
+  background: rgba(5, 5, 7, 0.72);
 
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -155,16 +170,20 @@ section {
 }
 
 .header.scrolled {
-  background: rgba(5,5,7,.94);
+  background: rgba(5, 5, 7, 0.94);
 
   border-color: var(--border);
 
   box-shadow:
-    0 12px 40px rgba(0,0,0,.20);
+    0 12px 40px rgba(0, 0, 0, 0.20);
 }
 
 .nav-container {
-  width: min(calc(100% - 48px), var(--container));
+  width: min(
+    calc(100% - 48px),
+    var(--container)
+  );
+
   height: var(--header-height);
 
   margin-inline: auto;
@@ -184,9 +203,11 @@ section {
 .brand {
   display: inline-flex;
   align-items: center;
+
   gap: 11px;
 
   flex-shrink: 0;
+
   min-width: 0;
 }
 
@@ -209,13 +230,14 @@ section {
     );
 
   box-shadow:
-    0 8px 28px rgba(139,92,246,.25);
+    0 8px 28px rgba(139, 92, 246, 0.25);
 
   color: #fff;
 
   font-size: 14px;
   font-weight: 900;
-  letter-spacing: -.5px;
+
+  letter-spacing: -0.5px;
 }
 
 .brand-text {
@@ -223,13 +245,16 @@ section {
   flex-direction: column;
 
   min-width: 0;
+
   line-height: 1;
 }
 
 .brand-text strong {
   font-size: 15px;
   font-weight: 900;
-  letter-spacing: .8px;
+
+  letter-spacing: 0.8px;
+
   white-space: nowrap;
 }
 
@@ -240,6 +265,7 @@ section {
 
   font-size: 8px;
   font-weight: 700;
+
   letter-spacing: 1.5px;
 
   white-space: nowrap;
@@ -256,6 +282,7 @@ section {
   justify-content: center;
 
   gap: 30px;
+
   margin-left: auto;
 
   min-width: 0;
@@ -271,7 +298,8 @@ section {
 
   white-space: nowrap;
 
-  transition: color var(--transition);
+  transition:
+    color var(--transition);
 }
 
 .desktop-nav a::after {
@@ -296,7 +324,8 @@ section {
 
   transform: translateX(-50%);
 
-  transition: width var(--transition);
+  transition:
+    width var(--transition);
 }
 
 .desktop-nav a:hover {
@@ -321,12 +350,14 @@ section {
   justify-content: center;
 
   min-height: 48px;
+
   padding: 0 20px;
 
   border-radius: 14px;
 
   font-size: 14px;
   font-weight: 800;
+
   line-height: 1;
 
   white-space: nowrap;
@@ -352,14 +383,21 @@ section {
     );
 
   box-shadow:
-    0 12px 35px rgba(139,92,246,.25);
+    0 12px 35px rgba(139, 92, 246, 0.25);
 }
 
 .primary-btn:hover {
   transform: translateY(-2px);
 
   box-shadow:
-    0 16px 40px rgba(139,92,246,.38);
+    0 16px 40px rgba(139, 92, 246, 0.38);
+}
+
+.primary-btn:active,
+.secondary-btn:active,
+.nav-download:active,
+.mobile-download:active {
+  transform: translateY(0);
 }
 
 .secondary-btn {
@@ -370,7 +408,7 @@ section {
   border: 1px solid var(--border);
 
   background:
-    rgba(255,255,255,.035);
+    rgba(255, 255, 255, 0.035);
 }
 
 .secondary-btn:hover {
@@ -379,26 +417,20 @@ section {
   border-color: var(--border-hover);
 
   background:
-    rgba(139,92,246,.08);
-}
-
-.primary-btn:active,
-.secondary-btn:active,
-.nav-download:active,
-.mobile-download:active {
-  transform: translateY(0);
+    rgba(139, 92, 246, 0.08);
 }
 
 .nav-download {
   min-height: 42px;
+
   padding-inline: 17px;
 
   color: #fff;
 
-  border: 1px solid rgba(139,92,246,.35);
+  border: 1px solid rgba(139, 92, 246, 0.35);
 
   background:
-    rgba(139,92,246,.12);
+    rgba(139, 92, 246, 0.12);
 }
 
 .nav-download:hover {
@@ -407,7 +439,7 @@ section {
   border-color: var(--accent);
 
   background:
-    rgba(139,92,246,.20);
+    rgba(139, 92, 246, 0.20);
 }
 
 
@@ -420,19 +452,22 @@ section {
   height: 44px;
 
   display: none;
+
   align-items: center;
   justify-content: center;
 
   flex-direction: column;
+
   gap: 5px;
 
   flex-shrink: 0;
 
   border: 1px solid var(--border);
+
   border-radius: 13px;
 
   background:
-    rgba(255,255,255,.04);
+    rgba(255, 255, 255, 0.04);
 
   color: #fff;
 
@@ -443,10 +478,10 @@ section {
 
 .menu-btn:hover {
   background:
-    rgba(139,92,246,.10);
+    rgba(139, 92, 246, 0.10);
 
   border-color:
-    rgba(139,92,246,.30);
+    rgba(139, 92, 246, 0.30);
 }
 
 .menu-btn span {
@@ -464,17 +499,20 @@ section {
     opacity var(--transition);
 }
 
-.menu-btn[aria-expanded="true"] span:nth-child(1) {
+.menu-btn[aria-expanded="true"]
+span:nth-child(1) {
   transform:
     translateY(7px)
     rotate(45deg);
 }
 
-.menu-btn[aria-expanded="true"] span:nth-child(2) {
+.menu-btn[aria-expanded="true"]
+span:nth-child(2) {
   opacity: 0;
 }
 
-.menu-btn[aria-expanded="true"] span:nth-child(3) {
+.menu-btn[aria-expanded="true"]
+span:nth-child(3) {
   transform:
     translateY(-7px)
     rotate(-45deg);
@@ -489,10 +527,12 @@ section {
   width: 100%;
 
   max-height: 0;
+
   overflow: hidden;
 
   opacity: 0;
   visibility: hidden;
+
   pointer-events: none;
 
   padding: 0 24px;
@@ -501,17 +541,17 @@ section {
     1px solid transparent;
 
   background:
-    rgba(5,5,7,.98);
+    rgba(5, 5, 7, 0.98);
 
   box-shadow:
-    0 20px 40px rgba(0,0,0,.30);
+    0 20px 40px rgba(0, 0, 0, 0.30);
 
   transition:
-    max-height .35s ease,
-    opacity .25s ease,
-    visibility .25s ease,
-    padding .35s ease,
-    border-color .25s ease;
+    max-height 0.35s ease,
+    opacity 0.25s ease,
+    visibility 0.25s ease,
+    padding 0.35s ease,
+    border-color 0.25s ease;
 }
 
 .mobile-menu.open {
@@ -519,9 +559,12 @@ section {
 
   opacity: 1;
   visibility: visible;
+
   pointer-events: auto;
 
-  padding: 12px 24px 24px;
+  padding:
+    12px 24px
+    24px;
 
   border-top-color: var(--border);
 
@@ -539,7 +582,8 @@ section {
   font-weight: 650;
 
   border-bottom:
-    1px solid rgba(255,255,255,.045);
+    1px solid
+    rgba(255, 255, 255, 0.045);
 
   transition:
     color var(--transition),
@@ -548,11 +592,13 @@ section {
 
 .mobile-menu a:hover {
   color: #fff;
+
   padding-left: 8px;
 }
 
 .mobile-download {
   width: 100%;
+
   margin-top: 14px;
 
   border: 0 !important;
@@ -580,7 +626,9 @@ section {
   display: flex;
   align-items: center;
 
-  padding: 150px 0 90px;
+  padding:
+    150px 0
+    90px;
 
   overflow: hidden;
 }
@@ -589,6 +637,7 @@ section {
   content: "";
 
   position: absolute;
+
   inset: 0;
 
   pointer-events: none;
@@ -596,12 +645,12 @@ section {
   background:
     radial-gradient(
       circle at 20% 40%,
-      rgba(139,92,246,.12),
+      rgba(139, 92, 246, 0.12),
       transparent 30%
     ),
     radial-gradient(
       circle at 85% 35%,
-      rgba(236,72,153,.08),
+      rgba(236, 72, 153, 0.08),
       transparent 28%
     );
 }
@@ -615,36 +664,24 @@ section {
   border-radius: 50%;
 
   filter: blur(100px);
-  opacity: .25;
+
+  opacity: 0.25;
 
   pointer-events: none;
-
-  animation:
-    glowFloat 8s ease-in-out infinite alternate;
 }
 
 .glow-one {
   top: 100px;
   left: -220px;
+
   background: var(--accent);
 }
 
 .glow-two {
   right: -220px;
   bottom: 50px;
+
   background: var(--accent-2);
-
-  animation-delay: -3s;
-}
-
-@keyframes glowFloat {
-  from {
-    transform: translate3d(0,0,0) scale(1);
-  }
-
-  to {
-    transform: translate3d(25px,-20px,0) scale(1.08);
-  }
 }
 
 .hero-grid {
@@ -655,8 +692,8 @@ section {
   display: grid;
 
   grid-template-columns:
-    minmax(0,1.05fr)
-    minmax(330px,.95fr);
+    minmax(0, 1.05fr)
+    minmax(330px, 0.95fr);
 
   align-items: center;
 
@@ -665,6 +702,7 @@ section {
 
 .hero-content {
   position: relative;
+
   z-index: 2;
 
   min-width: 0;
@@ -679,20 +717,23 @@ section {
 
   gap: 9px;
 
-  padding: 8px 13px;
+  padding:
+    8px 13px;
 
   border:
-    1px solid rgba(139,92,246,.25);
+    1px solid
+    rgba(139, 92, 246, 0.25);
 
   border-radius: 99px;
 
   color: #cfc7ff;
 
   background:
-    rgba(139,92,246,.08);
+    rgba(139, 92, 246, 0.08);
 
   font-size: 11px;
   font-weight: 800;
+
   letter-spacing: 1.1px;
 }
 
@@ -707,23 +748,8 @@ section {
   background: #a78bfa;
 
   box-shadow:
-    0 0 12px rgba(167,139,250,.9);
-
-  animation:
-    statusPulse 1.8s ease-in-out infinite;
-}
-
-@keyframes statusPulse {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: .8;
-  }
-
-  50% {
-    transform: scale(1.45);
-    opacity: 1;
-  }
+    0 0 12px
+    rgba(167, 139, 250, 0.9);
 }
 
 .hero h1 {
@@ -732,9 +758,9 @@ section {
   margin-top: 25px;
 
   font-size:
-    clamp(48px,6vw,78px);
+    clamp(48px, 6vw, 78px);
 
-  line-height: .98;
+  line-height: 0.98;
 
   letter-spacing: -3.5px;
 
@@ -754,17 +780,6 @@ section {
   background-clip: text;
 
   color: transparent;
-
-  background-size: 200% auto;
-
-  animation:
-    gradientMove 5s linear infinite;
-}
-
-@keyframes gradientMove {
-  to {
-    background-position: 200% center;
-  }
 }
 
 .hero-description {
@@ -775,6 +790,7 @@ section {
   color: var(--muted);
 
   font-size: 17px;
+
   line-height: 1.8;
 }
 
@@ -812,6 +828,7 @@ section {
 
 .info-icon {
   color: #a78bfa;
+
   font-weight: 900;
 }
 
@@ -842,26 +859,13 @@ section {
   background:
     linear-gradient(
       180deg,
-      rgba(139,92,246,.24),
-      rgba(236,72,153,.10)
+      rgba(139, 92, 246, 0.24),
+      rgba(236, 72, 153, 0.10)
     );
 
   filter: blur(55px);
 
   transform: rotate(-12deg);
-
-  animation:
-    deviceGlow 6s ease-in-out infinite alternate;
-}
-
-@keyframes deviceGlow {
-  from {
-    transform: rotate(-12deg) scale(.95);
-  }
-
-  to {
-    transform: rotate(-7deg) scale(1.06);
-  }
 }
 
 .phone {
@@ -885,33 +889,23 @@ section {
     );
 
   border:
-    1px solid rgba(255,255,255,.17);
+    1px solid
+    rgba(255, 255, 255, 0.17);
 
   box-shadow:
-    0 45px 100px rgba(0,0,0,.7),
-    0 0 70px rgba(139,92,246,.16);
+    0 45px 100px
+    rgba(0, 0, 0, 0.7),
+    0 0 70px
+    rgba(139, 92, 246, 0.16);
 
   z-index: 2;
-
-  animation:
-    phoneFloat 5s ease-in-out infinite;
-}
-
-@keyframes phoneFloat {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
-  }
-
-  50% {
-    transform: translateY(-10px) rotate(.4deg);
-  }
 }
 
 .phone::after {
   content: "";
 
   position: absolute;
+
   inset: 3px;
 
   border-radius: 41px;
@@ -919,7 +913,8 @@ section {
   pointer-events: none;
 
   border:
-    1px solid rgba(255,255,255,.06);
+    1px solid
+    rgba(255, 255, 255, 0.06);
 }
 
 .phone-notch {
@@ -955,6 +950,7 @@ section {
 
 .app-screenshot {
   position: absolute;
+
   inset: 0;
 
   width: 100%;
@@ -981,21 +977,24 @@ section {
 
   gap: 9px;
 
-  padding: 11px 14px;
+  padding:
+    11px 14px;
 
   border:
-    1px solid var(--border);
+    1px solid
+    var(--border);
 
   border-radius: 14px;
 
   background:
-    rgba(15,15,22,.82);
+    rgba(15, 15, 22, 0.82);
 
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 
   box-shadow:
-    0 15px 35px rgba(0,0,0,.35);
+    0 15px 35px
+    rgba(0, 0, 0, 0.35);
 
   color: #fff;
 
@@ -1006,6 +1005,10 @@ section {
 
   animation:
     floatingCard 4s ease-in-out infinite;
+}
+
+.card-two {
+  animation-delay: -2s;
 }
 
 .floating-card span {
@@ -1032,17 +1035,6 @@ section {
   font-weight: 900;
 }
 
-@keyframes floatingCard {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-7px);
-  }
-}
-
 .card-one {
   left: -20px;
   bottom: 130px;
@@ -1051,8 +1043,6 @@ section {
 .card-two {
   right: -22px;
   top: 145px;
-
-  animation-delay: -2s;
 }
 
 
@@ -1083,13 +1073,14 @@ section {
 
   font-size: 11px;
   font-weight: 900;
+
   letter-spacing: 1.7px;
 }
 
 .section-heading h2,
 .highlight-content h2 {
   font-size:
-    clamp(38px,5vw,58px);
+    clamp(38px, 5vw, 58px);
 
   line-height: 1.05;
 
@@ -1112,6 +1103,7 @@ section {
   color: var(--muted);
 
   font-size: 16px;
+
   line-height: 1.75;
 }
 
@@ -1124,7 +1116,7 @@ section {
   display: grid;
 
   grid-template-columns:
-    repeat(3,minmax(0,1fr));
+    repeat(3, minmax(0, 1fr));
 
   gap: 16px;
 
@@ -1142,22 +1134,22 @@ section {
   overflow: hidden;
 
   border:
-    1px solid var(--border);
+    1px solid
+    var(--border);
 
   border-radius: var(--radius);
 
   background:
     linear-gradient(
       145deg,
-      rgba(255,255,255,.045),
-      rgba(255,255,255,.015)
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.015)
     );
 
   transition:
     transform var(--transition),
     border-color var(--transition),
-    background var(--transition),
-    box-shadow var(--transition);
+    background var(--transition);
 }
 
 .feature-card::before {
@@ -1174,7 +1166,7 @@ section {
   border-radius: 50%;
 
   background:
-    rgba(139,92,246,.08);
+    rgba(139, 92, 246, 0.08);
 
   filter: blur(20px);
 
@@ -1182,7 +1174,7 @@ section {
 }
 
 .feature-card:hover {
-  transform: translateY(-7px);
+  transform: translateY(-5px);
 
   border-color:
     var(--border-hover);
@@ -1190,12 +1182,9 @@ section {
   background:
     linear-gradient(
       145deg,
-      rgba(139,92,246,.08),
-      rgba(255,255,255,.025)
+      rgba(139, 92, 246, 0.08),
+      rgba(255, 255, 255, 0.025)
     );
-
-  box-shadow:
-    0 20px 50px rgba(0,0,0,.22);
 }
 
 .feature-icon {
@@ -1214,29 +1203,22 @@ section {
   background:
     linear-gradient(
       135deg,
-      rgba(139,92,246,.25),
-      rgba(236,72,153,.16)
+      rgba(139, 92, 246, 0.25),
+      rgba(236, 72, 153, 0.16)
     );
 
   border:
-    1px solid rgba(139,92,246,.22);
+    1px solid
+    rgba(139, 92, 246, 0.22);
 
   font-size: 17px;
   font-weight: 900;
-
-  transition:
-    transform var(--transition);
-}
-
-.feature-card:hover .feature-icon {
-  transform:
-    translateY(-2px)
-    scale(1.05);
 }
 
 .feature-card h3 {
   font-size: 18px;
   font-weight: 800;
+
   line-height: 1.3;
 }
 
@@ -1246,12 +1228,14 @@ section {
   color: var(--muted);
 
   font-size: 13px;
+
   line-height: 1.7;
 }
 
 
 /* =========================================================
-   SHOWCASE / HORIZONTAL SCREENSHOTS
+   SHOWCASE
+   FULL SIZE HORIZONTAL SCREENSHOTS
 ========================================================= */
 
 .showcase-section {
@@ -1259,102 +1243,69 @@ section {
     linear-gradient(
       180deg,
       transparent,
-      rgba(139,92,246,.025),
+      rgba(139, 92, 246, 0.025),
       transparent
     );
 }
 
+
+/*
+   Desktop:
+   3 screenshots side-by-side.
+   Images are NOT cropped vertically.
+*/
+
 .real-screenshot-grid {
-  display: flex;
+  display: grid;
 
-  flex-direction: row;
-
-  align-items: flex-start;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
 
   gap: 22px;
 
-  width: 100%;
   min-width: 0;
 
-  overflow-x: auto;
-  overflow-y: hidden;
-
-  padding:
-    8px
-    8px
-    28px;
-
-  scroll-snap-type: x mandatory;
-
-  overscroll-behavior-x: contain;
-
-  -webkit-overflow-scrolling: touch;
-
-  scrollbar-width: thin;
-
-  scrollbar-color:
-    rgba(139,92,246,.55)
-    rgba(255,255,255,.04);
-
-  cursor: grab;
-}
-
-.real-screenshot-grid:active {
-  cursor: grabbing;
-}
-
-.real-screenshot-grid::-webkit-scrollbar {
-  height: 7px;
-}
-
-.real-screenshot-grid::-webkit-scrollbar-track {
-  background:
-    rgba(255,255,255,.04);
-
-  border-radius: 99px;
-}
-
-.real-screenshot-grid::-webkit-scrollbar-thumb {
-  background:
-    linear-gradient(
-      90deg,
-      var(--accent),
-      var(--accent-2)
-    );
-
-  border-radius: 99px;
+  width: 100%;
 }
 
 .real-screenshot-card {
-  flex:
-    0 0
-    clamp(270px,29vw,360px);
-
-  width: clamp(270px,29vw,360px);
-
   min-width: 0;
 
-  scroll-snap-align: start;
+  width: 100%;
 }
+
+
+/*
+   IMPORTANT:
+   Screenshot keeps its ORIGINAL horizontal
+   aspect ratio instead of 9:16.
+*/
 
 .real-screenshot-frame {
   position: relative;
 
   width: 100%;
 
-  aspect-ratio: 9 / 16;
+  /*
+     No fixed 9:16 ratio.
+     Height follows the real image.
+  */
+  aspect-ratio: auto;
 
   overflow: hidden;
 
-  border-radius: 27px;
+  border-radius: 24px;
 
   border:
-    1px solid rgba(255,255,255,.10);
+    1px solid
+    rgba(255, 255, 255, 0.10);
 
-  background: #09090d;
+  background:
+    #09090d;
 
   box-shadow:
-    0 25px 70px rgba(0,0,0,.35);
+    0 25px 70px
+    rgba(0, 0, 0, 0.35);
 
   transition:
     transform var(--transition),
@@ -1362,21 +1313,54 @@ section {
     box-shadow var(--transition);
 }
 
+
+/*
+   Image:
+   FULL image visible.
+   No object-fit: cover.
+   No cropping.
+*/
+
+.real-screenshot-frame img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  max-width: none;
+
+  object-fit: contain;
+  object-position: center;
+
+  border-radius: inherit;
+
+  transition:
+    transform 0.6s ease;
+}
+
+
+/*
+   Glass highlight
+*/
+
 .real-screenshot-frame::after {
   content: "";
 
   position: absolute;
+
   inset: 0;
 
   pointer-events: none;
 
+  border-radius: inherit;
+
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,.06),
-      transparent 18%,
+      rgba(255, 255, 255, 0.05),
+      transparent 20%,
       transparent 80%,
-      rgba(0,0,0,.12)
+      rgba(0, 0, 0, 0.10)
     );
 }
 
@@ -1385,34 +1369,23 @@ section {
   transform: translateY(-7px);
 
   border-color:
-    rgba(139,92,246,.42);
+    rgba(139, 92, 246, 0.42);
 
   box-shadow:
-    0 30px 80px rgba(0,0,0,.48),
-    0 0 45px rgba(139,92,246,.08);
-}
-
-.real-screenshot-frame img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-  object-position: center;
-
-  transition:
-    transform .6s ease;
+    0 30px 80px
+    rgba(0, 0, 0, 0.48),
+    0 0 45px
+    rgba(139, 92, 246, 0.08);
 }
 
 .real-screenshot-card:hover
 .real-screenshot-frame img {
-  transform: scale(1.025);
+  transform: scale(1.015);
 }
 
 .screenshot-info {
   padding:
-    19px
-    4px
-    0;
+    19px 4px 0;
 }
 
 .screenshot-info h3 {
@@ -1445,12 +1418,12 @@ section {
   background:
     radial-gradient(
       circle at 15% 50%,
-      rgba(139,92,246,.07),
+      rgba(139, 92, 246, 0.07),
       transparent 30%
     ),
     radial-gradient(
       circle at 90% 50%,
-      rgba(236,72,153,.05),
+      rgba(236, 72, 153, 0.05),
       transparent 30%
     );
 }
@@ -1459,8 +1432,8 @@ section {
   display: grid;
 
   grid-template-columns:
-    minmax(0,1fr)
-    minmax(0,1fr);
+    minmax(0, 1fr)
+    minmax(0, 1fr);
 
   align-items: center;
 
@@ -1469,15 +1442,15 @@ section {
   min-width: 0;
 }
 
-.highlight-visual {
-  min-width: 0;
-  width: 100%;
-}
-
 
 /* =========================================================
    LARGE PLAYER
 ========================================================= */
+
+.highlight-visual {
+  min-width: 0;
+  width: 100%;
+}
 
 .large-player-card {
   width: 100%;
@@ -1485,25 +1458,17 @@ section {
   overflow: hidden;
 
   border:
-    1px solid var(--border);
+    1px solid
+    var(--border);
 
   border-radius: 27px;
 
-  background: #0c0c11;
+  background:
+    #0c0c11;
 
   box-shadow:
-    0 30px 90px rgba(0,0,0,.48);
-
-  transition:
-    transform var(--transition),
-    border-color var(--transition);
-}
-
-.large-player-card:hover {
-  transform: translateY(-4px);
-
-  border-color:
-    rgba(139,92,246,.25);
+    0 30px 90px
+    rgba(0, 0, 0, 0.48);
 }
 
 .large-video {
@@ -1518,7 +1483,8 @@ section {
   align-items: center;
   justify-content: center;
 
-  background: #050507;
+  background:
+    #050507;
 }
 
 .large-video img {
@@ -1530,7 +1496,8 @@ section {
   object-fit: contain;
   object-position: center;
 
-  background: #050507;
+  background:
+    #050507;
 }
 
 .large-controls {
@@ -1542,10 +1509,12 @@ section {
 
   gap: 20px;
 
-  padding: 18px 22px;
+  padding:
+    18px 22px;
 
   border-top:
-    1px solid var(--border);
+    1px solid
+    var(--border);
 }
 
 .large-player-info {
@@ -1553,6 +1522,7 @@ section {
   flex-direction: column;
 
   min-width: 0;
+
   flex: 1;
 }
 
@@ -1572,51 +1542,6 @@ section {
   color: var(--muted-2);
 
   font-size: 11px;
-}
-
-
-/* =========================================================
-   LARGE BUTTONS
-========================================================= */
-
-.large-buttons {
-  display: flex;
-  align-items: center;
-
-  flex-shrink: 0;
-
-  gap: 11px;
-}
-
-.large-buttons span,
-.large-buttons b {
-  width: 34px;
-  height: 34px;
-
-  display: grid;
-  place-items: center;
-
-  flex-shrink: 0;
-
-  border-radius: 10px;
-
-  color: var(--muted);
-
-  background:
-    rgba(255,255,255,.045);
-
-  font-size: 12px;
-}
-
-.large-buttons b {
-  color: #fff;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--accent),
-      var(--accent-2)
-    );
 }
 
 
@@ -1641,6 +1566,7 @@ section {
   color: var(--muted);
 
   font-size: 15px;
+
   line-height: 1.8;
 }
 
@@ -1648,7 +1574,7 @@ section {
   display: grid;
 
   grid-template-columns:
-    repeat(2,minmax(0,1fr));
+    repeat(2, minmax(0, 1fr));
 
   gap: 12px 18px;
 
@@ -1683,10 +1609,11 @@ section {
   color: #fff;
 
   background:
-    rgba(139,92,246,.18);
+    rgba(139, 92, 246, 0.18);
 
   border:
-    1px solid rgba(139,92,246,.25);
+    1px solid
+    rgba(139, 92, 246, 0.25);
 
   font-size: 11px;
   font-weight: 900;
@@ -1702,7 +1629,8 @@ section {
   padding-top: 24px;
 
   border-top:
-    1px solid rgba(255,255,255,.07);
+    1px solid
+    rgba(255, 255, 255, 0.07);
 }
 
 .highlight-icon {
@@ -1721,12 +1649,13 @@ section {
   background:
     linear-gradient(
       135deg,
-      rgba(139,92,246,.28),
-      rgba(236,72,153,.18)
+      rgba(139, 92, 246, 0.28),
+      rgba(236, 72, 153, 0.18)
     );
 
   border:
-    1px solid rgba(139,92,246,.25);
+    1px solid
+    rgba(139, 92, 246, 0.25);
 
   font-size: 12px;
   font-weight: 900;
@@ -1735,6 +1664,7 @@ section {
 .highlight-feature h3 {
   font-size: 15px;
   font-weight: 850;
+
   line-height: 1.35;
 }
 
@@ -1744,6 +1674,7 @@ section {
   color: var(--muted);
 
   font-size: 12px;
+
   line-height: 1.65;
 }
 
@@ -1756,7 +1687,7 @@ section {
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,.01),
+      rgba(255, 255, 255, 0.01),
       transparent
     );
 }
@@ -1765,7 +1696,7 @@ section {
   display: grid;
 
   grid-template-columns:
-    repeat(3,minmax(0,1fr));
+    repeat(3, minmax(0, 1fr));
 
   gap: 18px;
 
@@ -1781,12 +1712,13 @@ section {
   padding: 30px;
 
   border:
-    1px solid var(--border);
+    1px solid
+    var(--border);
 
   border-radius: var(--radius);
 
   background:
-    rgba(255,255,255,.025);
+    rgba(255, 255, 255, 0.025);
 
   transition:
     transform var(--transition),
@@ -1801,7 +1733,7 @@ section {
     var(--border-hover);
 
   background:
-    rgba(139,92,246,.04);
+    rgba(139, 92, 246, 0.04);
 }
 
 .step-number {
@@ -1809,6 +1741,7 @@ section {
 
   font-size: 12px;
   font-weight: 900;
+
   letter-spacing: 1px;
 }
 
@@ -1817,6 +1750,7 @@ section {
 
   font-size: 21px;
   font-weight: 850;
+
   line-height: 1.3;
 }
 
@@ -1826,6 +1760,7 @@ section {
   color: var(--muted);
 
   font-size: 13px;
+
   line-height: 1.7;
 }
 
@@ -1842,6 +1777,7 @@ section {
 .faq-list {
   display: flex;
   flex-direction: column;
+
   gap: 10px;
 }
 
@@ -1849,12 +1785,13 @@ section {
   overflow: hidden;
 
   border:
-    1px solid var(--border);
+    1px solid
+    var(--border);
 
   border-radius: 17px;
 
   background:
-    rgba(255,255,255,.025);
+    rgba(255, 255, 255, 0.025);
 
   transition:
     border-color var(--transition),
@@ -1863,10 +1800,10 @@ section {
 
 .faq-item.active {
   border-color:
-    rgba(139,92,246,.32);
+    rgba(139, 92, 246, 0.32);
 
   background:
-    rgba(139,92,246,.045);
+    rgba(139, 92, 246, 0.045);
 }
 
 .faq-question {
@@ -1878,7 +1815,8 @@ section {
 
   gap: 20px;
 
-  padding: 20px 22px;
+  padding:
+    20px 22px;
 
   border: 0;
 
@@ -1921,7 +1859,7 @@ section {
   overflow: hidden;
 
   transition:
-    max-height .35s ease;
+    max-height 0.35s ease;
 }
 
 .faq-answer p {
@@ -1932,6 +1870,7 @@ section {
   color: var(--muted);
 
   font-size: 13px;
+
   line-height: 1.75;
 }
 
@@ -1966,31 +1905,34 @@ section {
   overflow: hidden;
 
   border:
-    1px solid rgba(139,92,246,.18);
+    1px solid
+    rgba(139, 92, 246, 0.18);
 
   border-radius: 32px;
 
   background:
     radial-gradient(
       circle at 80% 50%,
-      rgba(236,72,153,.14),
+      rgba(236, 72, 153, 0.14),
       transparent 28%
     ),
     radial-gradient(
       circle at 20% 50%,
-      rgba(139,92,246,.13),
+      rgba(139, 92, 246, 0.13),
       transparent 30%
     ),
     #0c0c12;
 
   box-shadow:
-    0 30px 80px rgba(0,0,0,.3);
+    0 30px 80px
+    rgba(0, 0, 0, 0.3);
 }
 
 .download-box::before {
   content: "";
 
   position: absolute;
+
   inset: 0;
 
   pointer-events: none;
@@ -1999,28 +1941,16 @@ section {
     linear-gradient(
       110deg,
       transparent,
-      rgba(255,255,255,.025),
+      rgba(255, 255, 255, 0.025),
       transparent
     );
-
-  animation:
-    shineMove 5s linear infinite;
-}
-
-@keyframes shineMove {
-  from {
-    transform: translateX(-100%);
-  }
-
-  to {
-    transform: translateX(100%);
-  }
 }
 
 .download-content {
   position: relative;
 
   max-width: 600px;
+
   min-width: 0;
 
   z-index: 2;
@@ -2028,7 +1958,7 @@ section {
 
 .download-content h2 {
   font-size:
-    clamp(40px,5vw,58px);
+    clamp(40px, 5vw, 58px);
 
   line-height: 1;
 
@@ -2045,6 +1975,7 @@ section {
   color: var(--muted);
 
   font-size: 15px;
+
   line-height: 1.7;
 }
 
@@ -2068,39 +1999,31 @@ section {
   background:
     radial-gradient(
       circle,
-      rgba(139,92,246,.25),
-      rgba(139,92,246,.05) 50%,
+      rgba(139, 92, 246, 0.25),
+      rgba(139, 92, 246, 0.05) 50%,
       transparent 70%
     );
 
   animation:
-    orbFloat 5s ease-in-out infinite;
-}
-
-@keyframes orbFloat {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
-  }
-
-  50% {
-    transform: translateY(-8px) rotate(4deg);
-  }
+    orbPulse 4s ease-in-out infinite;
 }
 
 .download-orb::before {
   content: "";
 
   position: absolute;
+
   inset: 20px;
 
   border-radius: 50%;
 
   border:
-    1px solid rgba(139,92,246,.22);
+    1px solid
+    rgba(139, 92, 246, 0.22);
 
   box-shadow:
-    0 0 60px rgba(139,92,246,.12);
+    0 0 60px
+    rgba(139, 92, 246, 0.12);
 }
 
 .download-orb > div {
@@ -2120,7 +2043,8 @@ section {
     );
 
   box-shadow:
-    0 20px 50px rgba(139,92,246,.35);
+    0 20px 50px
+    rgba(139, 92, 246, 0.35);
 
   color: #fff;
 
@@ -2137,9 +2061,11 @@ section {
   width: 100%;
 
   border-top:
-    1px solid var(--border);
+    1px solid
+    var(--border);
 
-  background: #07070a;
+  background:
+    #07070a;
 }
 
 .footer-grid {
@@ -2168,12 +2094,14 @@ section {
   color: var(--muted);
 
   font-size: 13px;
+
   line-height: 1.7;
 }
 
 .footer-column {
   display: flex;
   flex-direction: column;
+
   align-items: flex-start;
 
   min-width: 0;
@@ -2196,13 +2124,11 @@ section {
   font-size: 13px;
 
   transition:
-    color var(--transition),
-    transform var(--transition);
+    color var(--transition);
 }
 
 .footer-column a:hover {
   color: #fff;
-  transform: translateX(3px);
 }
 
 .footer-bottom {
@@ -2210,7 +2136,8 @@ section {
     20px 0;
 
   border-top:
-    1px solid var(--border);
+    1px solid
+    var(--border);
 
   color: var(--muted-2);
 
@@ -2240,18 +2167,20 @@ section {
     13px 18px;
 
   border:
-    1px solid var(--border);
+    1px solid
+    var(--border);
 
   border-radius: 13px;
 
   background:
-    rgba(15,15,22,.95);
+    rgba(15, 15, 22, 0.95);
 
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 
   box-shadow:
-    0 15px 45px rgba(0,0,0,.4);
+    0 15px 45px
+    rgba(0, 0, 0, 0.4);
 
   color: #fff;
 
@@ -2264,12 +2193,12 @@ section {
   visibility: hidden;
 
   transform:
-    translate(-50%,20px);
+    translate(-50%, 20px);
 
   transition:
-    opacity .3s ease,
-    visibility .3s ease,
-    transform .3s ease;
+    opacity 0.3s ease,
+    visibility 0.3s ease,
+    transform 0.3s ease;
 }
 
 .toast.show {
@@ -2277,7 +2206,7 @@ section {
   visibility: visible;
 
   transform:
-    translate(-50%,0);
+    translate(-50%, 0);
 }
 
 
@@ -2292,8 +2221,8 @@ section {
     translateY(25px);
 
   transition:
-    opacity .7s ease,
-    transform .7s ease;
+    opacity 0.7s ease,
+    transform 0.7s ease;
 }
 
 .reveal.visible {
@@ -2301,6 +2230,35 @@ section {
 
   transform:
     translateY(0);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes floatingCard {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes orbPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
 }
 
 
@@ -2327,10 +2285,14 @@ section {
     min-height: 650px;
   }
 
-  .real-screenshot-card {
-    flex-basis: 350px;
-    width: 350px;
+  /*
+     More width for full-size screenshots.
+  */
+
+  .real-screenshot-grid {
+    gap: 26px;
   }
+
 }
 
 
@@ -2359,11 +2321,11 @@ section {
 
   .hero h1 {
     font-size:
-      clamp(48px,6vw,65px);
+      clamp(48px, 6vw, 65px);
   }
 
   .hero-device {
-    transform: scale(.92);
+    transform: scale(0.92);
   }
 
   .highlight-grid {
@@ -2378,10 +2340,6 @@ section {
     padding: 50px;
   }
 
-  .real-screenshot-card {
-    flex-basis: 320px;
-    width: 320px;
-  }
 }
 
 
@@ -2432,31 +2390,44 @@ section {
 
   .hero-device {
     min-height: 610px;
+
     transform: none;
   }
 
   .feature-grid {
     grid-template-columns:
-      repeat(2,minmax(0,1fr));
+      repeat(2, minmax(0, 1fr));
   }
 
+
   /*
-     IMPORTANT:
-     Screenshots remain horizontal
-     on tablet.
+     TABLET SCREENSHOTS:
+     Keep them horizontal and full-size.
+     Two columns.
   */
 
   .real-screenshot-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
     gap: 18px;
   }
 
-  .real-screenshot-card {
-    flex-basis: 310px;
-    width: 310px;
+  .real-screenshot-frame {
+    width: 100%;
+
+    aspect-ratio: auto;
   }
+
+  .real-screenshot-frame img {
+    width: 100%;
+    height: auto;
+  }
+
 
   .highlight-grid {
     grid-template-columns: 1fr;
+
     gap: 60px;
   }
 
@@ -2466,7 +2437,7 @@ section {
 
   .steps-grid {
     grid-template-columns:
-      repeat(2,minmax(0,1fr));
+      repeat(2, minmax(0, 1fr));
 
     gap: 14px;
   }
@@ -2482,6 +2453,7 @@ section {
   .footer-grid {
     gap: 40px;
   }
+
 }
 
 
@@ -2505,7 +2477,7 @@ section {
 
   .header {
     background:
-      rgba(5,5,7,.88);
+      rgba(5, 5, 7, 0.88);
   }
 
   .brand {
@@ -2515,6 +2487,7 @@ section {
   .brand-logo {
     width: 39px;
     height: 39px;
+
     border-radius: 12px;
   }
 
@@ -2537,9 +2510,9 @@ section {
   }
 
 
-  /* -------------------------------------------------------
+  /* =======================================================
      HERO
-  ------------------------------------------------------- */
+  ======================================================= */
 
   .hero {
     min-height: auto;
@@ -2570,7 +2543,7 @@ section {
     margin-top: 20px;
 
     font-size:
-      clamp(42px,12vw,58px);
+      clamp(42px, 12vw, 58px);
 
     letter-spacing: -2.5px;
   }
@@ -2579,6 +2552,7 @@ section {
     margin-top: 21px;
 
     font-size: 14px;
+
     line-height: 1.75;
   }
 
@@ -2594,7 +2568,7 @@ section {
 
   .hero-actions a {
     width:
-      min(100%,340px);
+      min(100%, 340px);
   }
 
   .hero-info {
@@ -2609,9 +2583,9 @@ section {
   }
 
 
-  /* -------------------------------------------------------
+  /* =======================================================
      PHONE
-  ------------------------------------------------------- */
+  ======================================================= */
 
   .hero-device {
     width: 100%;
@@ -2677,9 +2651,9 @@ section {
   }
 
 
-  /* -------------------------------------------------------
+  /* =======================================================
      SECTIONS
-  ------------------------------------------------------- */
+  ======================================================= */
 
   .section {
     padding:
@@ -2707,13 +2681,14 @@ section {
     margin-top: 13px;
 
     font-size: 13px;
+
     line-height: 1.7;
   }
 
 
-  /* -------------------------------------------------------
+  /* =======================================================
      FEATURES
-  ------------------------------------------------------- */
+  ======================================================= */
 
   .feature-grid {
     grid-template-columns: 1fr;
@@ -2747,65 +2722,116 @@ section {
   }
 
 
-  /* -------------------------------------------------------
-     HORIZONTAL SCREENSHOTS
-  ------------------------------------------------------- */
+  /* =======================================================
+     FULL-SIZE HORIZONTAL SCREENSHOTS
+  ======================================================= */
 
   .real-screenshot-grid {
+
+    /*
+       IMPORTANT:
+       One horizontal row on mobile.
+       Swipe left/right.
+    */
+
     display: flex;
 
     flex-direction: row;
 
+    align-items: flex-start;
+
+    gap: 18px;
+
     width: 100%;
-
-    gap: 15px;
-
-    padding:
-      6px 3px
-      24px;
 
     overflow-x: auto;
     overflow-y: hidden;
 
+    padding:
+      4px
+      4px
+      18px;
+
     scroll-snap-type: x mandatory;
+
+    -webkit-overflow-scrolling: touch;
+
+    overscroll-behavior-x: contain;
 
     scrollbar-width: none;
 
-    -ms-overflow-style: none;
+    cursor: grab;
   }
 
   .real-screenshot-grid::-webkit-scrollbar {
     display: none;
   }
 
+  .real-screenshot-grid:active {
+    cursor: grabbing;
+  }
+
   .real-screenshot-card {
+
+    /*
+       Screenshot card gets enough width
+       to show the image properly.
+    */
+
     flex:
       0 0
-      78vw;
+      min(92vw, 520px);
 
-    width: 78vw;
+    width:
+      min(92vw, 520px);
 
-    max-width: 310px;
+    min-width:
+      min(92vw, 520px);
 
-    min-width: 250px;
-
-    scroll-snap-align: center;
+    scroll-snap-align: start;
   }
 
   .real-screenshot-frame {
+
+    /*
+       FULL ORIGINAL IMAGE HEIGHT.
+       No 9:16 crop.
+    */
+
     width: 100%;
 
-    aspect-ratio: 9 / 16;
+    height: auto;
 
-    margin-inline: auto;
+    aspect-ratio: auto;
 
-    border-radius: 23px;
+    overflow: hidden;
+
+    border-radius: 20px;
+  }
+
+  .real-screenshot-frame img {
+
+    /*
+       Full-size image.
+       Nothing gets cropped.
+    */
+
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    max-width: none;
+
+    object-fit: contain;
+
+    object-position: center;
   }
 
   .screenshot-info {
-    width: 100%;
 
-    margin-inline: auto;
+    width: 100%;
 
     padding:
       14px 3px 0;
@@ -2820,9 +2846,9 @@ section {
   }
 
 
-  /* -------------------------------------------------------
+  /* =======================================================
      HIGHLIGHT
-  ------------------------------------------------------- */
+  ======================================================= */
 
   .highlight-section {
     padding:
@@ -2858,17 +2884,6 @@ section {
     font-size: 9px;
   }
 
-  .large-buttons {
-    gap: 6px;
-  }
-
-  .large-buttons span,
-  .large-buttons b {
-    width: 30px;
-    height: 30px;
-
-    font-size: 10px;
-  }
 
   .check-list {
     grid-template-columns: 1fr;
@@ -2901,9 +2916,9 @@ section {
   }
 
 
-  /* -------------------------------------------------------
+  /* =======================================================
      GUIDE
-  ------------------------------------------------------- */
+  ======================================================= */
 
   .steps-grid {
     grid-template-columns: 1fr;
@@ -2930,9 +2945,9 @@ section {
   }
 
 
-  /* -------------------------------------------------------
+  /* =======================================================
      FAQ
-  ------------------------------------------------------- */
+  ======================================================= */
 
   .faq-list {
     gap: 8px;
@@ -2960,9 +2975,9 @@ section {
   }
 
 
-  /* -------------------------------------------------------
+  /* =======================================================
      DOWNLOAD
-  ------------------------------------------------------- */
+  ======================================================= */
 
   .download-section {
     padding:
@@ -3012,15 +3027,15 @@ section {
     width: 190px;
     height: 190px;
 
-    opacity: .7;
+    opacity: 0.7;
 
     pointer-events: none;
   }
 
 
-  /* -------------------------------------------------------
+  /* =======================================================
      FOOTER
-  ------------------------------------------------------- */
+  ======================================================= */
 
   .footer-grid {
     grid-template-columns: 1fr;
@@ -3053,9 +3068,9 @@ section {
   }
 
 
-  /* -------------------------------------------------------
+  /* =======================================================
      TOAST
-  ------------------------------------------------------- */
+  ======================================================= */
 
   .toast {
     bottom: 18px;
@@ -3065,6 +3080,7 @@ section {
 
     font-size: 11px;
   }
+
 }
 
 
@@ -3090,6 +3106,7 @@ section {
 
   .hero h1 {
     font-size: 41px;
+
     letter-spacing: -2px;
   }
 
@@ -3115,27 +3132,8 @@ section {
     border-radius: 37px;
   }
 
-  .phone-screen {
-    border-radius: 31px;
-  }
-
-  .phone::after {
-    border-radius: 34px;
-  }
-
-  .phone-notch {
-    width: 82px;
-    height: 23px;
-  }
-
-  .card-one {
-    left: -5px;
-    bottom: 78px;
-  }
-
-  .card-two {
-    right: -5px;
-    top: 92px;
+  .floating-card {
+    display: none;
   }
 
   .section-heading h2,
@@ -3143,15 +3141,20 @@ section {
     font-size: 32px;
   }
 
+
   /*
-     Smaller horizontal screenshot cards
-     for narrow phones.
+     Keep screenshots large even on small phones.
+     Horizontal swipe remains enabled.
   */
 
   .real-screenshot-card {
-    flex-basis: 76vw;
-    width: 76vw;
-    min-width: 225px;
+    flex-basis: 92vw;
+    min-width: 92vw;
+    width: 92vw;
+  }
+
+  .real-screenshot-frame {
+    border-radius: 18px;
   }
 
   .large-video {
@@ -3176,6 +3179,7 @@ section {
   .download-content h2 {
     font-size: 36px;
   }
+
 }
 
 
@@ -3220,10 +3224,15 @@ section {
     display: none;
   }
 
+  /*
+     Screenshot width stays large enough
+     and can be swiped horizontally.
+  */
+
   .real-screenshot-card {
-    flex-basis: 78vw;
-    width: 78vw;
-    min-width: 210px;
+    flex-basis: 94vw;
+    min-width: 94vw;
+    width: 94vw;
   }
 
   .large-video {
@@ -3242,27 +3251,21 @@ section {
     width: 100%;
   }
 
-  .large-buttons {
-    width: 100%;
-
-    justify-content: flex-end;
-  }
-
   .download-content h2 {
     font-size: 33px;
   }
+
 }
 
 
 /* =========================================================
-   EXTRA SAFETY
+   EXTRA OVERFLOW SAFETY
 ========================================================= */
 
 @media (max-width: 650px) {
 
   .hero-grid,
   .feature-grid,
-  .real-screenshot-grid,
   .highlight-grid,
   .steps-grid,
   .footer-grid {
@@ -3273,7 +3276,6 @@ section {
   .hero-content,
   .hero-device,
   .feature-card,
-  .real-screenshot-card,
   .highlight-visual,
   .highlight-content,
   .step,
@@ -3299,17 +3301,7 @@ section {
   .step p {
     overflow-wrap: anywhere;
   }
-}
 
-
-/* =========================================================
-   JAVASCRIPT READY
-========================================================= */
-
-.js-ready .reveal {
-  will-change:
-    opacity,
-    transform;
 }
 
 
@@ -3326,9 +3318,9 @@ section {
   *,
   *::before,
   *::after {
-    animation-duration: .01ms !important;
+    animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
+    transition-duration: 0.01ms !important;
   }
 
   .reveal {
@@ -3336,7 +3328,4 @@ section {
     transform: none;
   }
 
-  .real-screenshot-grid {
-    scroll-behavior: auto;
-  }
 }
