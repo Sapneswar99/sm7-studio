@@ -1,7 +1,7 @@
 /* =========================================================
    SUPER VIDEO PLAYER
    Premium Responsive Website
-   FULL RESPONSIVE CSS
+   FULL REPLACEMENT CSS
 ========================================================= */
 
 
@@ -109,6 +109,7 @@ select {
 
 button {
   border: 0;
+  cursor: pointer;
 }
 
 ::selection {
@@ -133,6 +134,11 @@ button {
   );
 
   margin-inline: auto;
+}
+
+section {
+  width: 100%;
+  min-width: 0;
 }
 
 
@@ -170,7 +176,7 @@ button {
   border-color: var(--border);
 
   box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.18);
+    0 12px 40px rgba(0, 0, 0, 0.20);
 }
 
 .nav-container {
@@ -202,6 +208,8 @@ button {
   gap: 11px;
 
   flex-shrink: 0;
+
+  min-width: 0;
 }
 
 .brand-logo {
@@ -277,6 +285,8 @@ button {
   gap: 30px;
 
   margin-left: auto;
+
+  min-width: 0;
 }
 
 .desktop-nav a {
@@ -349,6 +359,8 @@ button {
   font-size: 14px;
   font-weight: 800;
 
+  line-height: 1;
+
   white-space: nowrap;
 
   cursor: pointer;
@@ -357,7 +369,8 @@ button {
     transform var(--transition),
     box-shadow var(--transition),
     border-color var(--transition),
-    background var(--transition);
+    background var(--transition),
+    opacity var(--transition);
 }
 
 .primary-btn {
@@ -379,6 +392,13 @@ button {
 
   box-shadow:
     0 16px 40px rgba(139, 92, 246, 0.38);
+}
+
+.primary-btn:active,
+.secondary-btn:active,
+.nav-download:active,
+.mobile-download:active {
+  transform: translateY(0);
 }
 
 .secondary-btn {
@@ -482,17 +502,18 @@ button {
     opacity var(--transition);
 }
 
-.menu-btn.active span:nth-child(1) {
+/* Works with current JS aria-expanded */
+.menu-btn[aria-expanded="true"] span:nth-child(1) {
   transform:
     translateY(7px)
     rotate(45deg);
 }
 
-.menu-btn.active span:nth-child(2) {
+.menu-btn[aria-expanded="true"] span:nth-child(2) {
   opacity: 0;
 }
 
-.menu-btn.active span:nth-child(3) {
+.menu-btn[aria-expanded="true"] span:nth-child(3) {
   transform:
     translateY(-7px)
     rotate(-45deg);
@@ -504,21 +525,53 @@ button {
 ========================================================= */
 
 .mobile-menu {
-  display: none;
-
   width: 100%;
+
+  max-height: 0;
+
+  overflow: hidden;
+
+  opacity: 0;
+  visibility: hidden;
+
+  pointer-events: none;
+
+  padding:
+    0 24px;
+
+  border-top:
+    1px solid
+    transparent;
+
+  background:
+    rgba(5, 5, 7, 0.98);
+
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.30);
+
+  transition:
+    max-height 0.35s ease,
+    opacity 0.25s ease,
+    visibility 0.25s ease,
+    padding 0.35s ease,
+    border-color 0.25s ease;
+}
+
+.mobile-menu.open {
+  max-height: 80vh;
+
+  opacity: 1;
+  visibility: visible;
+
+  pointer-events: auto;
 
   padding:
     12px 24px
     24px;
 
-  border-top: 1px solid var(--border);
+  border-top-color: var(--border);
 
-  background:
-    rgba(5, 5, 7, 0.97);
-
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.30);
+  overflow-y: auto;
 }
 
 .mobile-menu a {
@@ -536,15 +589,14 @@ button {
     rgba(255, 255, 255, 0.045);
 
   transition:
-    color var(--transition);
+    color var(--transition),
+    padding-left var(--transition);
 }
 
 .mobile-menu a:hover {
   color: #ffffff;
-}
 
-.mobile-menu.open {
-  display: block;
+  padding-left: 8px;
 }
 
 .mobile-download {
@@ -646,11 +698,11 @@ button {
 
   grid-template-columns:
     minmax(0, 1.05fr)
-    minmax(360px, 0.95fr);
+    minmax(330px, 0.95fr);
 
   align-items: center;
 
-  gap: 80px;
+  gap: 70px;
 }
 
 .hero-content {
@@ -663,6 +715,7 @@ button {
 
 .hero-badge {
   width: fit-content;
+  max-width: 100%;
 
   display: inline-flex;
   align-items: center;
@@ -998,6 +1051,8 @@ button {
 .section {
   position: relative;
 
+  width: 100%;
+
   padding: 110px 0;
 
   scroll-margin-top: 90px;
@@ -1062,6 +1117,8 @@ button {
     repeat(3, minmax(0, 1fr));
 
   gap: 16px;
+
+  min-width: 0;
 }
 
 .feature-card {
@@ -1159,6 +1216,8 @@ button {
 .feature-card h3 {
   font-size: 18px;
   font-weight: 800;
+
+  line-height: 1.3;
 }
 
 .feature-card p {
@@ -1193,10 +1252,13 @@ button {
     repeat(3, minmax(0, 1fr));
 
   gap: 22px;
+
+  min-width: 0;
 }
 
 .real-screenshot-card {
   min-width: 0;
+  width: 100%;
 }
 
 .real-screenshot-frame {
@@ -1302,6 +1364,8 @@ button {
 .highlight-section {
   position: relative;
 
+  width: 100%;
+
   padding: 120px 0;
 
   overflow: hidden;
@@ -1329,6 +1393,8 @@ button {
   align-items: center;
 
   gap: 80px;
+
+  min-width: 0;
 }
 
 
@@ -1338,6 +1404,7 @@ button {
 
 .highlight-visual {
   min-width: 0;
+  width: 100%;
 }
 
 .large-player-card {
@@ -1479,6 +1546,7 @@ button {
 
 .highlight-content {
   min-width: 0;
+  width: 100%;
 }
 
 .highlight-content h2 {
@@ -1591,6 +1659,8 @@ button {
 .highlight-feature h3 {
   font-size: 15px;
   font-weight: 850;
+
+  line-height: 1.35;
 }
 
 .highlight-feature p {
@@ -1624,6 +1694,8 @@ button {
     repeat(3, minmax(0, 1fr));
 
   gap: 18px;
+
+  min-width: 0;
 }
 
 .step {
@@ -1673,6 +1745,8 @@ button {
 
   font-size: 21px;
   font-weight: 850;
+
+  line-height: 1.3;
 }
 
 .step p {
@@ -1774,41 +1848,31 @@ button {
   transform: rotate(45deg);
 }
 
+/*
+   IMPORTANT:
+   JS controls answer.style.maxHeight.
+   So max-height transition is used here.
+*/
+
 .faq-answer {
-  display: grid;
-
-  grid-template-rows: 0fr;
-
-  transition:
-    grid-template-rows 0.35s ease;
-}
-
-.faq-answer p {
-  min-height: 0;
+  max-height: 0;
 
   overflow: hidden;
 
+  transition:
+    max-height 0.35s ease;
+}
+
+.faq-answer p {
   padding:
-    0 22px;
+    0 22px
+    20px;
 
   color: var(--muted);
 
   font-size: 13px;
 
   line-height: 1.75;
-
-  transition:
-    padding 0.35s ease;
-}
-
-.faq-item.active .faq-answer {
-  grid-template-rows: 1fr;
-}
-
-.faq-item.active .faq-answer p {
-  padding:
-    0 22px
-    20px;
 }
 
 
@@ -1818,6 +1882,8 @@ button {
 
 .download-section {
   position: relative;
+
+  width: 100%;
 
   padding:
     90px 0
@@ -1990,6 +2056,8 @@ button {
 ========================================================= */
 
 .footer {
+  width: 100%;
+
   border-top:
     1px solid
     var(--border);
@@ -2033,6 +2101,8 @@ button {
   flex-direction: column;
 
   align-items: flex-start;
+
+  min-width: 0;
 }
 
 .footer-column h4 {
@@ -2173,7 +2243,7 @@ button {
   }
 
   .hero-grid {
-    gap: 110px;
+    gap: 100px;
   }
 
   .phone {
@@ -2188,7 +2258,7 @@ button {
 
 
 /* =========================================================
-   TABLET / SMALL LAPTOP
+   LAPTOP
 ========================================================= */
 
 @media (max-width: 1100px) {
@@ -2291,9 +2361,9 @@ button {
 
   .real-screenshot-grid {
     grid-template-columns:
-      repeat(3, minmax(0, 1fr));
+      repeat(2, minmax(0, 1fr));
 
-    gap: 15px;
+    gap: 18px;
   }
 
   .highlight-grid {
@@ -2308,9 +2378,9 @@ button {
 
   .steps-grid {
     grid-template-columns:
-      repeat(3, minmax(0, 1fr));
+      repeat(2, minmax(0, 1fr));
 
-    gap: 12px;
+    gap: 14px;
   }
 
   .step {
@@ -2350,6 +2420,10 @@ button {
       rgba(5, 5, 7, 0.88);
   }
 
+  .brand {
+    gap: 9px;
+  }
+
   .brand-logo {
     width: 39px;
     height: 39px;
@@ -2367,6 +2441,12 @@ button {
 
   .mobile-menu {
     padding-inline: 15px;
+  }
+
+  .mobile-menu.open {
+    padding:
+      10px 15px
+      20px;
   }
 
 
@@ -2587,8 +2667,6 @@ button {
   ------------------------------------------------------- */
 
   .real-screenshot-grid {
-    display: grid;
-
     grid-template-columns: 1fr;
 
     width: 100%;
@@ -2604,7 +2682,9 @@ button {
   }
 
   .real-screenshot-frame {
-    width: 100%;
+    width: min(100%, 390px);
+
+    margin-inline: auto;
 
     aspect-ratio: 9 / 16;
 
@@ -2612,6 +2692,10 @@ button {
   }
 
   .screenshot-info {
+    width: min(100%, 390px);
+
+    margin-inline: auto;
+
     padding:
       14px 3px 0;
   }
@@ -2757,16 +2841,11 @@ button {
   }
 
   .faq-answer p {
-    padding-inline: 16px;
-
-    font-size: 12px;
-  }
-
-  .faq-item.active
-  .faq-answer p {
     padding:
       0 16px
       17px;
+
+    font-size: 12px;
   }
 
 
@@ -2823,6 +2902,8 @@ button {
     height: 190px;
 
     opacity: 0.7;
+
+    pointer-events: none;
   }
 
 
@@ -3042,6 +3123,54 @@ button {
 
   .download-content h2 {
     font-size: 33px;
+  }
+}
+
+
+/* =========================================================
+   EXTRA SAFETY — PREVENT OVERFLOW
+========================================================= */
+
+@media (max-width: 650px) {
+
+  .hero-grid,
+  .feature-grid,
+  .real-screenshot-grid,
+  .highlight-grid,
+  .steps-grid,
+  .footer-grid {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .hero-content,
+  .hero-device,
+  .feature-card,
+  .real-screenshot-card,
+  .highlight-visual,
+  .highlight-content,
+  .step,
+  .footer-brand,
+  .footer-column {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .hero h1,
+  .section-heading h2,
+  .highlight-content h2,
+  .download-content h2 {
+    overflow-wrap: anywhere;
+  }
+
+  .hero-description,
+  .section-heading p,
+  .highlight-content > p,
+  .download-content p,
+  .feature-card p,
+  .highlight-feature p,
+  .step p {
+    overflow-wrap: anywhere;
   }
 }
 
