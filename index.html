@@ -7,7 +7,7 @@
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     >
 
     <meta
@@ -18,6 +18,11 @@
     <meta
         name="description"
         content="SUPER VIDEO PLAYER — a modern Android video player designed for smooth and comfortable playback."
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
     >
 
     <meta
@@ -43,6 +48,11 @@
     <title>
         SUPER VIDEO PLAYER — Watch. Play. Enjoy.
     </title>
+
+
+    <!-- =====================================================
+         STYLESHEET
+    ====================================================== -->
 
     <link
         rel="stylesheet"
@@ -75,7 +85,10 @@
             aria-label="SUPER VIDEO PLAYER Home"
         >
 
-            <div class="brand-logo">
+            <div
+                class="brand-logo"
+                aria-hidden="true"
+            >
                 SV
             </div>
 
@@ -94,7 +107,9 @@
         </a>
 
 
-        <!-- DESKTOP NAVIGATION -->
+        <!-- =================================================
+             DESKTOP NAVIGATION
+        ================================================== -->
 
         <nav
             class="desktop-nav"
@@ -124,7 +139,9 @@
         </nav>
 
 
-        <!-- DESKTOP DOWNLOAD -->
+        <!-- =================================================
+             DESKTOP DOWNLOAD
+        ================================================== -->
 
         <a
             href="https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk"
@@ -135,7 +152,9 @@
         </a>
 
 
-        <!-- MOBILE MENU BUTTON -->
+        <!-- =================================================
+             MOBILE MENU BUTTON
+        ================================================== -->
 
         <button
             class="menu-btn"
@@ -155,45 +174,59 @@
     </div>
 
 
-    <!-- MOBILE NAVIGATION -->
+    <!-- =====================================================
+         MOBILE NAVIGATION
+    ====================================================== -->
 
     <div
         class="mobile-menu"
         id="mobileMenu"
     >
 
-        <a href="#home">
-            Home
-        </a>
-
-        <a href="#features">
-            Features
-        </a>
-
-        <a href="#screenshots">
-            Screenshots
-        </a>
-
-        <a href="#guide">
-            Guide
-        </a>
-
-        <a href="#faq">
-            FAQ
-        </a>
-
-        <a
-            href="https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk"
-            class="mobile-download download-btn"
+        <nav
+            class="mobile-nav"
+            aria-label="Mobile navigation"
         >
-            Download APK
-        </a>
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#features">
+                Features
+            </a>
+
+            <a href="#screenshots">
+                Screenshots
+            </a>
+
+            <a href="#guide">
+                Guide
+            </a>
+
+            <a href="#faq">
+                FAQ
+            </a>
+
+            <a
+                href="https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk"
+                class="mobile-download download-btn"
+                aria-label="Download SUPER VIDEO PLAYER APK"
+            >
+                Download APK
+            </a>
+
+        </nav>
 
     </div>
 
 </header>
 
 
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
 
 <main>
 
@@ -207,21 +240,33 @@
     id="home"
 >
 
-    <div class="hero-glow glow-one"></div>
-    <div class="hero-glow glow-two"></div>
+    <div
+        class="hero-glow glow-one"
+        aria-hidden="true"
+    ></div>
+
+    <div
+        class="hero-glow glow-two"
+        aria-hidden="true"
+    ></div>
 
 
     <div class="container hero-grid">
 
 
-        <!-- HERO CONTENT -->
+        <!-- =================================================
+             HERO CONTENT
+        ================================================== -->
 
         <div class="hero-content reveal">
 
 
             <div class="hero-badge">
 
-                <span class="status-dot"></span>
+                <span
+                    class="status-dot"
+                    aria-hidden="true"
+                ></span>
 
                 ANDROID VIDEO PLAYER
 
@@ -262,7 +307,7 @@
                     aria-label="Download SUPER VIDEO PLAYER APK"
                 >
 
-                    <span>
+                    <span aria-hidden="true">
                         ↓
                     </span>
 
@@ -278,7 +323,7 @@
 
                     Explore Features
 
-                    <span>
+                    <span aria-hidden="true">
                         →
                     </span>
 
@@ -292,7 +337,10 @@
 
                 <div>
 
-                    <span class="info-icon">
+                    <span
+                        class="info-icon"
+                        aria-hidden="true"
+                    >
                         ✓
                     </span>
 
@@ -303,7 +351,10 @@
 
                 <div>
 
-                    <span class="info-icon">
+                    <span
+                        class="info-icon"
+                        aria-hidden="true"
+                    >
                         ⚡
                     </span>
 
@@ -314,7 +365,10 @@
 
                 <div>
 
-                    <span class="info-icon">
+                    <span
+                        class="info-icon"
+                        aria-hidden="true"
+                    >
                         ◈
                     </span>
 
@@ -328,16 +382,24 @@
 
 
 
-        <!-- HERO DEVICE -->
+        <!-- =================================================
+             HERO DEVICE
+        ================================================== -->
 
         <div class="hero-device reveal">
 
-            <div class="device-glow"></div>
+            <div
+                class="device-glow"
+                aria-hidden="true"
+            ></div>
 
 
             <div class="phone">
 
-                <div class="phone-notch"></div>
+                <div
+                    class="phone-notch"
+                    aria-hidden="true"
+                ></div>
 
 
                 <div class="phone-screen">
@@ -353,11 +415,16 @@
             </div>
 
 
-            <!-- FLOATING CARD 1 -->
+            <!-- =================================================
+                 FLOATING CARD 1
+            ================================================== -->
 
             <div class="floating-card card-one">
 
-                <span class="floating-icon">
+                <span
+                    class="floating-icon"
+                    aria-hidden="true"
+                >
                     ⚡
                 </span>
 
@@ -376,11 +443,16 @@
             </div>
 
 
-            <!-- FLOATING CARD 2 -->
+            <!-- =================================================
+                 FLOATING CARD 2
+            ================================================== -->
 
             <div class="floating-card card-two">
 
-                <span class="floating-icon">
+                <span
+                    class="floating-icon"
+                    aria-hidden="true"
+                >
                     HD
                 </span>
 
@@ -453,7 +525,10 @@
 
             <article class="feature-card reveal">
 
-                <div class="feature-icon">
+                <div
+                    class="feature-icon"
+                    aria-hidden="true"
+                >
                     ▶
                 </div>
 
@@ -475,7 +550,10 @@
 
             <article class="feature-card reveal">
 
-                <div class="feature-icon">
+                <div
+                    class="feature-icon"
+                    aria-hidden="true"
+                >
                     ▣
                 </div>
 
@@ -497,7 +575,10 @@
 
             <article class="feature-card reveal">
 
-                <div class="feature-icon">
+                <div
+                    class="feature-icon"
+                    aria-hidden="true"
+                >
                     CC
                 </div>
 
@@ -519,7 +600,10 @@
 
             <article class="feature-card reveal">
 
-                <div class="feature-icon">
+                <div
+                    class="feature-icon"
+                    aria-hidden="true"
+                >
                     ↕
                 </div>
 
@@ -541,7 +625,10 @@
 
             <article class="feature-card reveal">
 
-                <div class="feature-icon">
+                <div
+                    class="feature-icon"
+                    aria-hidden="true"
+                >
                     ◉
                 </div>
 
@@ -563,7 +650,10 @@
 
             <article class="feature-card reveal">
 
-                <div class="feature-icon">
+                <div
+                    class="feature-icon"
+                    aria-hidden="true"
+                >
                     ✦
                 </div>
 
@@ -631,7 +721,9 @@
         <div class="real-screenshot-grid">
 
 
-            <!-- HOME -->
+            <!-- =================================================
+                 HOME SCREENSHOT
+            ================================================== -->
 
             <article class="real-screenshot-card reveal">
 
@@ -641,6 +733,7 @@
                         src="https://i.ibb.co/pvmPM898/IMG-20260916-030644.jpg"
                         alt="SUPER VIDEO PLAYER Home Screen"
                         loading="lazy"
+                        decoding="async"
                     >
 
                 </div>
@@ -662,7 +755,9 @@
 
 
 
-            <!-- VIDEO PLAYER -->
+            <!-- =================================================
+                 VIDEO PLAYER SCREENSHOT
+            ================================================== -->
 
             <article class="real-screenshot-card reveal">
 
@@ -672,6 +767,7 @@
                         src="https://i.ibb.co/1ttcMb8Y/IMG-20260916-030303.jpg"
                         alt="SUPER VIDEO PLAYER Video Player Screen"
                         loading="lazy"
+                        decoding="async"
                     >
 
                 </div>
@@ -693,7 +789,9 @@
 
 
 
-            <!-- SETTINGS -->
+            <!-- =================================================
+                 SETTINGS SCREENSHOT
+            ================================================== -->
 
             <article class="real-screenshot-card reveal">
 
@@ -703,6 +801,7 @@
                         src="https://i.ibb.co/TqxtH4PX/IMG-20260916-030324.jpg"
                         alt="SUPER VIDEO PLAYER Settings Screen"
                         loading="lazy"
+                        decoding="async"
                     >
 
                 </div>
@@ -742,7 +841,9 @@
     <div class="container highlight-grid">
 
 
-        <!-- VISUAL -->
+        <!-- =================================================
+             HIGHLIGHT VISUAL
+        ================================================== -->
 
         <div class="highlight-visual reveal">
 
@@ -755,6 +856,7 @@
                         src="https://i.ibb.co/tpJG89Yy/IMG-20260916-030230.jpg"
                         alt="SUPER VIDEO PLAYER Full Screen Player"
                         loading="lazy"
+                        decoding="async"
                     >
 
                 </div>
@@ -775,32 +877,6 @@
 
                     </div>
 
-
-                    <div class="large-buttons">
-
-                        <button
-                            type="button"
-                            aria-label="Previous"
-                        >
-                            &laquo;
-                        </button>
-
-                        <button
-                            type="button"
-                            aria-label="Play"
-                        >
-                            ▶
-                        </button>
-
-                        <button
-                            type="button"
-                            aria-label="Next"
-                        >
-                            &raquo;
-                        </button>
-
-                    </div>
-
                 </div>
 
             </div>
@@ -809,7 +885,9 @@
 
 
 
-        <!-- CONTENT -->
+        <!-- =================================================
+             HIGHLIGHT CONTENT
+        ================================================== -->
 
         <div class="highlight-content reveal">
 
@@ -842,9 +920,14 @@
             <div class="check-list">
 
 
+                <!-- HIGHLIGHT 1 -->
+
                 <div class="highlight-feature">
 
-                    <span class="highlight-icon">
+                    <span
+                        class="highlight-icon"
+                        aria-hidden="true"
+                    >
                         ✓
                     </span>
 
@@ -863,9 +946,14 @@
                 </div>
 
 
+                <!-- HIGHLIGHT 2 -->
+
                 <div class="highlight-feature">
 
-                    <span class="highlight-icon">
+                    <span
+                        class="highlight-icon"
+                        aria-hidden="true"
+                    >
                         ✓
                     </span>
 
@@ -884,9 +972,14 @@
                 </div>
 
 
+                <!-- HIGHLIGHT 3 -->
+
                 <div class="highlight-feature">
 
-                    <span class="highlight-icon">
+                    <span
+                        class="highlight-icon"
+                        aria-hidden="true"
+                    >
                         ✓
                     </span>
 
@@ -905,9 +998,14 @@
                 </div>
 
 
+                <!-- HIGHLIGHT 4 -->
+
                 <div class="highlight-feature">
 
-                    <span class="highlight-icon">
+                    <span
+                        class="highlight-icon"
+                        aria-hidden="true"
+                    >
                         ✓
                     </span>
 
@@ -924,6 +1022,7 @@
                     </div>
 
                 </div>
+
 
             </div>
 
@@ -979,11 +1078,16 @@
         <div class="steps-grid">
 
 
-            <!-- STEP 1 -->
+            <!-- =================================================
+                 STEP 1
+            ================================================== -->
 
             <div class="step reveal">
 
-                <div class="step-number">
+                <div
+                    class="step-number"
+                    aria-hidden="true"
+                >
                     01
                 </div>
 
@@ -1000,11 +1104,16 @@
             </div>
 
 
-            <!-- STEP 2 -->
+            <!-- =================================================
+                 STEP 2
+            ================================================== -->
 
             <div class="step reveal">
 
-                <div class="step-number">
+                <div
+                    class="step-number"
+                    aria-hidden="true"
+                >
                     02
                 </div>
 
@@ -1021,11 +1130,16 @@
             </div>
 
 
-            <!-- STEP 3 -->
+            <!-- =================================================
+                 STEP 3
+            ================================================== -->
 
             <div class="step reveal">
 
-                <div class="step-number">
+                <div
+                    class="step-number"
+                    aria-hidden="true"
+                >
                     03
                 </div>
 
@@ -1093,7 +1207,9 @@
         <div class="faq-list">
 
 
-            <!-- FAQ 1 -->
+            <!-- =================================================
+                 FAQ 1
+            ================================================== -->
 
             <div class="faq-item reveal">
 
@@ -1133,7 +1249,9 @@
 
 
 
-            <!-- FAQ 2 -->
+            <!-- =================================================
+                 FAQ 2
+            ================================================== -->
 
             <div class="faq-item reveal">
 
@@ -1172,7 +1290,9 @@
 
 
 
-            <!-- FAQ 3 -->
+            <!-- =================================================
+                 FAQ 3
+            ================================================== -->
 
             <div class="faq-item reveal">
 
@@ -1211,7 +1331,9 @@
 
 
 
-            <!-- FAQ 4 -->
+            <!-- =================================================
+                 FAQ 4
+            ================================================== -->
 
             <div class="faq-item reveal">
 
@@ -1304,7 +1426,9 @@
                     aria-label="Download SUPER VIDEO PLAYER APK"
                 >
 
-                    ↓
+                    <span aria-hidden="true">
+                        ↓
+                    </span>
 
                     <span>
                         Download APK
@@ -1315,7 +1439,10 @@
             </div>
 
 
-            <div class="download-orb">
+            <div
+                class="download-orb"
+                aria-hidden="true"
+            >
 
                 <div>
                     SV
@@ -1343,16 +1470,22 @@
     <div class="container footer-grid">
 
 
-        <!-- FOOTER BRAND -->
+        <!-- =================================================
+             FOOTER BRAND
+        ================================================== -->
 
         <div class="footer-brand">
 
             <a
                 href="#home"
                 class="brand"
+                aria-label="SUPER VIDEO PLAYER Home"
             >
 
-                <div class="brand-logo">
+                <div
+                    class="brand-logo"
+                    aria-hidden="true"
+                >
                     SV
                 </div>
 
@@ -1380,7 +1513,9 @@
 
 
 
-        <!-- NAVIGATION -->
+        <!-- =================================================
+             NAVIGATION
+        ================================================== -->
 
         <div class="footer-column">
 
@@ -1412,7 +1547,9 @@
 
 
 
-        <!-- DOWNLOAD -->
+        <!-- =================================================
+             DOWNLOAD
+        ================================================== -->
 
         <div class="footer-column">
 
@@ -1423,6 +1560,7 @@
             <a
                 href="https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk"
                 class="download-btn"
+                aria-label="Download SUPER VIDEO PLAYER APK"
             >
                 Download APK
             </a>
@@ -1442,7 +1580,9 @@
 
 
 
-    <!-- FOOTER BOTTOM -->
+    <!-- =================================================
+         FOOTER BOTTOM
+    ================================================== -->
 
     <div class="footer-bottom">
 
@@ -1470,8 +1610,7 @@
     id="toast"
     role="status"
     aria-live="polite"
->
-</div>
+></div>
 
 
 
