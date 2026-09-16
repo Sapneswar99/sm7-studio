@@ -9,7 +9,7 @@
 ========================================================= */
 
 const APK_DOWNLOAD_URL =
-  "https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk";
+    "https://github.com/Sapneswar99/sm7-studio/releases/download/v1.0.0/Super.Video.Player.apk";
 
 
 /* =========================================================
@@ -17,29 +17,27 @@ const APK_DOWNLOAD_URL =
 ========================================================= */
 
 const menuBtn =
-  document.getElementById("menuBtn");
+    document.getElementById("menuBtn");
 
 const mobileMenu =
-  document.getElementById("mobileMenu");
+    document.getElementById("mobileMenu");
 
 const toast =
-  document.getElementById("toast");
+    document.getElementById("toast");
 
 const yearElement =
-  document.getElementById("year");
+    document.getElementById("year");
 
 const header =
-  document.getElementById("header");
+    document.getElementById("header");
 
 
 /* =========================================================
-   CURRENT YEAR
+   STATE
 ========================================================= */
 
-if (yearElement) {
-  yearElement.textContent =
-    new Date().getFullYear();
-}
+let toastTimer = null;
+let faqResizeTimer = null;
 
 
 /* =========================================================
@@ -47,9 +45,27 @@ if (yearElement) {
 ========================================================= */
 
 const prefersReducedMotion =
-  window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+    window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+
+/* =========================================================
+   CURRENT YEAR
+========================================================= */
+
+function updateCurrentYear() {
+
+    if (!yearElement) {
+        return;
+    }
+
+    yearElement.textContent =
+        new Date().getFullYear();
+
+}
+
+updateCurrentYear();
 
 
 /* =========================================================
@@ -58,138 +74,164 @@ const prefersReducedMotion =
 
 function openMobileMenu() {
 
-  if (!mobileMenu || !menuBtn) {
-    return;
-  }
+    if (!mobileMenu || !menuBtn) {
+        return;
+    }
 
-  mobileMenu.classList.add("open");
+    mobileMenu.classList.add("open");
 
-  menuBtn.classList.add("open");
+    menuBtn.classList.add("open");
 
-  menuBtn.setAttribute(
-    "aria-expanded",
-    "true"
-  );
+    menuBtn.setAttribute(
+        "aria-expanded",
+        "true"
+    );
 
-  document.body.classList.add(
-    "menu-open"
-  );
+    menuBtn.setAttribute(
+        "aria-label",
+        "Close navigation menu"
+    );
+
+    document.body.classList.add(
+        "menu-open"
+    );
+
 }
 
 
 function closeMobileMenu() {
 
-  if (!mobileMenu || !menuBtn) {
-    return;
-  }
+    if (!mobileMenu || !menuBtn) {
+        return;
+    }
 
-  mobileMenu.classList.remove("open");
+    mobileMenu.classList.remove("open");
 
-  menuBtn.classList.remove("open");
+    menuBtn.classList.remove("open");
 
-  menuBtn.setAttribute(
-    "aria-expanded",
-    "false"
-  );
+    menuBtn.setAttribute(
+        "aria-expanded",
+        "false"
+    );
 
-  document.body.classList.remove(
-    "menu-open"
-  );
+    menuBtn.setAttribute(
+        "aria-label",
+        "Open navigation menu"
+    );
+
+    document.body.classList.remove(
+        "menu-open"
+    );
+
 }
 
 
 function toggleMobileMenu() {
 
-  if (!mobileMenu || !menuBtn) {
-    return;
-  }
+    if (!mobileMenu || !menuBtn) {
+        return;
+    }
 
-  if (
-    mobileMenu.classList.contains("open")
-  ) {
+    const isOpen =
+        mobileMenu.classList.contains(
+            "open"
+        );
 
-    closeMobileMenu();
+    if (isOpen) {
 
-  } else {
+        closeMobileMenu();
 
-    openMobileMenu();
+    } else {
 
-  }
+        openMobileMenu();
+
+    }
+
 }
 
 
+/* =========================================================
+   MOBILE MENU EVENTS
+========================================================= */
+
 if (menuBtn && mobileMenu) {
 
-  menuBtn.setAttribute(
-    "aria-expanded",
-    "false"
-  );
-
-  menuBtn.addEventListener(
-    "click",
-    event => {
-
-      event.preventDefault();
-      event.stopPropagation();
-
-      toggleMobileMenu();
-
-    }
-  );
-
-
-  /* -----------------------------------------
-     Mobile Navigation Links
-  ----------------------------------------- */
-
-  const mobileLinks =
-    mobileMenu.querySelectorAll("a");
-
-  mobileLinks.forEach(link => {
-
-    link.addEventListener(
-      "click",
-      () => {
-
-        closeMobileMenu();
-
-      }
+    menuBtn.setAttribute(
+        "aria-expanded",
+        "false"
     );
 
-  });
+    menuBtn.addEventListener(
+        "click",
+        event => {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            toggleMobileMenu();
+
+        }
+    );
 
 
-  /* -----------------------------------------
-     Close when clicking outside
-  ----------------------------------------- */
+    /* -----------------------------------------
+       Mobile Navigation Links
+    ----------------------------------------- */
 
-  document.addEventListener(
-    "click",
-    event => {
+    const mobileLinks =
+        mobileMenu.querySelectorAll("a");
 
-      if (
-        !mobileMenu.classList.contains("open")
-      ) {
-        return;
-      }
+    mobileLinks.forEach(link => {
 
-      const clickedInsideMenu =
-        mobileMenu.contains(event.target);
+        link.addEventListener(
+            "click",
+            () => {
 
-      const clickedMenuButton =
-        menuBtn.contains(event.target);
+                closeMobileMenu();
 
-      if (
-        !clickedInsideMenu &&
-        !clickedMenuButton
-      ) {
+            }
+        );
 
-        closeMobileMenu();
+    });
 
-      }
 
-    }
-  );
+    /* -----------------------------------------
+       Close when clicking outside
+    ----------------------------------------- */
+
+    document.addEventListener(
+        "click",
+        event => {
+
+            if (
+                !mobileMenu.classList.contains(
+                    "open"
+                )
+            ) {
+                return;
+            }
+
+            const clickedInsideMenu =
+                mobileMenu.contains(
+                    event.target
+                );
+
+            const clickedMenuButton =
+                menuBtn.contains(
+                    event.target
+                );
+
+            if (
+                !clickedInsideMenu &&
+                !clickedMenuButton
+            ) {
+
+                closeMobileMenu();
+
+            }
+
+        }
+    );
 
 }
 
@@ -199,36 +241,37 @@ if (menuBtn && mobileMenu) {
 ========================================================= */
 
 const downloadButtons =
-  document.querySelectorAll(
-    ".download-btn"
-  );
+    document.querySelectorAll(
+        ".download-btn"
+    );
 
 
 downloadButtons.forEach(button => {
 
-  /*
-   * Always use the real APK URL.
-   */
+    /*
+     * Always use the configured
+     * real APK release URL.
+     */
 
-  button.setAttribute(
-    "href",
-    APK_DOWNLOAD_URL
-  );
+    button.setAttribute(
+        "href",
+        APK_DOWNLOAD_URL
+    );
 
 
-  /*
-   * Make sure the browser handles
-   * the GitHub Release download normally.
-   */
+    /*
+     * Keep normal GitHub release
+     * download behaviour.
+     */
 
-  button.addEventListener(
-    "click",
-    () => {
+    button.addEventListener(
+        "click",
+        () => {
 
-      closeMobileMenu();
+            closeMobileMenu();
 
-    }
-  );
+        }
+    );
 
 });
 
@@ -237,36 +280,190 @@ downloadButtons.forEach(button => {
    TOAST
 ========================================================= */
 
-let toastTimer = null;
-
-
 function showToast(message) {
 
-  if (!toast) {
-    return;
-  }
+    if (!toast) {
+        return;
+    }
 
-  toast.textContent =
-    message;
+    toast.textContent =
+        String(message || "");
 
-  toast.classList.add(
-    "show"
-  );
+    toast.classList.add(
+        "show"
+    );
 
-  clearTimeout(
-    toastTimer
-  );
+    clearTimeout(
+        toastTimer
+    );
 
-  toastTimer =
-    setTimeout(
-      () => {
+    toastTimer =
+        setTimeout(
+            () => {
 
-        toast.classList.remove(
-          "show"
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            2800
         );
 
-      },
-      2800
+}
+
+
+/* =========================================================
+   FAQ ELEMENT HELPER
+========================================================= */
+
+function getFaqElements(item) {
+
+    if (!item) {
+
+        return {
+            question: null,
+            answer: null,
+            symbol: null
+        };
+
+    }
+
+    return {
+
+        question:
+            item.querySelector(
+                ".faq-question"
+            ),
+
+        answer:
+            item.querySelector(
+                ".faq-answer"
+            ),
+
+        symbol:
+            item.querySelector(
+                ".faq-symbol"
+            )
+
+    };
+
+}
+
+
+/* =========================================================
+   CLOSE FAQ
+========================================================= */
+
+function closeFaq(item) {
+
+    if (!item) {
+        return;
+    }
+
+    const {
+        question,
+        answer,
+        symbol
+    } =
+        getFaqElements(item);
+
+
+    item.classList.remove(
+        "active"
+    );
+
+
+    if (question) {
+
+        question.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+    }
+
+
+    if (answer) {
+
+        answer.style.maxHeight =
+            "0px";
+
+    }
+
+
+    if (symbol) {
+
+        symbol.textContent =
+            "+";
+
+    }
+
+}
+
+
+/* =========================================================
+   OPEN FAQ
+========================================================= */
+
+function openFaq(item) {
+
+    if (!item) {
+        return;
+    }
+
+    const {
+        question,
+        answer,
+        symbol
+    } =
+        getFaqElements(item);
+
+
+    if (!answer) {
+        return;
+    }
+
+
+    item.classList.add(
+        "active"
+    );
+
+
+    if (question) {
+
+        question.setAttribute(
+            "aria-expanded",
+            "true"
+        );
+
+    }
+
+
+    if (symbol) {
+
+        symbol.textContent =
+            "−";
+
+    }
+
+
+    if (prefersReducedMotion) {
+
+        answer.style.maxHeight =
+            answer.scrollHeight + "px";
+
+        return;
+
+    }
+
+
+    requestAnimationFrame(
+        () => {
+
+            answer.style.maxHeight =
+                answer.scrollHeight + "px";
+
+        }
     );
 
 }
@@ -277,338 +474,180 @@ function showToast(message) {
 ========================================================= */
 
 const faqItems =
-  document.querySelectorAll(
-    ".faq-item"
-  );
-
-
-/* -----------------------------------------
-   Get FAQ elements safely
------------------------------------------ */
-
-function getFaqElements(item) {
-
-  if (!item) {
-    return {
-      question: null,
-      answer: null,
-      symbol: null
-    };
-  }
-
-  return {
-
-    question:
-      item.querySelector(
-        ".faq-question"
-      ),
-
-    answer:
-      item.querySelector(
-        ".faq-answer"
-      ),
-
-    symbol:
-      item.querySelector(
-        ".faq-symbol"
-      )
-
-  };
-
-}
-
-
-/* -----------------------------------------
-   Close FAQ
------------------------------------------ */
-
-function closeFaq(item) {
-
-  if (!item) {
-    return;
-  }
-
-  const {
-    question,
-    answer,
-    symbol
-  } = getFaqElements(item);
-
-
-  item.classList.remove(
-    "active"
-  );
-
-
-  if (question) {
-
-    question.setAttribute(
-      "aria-expanded",
-      "false"
+    document.querySelectorAll(
+        ".faq-item"
     );
 
-  }
-
-
-  if (answer) {
-
-    answer.style.maxHeight =
-      "0px";
-
-  }
-
-
-  if (symbol) {
-
-    symbol.textContent =
-      "+";
-
-  }
-
-}
-
-
-/* -----------------------------------------
-   Open FAQ
------------------------------------------ */
-
-function openFaq(item) {
-
-  if (!item) {
-    return;
-  }
-
-  const {
-    question,
-    answer,
-    symbol
-  } = getFaqElements(item);
-
-
-  if (!answer) {
-    return;
-  }
-
-
-  item.classList.add(
-    "active"
-  );
-
-
-  if (question) {
-
-    question.setAttribute(
-      "aria-expanded",
-      "true"
-    );
-
-  }
-
-
-  if (symbol) {
-
-    symbol.textContent =
-      "−";
-
-  }
-
-
-  /*
-   * Force browser to calculate the
-   * real answer height.
-   */
-
-  requestAnimationFrame(() => {
-
-    answer.style.maxHeight =
-      answer.scrollHeight + "px";
-
-  });
-
-}
-
-
-/* -----------------------------------------
-   Initialize FAQ
------------------------------------------ */
 
 faqItems.forEach(item => {
 
-  const {
-    question,
-    answer
-  } = getFaqElements(item);
+    const {
+        question,
+        answer
+    } =
+        getFaqElements(item);
 
 
-  if (!question || !answer) {
-    return;
-  }
+    if (!question || !answer) {
+        return;
+    }
 
 
-  /*
-   * Accessibility attributes
-   */
-
-  if (
-    !question.hasAttribute(
-      "aria-expanded"
-    )
-  ) {
+    /* -----------------------------------------
+       Accessibility
+    ----------------------------------------- */
 
     question.setAttribute(
-      "aria-expanded",
-      item.classList.contains("active")
-        ? "true"
-        : "false"
+        "aria-expanded",
+        item.classList.contains("active")
+            ? "true"
+            : "false"
     );
 
-  }
 
+    /* -----------------------------------------
+       Initial State
+    ----------------------------------------- */
 
-  /*
-   * Initial state
-   */
-
-  if (
-    item.classList.contains("active")
-  ) {
-
-    openFaq(item);
-
-  } else {
-
-    closeFaq(item);
-
-  }
-
-
-  /* -----------------------------------------
-     FAQ Click
-  ----------------------------------------- */
-
-  question.addEventListener(
-    "click",
-    event => {
-
-      event.preventDefault();
-
-      const isActive =
+    if (
         item.classList.contains(
-          "active"
-        );
+            "active"
+        )
+    ) {
+
+        openFaq(item);
+
+    } else {
+
+        closeFaq(item);
+
+    }
 
 
-      /*
-       * Close all other FAQs
-       */
+    /* -----------------------------------------
+       Click
+    ----------------------------------------- */
 
-      faqItems.forEach(
-        otherItem => {
+    question.addEventListener(
+        "click",
+        event => {
 
-          if (
-            otherItem !== item
-          ) {
+            event.preventDefault();
 
-            closeFaq(
-              otherItem
+            const isActive =
+                item.classList.contains(
+                    "active"
+                );
+
+
+            /*
+             * Close every other FAQ.
+             */
+
+            faqItems.forEach(
+                otherItem => {
+
+                    if (
+                        otherItem !== item
+                    ) {
+
+                        closeFaq(
+                            otherItem
+                        );
+
+                    }
+
+                }
             );
 
-          }
+
+            /*
+             * Toggle selected FAQ.
+             */
+
+            if (isActive) {
+
+                closeFaq(
+                    item
+                );
+
+            } else {
+
+                openFaq(
+                    item
+                );
+
+            }
 
         }
-      );
+    );
 
 
-      /*
-       * Toggle selected FAQ
-       */
+    /* -----------------------------------------
+       Keyboard
+    ----------------------------------------- */
 
-      if (isActive) {
+    question.addEventListener(
+        "keydown",
+        event => {
 
-        closeFaq(
-          item
-        );
+            if (
+                event.key === "Enter" ||
+                event.key === " "
+            ) {
 
-      } else {
+                event.preventDefault();
 
-        openFaq(
-          item
-        );
+                question.click();
 
-      }
+            }
 
-    }
-  );
-
-
-  /* -----------------------------------------
-     Keyboard accessibility
-  ----------------------------------------- */
-
-  question.addEventListener(
-    "keydown",
-    event => {
-
-      if (
-        event.key === "Enter" ||
-        event.key === " "
-      ) {
-
-        event.preventDefault();
-
-        question.click();
-
-      }
-
-    }
-  );
+        }
+    );
 
 });
 
 
 /* =========================================================
-   FAQ RESIZE FIX
+   FAQ RESIZE
 ========================================================= */
 
-let faqResizeTimer = null;
-
-
 window.addEventListener(
-  "resize",
-  () => {
+    "resize",
+    () => {
 
-    clearTimeout(
-      faqResizeTimer
-    );
+        clearTimeout(
+            faqResizeTimer
+        );
 
 
-    faqResizeTimer =
-      setTimeout(
-        () => {
+        faqResizeTimer =
+            setTimeout(
+                () => {
 
-          const activeFaqs =
-            document.querySelectorAll(
-              ".faq-item.active .faq-answer"
+                    const activeAnswers =
+                        document.querySelectorAll(
+                            ".faq-item.active .faq-answer"
+                        );
+
+
+                    activeAnswers.forEach(
+                        answer => {
+
+                            answer.style.maxHeight =
+                                answer.scrollHeight + "px";
+
+                        }
+                    );
+
+                },
+                120
             );
 
-
-          activeFaqs.forEach(
-            answer => {
-
-              answer.style.maxHeight =
-                answer.scrollHeight + "px";
-
-            }
-          );
-
-        },
-        100
-      );
-
-  },
-  {
-    passive: true
-  }
+    },
+    {
+        passive: true
+    }
 );
 
 
@@ -617,82 +656,82 @@ window.addEventListener(
 ========================================================= */
 
 const revealElements =
-  document.querySelectorAll(
-    ".reveal"
-  );
+    document.querySelectorAll(
+        ".reveal"
+    );
 
 
 if (prefersReducedMotion) {
 
-  revealElements.forEach(
-    element => {
+    revealElements.forEach(
+        element => {
 
-      element.classList.add(
-        "visible"
-      );
-
-    }
-  );
-
-} else if (
-  "IntersectionObserver" in window
-) {
-
-  const revealObserver =
-    new IntersectionObserver(
-      entries => {
-
-        entries.forEach(
-          entry => {
-
-            if (
-              entry.isIntersecting
-            ) {
-
-              entry.target.classList.add(
+            element.classList.add(
                 "visible"
-              );
+            );
 
-
-              revealObserver.unobserve(
-                entry.target
-              );
-
-            }
-
-          }
-        );
-
-      },
-      {
-        threshold: 0.10,
-        rootMargin:
-          "0px 0px -40px 0px"
-      }
+        }
     );
 
+} else if (
+    "IntersectionObserver" in window
+) {
 
-  revealElements.forEach(
-    element => {
+    const revealObserver =
+        new IntersectionObserver(
+            entries => {
 
-      revealObserver.observe(
-        element
-      );
+                entries.forEach(
+                    entry => {
 
-    }
-  );
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            entry.target.classList.add(
+                                "visible"
+                            );
+
+
+                            revealObserver.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    }
+                );
+
+            },
+            {
+                threshold: 0.10,
+                rootMargin:
+                    "0px 0px -40px 0px"
+            }
+        );
+
+
+    revealElements.forEach(
+        element => {
+
+            revealObserver.observe(
+                element
+            );
+
+        }
+    );
 
 } else {
 
-  revealElements.forEach(
-    element => {
+    revealElements.forEach(
+        element => {
 
-      element.classList.add(
-        "visible"
-      );
+            element.classList.add(
+                "visible"
+            );
 
-    }
-  );
+        }
+    );
 
 }
 
@@ -703,32 +742,34 @@ if (prefersReducedMotion) {
 
 function updateHeader() {
 
-  if (!header) {
-    return;
-  }
+    if (!header) {
+        return;
+    }
 
 
-  if (
-    window.scrollY > 20
-  ) {
+    const isScrolled =
+        window.scrollY > 20;
 
-    header.classList.add(
-      "scrolled"
-    );
 
-    header.style.background =
-      "rgba(5,5,7,0.94)";
+    if (isScrolled) {
 
-  } else {
+        header.classList.add(
+            "scrolled"
+        );
 
-    header.classList.remove(
-      "scrolled"
-    );
+        header.style.background =
+            "rgba(5,5,7,0.94)";
 
-    header.style.background =
-      "rgba(5,5,7,0.72)";
+    } else {
 
-  }
+        header.classList.remove(
+            "scrolled"
+        );
+
+        header.style.background =
+            "rgba(5,5,7,0.72)";
+
+    }
 
 }
 
@@ -737,37 +778,40 @@ updateHeader();
 
 
 window.addEventListener(
-  "scroll",
-  updateHeader,
-  {
-    passive: true
-  }
+    "scroll",
+    updateHeader,
+    {
+        passive: true
+    }
 );
 
 
 /* =========================================================
-   CLOSE MOBILE MENU ON DESKTOP
+   RESPONSIVE MENU
 ========================================================= */
 
 function handleResponsiveMenu() {
 
-  if (
-    window.innerWidth > 900
-  ) {
+    if (
+        window.innerWidth > 900
+    ) {
 
-    closeMobileMenu();
+        closeMobileMenu();
 
-  }
+    }
 
 }
 
 
+handleResponsiveMenu();
+
+
 window.addEventListener(
-  "resize",
-  handleResponsiveMenu,
-  {
-    passive: true
-  }
+    "resize",
+    handleResponsiveMenu,
+    {
+        passive: true
+    }
 );
 
 
@@ -776,242 +820,363 @@ window.addEventListener(
 ========================================================= */
 
 document.addEventListener(
-  "keydown",
-  event => {
+    "keydown",
+    event => {
 
-    if (
-      event.key !== "Escape"
-    ) {
-      return;
-    }
-
-
-    /*
-     * Close mobile menu
-     */
-
-    if (
-      mobileMenu &&
-      mobileMenu.classList.contains(
-        "open"
-      )
-    ) {
-
-      closeMobileMenu();
-
-    }
+        if (
+            event.key !== "Escape"
+        ) {
+            return;
+        }
 
 
-    /*
-     * Close active FAQ
-     */
+        /* Close mobile menu */
 
-    const activeFaq =
-      document.querySelector(
-        ".faq-item.active"
-      );
+        if (
+            mobileMenu &&
+            mobileMenu.classList.contains(
+                "open"
+            )
+        ) {
+
+            closeMobileMenu();
+
+        }
 
 
-    if (activeFaq) {
+        /* Close active FAQ */
 
-      closeFaq(
-        activeFaq
-      );
+        const activeFaq =
+            document.querySelector(
+                ".faq-item.active"
+            );
+
+
+        if (activeFaq) {
+
+            closeFaq(
+                activeFaq
+            );
+
+        }
 
     }
-
-  }
 );
 
 
 /* =========================================================
-   SMOOTH INTERNAL LINKS
+   INTERNAL NAVIGATION
 ========================================================= */
 
 const internalLinks =
-  document.querySelectorAll(
-    'a[href^="#"]'
-  );
+    document.querySelectorAll(
+        'a[href^="#"]'
+    );
 
 
 internalLinks.forEach(link => {
 
-  link.addEventListener(
-    "click",
-    event => {
+    link.addEventListener(
+        "click",
+        event => {
 
-      const targetId =
-        link.getAttribute(
-          "href"
-        );
-
-
-      if (
-        !targetId ||
-        targetId === "#"
-      ) {
-
-        return;
-
-      }
+            const targetId =
+                link.getAttribute(
+                    "href"
+                );
 
 
-      let target = null;
+            if (
+                !targetId ||
+                targetId === "#"
+            ) {
+                return;
+            }
 
 
-      /*
-       * Safely find target.
-       */
-
-      try {
-
-        target =
-          document.querySelector(
-            targetId
-          );
-
-      } catch (error) {
-
-        return;
-
-      }
+            let target = null;
 
 
-      if (!target) {
-        return;
-      }
+            try {
+
+                target =
+                    document.querySelector(
+                        targetId
+                    );
+
+            } catch (error) {
+
+                return;
+
+            }
 
 
-      event.preventDefault();
+            if (!target) {
+                return;
+            }
 
 
-      closeMobileMenu();
+            event.preventDefault();
 
 
-      target.scrollIntoView({
-
-        behavior:
-          prefersReducedMotion
-            ? "auto"
-            : "smooth",
-
-        block: "start"
-
-      });
+            closeMobileMenu();
 
 
-      /*
-       * Update URL without page jump.
-       */
+            /*
+             * Account for fixed header.
+             */
 
-      if (
-        history.pushState
-      ) {
+            const headerHeight =
+                header
+                    ? header.offsetHeight
+                    : 0;
 
-        history.pushState(
-          null,
-          "",
-          targetId
-        );
 
-      }
+            const targetTop =
+                target.getBoundingClientRect()
+                    .top +
+                window.scrollY -
+                headerHeight -
+                10;
 
-    }
-  );
+
+            window.scrollTo({
+
+                top:
+                    Math.max(
+                        0,
+                        targetTop
+                    ),
+
+                behavior:
+                    prefersReducedMotion
+                        ? "auto"
+                        : "smooth"
+
+            });
+
+
+            /*
+             * Update hash without
+             * causing another jump.
+             */
+
+            if (
+                history.pushState
+            ) {
+
+                try {
+
+                    history.pushState(
+                        null,
+                        "",
+                        targetId
+                    );
+
+                } catch (error) {
+
+                    /* Ignore history errors */
+
+                }
+
+            }
+
+        }
+    );
 
 });
 
 
 /* =========================================================
-   PREVENT BODY LOCK AFTER PAGE LOAD
+   MOBILE MENU BODY LOCK
 ========================================================= */
 
-window.addEventListener(
-  "pageshow",
-  () => {
+function resetMobileMenuState() {
 
     document.body.classList.remove(
-      "menu-open"
+        "menu-open"
     );
 
 
     if (mobileMenu) {
 
-      mobileMenu.classList.remove(
-        "open"
-      );
+        mobileMenu.classList.remove(
+            "open"
+        );
 
     }
 
 
     if (menuBtn) {
 
-      menuBtn.classList.remove(
-        "open"
-      );
+        menuBtn.classList.remove(
+            "open"
+        );
 
-      menuBtn.setAttribute(
-        "aria-expanded",
-        "false"
-      );
+        menuBtn.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+        menuBtn.setAttribute(
+            "aria-label",
+            "Open navigation menu"
+        );
 
     }
 
-  }
+}
+
+
+window.addEventListener(
+    "pageshow",
+    resetMobileMenuState
 );
 
 
 /* =========================================================
-   IMAGE LOAD HANDLING
+   IMAGE ERROR HANDLING
 ========================================================= */
 
 const images =
-  document.querySelectorAll(
-    "img"
-  );
+    document.querySelectorAll(
+        "img"
+    );
 
 
-images.forEach(image => {
+images.forEach(
+    image => {
 
-  image.addEventListener(
-    "error",
-    () => {
+        image.addEventListener(
+            "error",
+            () => {
 
-      image.classList.add(
-        "image-error"
-      );
+                image.classList.add(
+                    "image-error"
+                );
+
+            }
+        );
 
     }
-  );
-
-});
+);
 
 
 /* =========================================================
-   IMAGE LAZY LOADING SUPPORT
+   IMAGE LOADING
 ========================================================= */
 
-images.forEach(image => {
+images.forEach(
+    image => {
 
-  /*
-   * Don't override an explicitly defined
-   * loading attribute.
-   */
+        /*
+         * Preserve explicitly defined
+         * loading attributes.
+         */
 
-  if (
-    !image.hasAttribute(
-      "loading"
-    )
-  ) {
+        if (
+            !image.hasAttribute(
+                "loading"
+            )
+        ) {
 
-    image.setAttribute(
-      "loading",
-      "lazy"
+            image.setAttribute(
+                "loading",
+                "lazy"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   SCREENSHOT HORIZONTAL SCROLL
+========================================================= */
+
+const screenshotGrid =
+    document.querySelector(
+        ".real-screenshot-grid"
     );
 
-  }
 
-});
+if (screenshotGrid) {
+
+    /*
+     * Prevent accidental vertical page
+     * movement while using horizontal
+     * touch scrolling.
+     */
+
+    screenshotGrid.addEventListener(
+        "wheel",
+        event => {
+
+            /*
+             * Only convert vertical wheel
+             * movement when horizontal
+             * scrolling is actually possible.
+             */
+
+            if (
+                screenshotGrid.scrollWidth <=
+                screenshotGrid.clientWidth
+            ) {
+                return;
+            }
+
+
+            if (
+                Math.abs(event.deltaY) >
+                Math.abs(event.deltaX)
+            ) {
+
+                screenshotGrid.scrollLeft +=
+                    event.deltaY;
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+}
+
+
+/* =========================================================
+   PAGE VISIBILITY
+========================================================= */
+
+document.addEventListener(
+    "visibilitychange",
+    () => {
+
+        /*
+         * If the user returns to the page,
+         * make sure the mobile menu state
+         * remains consistent.
+         */
+
+        if (
+            document.visibilityState ===
+            "visible"
+        ) {
+
+            if (
+                window.innerWidth > 900
+            ) {
+
+                closeMobileMenu();
+
+            }
+
+        }
+
+    }
+);
 
 
 /* =========================================================
@@ -1019,37 +1184,14 @@ images.forEach(image => {
 ========================================================= */
 
 document.documentElement.classList.add(
-  "js-ready"
+    "js-ready"
 );
 
 
 /* =========================================================
-   FINAL INITIALIZATION
+   FINAL STATE
 ========================================================= */
 
-document.body.classList.remove(
-  "menu-open"
-);
+resetMobileMenuState();
 
-
-if (mobileMenu) {
-
-  mobileMenu.classList.remove(
-    "open"
-  );
-
-}
-
-
-if (menuBtn) {
-
-  menuBtn.classList.remove(
-    "open"
-  );
-
-  menuBtn.setAttribute(
-    "aria-expanded",
-    "false"
-  );
-
-}
+updateHeader();
