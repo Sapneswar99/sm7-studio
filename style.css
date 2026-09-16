@@ -3,6 +3,7 @@
    PREMIUM RESPONSIVE WEBSITE
    FULL REPLACEMENT CSS
    FULL-SIZE HORIZONTAL SCREENSHOTS
+   ENHANCED ANIMATIONS
 ========================================================= */
 
 
@@ -59,7 +60,6 @@ body {
   width: 100%;
   min-width: 320px;
   min-height: 100vh;
-
   overflow-x: hidden;
 
   background:
@@ -238,6 +238,9 @@ section {
   font-weight: 900;
 
   letter-spacing: -0.5px;
+
+  animation:
+    logoFloat 4s ease-in-out infinite;
 }
 
 .brand-text {
@@ -299,7 +302,13 @@ section {
   white-space: nowrap;
 
   transition:
-    color var(--transition);
+    color var(--transition),
+    transform var(--transition);
+}
+
+.desktop-nav a:hover {
+  color: #fff;
+  transform: translateY(-2px);
 }
 
 .desktop-nav a::after {
@@ -326,10 +335,6 @@ section {
 
   transition:
     width var(--transition);
-}
-
-.desktop-nav a:hover {
-  color: #fff;
 }
 
 .desktop-nav a:hover::after {
@@ -384,20 +389,52 @@ section {
 
   box-shadow:
     0 12px 35px rgba(139, 92, 246, 0.25);
+
+  position: relative;
+  overflow: hidden;
+}
+
+.primary-btn::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -120%;
+
+  width: 80%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.25),
+      transparent
+    );
+
+  transform: skewX(-20deg);
+
+  transition:
+    left 0.65s ease;
+}
+
+.primary-btn:hover::before {
+  left: 140%;
 }
 
 .primary-btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.015);
 
   box-shadow:
-    0 16px 40px rgba(139, 92, 246, 0.38);
+    0 16px 45px rgba(139, 92, 246, 0.38);
 }
 
 .primary-btn:active,
 .secondary-btn:active,
 .nav-download:active,
 .mobile-download:active {
-  transform: translateY(0);
+  transform: translateY(0) scale(0.98);
 }
 
 .secondary-btn {
@@ -412,7 +449,7 @@ section {
 }
 
 .secondary-btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 
   border-color: var(--border-hover);
 
@@ -434,12 +471,15 @@ section {
 }
 
 .nav-download:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 
   border-color: var(--accent);
 
   background:
     rgba(139, 92, 246, 0.20);
+
+  box-shadow:
+    0 8px 25px rgba(139, 92, 246, 0.18);
 }
 
 
@@ -473,7 +513,8 @@ section {
 
   transition:
     background var(--transition),
-    border-color var(--transition);
+    border-color var(--transition),
+    transform var(--transition);
 }
 
 .menu-btn:hover {
@@ -482,6 +523,8 @@ section {
 
   border-color:
     rgba(139, 92, 246, 0.30);
+
+  transform: scale(1.04);
 }
 
 .menu-btn span {
@@ -653,6 +696,9 @@ span:nth-child(3) {
       rgba(236, 72, 153, 0.08),
       transparent 28%
     );
+
+  animation:
+    heroGlow 9s ease-in-out infinite alternate;
 }
 
 .hero-glow {
@@ -668,6 +714,9 @@ span:nth-child(3) {
   opacity: 0.25;
 
   pointer-events: none;
+
+  animation:
+    glowMove 8s ease-in-out infinite alternate;
 }
 
 .glow-one {
@@ -682,6 +731,8 @@ span:nth-child(3) {
   bottom: 50px;
 
   background: var(--accent-2);
+
+  animation-delay: -4s;
 }
 
 .hero-grid {
@@ -706,6 +757,9 @@ span:nth-child(3) {
   z-index: 2;
 
   min-width: 0;
+
+  animation:
+    heroContentIn 0.9s ease both;
 }
 
 .hero-badge {
@@ -735,6 +789,9 @@ span:nth-child(3) {
   font-weight: 800;
 
   letter-spacing: 1.1px;
+
+  animation:
+    badgePulse 3s ease-in-out infinite;
 }
 
 .status-dot {
@@ -750,6 +807,9 @@ span:nth-child(3) {
   box-shadow:
     0 0 12px
     rgba(167, 139, 250, 0.9);
+
+  animation:
+    dotPulse 1.8s ease-in-out infinite;
 }
 
 .hero h1 {
@@ -765,6 +825,9 @@ span:nth-child(3) {
   letter-spacing: -3.5px;
 
   font-weight: 950;
+
+  animation:
+    titleIn 1s 0.1s ease both;
 }
 
 .hero h1 span {
@@ -776,10 +839,15 @@ span:nth-child(3) {
       #60a5fa
     );
 
+  background-size: 200% auto;
+
   -webkit-background-clip: text;
   background-clip: text;
 
   color: transparent;
+
+  animation:
+    gradientText 5s linear infinite;
 }
 
 .hero-description {
@@ -792,6 +860,9 @@ span:nth-child(3) {
   font-size: 17px;
 
   line-height: 1.8;
+
+  animation:
+    fadeUp 0.8s 0.25s ease both;
 }
 
 .hero-actions {
@@ -802,6 +873,9 @@ span:nth-child(3) {
   gap: 12px;
 
   margin-top: 31px;
+
+  animation:
+    fadeUp 0.8s 0.35s ease both;
 }
 
 .hero-info {
@@ -817,6 +891,9 @@ span:nth-child(3) {
 
   font-size: 12px;
   font-weight: 650;
+
+  animation:
+    fadeUp 0.8s 0.45s ease both;
 }
 
 .hero-info > div {
@@ -846,6 +923,9 @@ span:nth-child(3) {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  animation:
+    deviceEntrance 1s 0.2s ease both;
 }
 
 .device-glow {
@@ -866,6 +946,9 @@ span:nth-child(3) {
   filter: blur(55px);
 
   transform: rotate(-12deg);
+
+  animation:
+    deviceGlowPulse 5s ease-in-out infinite;
 }
 
 .phone {
@@ -899,6 +982,9 @@ span:nth-child(3) {
     rgba(139, 92, 246, 0.16);
 
   z-index: 2;
+
+  animation:
+    phoneFloat 5s ease-in-out infinite;
 }
 
 .phone::after {
@@ -1075,6 +1161,9 @@ span:nth-child(3) {
   font-weight: 900;
 
   letter-spacing: 1.7px;
+
+  animation:
+    labelGlow 3s ease-in-out infinite;
 }
 
 .section-heading h2,
@@ -1149,7 +1238,8 @@ span:nth-child(3) {
   transition:
     transform var(--transition),
     border-color var(--transition),
-    background var(--transition);
+    background var(--transition),
+    box-shadow var(--transition);
 }
 
 .feature-card::before {
@@ -1171,10 +1261,13 @@ span:nth-child(3) {
   filter: blur(20px);
 
   pointer-events: none;
+
+  animation:
+    cardGlow 5s ease-in-out infinite;
 }
 
 .feature-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-7px);
 
   border-color:
     var(--border-hover);
@@ -1185,6 +1278,9 @@ span:nth-child(3) {
       rgba(139, 92, 246, 0.08),
       rgba(255, 255, 255, 0.025)
     );
+
+  box-shadow:
+    0 22px 55px rgba(0, 0, 0, 0.28);
 }
 
 .feature-icon {
@@ -1213,6 +1309,19 @@ span:nth-child(3) {
 
   font-size: 17px;
   font-weight: 900;
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.feature-card:hover .feature-icon {
+  transform:
+    rotate(-6deg)
+    scale(1.08);
+
+  box-shadow:
+    0 10px 30px rgba(139, 92, 246, 0.18);
 }
 
 .feature-card h3 {
@@ -1248,13 +1357,6 @@ span:nth-child(3) {
     );
 }
 
-
-/*
-   Desktop:
-   3 screenshots side-by-side.
-   Images are NOT cropped vertically.
-*/
-
 .real-screenshot-grid {
   display: grid;
 
@@ -1274,22 +1376,11 @@ span:nth-child(3) {
   width: 100%;
 }
 
-
-/*
-   IMPORTANT:
-   Screenshot keeps its ORIGINAL horizontal
-   aspect ratio instead of 9:16.
-*/
-
 .real-screenshot-frame {
   position: relative;
 
   width: 100%;
 
-  /*
-     No fixed 9:16 ratio.
-     Height follows the real image.
-  */
   aspect-ratio: auto;
 
   overflow: hidden;
@@ -1313,14 +1404,6 @@ span:nth-child(3) {
     box-shadow var(--transition);
 }
 
-
-/*
-   Image:
-   FULL image visible.
-   No object-fit: cover.
-   No cropping.
-*/
-
 .real-screenshot-frame img {
   display: block;
 
@@ -1337,11 +1420,6 @@ span:nth-child(3) {
   transition:
     transform 0.6s ease;
 }
-
-
-/*
-   Glass highlight
-*/
 
 .real-screenshot-frame::after {
   content: "";
@@ -1362,11 +1440,13 @@ span:nth-child(3) {
       transparent 80%,
       rgba(0, 0, 0, 0.10)
     );
+
+  opacity: 0.8;
 }
 
 .real-screenshot-card:hover
 .real-screenshot-frame {
-  transform: translateY(-7px);
+  transform: translateY(-8px);
 
   border-color:
     rgba(139, 92, 246, 0.42);
@@ -1442,14 +1522,12 @@ span:nth-child(3) {
   min-width: 0;
 }
 
-
-/* =========================================================
-   LARGE PLAYER
-========================================================= */
-
 .highlight-visual {
   min-width: 0;
   width: 100%;
+
+  animation:
+    fadeUp 0.9s ease both;
 }
 
 .large-player-card {
@@ -1469,6 +1547,22 @@ span:nth-child(3) {
   box-shadow:
     0 30px 90px
     rgba(0, 0, 0, 0.48);
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.large-player-card:hover {
+  transform: translateY(-6px);
+
+  border-color:
+    rgba(139, 92, 246, 0.28);
+
+  box-shadow:
+    0 40px 100px
+    rgba(0, 0, 0, 0.55);
 }
 
 .large-video {
@@ -1498,6 +1592,13 @@ span:nth-child(3) {
 
   background:
     #050507;
+
+  transition:
+    transform 0.7s ease;
+}
+
+.large-player-card:hover .large-video img {
+  transform: scale(1.015);
 }
 
 .large-controls {
@@ -1552,6 +1653,9 @@ span:nth-child(3) {
 .highlight-content {
   min-width: 0;
   width: 100%;
+
+  animation:
+    fadeUp 0.9s 0.15s ease both;
 }
 
 .highlight-content h2 {
@@ -1593,6 +1697,13 @@ span:nth-child(3) {
 
   font-size: 13px;
   font-weight: 650;
+
+  transition:
+    transform 0.3s ease;
+}
+
+.check-list > div:hover {
+  transform: translateX(5px);
 }
 
 .check-list span {
@@ -1631,6 +1742,13 @@ span:nth-child(3) {
   border-top:
     1px solid
     rgba(255, 255, 255, 0.07);
+
+  transition:
+    transform 0.3s ease;
+}
+
+.highlight-feature:hover {
+  transform: translateX(5px);
 }
 
 .highlight-icon {
@@ -1659,6 +1777,15 @@ span:nth-child(3) {
 
   font-size: 12px;
   font-weight: 900;
+
+  transition:
+    transform 0.4s ease;
+}
+
+.highlight-feature:hover .highlight-icon {
+  transform:
+    rotate(-8deg)
+    scale(1.08);
 }
 
 .highlight-feature h3 {
@@ -1723,17 +1850,21 @@ span:nth-child(3) {
   transition:
     transform var(--transition),
     border-color var(--transition),
-    background var(--transition);
+    background var(--transition),
+    box-shadow var(--transition);
 }
 
 .step:hover {
-  transform: translateY(-5px);
+  transform: translateY(-7px);
 
   border-color:
     var(--border-hover);
 
   background:
     rgba(139, 92, 246, 0.04);
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.25);
 }
 
 .step-number {
@@ -1795,7 +1926,12 @@ span:nth-child(3) {
 
   transition:
     border-color var(--transition),
-    background var(--transition);
+    background var(--transition),
+    transform var(--transition);
+}
+
+.faq-item:hover {
+  transform: translateX(3px);
 }
 
 .faq-item.active {
@@ -1944,6 +2080,9 @@ span:nth-child(3) {
       rgba(255, 255, 255, 0.025),
       transparent
     );
+
+  animation:
+    shineMove 5s ease-in-out infinite;
 }
 
 .download-content {
@@ -2024,6 +2163,9 @@ span:nth-child(3) {
   box-shadow:
     0 0 60px
     rgba(139, 92, 246, 0.12);
+
+  animation:
+    orbRotate 8s linear infinite;
 }
 
 .download-orb > div {
@@ -2050,6 +2192,9 @@ span:nth-child(3) {
 
   font-size: 22px;
   font-weight: 950;
+
+  animation:
+    iconFloat 3s ease-in-out infinite;
 }
 
 
@@ -2124,11 +2269,13 @@ span:nth-child(3) {
   font-size: 13px;
 
   transition:
-    color var(--transition);
+    color var(--transition),
+    transform var(--transition);
 }
 
 .footer-column a:hover {
   color: #fff;
+  transform: translateX(4px);
 }
 
 .footer-bottom {
@@ -2238,7 +2385,6 @@ span:nth-child(3) {
 ========================================================= */
 
 @keyframes floatingCard {
-
   0%,
   100% {
     transform: translateY(0);
@@ -2250,7 +2396,6 @@ span:nth-child(3) {
 }
 
 @keyframes orbPulse {
-
   0%,
   100% {
     transform: scale(1);
@@ -2258,6 +2403,225 @@ span:nth-child(3) {
 
   50% {
     transform: scale(1.05);
+  }
+}
+
+@keyframes logoFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+
+  50% {
+    transform: translateY(-3px) rotate(1deg);
+  }
+}
+
+@keyframes heroGlow {
+  0% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes glowMove {
+  0% {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(-12deg);
+  }
+
+  100% {
+    transform:
+      translate3d(35px, -25px, 0)
+      rotate(5deg);
+  }
+}
+
+@keyframes heroContentIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes titleIn {
+  from {
+    opacity: 0;
+    transform:
+      translateY(20px)
+      scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientText {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes badgePulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 rgba(139, 92, 246, 0);
+  }
+
+  50% {
+    box-shadow:
+      0 0 25px rgba(139, 92, 246, 0.10);
+  }
+}
+
+@keyframes dotPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.35);
+    opacity: 0.7;
+  }
+}
+
+@keyframes deviceEntrance {
+  from {
+    opacity: 0;
+    transform:
+      translateY(35px)
+      scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+@keyframes phoneFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(0.5deg);
+  }
+}
+
+@keyframes deviceGlowPulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform:
+      rotate(-12deg)
+      scale(1);
+  }
+
+  50% {
+    opacity: 0.95;
+    transform:
+      rotate(-7deg)
+      scale(1.07);
+  }
+}
+
+@keyframes labelGlow {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+
+  50% {
+    opacity: 1;
+    text-shadow:
+      0 0 18px rgba(167, 139, 250, 0.35);
+  }
+}
+
+@keyframes cardGlow {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+@keyframes shineMove {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  50%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes orbRotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes iconFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
   }
 }
 
@@ -2285,14 +2649,9 @@ span:nth-child(3) {
     min-height: 650px;
   }
 
-  /*
-     More width for full-size screenshots.
-  */
-
   .real-screenshot-grid {
     gap: 26px;
   }
-
 }
 
 
@@ -2339,7 +2698,6 @@ span:nth-child(3) {
   .download-box {
     padding: 50px;
   }
-
 }
 
 
@@ -2399,13 +2757,6 @@ span:nth-child(3) {
       repeat(2, minmax(0, 1fr));
   }
 
-
-  /*
-     TABLET SCREENSHOTS:
-     Keep them horizontal and full-size.
-     Two columns.
-  */
-
   .real-screenshot-grid {
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
@@ -2415,7 +2766,6 @@ span:nth-child(3) {
 
   .real-screenshot-frame {
     width: 100%;
-
     aspect-ratio: auto;
   }
 
@@ -2423,7 +2773,6 @@ span:nth-child(3) {
     width: 100%;
     height: auto;
   }
-
 
   .highlight-grid {
     grid-template-columns: 1fr;
@@ -2453,7 +2802,6 @@ span:nth-child(3) {
   .footer-grid {
     gap: 40px;
   }
-
 }
 
 
@@ -2510,9 +2858,7 @@ span:nth-child(3) {
   }
 
 
-  /* =======================================================
-     HERO
-  ======================================================= */
+  /* HERO */
 
   .hero {
     min-height: auto;
@@ -2583,9 +2929,7 @@ span:nth-child(3) {
   }
 
 
-  /* =======================================================
-     PHONE
-  ======================================================= */
+  /* PHONE */
 
   .hero-device {
     width: 100%;
@@ -2651,9 +2995,7 @@ span:nth-child(3) {
   }
 
 
-  /* =======================================================
-     SECTIONS
-  ======================================================= */
+  /* SECTIONS */
 
   .section {
     padding:
@@ -2686,9 +3028,7 @@ span:nth-child(3) {
   }
 
 
-  /* =======================================================
-     FEATURES
-  ======================================================= */
+  /* FEATURES */
 
   .feature-grid {
     grid-template-columns: 1fr;
@@ -2727,13 +3067,6 @@ span:nth-child(3) {
   ======================================================= */
 
   .real-screenshot-grid {
-
-    /*
-       IMPORTANT:
-       One horizontal row on mobile.
-       Swipe left/right.
-    */
-
     display: flex;
 
     flex-direction: row;
@@ -2772,12 +3105,6 @@ span:nth-child(3) {
   }
 
   .real-screenshot-card {
-
-    /*
-       Screenshot card gets enough width
-       to show the image properly.
-    */
-
     flex:
       0 0
       min(92vw, 520px);
@@ -2792,12 +3119,6 @@ span:nth-child(3) {
   }
 
   .real-screenshot-frame {
-
-    /*
-       FULL ORIGINAL IMAGE HEIGHT.
-       No 9:16 crop.
-    */
-
     width: 100%;
 
     height: auto;
@@ -2810,12 +3131,6 @@ span:nth-child(3) {
   }
 
   .real-screenshot-frame img {
-
-    /*
-       Full-size image.
-       Nothing gets cropped.
-    */
-
     display: block;
 
     width: 100%;
@@ -2830,7 +3145,6 @@ span:nth-child(3) {
   }
 
   .screenshot-info {
-
     width: 100%;
 
     padding:
@@ -2846,9 +3160,7 @@ span:nth-child(3) {
   }
 
 
-  /* =======================================================
-     HIGHLIGHT
-  ======================================================= */
+  /* HIGHLIGHT */
 
   .highlight-section {
     padding:
@@ -2884,7 +3196,6 @@ span:nth-child(3) {
     font-size: 9px;
   }
 
-
   .check-list {
     grid-template-columns: 1fr;
 
@@ -2916,9 +3227,7 @@ span:nth-child(3) {
   }
 
 
-  /* =======================================================
-     GUIDE
-  ======================================================= */
+  /* GUIDE */
 
   .steps-grid {
     grid-template-columns: 1fr;
@@ -2945,9 +3254,7 @@ span:nth-child(3) {
   }
 
 
-  /* =======================================================
-     FAQ
-  ======================================================= */
+  /* FAQ */
 
   .faq-list {
     gap: 8px;
@@ -2975,9 +3282,7 @@ span:nth-child(3) {
   }
 
 
-  /* =======================================================
-     DOWNLOAD
-  ======================================================= */
+  /* DOWNLOAD */
 
   .download-section {
     padding:
@@ -3033,9 +3338,7 @@ span:nth-child(3) {
   }
 
 
-  /* =======================================================
-     FOOTER
-  ======================================================= */
+  /* FOOTER */
 
   .footer-grid {
     grid-template-columns: 1fr;
@@ -3068,9 +3371,7 @@ span:nth-child(3) {
   }
 
 
-  /* =======================================================
-     TOAST
-  ======================================================= */
+  /* TOAST */
 
   .toast {
     bottom: 18px;
@@ -3080,7 +3381,6 @@ span:nth-child(3) {
 
     font-size: 11px;
   }
-
 }
 
 
@@ -3141,12 +3441,6 @@ span:nth-child(3) {
     font-size: 32px;
   }
 
-
-  /*
-     Keep screenshots large even on small phones.
-     Horizontal swipe remains enabled.
-  */
-
   .real-screenshot-card {
     flex-basis: 92vw;
     min-width: 92vw;
@@ -3179,7 +3473,6 @@ span:nth-child(3) {
   .download-content h2 {
     font-size: 36px;
   }
-
 }
 
 
@@ -3224,11 +3517,6 @@ span:nth-child(3) {
     display: none;
   }
 
-  /*
-     Screenshot width stays large enough
-     and can be swiped horizontally.
-  */
-
   .real-screenshot-card {
     flex-basis: 94vw;
     min-width: 94vw;
@@ -3254,7 +3542,6 @@ span:nth-child(3) {
   .download-content h2 {
     font-size: 33px;
   }
-
 }
 
 
@@ -3301,7 +3588,6 @@ span:nth-child(3) {
   .step p {
     overflow-wrap: anywhere;
   }
-
 }
 
 
@@ -3327,5 +3613,4 @@ span:nth-child(3) {
     opacity: 1;
     transform: none;
   }
-
 }
