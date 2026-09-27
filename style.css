@@ -1,3 +1,4 @@
+/* ===== RESET & BASE ===== */
 * {
   margin: 0;
   padding: 0;
@@ -13,13 +14,12 @@ html {
 }
 
 body {
-  background: #0a0a0f;
+  background: #0a0a1a;
   color: #e5e7eb;
   overflow-x: hidden;
   line-height: 1.6;
   min-height: 100vh;
   width: 100%;
-  position: relative;
 }
 
 img, svg {
@@ -28,7 +28,6 @@ img, svg {
   display: block;
 }
 
-/* Universal container */
 .container {
   width: 100%;
   max-width: 1200px;
@@ -42,7 +41,7 @@ img, svg {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(10, 10, 15, 0.85);
+  background: rgba(10, 10, 26, 0.9);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -52,7 +51,7 @@ img, svg {
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 16px 24px;
+  padding: 14px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -64,7 +63,7 @@ img, svg {
   align-items: center;
   gap: 10px;
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 800;
   color: #fff;
   text-decoration: none;
   white-space: nowrap;
@@ -79,7 +78,7 @@ img, svg {
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 32px;
+  gap: 26px;
   margin: 0;
   padding: 0;
 }
@@ -113,6 +112,32 @@ img, svg {
   width: 100%;
 }
 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  white-space: nowrap;
+}
+
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+}
+
 .nav-toggle {
   display: none;
   background: transparent;
@@ -132,18 +157,20 @@ img, svg {
 
 /* ===== HERO ===== */
 .hero {
-  min-height: calc(100vh - 72px);
+  min-height: calc(100vh - 70px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 60px 0;
-  background: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.25), transparent 60%);
+  background: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.25), transparent 60%),
+              radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.15), transparent 50%);
   width: 100%;
+  position: relative;
 }
 
 .hero-content {
   text-align: center;
-  max-width: 720px;
+  max-width: 780px;
   animation: fadeIn 0.8s ease;
 }
 
@@ -152,65 +179,86 @@ img, svg {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.app-icon {
-  width: 100px;
-  height: 100px;
-  background: linear-gradient(135deg, #8b5cf6, #6366f1);
-  border-radius: 26px;
-  display: flex;
+.hero-badge {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  margin: 0 auto 28px;
-  font-size: 44px;
-  color: white;
-  box-shadow: 0 20px 50px rgba(139, 92, 246, 0.5);
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+  gap: 8px;
+  padding: 8px 18px;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #a78bfa;
+  margin-bottom: 24px;
 }
 
 .hero h1 {
-  font-size: clamp(28px, 6vw, 56px);
-  font-weight: 800;
-  margin-bottom: 16px;
-  line-height: 1.15;
-  background: linear-gradient(135deg, #fff 30%, #8b5cf6);
+  font-size: clamp(32px, 6.5vw, 64px);
+  font-weight: 900;
+  margin-bottom: 20px;
+  line-height: 1.1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: linear-gradient(135deg, #fff 20%, #8b5cf6 70%, #6366f1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   word-break: break-word;
 }
 
-.tagline {
-  font-size: clamp(14px, 2.2vw, 18px);
-  color: #9ca3af;
-  margin-bottom: 24px;
-  padding: 0 10px;
-  line-height: 1.6;
+.hero-icon {
+  -webkit-text-fill-color: #8b5cf6;
+  color: #8b5cf6;
+  font-size: 0.85em;
+  animation: pulse 2.5s ease-in-out infinite;
 }
 
-.rating {
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.tagline {
+  font-size: clamp(15px, 2.2vw, 18px);
+  color: #cbd5e1;
+  margin-bottom: 32px;
+  padding: 0 10px;
+  line-height: 1.7;
+}
+
+.tagline strong {
+  color: #a78bfa;
+  font-weight: 700;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.stat {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 10px;
-  margin-bottom: 36px;
-  flex-wrap: wrap;
-  font-size: 15px;
-}
-
-.stars {
-  color: #fbbf24;
-  display: flex;
-  gap: 3px;
-}
-
-.rating span {
-  color: #9ca3af;
   font-size: 14px;
+  color: #9ca3af;
+}
+
+.stat i {
+  color: #8b5cf6;
+  font-size: 18px;
+}
+
+.stat strong {
+  color: #fff;
+  font-size: 16px;
 }
 
 /* ===== BUTTONS ===== */
@@ -285,12 +333,28 @@ img, svg {
   margin-top: 16px;
 }
 
-/* ===== SECTIONS ===== */
-.features h2,
-.screenshots h2,
-.download-section h2 {
-  font-size: clamp(24px, 4vw, 40px);
+/* ===== SECTION HEADERS ===== */
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-tag {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 50px;
+  font-size: 12px;
   font-weight: 700;
+  color: #a78bfa;
+  letter-spacing: 1.5px;
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-size: clamp(26px, 4vw, 42px);
+  font-weight: 800;
   margin-bottom: 12px;
   color: #fff;
   text-align: center;
@@ -300,15 +364,73 @@ img, svg {
 
 .section-subtitle {
   color: #9ca3af;
-  margin-bottom: 50px;
   font-size: clamp(14px, 2vw, 16px);
   text-align: center;
   padding: 0 10px;
+  max-width: 720px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ===== FORMATS ===== */
+.formats {
+  padding: clamp(60px, 8vw, 100px) 0;
+  width: 100%;
+}
+
+.formats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+.format-card {
+  background: linear-gradient(160deg, rgba(139, 92, 246, 0.08), rgba(99, 102, 241, 0.04));
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  border-radius: 20px;
+  padding: 34px 24px;
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.format-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+}
+
+.format-icon {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 30px;
+  color: white;
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+}
+
+.format-card h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: #fff;
+}
+
+.format-card p {
+  color: #9ca3af;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 /* ===== FEATURES ===== */
 .features {
   padding: clamp(60px, 8vw, 100px) 0;
+  background: rgba(139, 92, 246, 0.03);
   width: 100%;
 }
 
@@ -323,17 +445,16 @@ img, svg {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
-  padding: 34px 24px;
-  transition: transform 0.4s ease, background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  padding: 32px 24px;
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
   text-align: center;
   box-sizing: border-box;
 }
 
 .feature-card:hover {
   transform: translateY(-8px);
-  background: rgba(139, 92, 246, 0.08);
   border-color: rgba(139, 92, 246, 0.4);
-  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
 }
 
 .icon-box {
@@ -351,7 +472,7 @@ img, svg {
 }
 
 .feature-card h3 {
-  font-size: 19px;
+  font-size: 18px;
   margin-bottom: 10px;
   color: #fff;
   word-break: break-word;
@@ -366,7 +487,6 @@ img, svg {
 /* ===== SCREENSHOTS ===== */
 .screenshots {
   padding: clamp(60px, 8vw, 100px) 0;
-  background: rgba(139, 92, 246, 0.03);
   width: 100%;
   overflow: hidden;
 }
@@ -420,19 +540,53 @@ img, svg {
   font-weight: 500;
 }
 
-/* ===== DOWNLOAD SECTION ===== */
-.download-section {
+/* ===== APK SECTION ===== */
+.apk-section {
   padding: clamp(60px, 8vw, 100px) 0;
-  text-align: center;
-  background: radial-gradient(circle at 50% 100%, rgba(139, 92, 246, 0.2), transparent 60%);
+  background: radial-gradient(circle at 50% 100%, rgba(139, 92, 246, 0.18), transparent 60%);
   width: 100%;
 }
 
-.download-section p {
-  color: #9ca3af;
+.apk-card {
+  max-width: 640px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 24px;
+  padding: 40px 32px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.apk-info {
   margin-bottom: 30px;
-  font-size: clamp(14px, 2vw, 16px);
-  padding: 0 10px;
+}
+
+.apk-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 15px;
+}
+
+.apk-row:last-child {
+  border-bottom: none;
+}
+
+.apk-label {
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.apk-value {
+  color: #fff;
+  font-weight: 600;
+}
+
+.apk-free {
+  color: #22c55e;
 }
 
 .btn-download {
@@ -464,315 +618,51 @@ img, svg {
   padding: 0 16px;
 }
 
-/* ===== FOOTER ===== */
-footer {
-  background: #050508;
-  padding: 40px 0;
-  text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+.note i {
+  color: #8b5cf6;
+  margin-right: 4px;
+}
+
+/* ===== FAQ ===== */
+.faq {
+  padding: clamp(60px, 8vw, 100px) 0;
+  background: rgba(139, 92, 246, 0.03);
   width: 100%;
 }
 
-.footer-content {
+.faq-list {
+  max-width: 780px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  align-items: center;
 }
 
-.footer-brand {
-  font-size: 20px;
-  font-weight: bold;
+.faq-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.faq-item.active {
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  background: transparent;
+  border: none;
   color: #fff;
-}
-
-.footer-brand i {
-  color: #8b5cf6;
-}
-
-footer p {
-  color: #6b7280;
-  font-size: 14px;
-}
-
-.social {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.social a {
-  width: 42px;
-  height: 42px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #9ca3af;
-  text-decoration: none;
-  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
-}
-
-.social a:hover {
-  background: #8b5cf6;
-  color: white;
-  transform: translateY(-3px);
-}
-
-/* ============================================
-   RESPONSIVE BREAKPOINTS
-   ============================================ */
-
-/* Large Desktop (1400px+) */
-@media (min-width: 1400px) {
-  .container { max-width: 1280px; }
-  .nav-container { max-width: 1280px; }
-}
-
-/* Ultra-wide / 4K */
-@media (min-width: 1920px) {
-  .container { max-width: 1400px; }
-  .nav-container { max-width: 1400px; }
-  .hero h1 { font-size: 68px; }
-  .app-icon { width: 120px; height: 120px; font-size: 54px; }
-}
-
-/* Small Laptop (max 1200px) */
-@media (max-width: 1200px) {
-  .container { padding: 0 20px; }
-  .nav-container { padding: 16px 20px; }
-}
-
-/* Tablet (max 1024px) */
-@media (max-width: 1024px) {
-  .phone {
-    width: 200px;
-    height: 400px;
-  }
-  .phone-screen i { font-size: 42px; }
-}
-
-/* Tablet / Mobile Menu (max 768px) */
-@media (max-width: 768px) {
-  .nav-links {
-    position: fixed;
-    top: 68px;
-    right: -100%;
-    width: 280px;
-    max-width: 85%;
-    height: calc(100vh - 68px);
-    background: rgba(10, 10, 15, 0.98);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    flex-direction: column;
-    padding: 40px 24px;
-    gap: 24px;
-    transition: right 0.35s ease;
-    border-left: 1px solid rgba(255, 255, 255, 0.08);
-    box-sizing: border-box;
-    z-index: 999;
-  }
-
-  .nav-links.active {
-    right: 0;
-  }
-
-  .nav-links a {
-    font-size: 16px;
-    padding: 8px 0;
-  }
-
-  .nav-toggle {
-    display: block;
-  }
-
-  .hero {
-    padding: 50px 0;
-    min-height: auto;
-  }
-
-  .download-buttons {
-    flex-direction: column;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto 20px;
-  }
-
-  .btn {
-    min-width: 100%;
-    width: 100%;
-  }
-
-  .screenshot-slider {
-    overflow-x: auto;
-    justify-content: flex-start;
-    padding: 0 20px 20px;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 20px;
-    flex-wrap: nowrap;
-  }
-
-  .screenshot-slider::-webkit-scrollbar {
-    height: 6px;
-  }
-  .screenshot-slider::-webkit-scrollbar-thumb {
-    background: #8b5cf6;
-    border-radius: 3px;
-  }
-  .screenshot-slider::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 3px;
-  }
-
-  .phone {
-    scroll-snap-align: center;
-  }
-}
-
-/* Mobile (max 480px) */
-@media (max-width: 480px) {
-  .container { padding: 0 16px; }
-  .nav-container { padding: 14px 16px; }
-
-  .logo { font-size: 16px; }
-  .logo i { font-size: 20px; }
-
-  .app-icon {
-    width: 80px;
-    height: 80px;
-    font-size: 36px;
-    border-radius: 22px;
-    margin-bottom: 22px;
-  }
-
-  .hero h1 { font-size: 30px; }
-  .tagline { font-size: 14px; }
-
-  .btn {
-    padding: 14px 20px;
-    min-width: 100%;
-  }
-
-  .btn i { font-size: 22px; }
-  .btn strong { font-size: 15px; }
-
-  .feature-card { padding: 28px 18px; }
-
-  .phone {
-    width: 180px;
-    height: 360px;
-  }
-
-  .phone-screen i { font-size: 38px; }
-  .phone-screen p { font-size: 13px; }
-
-  .btn-download {
-    padding: 16px 28px;
-    font-size: 15px;
-    width: 100%;
-    justify-content: center;
-  }
-
-  .features-grid { gap: 18px; }
-}
-
-/* Small Mobile (max 360px) */
-@media (max-width: 360px) {
-  .container { padding: 0 14px; }
-  .nav-container { padding: 12px 14px; }
-
-  .logo span { font-size: 14px; }
-  .hero h1 { font-size: 26px; }
-
-  .btn {
-    padding: 12px 16px;
-    gap: 10px;
-  }
-  .btn small { font-size: 10px; }
-  .btn strong { font-size: 14px; }
-  .btn i { font-size: 20px; }
-
-  .phone {
-    width: 160px;
-    height: 320px;
-  }
-  .phone-screen i { font-size: 34px; }
-
-  .icon-box {
-    width: 56px;
-    height: 56px;
-    font-size: 22px;
-  }
-
-  .feature-card { padding: 24px 16px; }
-  .feature-card h3 { font-size: 17px; }
-}
-
-/* Very Small Mobile (max 320px) */
-@media (max-width: 320px) {
-  .container { padding: 0 12px; }
-
-  .logo span { font-size: 13px; }
-  .logo i { font-size: 18px; }
-
-  .hero h1 { font-size: 22px; }
-  .tagline { font-size: 13px; }
-
-  .phone {
-    width: 150px;
-    height: 300px;
-  }
-}
-
-/* Landscape Mobile */
-@media (max-height: 500px) and (orientation: landscape) {
-  .hero {
-    min-height: auto;
-    padding: 40px 0;
-  }
-  .app-icon {
-    width: 70px;
-    height: 70px;
-    font-size: 30px;
-    margin-bottom: 16px;
-  }
-  .hero h1 {
-    font-size: 26px;
-    margin-bottom: 10px;
-  }
-  .tagline {
-    font-size: 14px;
-    margin-bottom: 16px;
-  }
-  .rating {
-    margin-bottom: 20px;
-  }
-  .nav-links {
-    height: calc(100vh - 60px);
-    top: 60px;
-  }
-}
-
-/* Reduced Motion (Accessibility) */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* Touch Devices - disable hover transform */
-@media (hover: none) {
-  .feature-card:hover,
-  .phone:hover,
-  .btn:hover,
-  .btn-download:hover,
-  .social a:hover {
-    transform: none;
-  }
-}
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition:
