@@ -37,10 +37,13 @@
   }
 
   if (navToggle) {
-    navToggle.addEventListener('click', toggleMenu);
+    navToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggleMenu();
+    });
   }
 
-  // ===== Close menu on link click =====
+  // ===== Close Menu on Link Click =====
   document.querySelectorAll('.nav-links a').forEach(function (link) {
     link.addEventListener('click', closeMenu);
   });
@@ -65,7 +68,25 @@
     });
   });
 
-  // ===== Scroll Animation (Intersection Observer) =====
+  // ===== FAQ Accordion =====
+  document.querySelectorAll('.faq-question').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const item = btn.parentElement;
+      const isActive = item.classList.contains('active');
+
+      // Close all FAQ items
+      document.querySelectorAll('.faq-item').forEach(function (faq) {
+        faq.classList.remove('active');
+      });
+
+      // Open clicked item if it was closed
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    });
+  });
+
+  // ===== Scroll Animation (Fade In) =====
   if ('IntersectionObserver' in window) {
     const observerOptions = {
       threshold: 0.1,
@@ -82,7 +103,7 @@
       });
     }, observerOptions);
 
-    document.querySelectorAll('.feature-card, .phone').forEach(function (el) {
+    document.querySelectorAll('.feature-card, .format-card, .phone').forEach(function (el) {
       el.style.opacity = '0';
       el.style.transform = 'translateY(30px)';
       el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -91,17 +112,14 @@
   }
 
   // ===== Navbar Shadow on Scroll =====
-  let lastScroll = 0;
   window.addEventListener('scroll', function () {
-    const currentScroll = window.pageYOffset;
     if (navbar) {
-      if (currentScroll > 20) {
+      if (window.pageYOffset > 20) {
         navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.4)';
       } else {
         navbar.style.boxShadow = 'none';
       }
     }
-    lastScroll = currentScroll;
   }, { passive: true });
 
   // ===== Close Menu on Resize (Desktop) =====
@@ -115,21 +133,14 @@
     }, 150);
   });
 
-  // ===== Download Tracking =====
-  document.querySelectorAll('a[download]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      console.log('Download started: Super Video Player');
-    });
-  });
-
-  // ===== Escape Key closes menu =====
+  // ===== Escape Key Closes Menu =====
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
       closeMenu();
     }
   });
 
-  // ===== Click outside closes menu =====
+  // ===== Click Outside Closes Menu =====
   document.addEventListener('click', function (e) {
     if (!navLinks || !navToggle) return;
     if (!navLinks.classList.contains('active')) return;
@@ -142,11 +153,18 @@
     }
   });
 
+  // ===== Download Tracking =====
+  document.querySelectorAll('a[download]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      console.log('Download started: Super Video Player');
+    });
+  });
+
   // ===== Console Branding =====
   console.log(
     '%c Super Video Player ',
     'background: #8b5cf6; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold;'
   );
-  console.log('Responsive website ready for all devices!');
+  console.log('Website ready for all devices!');
 
 })();
