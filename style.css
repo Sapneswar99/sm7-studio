@@ -1,10 +1,9 @@
 /* ============================================
    SUPER VIDEO PLAYER
-   FULL STYLESHEET
+   FULL REPLACEMENT STYLESHEET
    ============================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
-
 
 /* ============================================
    RESET / BASE
@@ -22,35 +21,36 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
-  scroll-padding-top: 110px;
+  scroll-padding-top: 120px;
 }
 
 body {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+
   background: #0a0a1a;
   color: #e5e7eb;
-  overflow-x: hidden;
+
   line-height: 1.6;
-  min-height: 100vh;
-  width: 100%;
-  position: relative;
 }
 
 img,
 svg {
+  display: block;
   max-width: 100%;
   height: auto;
-  display: block;
 }
 
 a {
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
 }
 
 button {
   font-family: inherit;
 }
-
 
 /* ============================================
    UNIVERSAL CONTAINER
@@ -63,23 +63,28 @@ button {
   padding: 0 24px;
 }
 
-
 /* ============================================
-   FLOATING NAVBAR
+   FLOATING FIXED NAVBAR
+   ALWAYS VISIBLE ON SCROLL
    ============================================ */
 
 .navbar {
-  position: fixed;
+  position: fixed !important;
+
   top: 14px;
   left: 50%;
-  transform: translateX(-50%);
 
   width: calc(100% - 28px);
   max-width: 1400px;
 
-  z-index: 9999;
+  transform: translateX(-50%);
 
-  background: rgba(10, 10, 26, 0.88);
+  z-index: 99999;
+
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  background: rgba(10, 10, 26, 0.94);
 
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -98,16 +103,14 @@ button {
 }
 
 .navbar.scrolled {
-  background: rgba(5, 5, 15, 0.95);
+  background: rgba(5, 5, 15, 0.97);
 
-  border-color:
-    rgba(139, 92, 246, 0.35);
+  border-color: rgba(139, 92, 246, 0.35);
 
   box-shadow:
     0 12px 40px rgba(0, 0, 0, 0.5),
     0 0 30px rgba(139, 92, 246, 0.12);
 }
-
 
 /* ============================================
    NAV CONTAINER
@@ -116,7 +119,6 @@ button {
 .nav-container {
   width: 100%;
   max-width: 1400px;
-
   min-height: 68px;
 
   margin: 0 auto;
@@ -128,7 +130,6 @@ button {
 
   gap: 20px;
 }
-
 
 /* ============================================
    LOGO
@@ -154,22 +155,16 @@ button {
   height: 50px;
 
   object-fit: contain;
-
   flex-shrink: 0;
 }
 
 .logo span {
-  font-family:
-    'Poppins',
-    'Segoe UI',
-    sans-serif;
-
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
   font-weight: 600;
 }
 
-
 /* ============================================
-   NAV LINKS
+   NAV LINKS - DESKTOP
    ============================================ */
 
 .nav-links {
@@ -196,8 +191,7 @@ button {
   font-size: 15px;
   font-weight: 500;
 
-  transition:
-    color 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
@@ -219,14 +213,12 @@ button {
 
   border-radius: 10px;
 
-  transition:
-    width 0.3s ease;
+  transition: width 0.3s ease;
 }
 
 .nav-links a:hover::after {
   width: 100%;
 }
-
 
 /* ============================================
    NAV RIGHT
@@ -241,9 +233,8 @@ button {
   flex-shrink: 0;
 }
 
-
 /* ============================================
-   NAV TOGGLE
+   MENU BUTTON
    ============================================ */
 
 .nav-toggle {
@@ -253,6 +244,9 @@ button {
   height: 44px;
 
   padding: 6px;
+
+  align-items: center;
+  justify-content: center;
 
   background: transparent;
 
@@ -265,14 +259,11 @@ button {
 
   cursor: pointer;
 
-  align-items: center;
-  justify-content: center;
+  flex-shrink: 0;
 
   transition:
     background 0.3s ease,
     color 0.3s ease;
-
-  flex-shrink: 0;
 }
 
 .nav-toggle:hover {
@@ -284,7 +275,6 @@ button {
   outline-offset: 3px;
 }
 
-
 /* ============================================
    HERO
    ============================================ */
@@ -293,15 +283,13 @@ button {
   position: relative;
 
   width: 100%;
-
   min-height: 100vh;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding:
-    150px 0 80px;
+  padding: 150px 0 80px;
 
   background:
     radial-gradient(
@@ -321,12 +309,10 @@ button {
 
   text-align: center;
 
-  animation:
-    fadeIn 0.8s ease;
+  animation: fadeIn 0.8s ease;
 }
 
 @keyframes fadeIn {
-
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -336,9 +322,7 @@ button {
     opacity: 1;
     transform: translateY(0);
   }
-
 }
-
 
 /* ============================================
    HERO BADGE
@@ -352,16 +336,12 @@ button {
 
   gap: 8px;
 
+  margin-bottom: 24px;
   padding: 8px 18px;
 
-  margin-bottom: 24px;
+  background: rgba(139, 92, 246, 0.12);
 
-  background:
-    rgba(139, 92, 246, 0.12);
-
-  border:
-    1px solid rgba(139, 92, 246, 0.3);
-
+  border: 1px solid rgba(139, 92, 246, 0.3);
   border-radius: 50px;
 
   color: #a78bfa;
@@ -373,7 +353,6 @@ button {
 .hero-badge i {
   color: #a78bfa;
 }
-
 
 /* ============================================
    HERO TITLE
@@ -393,9 +372,7 @@ button {
 
   color: #fff;
 
-  font-size:
-    clamp(32px, 6.5vw, 64px);
-
+  font-size: clamp(32px, 6.5vw, 64px);
   font-weight: 900;
 
   line-height: 1.1;
@@ -407,14 +384,13 @@ button {
   background:
     linear-gradient(
       135deg,
-      #fff 20%,
+      #ffffff 20%,
       #8b5cf6 70%,
       #6366f1
     );
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
   background-clip: text;
 }
 
@@ -430,12 +406,8 @@ button {
 }
 
 .hero h1 span {
-  font-family:
-    'Poppins',
-    'Segoe UI',
-    sans-serif;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
 }
-
 
 /* ============================================
    HERO ICON
@@ -448,12 +420,10 @@ button {
 
   -webkit-text-fill-color: #8b5cf6;
 
-  animation:
-    pulse 2.5s ease-in-out infinite;
+  animation: pulse 2.5s ease-in-out infinite;
 }
 
 @keyframes pulse {
-
   0%,
   100% {
     transform: scale(1);
@@ -462,9 +432,7 @@ button {
   50% {
     transform: scale(1.08);
   }
-
 }
-
 
 /* ============================================
    TAGLINE
@@ -472,23 +440,19 @@ button {
 
 .tagline {
   margin-bottom: 32px;
-
   padding: 0 10px;
 
   color: #cbd5e1;
 
-  font-size:
-    clamp(15px, 2.2vw, 18px);
+  font-size: clamp(15px, 2.2vw, 18px);
 
   line-height: 1.7;
 }
 
 .tagline strong {
   color: #a78bfa;
-
   font-weight: 700;
 }
-
 
 /* ============================================
    HERO STATS
@@ -521,16 +485,13 @@ button {
 
 .stat i {
   color: #8b5cf6;
-
   font-size: 18px;
 }
 
 .stat strong {
   color: #fff;
-
   font-size: 16px;
 }
-
 
 /* ============================================
    BUTTONS
@@ -577,7 +538,6 @@ button {
 
 .btn i {
   font-size: 26px;
-
   flex-shrink: 0;
 }
 
@@ -593,14 +553,12 @@ button {
 
 .btn small {
   font-size: 11px;
-
   opacity: 0.85;
 }
 
 .btn strong {
   font-size: 16px;
 }
-
 
 /* ============================================
    PRIMARY BUTTON
@@ -615,38 +573,32 @@ button {
     );
 
   box-shadow:
-    0 10px 30px
-    rgba(139, 92, 246, 0.4);
+    0 10px 30px rgba(139, 92, 246, 0.4);
 }
 
 .btn-primary:hover {
   transform: translateY(-4px);
 
   box-shadow:
-    0 15px 40px
-    rgba(139, 92, 246, 0.6);
+    0 15px 40px rgba(139, 92, 246, 0.6);
 }
-
 
 /* ============================================
    SECONDARY BUTTON
    ============================================ */
 
 .btn-secondary {
-  background:
-    rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.06);
 
   border:
     1px solid rgba(255, 255, 255, 0.15);
 }
 
 .btn-secondary:hover {
-  background:
-    rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.12);
 
   transform: translateY(-4px);
 }
-
 
 /* ============================================
    VERSION
@@ -659,7 +611,6 @@ button {
 
   font-size: 13px;
 }
-
 
 /* ============================================
    SECTION HEADERS
@@ -675,11 +626,9 @@ button {
   display: inline-block;
 
   margin-bottom: 16px;
-
   padding: 6px 16px;
 
-  background:
-    rgba(139, 92, 246, 0.12);
+  background: rgba(139, 92, 246, 0.12);
 
   border:
     1px solid rgba(139, 92, 246, 0.3);
@@ -689,7 +638,6 @@ button {
   color: #a78bfa;
 
   font-size: 12px;
-
   font-weight: 700;
 
   letter-spacing: 1.5px;
@@ -700,9 +648,7 @@ h2 {
 
   color: #fff;
 
-  font-size:
-    clamp(26px, 4vw, 42px);
-
+  font-size: clamp(26px, 4vw, 42px);
   font-weight: 800;
 
   line-height: 1.2;
@@ -716,19 +662,16 @@ h2 {
   max-width: 720px;
 
   margin: 0 auto;
-
   padding: 0 10px;
 
   color: #9ca3af;
 
-  font-size:
-    clamp(14px, 2vw, 16px);
+  font-size: clamp(14px, 2vw, 16px);
 
   line-height: 1.7;
 
   text-align: center;
 }
-
 
 /* ============================================
    FORMATS
@@ -772,8 +715,6 @@ h2 {
 
   text-align: center;
 
-  box-sizing: border-box;
-
   transition:
     transform 0.4s ease,
     border-color 0.4s ease,
@@ -787,8 +728,7 @@ h2 {
     rgba(139, 92, 246, 0.5);
 
   box-shadow:
-    0 20px 40px
-    rgba(139, 92, 246, 0.2);
+    0 20px 40px rgba(139, 92, 246, 0.2);
 }
 
 .format-icon {
@@ -816,8 +756,7 @@ h2 {
   font-size: 30px;
 
   box-shadow:
-    0 10px 25px
-    rgba(139, 92, 246, 0.3);
+    0 10px 25px rgba(139, 92, 246, 0.3);
 }
 
 .format-card h3 {
@@ -835,7 +774,6 @@ h2 {
 
   line-height: 1.6;
 }
-
 
 /* ============================================
    FEATURES
@@ -878,8 +816,6 @@ h2 {
 
   text-align: center;
 
-  box-sizing: border-box;
-
   transition:
     transform 0.4s ease,
     border-color 0.4s ease,
@@ -893,8 +829,7 @@ h2 {
     rgba(139, 92, 246, 0.4);
 
   box-shadow:
-    0 20px 40px
-    rgba(139, 92, 246, 0.15);
+    0 20px 40px rgba(139, 92, 246, 0.15);
 }
 
 .icon-box {
@@ -942,7 +877,6 @@ h2 {
   line-height: 1.6;
 }
 
-
 /* ============================================
    ADS
    ============================================ */
@@ -951,17 +885,14 @@ h2 {
   display: block;
 
   width: 100%;
-
   max-width: 1200px;
 
   margin: 24px auto;
 
-  padding:
-    0 24px;
+  padding: 0 24px;
 
   box-sizing: border-box;
 }
-
 
 /* ============================================
    SCREENSHOTS
@@ -1004,12 +935,9 @@ h2 {
   border-radius: 30px;
 
   box-shadow:
-    0 25px 60px
-    rgba(0, 0, 0, 0.5);
+    0 25px 60px rgba(0, 0, 0, 0.5);
 
   flex-shrink: 0;
-
-  box-sizing: border-box;
 
   transition:
     transform 0.4s ease;
@@ -1054,10 +982,8 @@ h2 {
   color: #9ca3af;
 
   font-size: 14px;
-
   font-weight: 500;
 }
-
 
 /* ============================================
    APK SECTION
@@ -1093,8 +1019,6 @@ h2 {
   border-radius: 24px;
 
   text-align: center;
-
-  box-sizing: border-box;
 }
 
 .apk-info {
@@ -1123,7 +1047,6 @@ h2 {
 
 .apk-label {
   color: #9ca3af;
-
   font-weight: 500;
 }
 
@@ -1138,7 +1061,6 @@ h2 {
 .apk-free {
   color: #22c55e;
 }
-
 
 /* ============================================
    DOWNLOAD BUTTON
@@ -1167,18 +1089,13 @@ h2 {
 
   color: #fff;
 
-  font-size:
-    clamp(15px, 2.2vw, 18px);
-
+  font-size: clamp(15px, 2.2vw, 18px);
   font-weight: 600;
 
   box-shadow:
-    0 15px 40px
-    rgba(139, 92, 246, 0.5);
+    0 15px 40px rgba(139, 92, 246, 0.5);
 
   cursor: pointer;
-
-  box-sizing: border-box;
 
   transition:
     transform 0.3s ease,
@@ -1191,13 +1108,11 @@ h2 {
     scale(1.03);
 
   box-shadow:
-    0 20px 50px
-    rgba(139, 92, 246, 0.7);
+    0 20px 50px rgba(139, 92, 246, 0.7);
 }
 
 .note {
   margin-top: 20px;
-
   padding: 0 16px;
 
   color: #6b7280;
@@ -1207,10 +1122,8 @@ h2 {
 
 .note i {
   margin-right: 4px;
-
   color: #8b5cf6;
 }
-
 
 /* ============================================
    FAQ
@@ -1232,7 +1145,6 @@ h2 {
   margin: 0 auto;
 
   display: flex;
-
   flex-direction: column;
 
   gap: 14px;
@@ -1281,15 +1193,13 @@ h2 {
   color: #fff;
 
   font-size: 16px;
-
   font-weight: 600;
 
   text-align: left;
 
   cursor: pointer;
 
-  transition:
-    color 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .faq-question:hover {
@@ -1324,8 +1234,7 @@ h2 {
 }
 
 .faq-answer p {
-  padding:
-    0 24px 22px;
+  padding: 0 24px 22px;
 
   color: #9ca3af;
 
@@ -1337,7 +1246,6 @@ h2 {
 .faq-item.active .faq-answer {
   max-height: 400px;
 }
-
 
 /* ============================================
    FOOTER
@@ -1377,7 +1285,6 @@ footer {
   color: #fff;
 
   font-size: 20px;
-
   font-weight: 700;
 }
 
@@ -1393,7 +1300,6 @@ footer {
 
   font-size: 14px;
 }
-
 
 /* ============================================
    FOOTER NAVIGATION
@@ -1430,7 +1336,6 @@ footer {
 .footer-nav span {
   color: #4b5563;
 }
-
 
 /* ============================================
    SOCIAL
@@ -1473,8 +1378,7 @@ footer {
 
   color: #fff;
 
-  transform:
-    translateY(-3px);
+  transform: translateY(-3px);
 }
 
 .copyright {
@@ -1485,9 +1389,8 @@ footer {
   font-size: 13px;
 }
 
-
 /* ============================================
-   LARGE DESKTOP - 1400px+
+   LARGE DESKTOP
    ============================================ */
 
 @media (min-width: 1400px) {
@@ -1502,9 +1405,8 @@ footer {
 
 }
 
-
 /* ============================================
-   ULTRA WIDE - 1920px+
+   ULTRA WIDE
    ============================================ */
 
 @media (min-width: 1920px) {
@@ -1532,9 +1434,8 @@ footer {
 
 }
 
-
 /* ============================================
-   SMALL LAPTOP - 1200px
+   SMALL LAPTOP
    ============================================ */
 
 @media (max-width: 1200px) {
@@ -1544,15 +1445,13 @@ footer {
   }
 
   .nav-container {
-    padding:
-      8px 20px;
+    padding: 8px 20px;
   }
 
 }
 
-
 /* ============================================
-   LARGE TABLET - 1024px
+   TABLET
    ============================================ */
 
 @media (max-width: 1024px) {
@@ -1576,9 +1475,8 @@ footer {
 
 }
 
-
 /* ============================================
-   TABLET - 900px
+   900px
    ============================================ */
 
 @media (max-width: 900px) {
@@ -1589,47 +1487,46 @@ footer {
 
 }
 
-
 /* ============================================
-   MOBILE MENU - 768px
+   MOBILE - 768px
    ============================================ */
 
 @media (max-width: 768px) {
 
-  /* ===== FLOATING MOBILE HEADER ===== */
+  /* FLOATING HEADER */
 
   .navbar {
     top: 10px;
+    left: 50%;
 
-    width:
-      calc(100% - 20px);
+    width: calc(100% - 20px);
+
+    transform: translateX(-50%);
+
+    z-index: 99999;
 
     border-radius: 16px;
+
+    overflow: visible;
   }
 
   .nav-container {
     min-height: 62px;
-
-    padding:
-      6px 16px;
+    padding: 6px 16px;
   }
 
-
-  /* ===== MOBILE NAVIGATION ===== */
+  /* MOBILE MENU */
 
   .nav-links {
     position: fixed;
 
     top: 82px;
-
-    right: -100%;
+    right: 10px;
 
     width: 280px;
-
     max-width: 85vw;
 
-    height:
-      calc(100vh - 92px);
+    height: calc(100vh - 92px);
 
     display: flex;
 
@@ -1653,19 +1550,32 @@ footer {
     border-radius: 18px;
 
     box-shadow:
-      0 20px 50px
-      rgba(0, 0, 0, 0.5);
+      0 20px 50px rgba(0, 0, 0, 0.5);
 
-    z-index: 9998;
+    z-index: 99998;
 
     overflow-y: auto;
 
+    visibility: hidden;
+
+    opacity: 0;
+
+    transform: translateX(calc(100% + 25px));
+
     transition:
-      right 0.35s ease;
+      transform 0.35s ease,
+      opacity 0.25s ease,
+      visibility 0.35s ease;
   }
 
   .nav-links.active {
     right: 10px;
+
+    visibility: visible;
+
+    opacity: 1;
+
+    transform: translateX(0);
   }
 
   .nav-links a {
@@ -1686,15 +1596,13 @@ footer {
     display: none;
   }
 
-
-  /* ===== HAMBURGER ===== */
+  /* MENU TOGGLE */
 
   .nav-toggle {
     display: flex;
   }
 
-
-  /* ===== HERO ===== */
+  /* HERO */
 
   .hero {
     min-height: auto;
@@ -1709,7 +1617,6 @@ footer {
 
   .download-buttons {
     width: 100%;
-
     max-width: 400px;
 
     flex-direction: column;
@@ -1720,12 +1627,10 @@ footer {
 
   .btn {
     width: 100%;
-
     min-width: 100%;
   }
 
-
-  /* ===== SCREENSHOT MOBILE SLIDER ===== */
+  /* SCREENSHOTS */
 
   .screenshot-slider {
     justify-content: flex-start;
@@ -1739,11 +1644,9 @@ footer {
     padding:
       0 20px 20px;
 
-    scroll-snap-type:
-      x mandatory;
+    scroll-snap-type: x mandatory;
 
-    -webkit-overflow-scrolling:
-      touch;
+    -webkit-overflow-scrolling: touch;
   }
 
   .screenshot-slider::-webkit-scrollbar {
@@ -1752,7 +1655,6 @@ footer {
 
   .screenshot-slider::-webkit-scrollbar-thumb {
     background: #8b5cf6;
-
     border-radius: 3px;
   }
 
@@ -1767,13 +1669,14 @@ footer {
     scroll-snap-align: center;
   }
 
-
-  /* ===== APK ===== */
+  /* APK */
 
   .apk-card {
     padding:
       30px 22px;
   }
+
+  /* FAQ */
 
   .faq-question {
     padding:
@@ -1789,13 +1692,14 @@ footer {
     font-size: 14px;
   }
 
+  /* ADS */
+
   .adsbygoogle {
     padding:
       0 16px;
   }
 
 }
-
 
 /* ============================================
    MOBILE - 480px
@@ -1836,8 +1740,7 @@ footer {
       calc(100vh - 86px);
   }
 
-
-  /* ===== HERO ===== */
+  /* HERO */
 
   .hero {
     padding:
@@ -1886,8 +1789,7 @@ footer {
     font-size: 15px;
   }
 
-
-  /* ===== CARDS ===== */
+  /* CARDS */
 
   .format-card {
     padding:
@@ -1913,8 +1815,7 @@ footer {
     font-size: 22px;
   }
 
-
-  /* ===== PHONE ===== */
+  /* PHONE */
 
   .phone {
     width: 180px;
@@ -1929,8 +1830,7 @@ footer {
     font-size: 13px;
   }
 
-
-  /* ===== APK ===== */
+  /* APK */
 
   .btn-download {
     width: 100%;
@@ -1953,8 +1853,7 @@ footer {
     font-size: 14px;
   }
 
-
-  /* ===== FAQ ===== */
+  /* FAQ */
 
   .faq-question {
     padding:
@@ -1970,8 +1869,7 @@ footer {
     font-size: 13px;
   }
 
-
-  /* ===== FOOTER ===== */
+  /* FOOTER */
 
   .footer-brand {
     font-size: 18px;
@@ -1989,7 +1887,6 @@ footer {
   }
 
 }
-
 
 /* ============================================
    SMALL MOBILE - 360px
@@ -2035,7 +1932,6 @@ footer {
   .nav-links.active {
     right: 7px;
   }
-
 
   .hero {
     padding-top:
@@ -2106,7 +2002,6 @@ footer {
   }
 
 }
-
 
 /* ============================================
    VERY SMALL MOBILE - 320px
@@ -2192,7 +2087,6 @@ footer {
 
 }
 
-
 /* ============================================
    LANDSCAPE MOBILE
    ============================================ */
@@ -2238,7 +2132,6 @@ footer {
 
 }
 
-
 /* ============================================
    REDUCED MOTION
    ============================================ */
@@ -2263,7 +2156,6 @@ footer {
 
 }
 
-
 /* ============================================
    TOUCH DEVICES
    ============================================ */
@@ -2281,7 +2173,6 @@ footer {
 
 }
 
-
 /* ============================================
    PRINT
    ============================================ */
@@ -2298,7 +2189,6 @@ footer {
 
   body {
     background: #fff;
-
     color: #000;
   }
 
