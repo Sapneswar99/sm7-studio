@@ -27,12 +27,11 @@
     <!-- HOME PAGE CSS -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Privacy Page Extra CSS -->
+    <!-- PRIVACY PAGE CSS -->
     <style>
 
         /* =========================================
            PRIVACY POLICY PAGE
-           HOME PAGE DESIGN
         ========================================= */
 
         body {
@@ -45,6 +44,7 @@
             padding-top: 145px;
             padding-bottom: 75px;
         }
+
 
         /* =========================================
            PAGE INTRO
@@ -114,8 +114,9 @@
             line-height: 1.7;
         }
 
+
         /* =========================================
-           POLICY CARD
+           POLICY CARDS
         ========================================= */
 
         .privacy-card {
@@ -176,6 +177,7 @@
             box-shadow:
                 0 20px 48px rgba(0, 0, 0, 0.23);
         }
+
 
         /* =========================================
            SECTION TITLE
@@ -247,6 +249,7 @@
             font-weight: 600;
         }
 
+
         /* =========================================
            INFO BOX
         ========================================= */
@@ -274,6 +277,7 @@
             line-height: 1.75;
         }
 
+
         /* =========================================
            EMAIL
         ========================================= */
@@ -292,6 +296,17 @@
             color: #c9adff;
             text-decoration: underline;
         }
+
+
+        /* =========================================
+           PRIVACY PAGE NAV MENU
+           ONLY PAGE-RELATED OPTIONS
+        ========================================= */
+
+        .navbar .nav-links a.active {
+            color: #b68cff;
+        }
+
 
         /* =========================================
            MOBILE
@@ -347,6 +362,11 @@
             }
         }
 
+
+        /* =========================================
+           SMALL MOBILE
+        ========================================= */
+
         @media (max-width: 480px) {
 
             .privacy-page {
@@ -381,6 +401,11 @@
             }
         }
 
+
+        /* =========================================
+           VERY SMALL PHONES
+        ========================================= */
+
         @media (max-width: 360px) {
 
             .privacy-page {
@@ -406,6 +431,11 @@
             }
         }
 
+
+        /* =========================================
+           TOUCH DEVICES
+        ========================================= */
+
         @media (hover: none) {
 
             .privacy-card:hover {
@@ -415,6 +445,11 @@
                     rgba(159, 111, 255, 0.16);
             }
         }
+
+
+        /* =========================================
+           REDUCED MOTION
+        ========================================= */
 
         @media (prefers-reduced-motion: reduce) {
 
@@ -430,15 +465,21 @@
     </style>
 </head>
 
+
 <body id="top">
 
+
 <!-- =========================================
-     SAME HOME PAGE NAVBAR
+     NAVBAR
+     SAME HOME PAGE DESIGN
+     PRIVACY PAGE OPTIONS
 ========================================= -->
 
 <nav class="navbar" aria-label="Main Navigation">
 
     <div class="nav-container">
+
+        <!-- LOGO -->
 
         <a
             href="index.html"
@@ -460,43 +501,44 @@
         </a>
 
 
+        <!-- PAGE MENU -->
+
         <ul
             class="nav-links"
             id="navLinks"
         >
 
             <li>
-                <a href="index.html#formats">
-                    Formats
+                <a href="index.html">
+                    Home
                 </a>
             </li>
 
             <li>
-                <a href="index.html#features">
-                    Features
+                <a
+                    href="privacy-policy.html"
+                    class="active"
+                >
+                    Privacy Policy
                 </a>
             </li>
 
             <li>
-                <a href="index.html#screenshots">
-                    Screenshots
+                <a href="terms.html">
+                    Terms
                 </a>
             </li>
 
             <li>
-                <a href="index.html#apk">
-                    APK
-                </a>
-            </li>
-
-            <li>
-                <a href="index.html#faq">
-                    FAQ
+                <a href="contact.html">
+                    Contact
                 </a>
             </li>
 
         </ul>
 
+
+        <!-- MENU BUTTON -->
 
         <div class="nav-right">
 
@@ -526,6 +568,7 @@
 
 <main class="privacy-page">
 
+
     <!-- PAGE INTRO -->
 
     <div class="privacy-intro">
@@ -551,7 +594,9 @@
     </div>
 
 
-    <!-- 1 -->
+    <!-- =====================================
+         1. INTRODUCTION
+    ====================================== -->
 
     <section class="privacy-card">
 
@@ -582,7 +627,9 @@
     </section>
 
 
-    <!-- 2 -->
+    <!-- =====================================
+         2. NO LOGIN
+    ====================================== -->
 
     <section class="privacy-card">
 
@@ -607,7 +654,9 @@
     </section>
 
 
-    <!-- 3 -->
+    <!-- =====================================
+         3. PERSONAL INFORMATION
+    ====================================== -->
 
     <section class="privacy-card">
 
@@ -633,7 +682,9 @@
     </section>
 
 
-    <!-- 4 -->
+    <!-- =====================================
+         4. WEBSITE INFORMATION
+    ====================================== -->
 
     <section class="privacy-card">
 
@@ -667,7 +718,9 @@
     </section>
 
 
-    <!-- 5 -->
+    <!-- =====================================
+         5. ADVERTISING
+    ====================================== -->
 
     <section class="privacy-card">
 
@@ -703,7 +756,9 @@
     </section>
 
 
-    <!-- 6 -->
+    <!-- =====================================
+         6. COOKIES
+    ====================================== -->
 
     <section class="privacy-card">
 
@@ -736,7 +791,9 @@
     </section>
 
 
-    <!-- 7 -->
+    <!-- =====================================
+         7. APP
+    ====================================== -->
 
     <section class="privacy-card">
 
@@ -768,7 +825,9 @@
     </section>
 
 
-    <!-- 8 -->
+    <!-- =====================================
+         8. APK DOWNLOADS
+    ====================================== -->
 
     <section class="privacy-card">
 
@@ -794,7 +853,9 @@
     </section>
 
 
-    <!-- 9 -->
+    <!-- =====================================
+         9. THIRD PARTY
+    ====================================== -->
 
     <section class="privacy-card">
 
@@ -820,7 +881,9 @@
     </section>
 
 
-    <!-- 10 -->
+    <!-- =====================================
+         10. SECURITY
+    ====================================== -->
 
     <section class="privacy-card">
 
@@ -845,7 +908,9 @@
     </section>
 
 
-    <!-- 11 -->
+    <!-- =====================================
+         11. CHILDREN
+    ====================================== -->
 
     <section class="privacy-card">
 
@@ -871,7 +936,9 @@
     </section>
 
 
-    <!-- 12 -->
+    <!-- =====================================
+         12. CHANGES
+    ====================================== -->
 
     <section class="privacy-card">
 
@@ -895,7 +962,9 @@
     </section>
 
 
-    <!-- 13 -->
+    <!-- =====================================
+         13. CONTACT
+    ====================================== -->
 
     <section class="privacy-card">
 
@@ -935,12 +1004,17 @@
 
 
 <!-- =========================================
-     SAME HOME PAGE FOOTER
+     FOOTER
+     SAME AS HOME PAGE
 ========================================= -->
 
 <footer class="custom-footer">
 
+
+    <!-- FOOTER MAIN -->
+
     <div class="custom-footer-container">
+
 
         <!-- BRAND -->
 
@@ -965,8 +1039,7 @@
 
 
             <p>
-                Fast, smooth and powerful video player
-                for Android.
+                Play anything. Anywhere.
             </p>
 
 
@@ -1031,6 +1104,12 @@
             <ul>
 
                 <li>
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
                     <a href="index.html#formats">
                         Formats
                     </a>
@@ -1045,12 +1124,6 @@
                 <li>
                     <a href="index.html#screenshots">
                         Screenshots
-                    </a>
-                </li>
-
-                <li>
-                    <a href="index.html#faq">
-                        FAQ
                     </a>
                 </li>
 
@@ -1071,19 +1144,25 @@
 
                 <li>
                     <a href="index.html#apk">
-                        Android APK
+                        Download APK
                     </a>
                 </li>
 
                 <li>
-                    <a href="index.html#apk">
-                        Latest Version
+                    <a href="index.html#faq">
+                        FAQ
                     </a>
                 </li>
 
                 <li>
-                    <a href="index.html#apk">
-                        Release Notes
+                    <a href="index.html#features">
+                        Features
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#formats">
+                        Supported Formats
                     </a>
                 </li>
 
@@ -1131,7 +1210,7 @@
         </div>
 
 
-        <!-- APP -->
+        <!-- SUPER VIDEO PLAYER -->
 
         <div class="custom-footer-column">
 
@@ -1142,14 +1221,20 @@
             <ul>
 
                 <li>
-                    <a href="index.html">
-                        Home
+                    <a href="index.html#apk">
+                        Android APK
                     </a>
                 </li>
 
                 <li>
-                    <a href="privacy-policy.html">
-                        Privacy Policy
+                    <a href="index.html#features">
+                        No Ads
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#screenshots">
+                        App Screenshots
                     </a>
                 </li>
 
@@ -1166,7 +1251,9 @@
     </div>
 
 
-    <!-- MIDDLE DIVIDER -->
+    <!-- =====================================
+         FOOTER DIVIDER
+    ====================================== -->
 
     <div class="custom-footer-divider">
 
@@ -1182,7 +1269,9 @@
     </div>
 
 
-    <!-- FOOTER BOTTOM -->
+    <!-- =====================================
+         FOOTER BOTTOM
+    ====================================== -->
 
     <div class="custom-footer-bottom">
 
@@ -1200,7 +1289,7 @@
 
 
 <!-- =========================================
-     HOME PAGE JAVASCRIPT
+     SAME HOME PAGE JAVASCRIPT
 ========================================= -->
 
 <script src="script.js"></script>
