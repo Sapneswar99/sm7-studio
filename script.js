@@ -1,5 +1,6 @@
 /* ============================================
-   SUPER VIDEO PLAYER - JavaScript
+   SUPER VIDEO PLAYER
+   FULL REPLACEMENT JAVASCRIPT
    ============================================ */
 
 (function () {
@@ -13,12 +14,15 @@
   const navLinks = document.getElementById('navLinks');
   const navbar = document.querySelector('.navbar');
 
+  const MOBILE_BREAKPOINT = 768;
+
 
   /* ============================================
      MOBILE NAVIGATION
      ============================================ */
 
   function updateMenuIcon(isOpen) {
+
     if (!navToggle) return;
 
     const icon = navToggle.querySelector('i');
@@ -37,30 +41,38 @@
       'aria-label',
       isOpen ? 'Close menu' : 'Open menu'
     );
+
   }
 
 
   function openMenu() {
+
     if (!navLinks || !navToggle) return;
 
     navLinks.classList.add('active');
+
     updateMenuIcon(true);
 
     document.body.classList.add('menu-open');
+
   }
 
 
   function closeMenu() {
+
     if (!navLinks || !navToggle) return;
 
     navLinks.classList.remove('active');
+
     updateMenuIcon(false);
 
     document.body.classList.remove('menu-open');
+
   }
 
 
   function toggleMenu() {
+
     if (!navLinks || !navToggle) return;
 
     const isOpen =
@@ -71,10 +83,16 @@
     } else {
       openMenu();
     }
+
   }
 
 
+  /* ============================================
+     MENU BUTTON
+     ============================================ */
+
   if (navToggle) {
+
     navToggle.addEventListener(
       'click',
       function (event) {
@@ -86,11 +104,12 @@
 
       }
     );
+
   }
 
 
   /* ============================================
-     CLOSE MENU WHEN NAV LINK IS CLICKED
+     CLOSE MENU AFTER NAV LINK CLICK
      ============================================ */
 
   document
@@ -100,7 +119,9 @@
       link.addEventListener(
         'click',
         function () {
+
           closeMenu();
+
         }
       );
 
@@ -130,13 +151,17 @@
             return;
           }
 
-          let target;
+          let target = null;
 
           try {
+
             target =
               document.querySelector(href);
+
           } catch (error) {
+
             return;
+
           }
 
           if (!target) {
@@ -160,8 +185,15 @@
             extraOffset;
 
           window.scrollTo({
-            top: Math.max(0, targetPosition),
+
+            top:
+              Math.max(
+                0,
+                targetPosition
+              ),
+
             behavior: 'smooth'
+
           });
 
         }
@@ -174,58 +206,75 @@
      FAQ ACCORDION
      ============================================ */
 
-  document
-    .querySelectorAll('.faq-question')
-    .forEach(function (button) {
-
-      button.addEventListener(
-        'click',
-        function () {
-
-          const faqItem =
-            button.closest('.faq-item');
-
-          if (!faqItem) return;
-
-          const wasActive =
-            faqItem.classList.contains('active');
-
-          document
-            .querySelectorAll('.faq-item')
-            .forEach(function (item) {
-
-              item.classList.remove('active');
-
-              const question =
-                item.querySelector(
-                  '.faq-question'
-                );
-
-              if (question) {
-                question.setAttribute(
-                  'aria-expanded',
-                  'false'
-                );
-              }
-
-            });
+  const faqQuestions =
+    document.querySelectorAll(
+      '.faq-question'
+    );
 
 
-          if (!wasActive) {
+  faqQuestions.forEach(function (button) {
 
-            faqItem.classList.add('active');
+    button.addEventListener(
+      'click',
+      function () {
 
-            button.setAttribute(
-              'aria-expanded',
-              'true'
+        const faqItem =
+          button.closest('.faq-item');
+
+        if (!faqItem) return;
+
+        const wasActive =
+          faqItem.classList.contains(
+            'active'
+          );
+
+
+        /* Close all FAQ items */
+
+        document
+          .querySelectorAll('.faq-item')
+          .forEach(function (item) {
+
+            item.classList.remove(
+              'active'
             );
 
-          }
+            const question =
+              item.querySelector(
+                '.faq-question'
+              );
+
+            if (question) {
+
+              question.setAttribute(
+                'aria-expanded',
+                'false'
+              );
+
+            }
+
+          });
+
+
+        /* Open selected FAQ */
+
+        if (!wasActive) {
+
+          faqItem.classList.add(
+            'active'
+          );
+
+          button.setAttribute(
+            'aria-expanded',
+            'true'
+          );
 
         }
-      );
 
-    });
+      }
+    );
+
+  });
 
 
   /* ============================================
@@ -238,17 +287,26 @@
     );
 
 
+  const prefersReducedMotion =
+    window.matchMedia &&
+    window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+
   if (
     'IntersectionObserver' in window &&
     animatedElements.length > 0 &&
-    !window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches
+    !prefersReducedMotion
   ) {
 
     const observerOptions = {
+
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+
+      rootMargin:
+        '0px 0px -50px 0px'
+
     };
 
 
@@ -259,11 +317,14 @@
           entries.forEach(
             function (entry) {
 
-              if (!entry.isIntersecting) {
+              if (
+                !entry.isIntersecting
+              ) {
                 return;
               }
 
-              entry.target.style.opacity = '1';
+              entry.target.style.opacity =
+                '1';
 
               entry.target.style.transform =
                 'translateY(0)';
@@ -301,26 +362,52 @@
 
   /* ============================================
      FLOATING HEADER / NAVBAR
+     ALWAYS VISIBLE
      ============================================ */
 
   function updateNavbar() {
 
     if (!navbar) return;
 
+
     if (window.pageYOffset > 10) {
 
-      navbar.classList.add('scrolled');
+      navbar.classList.add(
+        'scrolled'
+      );
+
+      navbar.style.background =
+        'rgba(5, 5, 15, 0.97)';
+
+      navbar.style.borderColor =
+        'rgba(139, 92, 246, 0.35)';
 
       navbar.style.boxShadow =
-        '0 8px 30px rgba(0, 0, 0, 0.45)';
+        '0 12px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(139, 92, 246, 0.12)';
 
     } else {
 
-      navbar.classList.remove('scrolled');
+      navbar.classList.remove(
+        'scrolled'
+      );
 
-      navbar.style.boxShadow = 'none';
+      navbar.style.background =
+        'rgba(10, 10, 26, 0.94)';
+
+      navbar.style.borderColor =
+        'rgba(139, 92, 246, 0.22)';
+
+      navbar.style.boxShadow =
+        '0 10px 35px rgba(0, 0, 0, 0.35), 0 0 25px rgba(139, 92, 246, 0.08)';
 
     }
+
+
+    /* Always keep header visible */
+
+    navbar.style.position = 'fixed';
+    navbar.style.visibility = 'visible';
+    navbar.style.opacity = '1';
 
   }
 
@@ -343,20 +430,34 @@
 
   let resizeTimer;
 
+
   window.addEventListener(
     'resize',
     function () {
 
-      clearTimeout(resizeTimer);
+      clearTimeout(
+        resizeTimer
+      );
+
 
       resizeTimer =
-        setTimeout(function () {
+        setTimeout(
+          function () {
 
-          if (window.innerWidth > 768) {
-            closeMenu();
-          }
+            if (
+              window.innerWidth >
+              MOBILE_BREAKPOINT
+            ) {
 
-        }, 150);
+              closeMenu();
+
+            }
+
+            updateNavbar();
+
+          },
+          150
+        );
 
     }
   );
@@ -370,8 +471,13 @@
     'keydown',
     function (event) {
 
-      if (event.key === 'Escape') {
+      if (
+        event.key === 'Escape' ||
+        event.key === 'Esc'
+      ) {
+
         closeMenu();
+
       }
 
     }
@@ -386,9 +492,13 @@
     'click',
     function (event) {
 
-      if (!navLinks || !navToggle) {
+      if (
+        !navLinks ||
+        !navToggle
+      ) {
         return;
       }
+
 
       if (
         !navLinks.classList.contains(
@@ -398,17 +508,26 @@
         return;
       }
 
+
       const clickedInsideMenu =
-        navLinks.contains(event.target);
+        navLinks.contains(
+          event.target
+        );
+
 
       const clickedToggle =
-        navToggle.contains(event.target);
+        navToggle.contains(
+          event.target
+        );
+
 
       if (
         !clickedInsideMenu &&
         !clickedToggle
       ) {
+
         closeMenu();
+
       }
 
     }
@@ -441,9 +560,8 @@
      FAQ KEYBOARD ACCESSIBILITY
      ============================================ */
 
-  document
-    .querySelectorAll('.faq-question')
-    .forEach(function (button) {
+  faqQuestions.forEach(
+    function (button) {
 
       button.addEventListener(
         'keydown',
@@ -463,6 +581,32 @@
         }
       );
 
+    }
+  );
+
+
+  /* ============================================
+     INITIAL FAQ ACCESSIBILITY STATE
+     ============================================ */
+
+  document
+    .querySelectorAll('.faq-question')
+    .forEach(function (button) {
+
+      const faqItem =
+        button.closest('.faq-item');
+
+      const isActive =
+        faqItem &&
+        faqItem.classList.contains(
+          'active'
+        );
+
+      button.setAttribute(
+        'aria-expanded',
+        String(Boolean(isActive))
+      );
+
     });
 
 
@@ -472,8 +616,34 @@
 
   updateMenuIcon(
     navLinks
-      ? navLinks.classList.contains('active')
+      ? navLinks.classList.contains(
+          'active'
+        )
       : false
+  );
+
+
+  /* ============================================
+     BODY MENU SCROLL CONTROL
+     ============================================ */
+
+  const menuStyle =
+    document.createElement('style');
+
+  menuStyle.textContent = `
+
+    @media (max-width: 768px) {
+
+      body.menu-open {
+        overflow: hidden;
+      }
+
+    }
+
+  `;
+
+  document.head.appendChild(
+    menuStyle
   );
 
 
