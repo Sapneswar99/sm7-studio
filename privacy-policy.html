@@ -13,6 +13,7 @@
           rel="stylesheet">
 
     <style>
+
         * {
             box-sizing: border-box;
         }
@@ -24,7 +25,9 @@
         body {
             margin: 0;
             min-height: 100vh;
+
             color: #f4efff;
+
             font-family: 'Poppins', sans-serif;
 
             background:
@@ -36,108 +39,259 @@
                 );
         }
 
+
         /* =========================
            HEADER
         ========================= */
 
         .header {
             width: 100%;
-            height: 86px;
+            height: 82px;
 
             background: rgba(7, 7, 24, 0.97);
-            border-bottom: 1px solid rgba(160, 115, 255, 0.15);
+
+            border-bottom: 1px solid
+                rgba(160, 115, 255, 0.15);
 
             display: flex;
             align-items: center;
 
             padding: 0 20px;
+
             gap: 12px;
 
             position: sticky;
             top: 0;
-            z-index: 100;
+
+            z-index: 1000;
 
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
         }
 
+
         .logo {
-            width: 54px;
-            height: 54px;
+            width: 52px;
+            height: 52px;
 
             border-radius: 50%;
+
             object-fit: cover;
 
             flex-shrink: 0;
         }
 
+
         /* NORMAL FONT */
+
         .brand {
             font-family: 'Poppins', sans-serif;
+
             font-size: 18px;
+
             font-weight: 500;
 
             color: #ffffff;
 
             white-space: nowrap;
+
             overflow: hidden;
+
             text-overflow: ellipsis;
 
             flex: 1;
+
             min-width: 0;
         }
 
-        .download-btn {
+
+        /* =========================
+           MENU BUTTON
+        ========================= */
+
+        .menu-button {
+            width: 42px;
+            height: 42px;
+
+            border: none;
+            outline: none;
+
+            background: transparent;
+
+            color: #ffffff;
+
             display: flex;
             align-items: center;
             justify-content: center;
 
-            background: linear-gradient(
-                135deg,
-                #914cf6,
-                #6864f5
-            );
+            cursor: pointer;
 
-            color: #ffffff;
+            padding: 0;
 
-            padding: 12px 17px;
+            flex-shrink: 0;
 
-            border-radius: 15px;
+            border-radius: 12px;
+
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .menu-button:hover {
+            background: rgba(145, 76, 246, 0.15);
+        }
+
+        .menu-button:active {
+            transform: scale(0.94);
+        }
+
+
+        /* HAMBURGER */
+
+        .hamburger {
+            width: 25px;
+            height: 19px;
+
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: space-between;
+        }
+
+        .hamburger span {
+            display: block;
+
+            width: 100%;
+            height: 3px;
+
+            border-radius: 10px;
+
+            background: #ffffff;
+
+            transition:
+                transform 0.25s ease,
+                opacity 0.2s ease;
+        }
+
+
+        /* =========================
+           HAMBURGER -> X
+        ========================= */
+
+        .menu-button.active .hamburger span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .menu-button.active .hamburger span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-button.active .hamburger span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+
+        /* =========================
+           DROPDOWN MENU
+        ========================= */
+
+        .menu-dropdown {
+            position: fixed;
+
+            top: 92px;
+            right: 20px;
+
+            width: 210px;
+
+            padding: 10px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(45, 27, 85, 0.98),
+                    rgba(13, 12, 31, 0.98)
+                );
+
+            border: 1px solid
+                rgba(159, 111, 255, 0.28);
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 18px 45px rgba(0, 0, 0, 0.45);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            opacity: 0;
+            visibility: hidden;
+
+            transform:
+                translateY(-10px)
+                scale(0.96);
+
+            transform-origin: top right;
+
+            transition:
+                opacity 0.22s ease,
+                visibility 0.22s ease,
+                transform 0.22s ease;
+
+            z-index: 999;
+        }
+
+
+        .menu-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+
+            transform:
+                translateY(0)
+                scale(1);
+        }
+
+
+        .menu-dropdown a {
+            display: block;
+
+            padding: 12px 14px;
+
+            border-radius: 12px;
+
+            color: #eee8ff;
 
             text-decoration: none;
 
             font-family: 'Poppins', sans-serif;
+
             font-size: 14px;
+
             font-weight: 500;
 
-            white-space: nowrap;
-            flex-shrink: 0;
-
-            box-shadow:
-                0 8px 25px rgba(126, 82, 255, 0.28);
-
-            transition: 0.2s ease;
+            transition:
+                background 0.2s ease,
+                color 0.2s ease;
         }
 
-        .download-btn:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
+
+        .menu-dropdown a:hover {
+            background: rgba(145, 76, 246, 0.16);
+
+            color: #b68cff;
         }
 
-        .menu {
-            width: 34px;
-            height: 34px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .menu-dropdown a.active {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(145, 76, 246, 0.20),
+                    rgba(104, 100, 245, 0.12)
+                );
 
-            color: #ffffff;
-
-            font-size: 30px;
-            line-height: 1;
-
-            flex-shrink: 0;
+            color: #b68cff;
         }
 
 
@@ -166,17 +320,21 @@
 
             border-radius: 30px;
 
-            border: 1px solid rgba(153, 93, 255, 0.4);
+            border: 1px solid
+                rgba(153, 93, 255, 0.4);
 
-            background: rgba(104, 67, 175, 0.15);
+            background:
+                rgba(104, 67, 175, 0.15);
 
             color: #b894ff;
 
             font-family: 'Pacifico', cursive;
+
             font-size: 16px;
 
             box-shadow:
-                0 0 25px rgba(128, 78, 255, 0.08);
+                0 0 25px
+                rgba(128, 78, 255, 0.08);
         }
 
 
@@ -204,6 +362,7 @@
             -webkit-text-fill-color: transparent;
         }
 
+
         .subtitle {
             text-align: center;
 
@@ -227,7 +386,8 @@
                     rgba(20, 18, 42, 0.82)
                 );
 
-            border: 1px solid rgba(159, 111, 255, 0.23);
+            border: 1px solid
+                rgba(159, 111, 255, 0.23);
 
             border-radius: 24px;
 
@@ -236,22 +396,28 @@
             margin-bottom: 18px;
 
             box-shadow:
-                0 15px 45px rgba(0, 0, 0, 0.22),
-                inset 0 1px 0 rgba(255, 255, 255, 0.03);
+                0 15px 45px
+                rgba(0, 0, 0, 0.22),
+
+                inset 0 1px 0
+                rgba(255, 255, 255, 0.03);
         }
 
 
         /* NORMAL FONT */
+
         .section-title {
             font-family: 'Poppins', sans-serif;
 
             font-size: 23px;
+
             font-weight: 600;
 
             color: #b68cff;
 
             margin: 0 0 12px;
         }
+
 
         .policy-card p {
             color: #ddd7eb;
@@ -265,10 +431,13 @@
             font-family: 'Poppins', sans-serif;
         }
 
+
         .policy-card ul {
             padding-left: 22px;
+
             margin: 10px 0;
         }
+
 
         .policy-card li {
             color: #d8d1e8;
@@ -282,15 +451,20 @@
             font-family: 'Poppins', sans-serif;
         }
 
+
         .highlight {
             color: #ad7cff;
+
             font-weight: 600;
         }
 
-        .info-box {
-            border: 1px solid rgba(151, 96, 255, 0.3);
 
-            background: rgba(121, 73, 205, 0.09);
+        .info-box {
+            border: 1px solid
+                rgba(151, 96, 255, 0.3);
+
+            background:
+                rgba(121, 73, 205, 0.09);
 
             padding: 16px;
 
@@ -307,6 +481,7 @@
             font-family: 'Poppins', sans-serif;
         }
 
+
         .email {
             color: #ae83ff;
 
@@ -314,6 +489,7 @@
 
             font-family: 'Poppins', sans-serif;
         }
+
 
         .email:hover {
             text-decoration: underline;
@@ -336,6 +512,7 @@
             font-size: 13px;
         }
 
+
         footer a {
             color: #a277ed;
 
@@ -345,6 +522,7 @@
 
             font-family: 'Poppins', sans-serif;
         }
+
 
         footer a:hover {
             text-decoration: underline;
@@ -358,36 +536,50 @@
         @media (max-width: 600px) {
 
             .header {
-                height: 78px;
+                height: 76px;
 
-                padding: 0 14px;
+                padding: 0 15px;
 
-                gap: 9px;
+                gap: 10px;
             }
+
 
             .logo {
                 width: 46px;
                 height: 46px;
             }
 
+
             .brand {
                 font-size: 15px;
+
                 font-weight: 500;
             }
 
-            .download-btn {
-                padding: 10px 12px;
 
-                border-radius: 13px;
-
-                font-size: 12px;
+            .menu-button {
+                width: 42px;
+                height: 42px;
             }
 
-            .menu {
-                width: 30px;
-                height: 30px;
 
-                font-size: 27px;
+            .hamburger {
+                width: 24px;
+                height: 18px;
+            }
+
+
+            .hamburger span {
+                height: 3px;
+            }
+
+
+            .menu-dropdown {
+                top: 86px;
+
+                right: 14px;
+
+                width: 200px;
             }
 
 
@@ -451,29 +643,44 @@
         @media (max-width: 380px) {
 
             .header {
-                padding: 0 10px;
-                gap: 7px;
+                padding: 0 12px;
+
+                gap: 8px;
             }
+
 
             .logo {
-                width: 42px;
-                height: 42px;
+                width: 43px;
+                height: 43px;
             }
+
 
             .brand {
-                font-size: 13px;
+                font-size: 14px;
             }
 
-            .download-btn {
-                padding: 9px 10px;
-                font-size: 11px;
+
+            .menu-button {
+                width: 40px;
+                height: 40px;
             }
 
-            .menu {
-                width: 27px;
-                font-size: 25px;
+
+            .hamburger {
+                width: 23px;
+                height: 17px;
+            }
+
+
+            .menu-dropdown {
+                right: 10px;
+
+                width: calc(100% - 20px);
+
+                max-width: 210px;
             }
         }
+
     </style>
 </head>
 
@@ -497,19 +704,58 @@
         Super Video Player
     </div>
 
-    <a
-        href="index.html#download"
-        class="download-btn"
+    <!-- CLICKABLE MENU BUTTON -->
+    <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Open menu"
+        aria-expanded="false"
+        type="button"
     >
-        ↓&nbsp; Download
-    </a>
 
-    <div class="menu">
-        ☰
-    </div>
+        <span class="hamburger">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </span>
+
+    </button>
 
 </header>
 
+
+<!-- =========================
+     DROPDOWN MENU
+========================= -->
+
+<nav
+    class="menu-dropdown"
+    id="menuDropdown"
+    aria-hidden="true"
+>
+
+    <a href="index.html">
+        Home
+    </a>
+
+    <a
+        href="privacy-policy.html"
+        class="active"
+    >
+        Privacy Policy
+    </a>
+
+    <a href="terms.html">
+        Terms
+    </a>
+
+    <a href="contact.html">
+        Contact
+    </a>
+
+</nav>
 
 
 <!-- =========================
@@ -534,8 +780,8 @@
     </p>
 
 
-
     <!-- 1 -->
+
     <section class="policy-card">
 
         <h2 class="section-title">
@@ -560,8 +806,8 @@
     </section>
 
 
-
     <!-- 2 -->
+
     <section class="policy-card">
 
         <h2 class="section-title">
@@ -581,8 +827,8 @@
     </section>
 
 
-
     <!-- 3 -->
+
     <section class="policy-card">
 
         <h2 class="section-title">
@@ -603,8 +849,8 @@
     </section>
 
 
-
     <!-- 4 -->
+
     <section class="policy-card">
 
         <h2 class="section-title">
@@ -631,8 +877,8 @@
     </section>
 
 
-
     <!-- 5 -->
+
     <section class="policy-card">
 
         <h2 class="section-title">
@@ -641,10 +887,7 @@
 
         <p>
             Our website may display advertisements provided by
-            third-party advertising services, including
-            <span class="highlight">
-                Google AdSense
-            </span>.
+            third-party advertising services.
         </p>
 
         <p>
@@ -666,8 +909,8 @@
     </section>
 
 
-
     <!-- 6 -->
+
     <section class="policy-card">
 
         <h2 class="section-title">
@@ -693,8 +936,8 @@
     </section>
 
 
-
     <!-- 7 -->
+
     <section class="policy-card">
 
         <h2 class="section-title">
@@ -719,8 +962,8 @@
     </section>
 
 
-
     <!-- 8 -->
+
     <section class="policy-card">
 
         <h2 class="section-title">
@@ -741,8 +984,8 @@
     </section>
 
 
-
     <!-- 9 -->
+
     <section class="policy-card">
 
         <h2 class="section-title">
@@ -763,8 +1006,8 @@
     </section>
 
 
-
     <!-- 10 -->
+
     <section class="policy-card">
 
         <h2 class="section-title">
@@ -784,8 +1027,8 @@
     </section>
 
 
-
     <!-- 11 -->
+
     <section class="policy-card">
 
         <h2 class="section-title">
@@ -806,8 +1049,8 @@
     </section>
 
 
-
     <!-- 12 -->
+
     <section class="policy-card">
 
         <h2 class="section-title">
@@ -826,8 +1069,8 @@
     </section>
 
 
-
     <!-- 13 -->
+
     <section class="policy-card">
 
         <h2 class="section-title">
@@ -864,7 +1107,6 @@
 </main>
 
 
-
 <!-- =========================
      FOOTER
 ========================= -->
@@ -898,6 +1140,127 @@
     </a>
 
 </footer>
+
+
+<!-- =========================
+     MENU JAVASCRIPT
+========================= -->
+
+<script>
+
+    const menuButton = document.getElementById("menuButton");
+    const menuDropdown = document.getElementById("menuDropdown");
+
+
+    /* Open / Close Menu */
+
+    menuButton.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+        const isOpen =
+            menuDropdown.classList.toggle("show");
+
+        menuButton.classList.toggle(
+            "active",
+            isOpen
+        );
+
+        menuButton.setAttribute(
+            "aria-expanded",
+            isOpen
+        );
+
+        menuDropdown.setAttribute(
+            "aria-hidden",
+            !isOpen
+        );
+
+    });
+
+
+    /* Close when clicking outside */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !menuDropdown.contains(event.target) &&
+            !menuButton.contains(event.target)
+        ) {
+
+            menuDropdown.classList.remove("show");
+
+            menuButton.classList.remove("active");
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            menuDropdown.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+        }
+
+    });
+
+
+    /* Close menu after selecting a link */
+
+    const menuLinks =
+        menuDropdown.querySelectorAll("a");
+
+
+    menuLinks.forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+            menuDropdown.classList.remove("show");
+
+            menuButton.classList.remove("active");
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            menuDropdown.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+        });
+
+    });
+
+
+    /* Close menu with Escape */
+
+    document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape") {
+
+            menuDropdown.classList.remove("show");
+
+            menuButton.classList.remove("active");
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            menuDropdown.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+        }
+
+    });
+
+</script>
 
 
 </body>
