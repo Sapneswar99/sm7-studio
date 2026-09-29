@@ -16,6 +16,7 @@
     <!-- Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet"
@@ -27,20 +28,197 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     >
 
-    <!-- SAME HOME PAGE CSS -->
-    <link rel="stylesheet" href="style.css">
-
     <style>
 
-        /* =========================================
-           PRIVACY POLICY PAGE
-        ========================================= */
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at 50% 35%,
+                    rgba(57, 23, 86, 0.22),
+                    transparent 38%
+                ),
+                #090616;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+
+            padding: 16px 15px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #111119 0%,
+                    #0d0a18 100%
+                );
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1200px;
+            min-height: 114px;
+
+            margin: 0 auto;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 32px;
+
+            border: 1px solid rgba(143, 82, 255, 0.42);
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(7, 7, 20, 0.98),
+                    rgba(6, 5, 17, 0.98)
+                );
+
+            box-shadow:
+                0 10px 35px rgba(0, 0, 0, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.025);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+
+            color: #ffffff;
+            text-decoration: none;
+
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .logo span {
+            color: #ffffff;
+            font-size: 28px;
+            line-height: 1.2;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 28px;
+
+            margin-left: auto;
+            margin-right: 30px;
+
+            list-style: none;
+        }
+
+        .nav-links li {
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 500;
+
+            transition:
+                color 0.2s ease,
+                opacity 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #b68cff;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .nav-toggle {
+            width: 48px;
+            height: 48px;
+
+            border: 0;
+            outline: none;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: transparent;
+            color: #ffffff;
+
+            cursor: pointer;
+
+            font-size: 30px;
+
+            border-radius: 12px;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease;
+        }
+
+        .nav-toggle:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #b68cff;
+        }
+
+
+        /* =====================================================
+           PRIVACY PAGE
+        ===================================================== */
 
         .privacy-page {
             width: min(92%, 900px);
+
             margin: 0 auto;
-            padding-top: 145px;
-            padding-bottom: 75px;
+
+            padding-top: 205px;
+            padding-bottom: 80px;
         }
 
         .privacy-intro {
@@ -52,63 +230,89 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+
             gap: 8px;
+
             padding: 8px 17px;
+
             margin-bottom: 19px;
+
             border-radius: 999px;
+
             border: 1px solid rgba(153, 93, 255, 0.30);
+
             background: rgba(104, 67, 175, 0.12);
+
             color: #b894ff;
+
             font-size: 11px;
             font-weight: 600;
         }
 
         .privacy-title {
             margin: 0;
-            font-family: 'Poppins', sans-serif;
+
             font-size: clamp(34px, 5vw, 50px);
             line-height: 1.12;
+
             font-weight: 800;
+
             letter-spacing: -1.4px;
-            background: linear-gradient(
-                90deg,
-                #ffffff 0%,
-                #d8c4ff 45%,
-                #a66cff 100%
-            );
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff 0%,
+                    #d8c4ff 45%,
+                    #a66cff 100%
+                );
+
             -webkit-background-clip: text;
+            background-clip: text;
+
             -webkit-text-fill-color: transparent;
         }
 
         .privacy-subtitle {
             margin: 13px auto 0;
+
             max-width: 620px;
+
             color: #aaa1c5;
-            font-family: 'Poppins', sans-serif;
+
             font-size: 12px;
             line-height: 1.7;
             font-weight: 400;
         }
 
-        /* =========================================
+
+        /* =====================================================
            POLICY CARDS
-        ========================================= */
+        ===================================================== */
 
         .privacy-card {
             position: relative;
             overflow: hidden;
-            background: linear-gradient(
-                145deg,
-                rgba(45, 31, 73, 0.72),
-                rgba(17, 16, 38, 0.88)
-            );
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(45, 31, 73, 0.72),
+                    rgba(17, 16, 38, 0.88)
+                );
+
             border: 1px solid rgba(159, 111, 255, 0.16);
+
             border-radius: 20px;
+
             padding: 27px 29px;
+
             margin-bottom: 16px;
+
             box-shadow:
                 0 15px 45px rgba(0, 0, 0, 0.18),
                 inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
             transition:
                 border-color 0.25s ease,
                 transform 0.25s ease,
@@ -117,53 +321,74 @@
 
         .privacy-card::before {
             content: "";
+
             position: absolute;
+
             width: 130px;
             height: 130px;
+
             top: -85px;
             right: -70px;
+
             border-radius: 50%;
+
             background: rgba(145, 76, 246, 0.09);
+
             filter: blur(20px);
+
             pointer-events: none;
         }
 
         .privacy-card:hover {
             border-color: rgba(159, 111, 255, 0.27);
+
             transform: translateY(-2px);
-            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.23);
+
+            box-shadow:
+                0 20px 48px rgba(0, 0, 0, 0.23);
         }
 
         .privacy-section-title {
             position: relative;
+
             margin: 0 0 12px;
+
             color: #b68cff;
-            font-family: 'Poppins', sans-serif;
+
             font-size: 19px;
             font-weight: 700;
+
             line-height: 1.35;
         }
 
         .privacy-section-title::after {
             content: "";
+
             display: block;
+
             width: 30px;
             height: 2px;
+
             margin-top: 8px;
+
             border-radius: 10px;
-            background: linear-gradient(
-                90deg,
-                #914cf6,
-                transparent
-            );
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #914cf6,
+                    transparent
+                );
         }
 
         .privacy-card p {
             color: #d8d1e8;
-            font-family: 'Poppins', sans-serif;
+
             font-size: 13px;
             font-weight: 400;
+
             line-height: 1.85;
+
             margin: 8px 0;
         }
 
@@ -174,24 +399,33 @@
 
         .privacy-info-box {
             margin-top: 17px;
+
             padding: 14px 16px;
+
             border-radius: 14px;
+
             border: 1px solid rgba(151, 96, 255, 0.22);
-            background: linear-gradient(
-                135deg,
-                rgba(121, 73, 205, 0.10),
-                rgba(87, 62, 143, 0.06)
-            );
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(121, 73, 205, 0.10),
+                    rgba(87, 62, 143, 0.06)
+                );
+
             color: #d8d0e9;
-            font-family: 'Poppins', sans-serif;
+
             font-size: 12px;
             font-weight: 400;
+
             line-height: 1.75;
         }
 
         .privacy-email {
             color: #ae83ff;
+
             text-decoration: none;
+
             font-weight: 500;
         }
 
@@ -200,44 +434,14 @@
             text-decoration: underline;
         }
 
-        /* =========================================
-           PRIVACY PAGE NAV MENU
-           ONLY PRIVACY PAGE OPTIONS
-        ========================================= */
 
-        .privacy-nav-links {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .privacy-nav-links li {
-            list-style: none;
-        }
-
-        .privacy-nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .privacy-nav-links a:hover,
-        .privacy-nav-links a.active {
-            color: #b68cff;
-        }
-
-        /* =========================================
-           FOOTER - SAME AS REFERENCE IMAGE
-        ========================================= */
+        /* =====================================================
+           FOOTER
+        ===================================================== */
 
         .privacy-footer {
             width: 100%;
+
             background:
                 linear-gradient(
                     180deg,
@@ -245,15 +449,24 @@
                     #11051d 35%,
                     #0b0415 100%
                 );
+
             padding: 72px 32px 28px;
-            box-sizing: border-box;
         }
 
         .privacy-footer-container {
             width: min(100%, 1100px);
+
             margin: 0 auto;
+
             display: grid;
-            grid-template-columns: 1.35fr 1fr 1fr 1fr 1.25fr;
+
+            grid-template-columns:
+                1.35fr
+                1fr
+                1fr
+                1fr
+                1.25fr;
+
             gap: 45px;
         }
 
@@ -264,7 +477,9 @@
         .privacy-footer-logo {
             display: flex;
             align-items: center;
+
             gap: 15px;
+
             color: #ffffff;
             text-decoration: none;
         }
@@ -272,39 +487,50 @@
         .privacy-footer-logo img {
             width: 70px;
             height: 70px;
+
             object-fit: contain;
+
             flex-shrink: 0;
         }
 
         .privacy-footer-logo span {
             color: #ffffff;
-            font-family: 'Poppins', sans-serif;
+
             font-size: 22px;
             font-weight: 800;
+
             line-height: 1.2;
         }
 
         .privacy-footer-brand > p {
             margin: 24px 0 30px;
+
             color: #aaa0ba;
-            font-family: 'Poppins', sans-serif;
+
             font-size: 15px;
             font-weight: 400;
         }
 
-        /* SOCIAL ICON BOXES */
+
+        /* =====================================================
+           SOCIAL ICONS
+        ===================================================== */
 
         .privacy-footer-social {
             display: flex;
             align-items: center;
+
             gap: 14px;
+
             margin: 0;
             padding: 0;
+
             list-style: none;
         }
 
         .privacy-footer-social li {
             list-style: none;
+
             margin: 0;
             padding: 0;
         }
@@ -312,20 +538,30 @@
         .privacy-footer-social a {
             width: 64px;
             height: 64px;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             border-radius: 16px;
+
             border: 1px solid rgba(180, 132, 255, 0.18);
+
             background: rgba(255, 255, 255, 0.035);
+
             text-decoration: none;
+
             transition: 0.25s ease;
         }
 
         .privacy-footer-social a:hover {
             transform: translateY(-3px);
-            border-color: rgba(180, 132, 255, 0.35);
-            background: rgba(255, 255, 255, 0.06);
+
+            border-color:
+                rgba(180, 132, 255, 0.35);
+
+            background:
+                rgba(255, 255, 255, 0.06);
         }
 
         .privacy-footer-social .fa-x-twitter {
@@ -343,34 +579,42 @@
             font-size: 27px;
         }
 
-        /* FOOTER COLUMNS */
+
+        /* =====================================================
+           FOOTER COLUMNS
+        ===================================================== */
 
         .privacy-footer-column h3 {
             margin: 4px 0 26px;
+
             color: #ffffff;
-            font-family: 'Poppins', sans-serif;
+
             font-size: 18px;
             font-weight: 700;
         }
 
         .privacy-footer-column ul {
             list-style: none;
+
             margin: 0;
             padding: 0;
         }
 
         .privacy-footer-column li {
             list-style: none;
+
             margin: 0 0 19px;
             padding: 0;
         }
 
         .privacy-footer-column a {
             color: #a67bc2;
+
             text-decoration: none;
-            font-family: 'Poppins', sans-serif;
+
             font-size: 15px;
             font-weight: 400;
+
             transition: color 0.2s ease;
         }
 
@@ -378,64 +622,99 @@
             color: #c9a4e8;
         }
 
-        /* DIVIDER */
+
+        /* =====================================================
+           FOOTER DIVIDER
+        ===================================================== */
 
         .privacy-footer-divider {
             width: min(100%, 1100px);
+
             margin: 62px auto 0;
+
             display: flex;
             align-items: center;
+
             gap: 38px;
         }
 
         .privacy-footer-divider span {
             flex: 1;
+
             height: 1px;
-            background: rgba(153, 105, 205, 0.20);
+
+            background:
+                rgba(153, 105, 205, 0.20);
         }
 
         .privacy-footer-divider img {
             width: 50px;
             height: 50px;
+
             object-fit: contain;
         }
 
-        /* FOOTER BOTTOM */
+
+        /* =====================================================
+           FOOTER BOTTOM
+        ===================================================== */
 
         .privacy-footer-bottom {
             width: min(100%, 1100px);
+
             margin: 40px auto 0;
+
             padding-top: 34px;
-            border-top: 1px solid rgba(153, 105, 205, 0.13);
+
+            border-top:
+                1px solid rgba(153, 105, 205, 0.13);
+
             text-align: center;
         }
 
         .privacy-footer-credit {
             color: #80778d;
-            font-family: 'Poppins', sans-serif;
+
             font-size: 14px;
             font-weight: 400;
+
             margin-bottom: 23px;
         }
 
         .privacy-footer-credit span {
             color: #e51b4f;
+
             font-size: 18px;
+
             margin: 0 3px;
         }
 
         .privacy-footer-copyright {
             color: #80778d;
-            font-family: 'Poppins', sans-serif;
+
             font-size: 14px;
             font-weight: 400;
         }
 
-        /* =========================================
-           MOBILE
-        ========================================= */
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
 
         @media (max-width: 900px) {
+
+            .nav-container {
+                min-height: 100px;
+                padding: 0 25px;
+            }
+
+            .logo span {
+                font-size: 24px;
+            }
+
+            .nav-links {
+                gap: 18px;
+            }
 
             .privacy-footer-container {
                 grid-template-columns: repeat(2, 1fr);
@@ -464,11 +743,134 @@
             }
         }
 
+
+        /* =====================================================
+           MOBILE NAV
+        ===================================================== */
+
         @media (max-width: 768px) {
+
+            .navbar {
+                padding: 16px 15px;
+            }
+
+            .nav-container {
+                position: relative;
+
+                min-height: 114px;
+
+                padding:
+                    0 20px;
+
+                border-radius: 29px;
+            }
+
+            .logo {
+                gap: 14px;
+            }
+
+            .logo img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .logo span {
+                font-size: 22px;
+            }
+
+            .nav-toggle {
+                width: 50px;
+                height: 50px;
+
+                font-size: 30px;
+            }
+
+            .nav-links {
+                position: absolute;
+
+                top: calc(100% + 10px);
+
+                left: 0;
+                right: 0;
+
+                width: 100%;
+
+                display: flex;
+                flex-direction: column;
+
+                align-items: stretch;
+
+                gap: 0;
+
+                margin: 0;
+                padding: 10px;
+
+                border-radius: 20px;
+
+                border:
+                    1px solid rgba(143, 82, 255, 0.30);
+
+                background:
+                    rgba(8, 6, 20, 0.98);
+
+                box-shadow:
+                    0 18px 40px rgba(0, 0, 0, 0.35);
+
+                opacity: 0;
+                visibility: hidden;
+
+                transform:
+                    translateY(-8px);
+
+                pointer-events: none;
+
+                transition:
+                    opacity 0.2s ease,
+                    visibility 0.2s ease,
+                    transform 0.2s ease;
+            }
+
+            .nav-links.active {
+                opacity: 1;
+                visibility: visible;
+
+                transform:
+                    translateY(0);
+
+                pointer-events: auto;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links a {
+                display: block;
+
+                width: 100%;
+
+                padding: 14px 16px;
+
+                border-radius: 12px;
+
+                font-size: 14px;
+            }
+
+            .nav-links a:hover,
+            .nav-links a.active {
+                background:
+                    rgba(145, 76, 246, 0.10);
+
+                color: #b68cff;
+            }
+
+
+            /* PRIVACY */
 
             .privacy-page {
                 width: 91%;
-                padding-top: 122px;
+
+                padding-top: 175px;
                 padding-bottom: 52px;
             }
 
@@ -478,23 +880,29 @@
 
             .privacy-badge {
                 font-size: 10px;
+
                 padding: 7px 14px;
+
                 margin-bottom: 15px;
             }
 
             .privacy-title {
                 font-size: 34px;
+
                 letter-spacing: -0.9px;
             }
 
             .privacy-subtitle {
                 font-size: 11px;
+
                 margin-top: 11px;
             }
 
             .privacy-card {
                 padding: 21px;
+
                 border-radius: 17px;
+
                 margin-bottom: 13px;
             }
 
@@ -504,20 +912,29 @@
 
             .privacy-card p {
                 font-size: 12.5px;
+
                 line-height: 1.8;
             }
 
             .privacy-info-box {
                 font-size: 11.5px;
+
                 padding: 13px 14px;
             }
 
+
+            /* FOOTER */
+
             .privacy-footer {
-                padding: 55px 32px 28px;
+                padding:
+                    55px
+                    32px
+                    28px;
             }
 
             .privacy-footer-container {
                 grid-template-columns: 1fr 1fr;
+
                 gap: 42px 35px;
             }
 
@@ -539,7 +956,11 @@
             }
 
             .privacy-footer-brand > p {
-                margin: 22px 0 27px;
+                margin:
+                    22px
+                    0
+                    27px;
+
                 font-size: 14px;
             }
 
@@ -550,6 +971,7 @@
 
             .privacy-footer-column h3 {
                 font-size: 17px;
+
                 margin-bottom: 23px;
             }
 
@@ -563,6 +985,7 @@
 
             .privacy-footer-divider {
                 margin-top: 54px;
+
                 gap: 25px;
             }
 
@@ -573,6 +996,7 @@
 
             .privacy-footer-bottom {
                 margin-top: 30px;
+
                 padding-top: 32px;
             }
 
@@ -582,11 +1006,50 @@
             }
         }
 
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
         @media (max-width: 480px) {
+
+            .navbar {
+                padding:
+                    16px
+                    15px;
+            }
+
+            .nav-container {
+                min-height: 114px;
+
+                padding:
+                    0
+                    18px;
+
+                border-radius: 28px;
+            }
+
+            .logo {
+                gap: 12px;
+            }
+
+            .logo img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .logo span {
+                font-size: 20px;
+            }
+
+            .nav-toggle {
+                font-size: 29px;
+            }
 
             .privacy-page {
                 width: 90%;
-                padding-top: 113px;
+
+                padding-top: 172px;
             }
 
             .privacy-title {
@@ -599,6 +1062,7 @@
 
             .privacy-card {
                 padding: 18px;
+
                 border-radius: 16px;
             }
 
@@ -615,11 +1079,15 @@
             }
 
             .privacy-footer {
-                padding: 48px 32px 25px;
+                padding:
+                    48px
+                    32px
+                    25px;
             }
 
             .privacy-footer-container {
                 grid-template-columns: 1fr 1fr;
+
                 gap: 38px 30px;
             }
 
@@ -663,11 +1131,26 @@
             }
         }
 
+
+        /* =====================================================
+           VERY SMALL MOBILE
+        ===================================================== */
+
         @media (max-width: 360px) {
+
+            .logo span {
+                font-size: 18px;
+            }
+
+            .nav-container {
+                padding-left: 14px;
+                padding-right: 14px;
+            }
 
             .privacy-page {
                 width: 91%;
-                padding-top: 108px;
+
+                padding-top: 168px;
             }
 
             .privacy-title {
@@ -713,11 +1196,18 @@
             }
         }
 
+
+        /* =====================================================
+           TOUCH DEVICES
+        ===================================================== */
+
         @media (hover: none) {
 
             .privacy-card:hover {
                 transform: none;
-                border-color: rgba(159, 111, 255, 0.16);
+
+                border-color:
+                    rgba(159, 111, 255, 0.16);
             }
 
             .privacy-footer-social a:hover {
@@ -725,14 +1215,26 @@
             }
         }
 
+
+        /* =====================================================
+           REDUCED MOTION
+        ===================================================== */
+
         @media (prefers-reduced-motion: reduce) {
 
             *,
             *::before,
             *::after {
-                transition-duration: 0.01ms !important;
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+
+                transition-duration:
+                    0.01ms !important;
+
+                animation-duration:
+                    0.01ms !important;
+
+                animation-iteration-count:
+                    1 !important;
             }
         }
 
@@ -741,10 +1243,11 @@
 
 <body id="top">
 
-<!-- =========================================
-     SAME HOME PAGE NAVBAR
-     PRIVACY PAGE MENU OPTIONS
-========================================= -->
+
+<!-- =====================================================
+     NAVBAR
+     PRIVACY POLICY PAGE OPTIONS
+===================================================== -->
 
 <nav class="navbar" aria-label="Main Navigation">
 
@@ -755,6 +1258,7 @@
             class="logo"
             aria-label="Super Video Player Home"
         >
+
             <img
                 src="https://i.ibb.co/m598JHpc/Super-Video-Player-Logo.png"
                 width="50"
@@ -762,11 +1266,14 @@
                 alt="Super Video Player Logo"
             >
 
-            <span>Super Video Player</span>
+            <span>
+                Super Video Player
+            </span>
+
         </a>
 
 
-        <ul class="privacy-nav-links" id="navLinks">
+        <ul class="nav-links" id="navLinks">
 
             <li>
                 <a href="index.html">
@@ -809,7 +1316,9 @@
                 aria-expanded="false"
                 aria-controls="navLinks"
             >
+
                 <i class="fas fa-bars"></i>
+
             </button>
 
         </div>
@@ -819,22 +1328,27 @@
 </nav>
 
 
-<!-- =========================================
-     PRIVACY POLICY
-========================================= -->
+<!-- =====================================================
+     PRIVACY POLICY CONTENT
+===================================================== -->
 
 <main class="privacy-page">
 
     <div class="privacy-intro">
 
         <div class="privacy-badge">
+
             <i class="fa-solid fa-shield-halved"></i>
+
             Your Privacy Matters
+
         </div>
+
 
         <h1 class="privacy-title">
             Privacy Policy
         </h1>
+
 
         <p class="privacy-subtitle">
             Last Updated: September 29, 2026
@@ -960,10 +1474,12 @@
         </p>
 
         <div class="privacy-info-box">
+
             Advertising is available on the
             Super Video Player website only.
             The Super Video Player Android application
             does not contain advertisements.
+
         </div>
 
     </section>
@@ -1143,6 +1659,7 @@
         </p>
 
         <p>
+
             <span class="privacy-highlight">
                 Super Video Player
             </span>
@@ -1157,6 +1674,7 @@
             >
                 smstudioindia91@gmail.com
             </a>
+
         </p>
 
     </section>
@@ -1164,14 +1682,14 @@
 </main>
 
 
-<!-- =========================================
-     FOOTER
-     SAME AS REFERENCE IMAGE
-========================================= -->
+<!-- =====================================================
+     FOOTER - REFERENCE IMAGE STYLE
+===================================================== -->
 
 <footer class="privacy-footer">
 
     <div class="privacy-footer-container">
+
 
         <!-- BRAND -->
 
@@ -1194,12 +1712,13 @@
 
             </a>
 
+
             <p>
                 Play anything. Anywhere.
             </p>
 
 
-            <!-- SOCIAL ICONS -->
+            <!-- SOCIAL -->
 
             <ul class="privacy-footer-social">
 
@@ -1315,7 +1834,10 @@
             <ul>
 
                 <li>
-                    <a href="privacy-policy.html">
+                    <a
+                        href="privacy-policy.html"
+                        aria-current="page"
+                    >
                         Privacy Policy
                     </a>
                 </li>
@@ -1384,7 +1906,7 @@
     </div>
 
 
-    <!-- FOOTER DIVIDER -->
+    <!-- DIVIDER -->
 
     <div class="privacy-footer-divider">
 
@@ -1400,7 +1922,7 @@
     </div>
 
 
-    <!-- FOOTER BOTTOM -->
+    <!-- BOTTOM -->
 
     <div class="privacy-footer-bottom">
 
@@ -1417,8 +1939,230 @@
 </footer>
 
 
-<!-- SAME HOME PAGE JAVASCRIPT -->
-<script src="script.js"></script>
+<!-- =====================================================
+     JAVASCRIPT - INLINE
+===================================================== -->
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const navToggle =
+            document.getElementById("navToggle");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+
+        /* =========================================
+           MOBILE MENU
+        ========================================= */
+
+        if (navToggle && navLinks) {
+
+            navToggle.addEventListener("click", function () {
+
+                const isOpen =
+                    navLinks.classList.toggle("active");
+
+                navToggle.setAttribute(
+                    "aria-expanded",
+                    isOpen ? "true" : "false"
+                );
+
+                navToggle.setAttribute(
+                    "aria-label",
+                    isOpen
+                        ? "Close menu"
+                        : "Open menu"
+                );
+
+
+                const icon =
+                    navToggle.querySelector("i");
+
+                if (icon) {
+
+                    icon.classList.toggle(
+                        "fa-bars",
+                        !isOpen
+                    );
+
+                    icon.classList.toggle(
+                        "fa-xmark",
+                        isOpen
+                    );
+
+                }
+
+            });
+
+
+            /* Close menu after clicking a link */
+
+            navLinks
+                .querySelectorAll("a")
+                .forEach(function (link) {
+
+                    link.addEventListener(
+                        "click",
+                        function () {
+
+                            navLinks.classList.remove(
+                                "active"
+                            );
+
+                            navToggle.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+
+                            navToggle.setAttribute(
+                                "aria-label",
+                                "Open menu"
+                            );
+
+                            const icon =
+                                navToggle.querySelector("i");
+
+                            if (icon) {
+
+                                icon.classList.remove(
+                                    "fa-xmark"
+                                );
+
+                                icon.classList.add(
+                                    "fa-bars"
+                                );
+
+                            }
+
+                        }
+                    );
+
+                });
+
+
+            /* Close menu when clicking outside */
+
+            document.addEventListener(
+                "click",
+                function (event) {
+
+                    if (
+                        !navLinks.contains(event.target) &&
+                        !navToggle.contains(event.target)
+                    ) {
+
+                        navLinks.classList.remove(
+                            "active"
+                        );
+
+                        navToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                        navToggle.setAttribute(
+                            "aria-label",
+                            "Open menu"
+                        );
+
+                        const icon =
+                            navToggle.querySelector("i");
+
+                        if (icon) {
+
+                            icon.classList.remove(
+                                "fa-xmark"
+                            );
+
+                            icon.classList.add(
+                                "fa-bars"
+                            );
+
+                        }
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /* =========================================
+           ESC KEY CLOSE MENU
+        ========================================= */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (event.key === "Escape") {
+
+                    navLinks.classList.remove(
+                        "active"
+                    );
+
+                    navToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                    navToggle.setAttribute(
+                        "aria-label",
+                        "Open menu"
+                    );
+
+                    const icon =
+                        navToggle.querySelector("i");
+
+                    if (icon) {
+
+                        icon.classList.remove(
+                            "fa-xmark"
+                        );
+
+                        icon.classList.add(
+                            "fa-bars"
+                        );
+
+                    }
+
+                }
+
+            }
+        );
+
+
+        /* =========================================
+           BACK TO TOP
+        ========================================= */
+
+        document
+            .querySelectorAll('a[href="#top"]')
+            .forEach(function (link) {
+
+                link.addEventListener(
+                    "click",
+                    function (event) {
+
+                        event.preventDefault();
+
+                        window.scrollTo({
+                            top: 0,
+                            behavior: "smooth"
+                        });
+
+                    }
+                );
+
+            });
+
+    });
+
+</script>
 
 </body>
 </html>
