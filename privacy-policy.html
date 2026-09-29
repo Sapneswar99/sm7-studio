@@ -30,13 +30,13 @@
     <!-- PRIVACY PAGE CSS -->
     <style>
 
-        /* =========================================
-           PRIVACY POLICY PAGE
-        ========================================= */
-
         body {
             font-family: 'Poppins', sans-serif;
         }
+
+        /* =========================================
+           PRIVACY POLICY PAGE
+        ========================================= */
 
         .privacy-page {
             width: min(92%, 900px);
@@ -44,7 +44,6 @@
             padding-top: 145px;
             padding-bottom: 75px;
         }
-
 
         /* =========================================
            PAGE INTRO
@@ -60,60 +59,40 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-
             padding: 8px 17px;
             margin-bottom: 19px;
-
             border-radius: 999px;
-
             border: 1px solid rgba(153, 93, 255, 0.30);
-
             background: rgba(104, 67, 175, 0.12);
-
             color: #b894ff;
-
             font-size: 11px;
             font-weight: 600;
-
-            box-shadow:
-                0 0 25px rgba(128, 78, 255, 0.06);
+            box-shadow: 0 0 25px rgba(128, 78, 255, 0.06);
         }
 
         .privacy-title {
             margin: 0;
-
             font-size: clamp(34px, 5vw, 50px);
-
             line-height: 1.12;
-
             font-weight: 800;
-
             letter-spacing: -1.4px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #ffffff 0%,
-                    #d8c4ff 45%,
-                    #a66cff 100%
-                );
-
+            background: linear-gradient(
+                90deg,
+                #ffffff 0%,
+                #d8c4ff 45%,
+                #a66cff 100%
+            );
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .privacy-subtitle {
             margin: 13px auto 0;
-
             max-width: 620px;
-
             color: #aaa1c5;
-
             font-size: 12px;
-
             line-height: 1.7;
         }
-
 
         /* =========================================
            POLICY CARDS
@@ -121,28 +100,19 @@
 
         .privacy-card {
             position: relative;
-
             overflow: hidden;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(45, 31, 73, 0.72),
-                    rgba(17, 16, 38, 0.88)
-                );
-
+            background: linear-gradient(
+                145deg,
+                rgba(45, 31, 73, 0.72),
+                rgba(17, 16, 38, 0.88)
+            );
             border: 1px solid rgba(159, 111, 255, 0.16);
-
             border-radius: 20px;
-
             padding: 27px 29px;
-
             margin-bottom: 16px;
-
             box-shadow:
                 0 15px 45px rgba(0, 0, 0, 0.18),
                 inset 0 1px 0 rgba(255, 255, 255, 0.025);
-
             transition:
                 border-color 0.25s ease,
                 transform 0.25s ease,
@@ -151,33 +121,22 @@
 
         .privacy-card::before {
             content: "";
-
             position: absolute;
-
             width: 130px;
             height: 130px;
-
             top: -85px;
             right: -70px;
-
             border-radius: 50%;
-
             background: rgba(145, 76, 246, 0.09);
-
             filter: blur(20px);
-
             pointer-events: none;
         }
 
         .privacy-card:hover {
             border-color: rgba(159, 111, 255, 0.27);
-
             transform: translateY(-2px);
-
-            box-shadow:
-                0 20px 48px rgba(0, 0, 0, 0.23);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.23);
         }
-
 
         /* =========================================
            SECTION TITLE
@@ -185,47 +144,32 @@
 
         .privacy-section-title {
             position: relative;
-
             margin: 0 0 12px;
-
             color: #b68cff;
-
             font-size: 19px;
-
             font-weight: 700;
-
             line-height: 1.35;
         }
 
         .privacy-section-title::after {
             content: "";
-
             display: block;
-
             width: 30px;
             height: 2px;
-
             margin-top: 8px;
-
             border-radius: 10px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #914cf6,
-                    transparent
-                );
+            background: linear-gradient(
+                90deg,
+                #914cf6,
+                transparent
+            );
         }
 
         .privacy-card p {
             color: #d8d1e8;
-
             font-size: 13px;
-
             line-height: 1.85;
-
             margin: 8px 0;
-
             font-weight: 400;
         }
 
@@ -236,11 +180,8 @@
 
         .privacy-card li {
             color: #d8d1e8;
-
             font-size: 13px;
-
             margin: 8px 0;
-
             line-height: 1.75;
         }
 
@@ -249,34 +190,24 @@
             font-weight: 600;
         }
 
-
         /* =========================================
            INFO BOX
         ========================================= */
 
         .privacy-info-box {
             margin-top: 17px;
-
             padding: 14px 16px;
-
             border-radius: 14px;
-
             border: 1px solid rgba(151, 96, 255, 0.22);
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(121, 73, 205, 0.10),
-                    rgba(87, 62, 143, 0.06)
-                );
-
+            background: linear-gradient(
+                135deg,
+                rgba(121, 73, 205, 0.10),
+                rgba(87, 62, 143, 0.06)
+            );
             color: #d8d0e9;
-
             font-size: 12px;
-
             line-height: 1.75;
         }
-
 
         /* =========================================
            EMAIL
@@ -284,11 +215,8 @@
 
         .privacy-email {
             color: #ae83ff;
-
             text-decoration: none;
-
             font-weight: 500;
-
             transition: color 0.2s ease;
         }
 
@@ -297,16 +225,13 @@
             text-decoration: underline;
         }
 
-
         /* =========================================
-           PRIVACY PAGE NAV MENU
-           ONLY PAGE-RELATED OPTIONS
+           ACTIVE PRIVACY MENU
         ========================================= */
 
         .navbar .nav-links a.active {
             color: #b68cff;
         }
-
 
         /* =========================================
            MOBILE
@@ -362,11 +287,6 @@
             }
         }
 
-
-        /* =========================================
-           SMALL MOBILE
-        ========================================= */
-
         @media (max-width: 480px) {
 
             .privacy-page {
@@ -401,11 +321,6 @@
             }
         }
 
-
-        /* =========================================
-           VERY SMALL PHONES
-        ========================================= */
-
         @media (max-width: 360px) {
 
             .privacy-page {
@@ -431,25 +346,13 @@
             }
         }
 
-
-        /* =========================================
-           TOUCH DEVICES
-        ========================================= */
-
         @media (hover: none) {
 
             .privacy-card:hover {
                 transform: none;
-
-                border-color:
-                    rgba(159, 111, 255, 0.16);
+                border-color: rgba(159, 111, 255, 0.16);
             }
         }
-
-
-        /* =========================================
-           REDUCED MOTION
-        ========================================= */
 
         @media (prefers-reduced-motion: reduce) {
 
@@ -465,28 +368,22 @@
     </style>
 </head>
 
-
 <body id="top">
-
 
 <!-- =========================================
      NAVBAR
-     SAME HOME PAGE DESIGN
-     PRIVACY PAGE OPTIONS
+     PRIVACY PAGE MENU
 ========================================= -->
 
 <nav class="navbar" aria-label="Main Navigation">
 
     <div class="nav-container">
 
-        <!-- LOGO -->
-
         <a
             href="index.html"
             class="logo"
             aria-label="Super Video Player Home"
         >
-
             <img
                 src="https://i.ibb.co/m598JHpc/Super-Video-Player-Logo.png"
                 width="50"
@@ -494,19 +391,11 @@
                 alt="Super Video Player Logo"
             >
 
-            <span>
-                Super Video Player
-            </span>
-
+            <span>Super Video Player</span>
         </a>
 
 
-        <!-- PAGE MENU -->
-
-        <ul
-            class="nav-links"
-            id="navLinks"
-        >
+        <ul class="nav-links" id="navLinks">
 
             <li>
                 <a href="index.html">
@@ -518,6 +407,7 @@
                 <a
                     href="privacy-policy.html"
                     class="active"
+                    aria-current="page"
                 >
                     Privacy Policy
                 </a>
@@ -538,8 +428,6 @@
         </ul>
 
 
-        <!-- MENU BUTTON -->
-
         <div class="nav-right">
 
             <button
@@ -550,9 +438,7 @@
                 aria-expanded="false"
                 aria-controls="navLinks"
             >
-
                 <i class="fas fa-bars"></i>
-
             </button>
 
         </div>
@@ -568,24 +454,16 @@
 
 <main class="privacy-page">
 
-
-    <!-- PAGE INTRO -->
-
     <div class="privacy-intro">
 
         <div class="privacy-badge">
-
             <i class="fa-solid fa-shield-halved"></i>
-
             Your Privacy Matters
-
         </div>
-
 
         <h1 class="privacy-title">
             Privacy Policy
         </h1>
-
 
         <p class="privacy-subtitle">
             Last Updated: September 29, 2026
@@ -594,10 +472,6 @@
     </div>
 
 
-    <!-- =====================================
-         1. INTRODUCTION
-    ====================================== -->
-
     <section class="privacy-card">
 
         <h2 class="privacy-section-title">
@@ -605,31 +479,22 @@
         </h2>
 
         <p>
-
             Welcome to
             <span class="privacy-highlight">
                 Super Video Player
             </span>.
-
             This Privacy Policy explains how information is handled when
             you visit our website or download the Super Video Player
             Android application.
-
         </p>
 
         <p>
-
             By using this website, you agree to the practices described
             in this Privacy Policy.
-
         </p>
 
     </section>
 
-
-    <!-- =====================================
-         2. NO LOGIN
-    ====================================== -->
 
     <section class="privacy-card">
 
@@ -638,25 +503,17 @@
         </h2>
 
         <p>
-
             Our website does not require users to create an account,
             register, or log in.
-
         </p>
 
         <p>
-
             You can access the website and download the Super Video Player
             APK without creating an account or providing login credentials.
-
         </p>
 
     </section>
 
-
-    <!-- =====================================
-         3. PERSONAL INFORMATION
-    ====================================== -->
 
     <section class="privacy-card">
 
@@ -665,26 +522,18 @@
         </h2>
 
         <p>
-
             We do not intentionally collect personal information such as
             your name, phone number, home address, password, or payment
             information through this website.
-
         </p>
 
         <p>
-
             You are not required to provide personal information to
             download the Super Video Player APK.
-
         </p>
 
     </section>
 
-
-    <!-- =====================================
-         4. WEBSITE INFORMATION
-    ====================================== -->
 
     <section class="privacy-card">
 
@@ -693,34 +542,24 @@
         </h2>
 
         <p>
-
             When you visit our website, certain technical information may
             be processed automatically by web hosting, servers, browsers,
             or other technical services.
-
         </p>
 
         <p>
-
             This may include information such as IP address, browser type,
             operating system, device information, date and time of access,
             and basic server logs.
-
         </p>
 
         <p>
-
             This technical information may be used for normal website
             operation, security, and technical maintenance.
-
         </p>
 
     </section>
 
-
-    <!-- =====================================
-         5. ADVERTISING
-    ====================================== -->
 
     <section class="privacy-card">
 
@@ -729,36 +568,25 @@
         </h2>
 
         <p>
-
             Our website may display advertisements provided by
             third-party advertising services.
-
         </p>
 
         <p>
-
             Advertising providers may use cookies or similar technologies
             to display advertisements, measure advertising performance,
             and provide relevant advertising according to their policies.
-
         </p>
 
         <div class="privacy-info-box">
-
             Advertising is available on the
             Super Video Player website only.
-
             The Super Video Player Android application
             does not contain advertisements.
-
         </div>
 
     </section>
 
-
-    <!-- =====================================
-         6. COOKIES
-    ====================================== -->
 
     <section class="privacy-card">
 
@@ -767,33 +595,23 @@
         </h2>
 
         <p>
-
             Our website or third-party services used on the website may
             use cookies and similar technologies.
-
         </p>
 
         <p>
-
             Cookies may be used for website functionality, security,
             advertising, or other technical purposes.
-
         </p>
 
         <p>
-
             You can manage or disable cookies through your browser
             settings. Some website features may not work correctly
             if cookies are disabled.
-
         </p>
 
     </section>
 
-
-    <!-- =====================================
-         7. APP
-    ====================================== -->
 
     <section class="privacy-card">
 
@@ -802,32 +620,22 @@
         </h2>
 
         <p>
-
             The Super Video Player Android application does not require
             users to create an account or log in.
-
         </p>
 
         <p>
-
             The application does not display advertisements.
-
         </p>
 
         <p>
-
             The application is provided for video playback and related
             functionality. Information handled by the application may
             depend on the features and permissions used on your device.
-
         </p>
 
     </section>
 
-
-    <!-- =====================================
-         8. APK DOWNLOADS
-    ====================================== -->
 
     <section class="privacy-card">
 
@@ -836,26 +644,18 @@
         </h2>
 
         <p>
-
             The Super Video Player APK may be downloaded from our website.
             No account or login is required to download the APK.
-
         </p>
 
         <p>
-
             Your browser, device, hosting provider, or Internet service
             provider may process technical information associated with
             downloading a file.
-
         </p>
 
     </section>
 
-
-    <!-- =====================================
-         9. THIRD PARTY
-    ====================================== -->
 
     <section class="privacy-card">
 
@@ -864,26 +664,18 @@
         </h2>
 
         <p>
-
             Our website may contain links to third-party websites or
             services.
-
         </p>
 
         <p>
-
             Third-party services may have their own privacy policies and
             terms of use. We are not responsible for the privacy practices,
             content, or security of external websites.
-
         </p>
 
     </section>
 
-
-    <!-- =====================================
-         10. SECURITY
-    ====================================== -->
 
     <section class="privacy-card">
 
@@ -892,25 +684,17 @@
         </h2>
 
         <p>
-
             We take reasonable measures to maintain the security of our
             website and the files provided through it.
-
         </p>
 
         <p>
-
             However, no method of Internet transmission or electronic
             storage can be guaranteed to be completely secure.
-
         </p>
 
     </section>
 
-
-    <!-- =====================================
-         11. CHILDREN
-    ====================================== -->
 
     <section class="privacy-card">
 
@@ -919,26 +703,18 @@
         </h2>
 
         <p>
-
             Our website does not intentionally collect personal information
             from children.
-
         </p>
 
         <p>
-
             If you believe that personal information has been provided to
             us by a child, please contact us so that we can review the
             matter.
-
         </p>
 
     </section>
 
-
-    <!-- =====================================
-         12. CHANGES
-    ====================================== -->
 
     <section class="privacy-card">
 
@@ -947,24 +723,16 @@
         </h2>
 
         <p>
-
             We may update this Privacy Policy from time to time.
-
         </p>
 
         <p>
-
             Any changes will be published on this page, and the
             "Last Updated" date will be changed when appropriate.
-
         </p>
 
     </section>
 
-
-    <!-- =====================================
-         13. CONTACT
-    ====================================== -->
 
     <section class="privacy-card">
 
@@ -973,14 +741,11 @@
         </h2>
 
         <p>
-
             If you have any questions regarding this Privacy Policy,
             please contact us.
-
         </p>
 
         <p>
-
             <span class="privacy-highlight">
                 Super Video Player
             </span>
@@ -995,7 +760,6 @@
             >
                 smstudioindia91@gmail.com
             </a>
-
         </p>
 
     </section>
@@ -1005,16 +769,13 @@
 
 <!-- =========================================
      FOOTER
-     SAME AS HOME PAGE
+     SAME HOME PAGE DESIGN
+     PRIVACY PAGE RELATED LINKS
 ========================================= -->
 
 <footer class="custom-footer">
 
-
-    <!-- FOOTER MAIN -->
-
     <div class="custom-footer-container">
-
 
         <!-- BRAND -->
 
@@ -1025,7 +786,6 @@
                 class="custom-footer-logo"
                 aria-label="Super Video Player Home"
             >
-
                 <img
                     src="https://i.ibb.co/m598JHpc/Super-Video-Player-Logo.png"
                     alt="Super Video Player Logo"
@@ -1034,58 +794,32 @@
                 <span>
                     Super Video Player
                 </span>
-
             </a>
-
 
             <p>
                 Play anything. Anywhere.
             </p>
-
 
             <!-- SOCIAL ICONS -->
 
             <ul class="custom-footer-social">
 
                 <li>
-
-                    <a
-                        href="#"
-                        aria-label="X"
-                    >
-
+                    <a href="#" aria-label="X">
                         <i class="fa-brands fa-x-twitter"></i>
-
                     </a>
-
                 </li>
 
-
                 <li>
-
-                    <a
-                        href="#"
-                        aria-label="Instagram"
-                    >
-
+                    <a href="#" aria-label="Instagram">
                         <i class="fa-brands fa-instagram"></i>
-
                     </a>
-
                 </li>
 
-
                 <li>
-
-                    <a
-                        href="#"
-                        aria-label="Telegram"
-                    >
-
+                    <a href="#" aria-label="Telegram">
                         <i class="fa-brands fa-telegram"></i>
-
                     </a>
-
                 </li>
 
             </ul>
@@ -1251,9 +985,7 @@
     </div>
 
 
-    <!-- =====================================
-         FOOTER DIVIDER
-    ====================================== -->
+    <!-- FOOTER DIVIDER -->
 
     <div class="custom-footer-divider">
 
@@ -1269,9 +1001,7 @@
     </div>
 
 
-    <!-- =====================================
-         FOOTER BOTTOM
-    ====================================== -->
+    <!-- FOOTER BOTTOM -->
 
     <div class="custom-footer-bottom">
 
@@ -1288,10 +1018,7 @@
 </footer>
 
 
-<!-- =========================================
-     SAME HOME PAGE JAVASCRIPT
-========================================= -->
-
+<!-- HOME PAGE JAVASCRIPT -->
 <script src="script.js"></script>
 
 </body>
