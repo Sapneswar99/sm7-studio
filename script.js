@@ -15,39 +15,56 @@
 
 
   /* ============================================
-     MOBILE NAVIGATION MENU
+     MOBILE NAVIGATION
      ============================================ */
 
   function updateMenuIcon(isOpen) {
     if (!navToggle) return;
 
     const icon = navToggle.querySelector('i');
-    if (!icon) return;
 
-    icon.classList.toggle('fa-bars', !isOpen);
-    icon.classList.toggle('fa-times', isOpen);
+    if (icon) {
+      icon.classList.toggle('fa-bars', !isOpen);
+      icon.classList.toggle('fa-times', isOpen);
+    }
 
-    navToggle.setAttribute('aria-expanded', String(isOpen));
+    navToggle.setAttribute(
+      'aria-expanded',
+      String(isOpen)
+    );
+
+    navToggle.setAttribute(
+      'aria-label',
+      isOpen ? 'Close menu' : 'Open menu'
+    );
   }
+
 
   function openMenu() {
     if (!navLinks || !navToggle) return;
 
     navLinks.classList.add('active');
     updateMenuIcon(true);
+
+    document.body.classList.add('menu-open');
   }
+
 
   function closeMenu() {
     if (!navLinks || !navToggle) return;
 
     navLinks.classList.remove('active');
     updateMenuIcon(false);
+
+    document.body.classList.remove('menu-open');
   }
+
 
   function toggleMenu() {
     if (!navLinks || !navToggle) return;
 
-    const isOpen = navLinks.classList.contains('active');
+    const isOpen =
+      navLinks.classList.contains('active');
 
     if (isOpen) {
       closeMenu();
@@ -56,12 +73,19 @@
     }
   }
 
+
   if (navToggle) {
-    navToggle.addEventListener('click', function (event) {
-      event.preventDefault();
-      event.stopPropagation();
-      toggleMenu();
-    });
+    navToggle.addEventListener(
+      'click',
+      function (event) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        toggleMenu();
+
+      }
+    );
   }
 
 
@@ -69,102 +93,157 @@
      CLOSE MENU WHEN NAV LINK IS CLICKED
      ============================================ */
 
-  document.querySelectorAll('.nav-links a').forEach(function (link) {
-    link.addEventListener('click', function () {
-      closeMenu();
+  document
+    .querySelectorAll('.nav-links a')
+    .forEach(function (link) {
+
+      link.addEventListener(
+        'click',
+        function () {
+          closeMenu();
+        }
+      );
+
     });
-  });
 
 
   /* ============================================
      SMOOTH SCROLL
      ============================================ */
 
-  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+  document
+    .querySelectorAll('a[href^="#"]')
+    .forEach(function (link) {
 
-    link.addEventListener('click', function (event) {
+      link.addEventListener(
+        'click',
+        function (event) {
 
-      const href = link.getAttribute('href');
+          const href =
+            link.getAttribute('href');
 
-      if (!href || href === '#' || href.length < 2) {
-        return;
-      }
+          if (
+            !href ||
+            href === '#' ||
+            href.length < 2
+          ) {
+            return;
+          }
 
-      let target;
+          let target;
 
-      try {
-        target = document.querySelector(href);
-      } catch (error) {
-        return;
-      }
+          try {
+            target =
+              document.querySelector(href);
+          } catch (error) {
+            return;
+          }
 
-      if (!target) {
-        return;
-      }
+          if (!target) {
+            return;
+          }
 
-      event.preventDefault();
+          event.preventDefault();
 
-      const navbarHeight = navbar
-        ? navbar.getBoundingClientRect().height
-        : 70;
+          closeMenu();
 
-      const extraOffset = 10;
+          const navbarHeight = navbar
+            ? navbar.getBoundingClientRect().height
+            : 70;
 
-      const targetPosition =
-        target.getBoundingClientRect().top +
-        window.pageYOffset -
-        navbarHeight -
-        extraOffset;
+          const extraOffset = 16;
 
-      window.scrollTo({
-        top: Math.max(0, targetPosition),
-        behavior: 'smooth'
-      });
+          const targetPosition =
+            target.getBoundingClientRect().top +
+            window.pageYOffset -
+            navbarHeight -
+            extraOffset;
+
+          window.scrollTo({
+            top: Math.max(0, targetPosition),
+            behavior: 'smooth'
+          });
+
+        }
+      );
 
     });
-
-  });
 
 
   /* ============================================
      FAQ ACCORDION
      ============================================ */
 
-  document.querySelectorAll('.faq-question').forEach(function (button) {
+  document
+    .querySelectorAll('.faq-question')
+    .forEach(function (button) {
 
-    button.addEventListener('click', function () {
+      button.addEventListener(
+        'click',
+        function () {
 
-      const faqItem = button.closest('.faq-item');
+          const faqItem =
+            button.closest('.faq-item');
 
-      if (!faqItem) return;
+          if (!faqItem) return;
 
-      const wasActive = faqItem.classList.contains('active');
+          const wasActive =
+            faqItem.classList.contains('active');
 
-      document.querySelectorAll('.faq-item').forEach(function (item) {
-        item.classList.remove('active');
-      });
+          document
+            .querySelectorAll('.faq-item')
+            .forEach(function (item) {
 
-      if (!wasActive) {
-        faqItem.classList.add('active');
-      }
+              item.classList.remove('active');
+
+              const question =
+                item.querySelector(
+                  '.faq-question'
+                );
+
+              if (question) {
+                question.setAttribute(
+                  'aria-expanded',
+                  'false'
+                );
+              }
+
+            });
+
+
+          if (!wasActive) {
+
+            faqItem.classList.add('active');
+
+            button.setAttribute(
+              'aria-expanded',
+              'true'
+            );
+
+          }
+
+        }
+      );
 
     });
-
-  });
 
 
   /* ============================================
      SCROLL REVEAL ANIMATION
      ============================================ */
 
-  const animatedElements = document.querySelectorAll(
-    '.feature-card, .format-card, .phone'
-  );
+  const animatedElements =
+    document.querySelectorAll(
+      '.feature-card, .format-card, .phone'
+    );
+
 
   if (
     'IntersectionObserver' in window &&
     animatedElements.length > 0 &&
-    !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    !window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches
   ) {
 
     const observerOptions = {
@@ -172,169 +251,223 @@
       rootMargin: '0px 0px -50px 0px'
     };
 
-    const observer = new IntersectionObserver(
-      function (entries) {
 
-        entries.forEach(function (entry) {
+    const observer =
+      new IntersectionObserver(
+        function (entries) {
 
-          if (!entry.isIntersecting) {
-            return;
-          }
+          entries.forEach(
+            function (entry) {
 
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+              if (!entry.isIntersecting) {
+                return;
+              }
 
-          observer.unobserve(entry.target);
+              entry.target.style.opacity = '1';
 
-        });
+              entry.target.style.transform =
+                'translateY(0)';
 
-      },
-      observerOptions
+              observer.unobserve(
+                entry.target
+              );
+
+            }
+          );
+
+        },
+        observerOptions
+      );
+
+
+    animatedElements.forEach(
+      function (element) {
+
+        element.style.opacity = '0';
+
+        element.style.transform =
+          'translateY(30px)';
+
+        element.style.transition =
+          'opacity 0.6s ease, transform 0.6s ease';
+
+        observer.observe(element);
+
+      }
     );
-
-    animatedElements.forEach(function (element) {
-
-      element.style.opacity = '0';
-      element.style.transform = 'translateY(30px)';
-      element.style.transition =
-        'opacity 0.6s ease, transform 0.6s ease';
-
-      observer.observe(element);
-
-    });
 
   }
 
 
   /* ============================================
-     NAVBAR SHADOW ON SCROLL
+     FLOATING HEADER / NAVBAR
      ============================================ */
 
-  function updateNavbarShadow() {
+  function updateNavbar() {
 
     if (!navbar) return;
 
-    if (window.pageYOffset > 20) {
+    if (window.pageYOffset > 10) {
+
+      navbar.classList.add('scrolled');
+
       navbar.style.boxShadow =
-        '0 4px 20px rgba(0, 0, 0, 0.4)';
+        '0 8px 30px rgba(0, 0, 0, 0.45)';
+
     } else {
+
+      navbar.classList.remove('scrolled');
+
       navbar.style.boxShadow = 'none';
+
     }
 
   }
 
+
   window.addEventListener(
     'scroll',
-    updateNavbarShadow,
-    { passive: true }
+    updateNavbar,
+    {
+      passive: true
+    }
   );
 
-  updateNavbarShadow();
+
+  updateNavbar();
 
 
   /* ============================================
-     CLOSE MENU WHEN RESIZING TO DESKTOP
+     CLOSE MENU ON RESIZE
      ============================================ */
 
   let resizeTimer;
 
-  window.addEventListener('resize', function () {
+  window.addEventListener(
+    'resize',
+    function () {
 
-    clearTimeout(resizeTimer);
+      clearTimeout(resizeTimer);
 
-    resizeTimer = setTimeout(function () {
+      resizeTimer =
+        setTimeout(function () {
 
-      if (window.innerWidth > 768) {
-        closeMenu();
-      }
+          if (window.innerWidth > 768) {
+            closeMenu();
+          }
 
-    }, 150);
+        }, 150);
 
-  });
+    }
+  );
 
 
   /* ============================================
-     ESCAPE KEY CLOSES MOBILE MENU
+     ESCAPE KEY
      ============================================ */
 
-  document.addEventListener('keydown', function (event) {
+  document.addEventListener(
+    'keydown',
+    function (event) {
 
-    if (event.key === 'Escape') {
-      closeMenu();
+      if (event.key === 'Escape') {
+        closeMenu();
+      }
+
     }
-
-  });
+  );
 
 
   /* ============================================
      CLICK OUTSIDE MOBILE MENU
      ============================================ */
 
-  document.addEventListener('click', function (event) {
+  document.addEventListener(
+    'click',
+    function (event) {
 
-    if (!navLinks || !navToggle) {
-      return;
+      if (!navLinks || !navToggle) {
+        return;
+      }
+
+      if (
+        !navLinks.classList.contains(
+          'active'
+        )
+      ) {
+        return;
+      }
+
+      const clickedInsideMenu =
+        navLinks.contains(event.target);
+
+      const clickedToggle =
+        navToggle.contains(event.target);
+
+      if (
+        !clickedInsideMenu &&
+        !clickedToggle
+      ) {
+        closeMenu();
+      }
+
     }
-
-    if (!navLinks.classList.contains('active')) {
-      return;
-    }
-
-    const clickedInsideMenu =
-      navLinks.contains(event.target);
-
-    const clickedToggle =
-      navToggle.contains(event.target);
-
-    if (!clickedInsideMenu && !clickedToggle) {
-      closeMenu();
-    }
-
-  });
+  );
 
 
   /* ============================================
      DOWNLOAD TRACKING
      ============================================ */
 
-  document.querySelectorAll('a[download]').forEach(function (button) {
+  document
+    .querySelectorAll('a[download]')
+    .forEach(function (button) {
 
-    button.addEventListener('click', function () {
+      button.addEventListener(
+        'click',
+        function () {
 
-      console.log(
-        'Super Video Player APK download started.'
+          console.log(
+            'Super Video Player APK download started.'
+          );
+
+        }
       );
 
     });
 
-  });
-
 
   /* ============================================
-     FAQ ACCESSIBILITY
+     FAQ KEYBOARD ACCESSIBILITY
      ============================================ */
 
-  document.querySelectorAll('.faq-question').forEach(function (button) {
+  document
+    .querySelectorAll('.faq-question')
+    .forEach(function (button) {
 
-    button.addEventListener('keydown', function (event) {
+      button.addEventListener(
+        'keydown',
+        function (event) {
 
-      if (
-        event.key === 'Enter' ||
-        event.key === ' '
-      ) {
+          if (
+            event.key === 'Enter' ||
+            event.key === ' '
+          ) {
 
-        event.preventDefault();
-        button.click();
+            event.preventDefault();
 
-      }
+            button.click();
+
+          }
+
+        }
+      );
 
     });
 
-  });
-
 
   /* ============================================
-     PREVENT MENU STATE ISSUES ON PAGE LOAD
+     INITIAL MENU STATE
      ============================================ */
 
   updateMenuIcon(
@@ -358,4 +491,4 @@
   );
 
 
-})(); 
+})();
