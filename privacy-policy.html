@@ -5,543 +5,209 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Privacy Policy - Super Video Player</title>
+
     <meta name="description"
-          content="Read the Privacy Policy for Super Video Player. Learn how we handle information, cookies, advertisements and APK downloads.">
-
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;600&display=swap"
-          rel="stylesheet">
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            background:
-                radial-gradient(circle at 50% 15%, #2d1b55 0%, #17132f 45%, #090b19 100%);
-            color: #f4efff;
-            font-family: 'Poppins', sans-serif;
-            min-height: 100vh;
-        }
-
-        /* HEADER */
-        .header {
-            height: 92px;
-            background: rgba(7, 7, 24, 0.95);
-            border-bottom: 1px solid rgba(160, 115, 255, 0.15);
-            display: flex;
-            align-items: center;
-            padding: 0 22px;
-            gap: 14px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(14px);
-        }
-
-        .logo {
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-
-        .brand {
-            font-family: 'Pacifico', cursive;
-            font-size: 22px;
-            color: #ffffff;
-            flex: 1;
-            white-space: nowrap;
-        }
-
-        .download-btn {
-            background: linear-gradient(135deg, #914cf6, #6864f5);
-            color: white;
-            padding: 14px 20px;
-            border-radius: 17px;
-            text-decoration: none;
-            font-family: 'Pacifico', cursive;
-            font-size: 16px;
-            box-shadow: 0 8px 25px rgba(126, 82, 255, 0.28);
-        }
-
-        .menu {
-            font-size: 34px;
-            color: white;
-            line-height: 1;
-            margin-left: 8px;
-        }
-
-        /* MAIN */
-        .container {
-            width: 92%;
-            max-width: 850px;
-            margin: 45px auto 70px;
-        }
-
-        .badge {
-            width: fit-content;
-            margin: 0 auto 25px;
-            padding: 10px 25px;
-            border-radius: 30px;
-            border: 1px solid rgba(153, 93, 255, 0.4);
-            background: rgba(104, 67, 175, 0.15);
-            color: #b894ff;
-            font-family: 'Pacifico', cursive;
-            font-size: 16px;
-            box-shadow: 0 0 25px rgba(128, 78, 255, 0.08);
-        }
-
-        .title {
-            text-align: center;
-            font-family: 'Pacifico', cursive;
-            font-size: 42px;
-            margin: 0 0 10px;
-            background: linear-gradient(90deg, #ffffff, #b083ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #aaa1c5;
-            font-size: 14px;
-            margin-bottom: 32px;
-        }
-
-        /* CARD */
-        .policy-card {
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(58, 40, 96, 0.72),
-                    rgba(20, 18, 42, 0.82)
-                );
-            border: 1px solid rgba(159, 111, 255, 0.23);
-            border-radius: 24px;
-            padding: 28px;
-            margin-bottom: 18px;
-            box-shadow:
-                0 15px 45px rgba(0, 0, 0, 0.22),
-                inset 0 1px 0 rgba(255,255,255,0.03);
-        }
-
-        .section-title {
-            font-family: 'Pacifico', cursive;
-            font-size: 23px;
-            color: #b68cff;
-            margin: 0 0 12px;
-        }
-
-        .policy-card p {
-            color: #ddd7eb;
-            font-size: 14px;
-            line-height: 1.85;
-            margin: 8px 0;
-        }
-
-        .policy-card ul {
-            padding-left: 22px;
-            margin: 10px 0;
-        }
-
-        .policy-card li {
-            color: #d8d1e8;
-            font-size: 14px;
-            margin: 8px 0;
-            line-height: 1.7;
-        }
-
-        .highlight {
-            color: #ad7cff;
-            font-weight: 500;
-        }
-
-        .info-box {
-            border: 1px solid rgba(151, 96, 255, 0.3);
-            background: rgba(121, 73, 205, 0.09);
-            padding: 16px;
-            border-radius: 16px;
-            margin-top: 15px;
-            color: #ddd5ee;
-            font-size: 13px;
-        }
-
-        .email {
-            color: #ae83ff;
-            text-decoration: none;
-        }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 30px 20px 45px;
-            color: #77718b;
-            font-family: 'Pacifico', cursive;
-            font-size: 13px;
-        }
-
-        footer a {
-            color: #a277ed;
-            text-decoration: none;
-            margin: 0 7px;
-        }
-
-        /* MOBILE */
-        @media (max-width: 600px) {
-
-            .header {
-                height: 82px;
-                padding: 0 16px;
-                gap: 10px;
-            }
-
-            .logo {
-                width: 48px;
-                height: 48px;
-            }
-
-            .brand {
-                font-size: 18px;
-            }
-
-            .download-btn {
-                padding: 11px 15px;
-                font-size: 14px;
-                border-radius: 14px;
-            }
-
-            .menu {
-                font-size: 30px;
-            }
-
-            .container {
-                width: 91%;
-                margin-top: 35px;
-            }
-
-            .badge {
-                font-size: 14px;
-                padding: 9px 18px;
-            }
-
-            .title {
-                font-size: 32px;
-            }
-
-            .subtitle {
-                font-size: 12px;
-            }
-
-            .policy-card {
-                padding: 21px;
-                border-radius: 20px;
-            }
-
-            .section-title {
-                font-size: 20px;
-            }
-
-            .policy-card p,
-            .policy-card li {
-                font-size: 13px;
-            }
-        }
-    </style>
+          content="Privacy Policy for Super Video Player. Learn how we handle information when you visit our website and download the APK.">
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header class="header">
+    <h1>Privacy Policy</h1>
 
-    <!-- Replace with your actual logo -->
-    <img src="logo.png" class="logo" alt="Super Video Player">
+    <p><strong>Super Video Player</strong></p>
 
-    <div class="brand">Super Video Player</div>
+    <p>
+        <strong>Last Updated:</strong> September 29, 2026
+    </p>
 
-    <a href="index.html#download" class="download-btn">
-        ↓ Download
-    </a>
+    <hr>
 
-    <div class="menu">☰</div>
+    <h2>1. Introduction</h2>
 
-</header>
+    <p>
+        Welcome to Super Video Player. This Privacy Policy explains how
+        information is handled when you visit our website or download the
+        Super Video Player APK.
+    </p>
 
-
-<!-- CONTENT -->
-<main class="container">
-
-    <div class="badge">
-        🔒 Your Privacy Matters
-    </div>
-
-    <h1 class="title">Privacy Policy</h1>
-
-    <p class="subtitle">
-        Last Updated: September 29, 2026
+    <p>
+        We respect your privacy and aim to keep our website simple and
+        transparent.
     </p>
 
 
-    <section class="policy-card">
+    <h2>2. No Login or Account Required</h2>
 
-        <h2 class="section-title">1. Introduction</h2>
+    <p>
+        Our website does not require users to create an account or log in.
+    </p>
 
-        <p>
-            Welcome to <span class="highlight">Super Video Player</span>.
-            This Privacy Policy explains how information may be collected,
-            used and protected when you visit our website or download the
-            Super Video Player Android APK.
-        </p>
+    <p>
+        We do not provide or require user accounts, usernames, passwords,
+        or profile information for downloading the Super Video Player APK.
+    </p>
 
-        <p>
-            By using this website, you agree to the practices described
-            in this Privacy Policy.
-        </p>
 
-    </section>
+    <h2>3. Personal Information</h2>
 
+    <p>
+        We do not intentionally collect personal information such as your
+        name, phone number, home address, password, or payment information
+        through this website.
+    </p>
 
-    <section class="policy-card">
+    <p>
+        You are not required to provide personal information to download
+        the Super Video Player APK.
+    </p>
 
-        <h2 class="section-title">2. Information We Collect</h2>
 
-        <p>
-            We do not intentionally collect personally identifiable
-            information through this website unless you voluntarily
-            provide it to us.
-        </p>
+    <h2>4. Website Information</h2>
 
-        <p>
-            Some technical information may automatically be collected,
-            such as:
-        </p>
+    <p>
+        When you visit a website, your browser, device, hosting provider,
+        or Internet service provider may automatically process certain
+        technical information required to deliver web pages and files.
+    </p>
 
-        <ul>
-            <li>IP address</li>
-            <li>Browser type and version</li>
-            <li>Device and operating system information</li>
-            <li>Pages visited</li>
-            <li>Referring website</li>
-            <li>Date and time of access</li>
-            <li>General website usage information</li>
-        </ul>
+    <p>
+        This may include information such as IP address, browser type,
+        operating system, device information, or basic server logs.
+    </p>
 
-    </section>
+    <p>
+        Such technical information is not intentionally collected by us
+        for creating user profiles or identifying individual users.
+    </p>
 
 
-    <section class="policy-card">
+    <h2>5. Advertisements</h2>
 
-        <h2 class="section-title">3. How We Use Information</h2>
+    <p>
+        Super Video Player website does not display advertisements.
+    </p>
 
-        <p>
-            Information may be used to:
-        </p>
+    <p>
+        We do not use Google AdSense or other advertising networks on
+        this website.
+    </p>
 
-        <ul>
-            <li>Operate and maintain our website</li>
-            <li>Improve website performance</li>
-            <li>Improve the user experience</li>
-            <li>Understand website traffic</li>
-            <li>Detect security issues and abuse</li>
-            <li>Improve our content and services</li>
-        </ul>
 
-    </section>
+    <h2>6. Cookies</h2>
 
+    <p>
+        Super Video Player does not use cookies for advertising,
+        personalized advertising, or user profiling.
+    </p>
 
-    <section class="policy-card">
+    <p>
+        Some technical features provided by the website's hosting or
+        third-party services may operate using standard web technologies.
+        Such technologies are controlled by the respective service
+        providers.
+    </p>
 
-        <h2 class="section-title">4. Cookies</h2>
 
-        <p>
-            Our website may use cookies and similar technologies to
-            improve your browsing experience and understand how visitors
-            use our website.
-        </p>
+    <h2>7. APK Downloads</h2>
 
-        <p>
-            You can control or disable cookies through your browser
-            settings. Some website features may not function correctly
-            if cookies are disabled.
-        </p>
+    <p>
+        Our website provides the Super Video Player APK for download.
+    </p>
 
-    </section>
+    <p>
+        No account or login is required to download the APK.
+    </p>
 
+    <p>
+        When you download a file, your browser, device, hosting provider,
+        or Internet service provider may process technical information
+        related to the download.
+    </p>
 
-    <section class="policy-card">
 
-        <h2 class="section-title">5. Advertising</h2>
+    <h2>8. Third-Party Links</h2>
 
-        <p>
-            We may display advertisements through third-party advertising
-            providers such as <span class="highlight">Google AdSense</span>.
-        </p>
+    <p>
+        Our website may contain links to third-party websites or services.
+    </p>
 
-        <p>
-            Advertising providers may use cookies or similar technologies
-            to provide advertisements and measure advertising performance.
-        </p>
+    <p>
+        We are not responsible for the privacy practices, content, or
+        security of third-party websites.
+    </p>
 
-        <div class="info-box">
-            Advertising and privacy practices may vary depending on your
-            location, device and applicable privacy settings.
-        </div>
+    <p>
+        We recommend reading the privacy policy of any third-party website
+        you visit through an external link from our website.
+    </p>
 
-    </section>
 
+    <h2>9. Data Security</h2>
 
-    <section class="policy-card">
+    <p>
+        We take reasonable measures to maintain the security of our
+        website and the files provided through it.
+    </p>
 
-        <h2 class="section-title">6. Third-Party Services</h2>
+    <p>
+        However, no method of Internet transmission or electronic storage
+        can be guaranteed to be completely secure.
+    </p>
 
-        <p>
-            Our website may use third-party services for advertising,
-            analytics, hosting, content delivery or other website
-            functionality.
-        </p>
 
-        <p>
-            Third-party services may collect and process information
-            according to their own privacy policies.
-        </p>
+    <h2>10. Children's Privacy</h2>
 
-    </section>
+    <p>
+        Our website does not intentionally collect personal information
+        from children.
+    </p>
 
+    <p>
+        If you believe that personal information has been provided to us
+        by a child, please contact us so that we can review the matter.
+    </p>
 
-    <section class="policy-card">
 
-        <h2 class="section-title">7. APK Downloads</h2>
+    <h2>11. Changes to This Privacy Policy</h2>
 
-        <p>
-            Super Video Player APK files may be provided through this
-            website for download.
-        </p>
+    <p>
+        We may update this Privacy Policy from time to time.
+    </p>
 
-        <p>
-            We do not require personal information simply to download
-            an APK file from our website.
-        </p>
+    <p>
+        Any changes will be published on this page, and the "Last Updated"
+        date will be changed when appropriate.
+    </p>
 
-        <p>
-            Your browser, device or Internet service provider may
-            independently collect technical information associated with
-            downloading files.
-        </p>
 
-    </section>
+    <h2>12. Contact Us</h2>
 
+    <p>
+        If you have any questions about this Privacy Policy, please
+        contact us.
+    </p>
 
-    <section class="policy-card">
+    <p>
+        <strong>Super Video Player</strong><br>
+        Email:
+        <a href="mailto:smstudioindia91@gmail.com">
+            smstudioindia91@gmail.com
+        </a>
+    </p>
 
-        <h2 class="section-title">8. External Links</h2>
 
-        <p>
-            Our website may contain links to external websites or
-            third-party services.
-        </p>
+    <hr>
 
-        <p>
-            We are not responsible for the privacy practices, content
-            or security of third-party websites. We recommend reviewing
-            their respective privacy policies.
-        </p>
+    <p>
+        © 2026 Super Video Player. All rights reserved.
+    </p>
 
-    </section>
-
-
-    <section class="policy-card">
-
-        <h2 class="section-title">9. Data Security</h2>
-
-        <p>
-            We use reasonable measures to protect information associated
-            with the operation of our website.
-        </p>
-
-        <p>
-            However, no Internet transmission or electronic storage
-            method can be guaranteed to be completely secure.
-        </p>
-
-    </section>
-
-
-    <section class="policy-card">
-
-        <h2 class="section-title">10. Children's Privacy</h2>
-
-        <p>
-            Our website is not intended to knowingly collect personal
-            information from children.
-        </p>
-
-        <p>
-            If you believe that a child has provided personal information
-            through our website, please contact us.
-        </p>
-
-    </section>
-
-
-    <section class="policy-card">
-
-        <h2 class="section-title">11. Changes to This Policy</h2>
-
-        <p>
-            We may update this Privacy Policy from time to time.
-            Any changes will be published on this page and the
-            "Last Updated" date will be updated accordingly.
-        </p>
-
-    </section>
-
-
-    <section class="policy-card">
-
-        <h2 class="section-title">12. Contact Us</h2>
-
-        <p>
-            If you have any questions regarding this Privacy Policy,
-            you can contact us at:
-        </p>
-
-        <p>
-            <span class="highlight">Super Video Player</span><br>
-            Email:
-            <a class="email"
-               href="mailto:smstudioindia91@gmail.com">
-                smstudioindia91@gmail.com
-            </a>
-        </p>
-
-    </section>
-
-</main>
-
-
-<!-- FOOTER -->
-<footer>
-
-    © 2026 Super Video Player. All rights reserved.
-
-    <br><br>
-
-    <a href="index.html">Home</a>
-    |
-    <a href="privacy-policy.html">Privacy Policy</a>
-    |
-    <a href="terms.html">Terms</a>
-    |
-    <a href="contact.html">Contact</a>
-
-</footer>
+    <p>
+        <a href="index.html">Home</a> |
+        <a href="privacy-policy.html">Privacy Policy</a> |
+        <a href="terms.html">Terms</a> |
+        <a href="contact.html">Contact</a>
+    </p>
 
 </body>
 </html>
