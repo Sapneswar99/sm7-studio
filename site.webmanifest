@@ -1,0 +1,25 @@
+{
+  "name": "Super Video Player",
+  "short_name": "Super Video Player",
+  "description": "Super Video Player - Play any video format, anywhere.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0a1a",
+  "theme_color": "#0a0a1a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
