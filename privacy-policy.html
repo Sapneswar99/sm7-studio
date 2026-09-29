@@ -2,429 +2,84 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Privacy Policy - Super Video Player</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 
     <meta name="description"
           content="Read the Privacy Policy for Super Video Player. Learn how information is handled on our website and Android application.">
 
+    <meta name="theme-color" content="#0a0a1a">
+
+    <title>Privacy Policy - Super Video Player</title>
+
+    <link rel="icon" href="/favicon.png" type="image/png">
+
+    <!-- Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
           rel="stylesheet">
 
+    <!-- Font Awesome -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- HOME PAGE CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Privacy Page Extra CSS -->
     <style>
 
-        /* ============================================
-           SUPER VIDEO PLAYER
-           PRIVACY POLICY
-           HOME PAGE STYLE
-           FULL REPLACEMENT
-           ============================================ */
-
-        :root {
-            --bg-dark: #090b19;
-            --bg-main: #0d0d20;
-            --bg-card: rgba(25, 20, 48, 0.82);
-
-            --purple: #914cf6;
-            --purple-light: #b68cff;
-            --purple-soft: #a277ed;
-
-            --off-white: #f4efff;
-            --text-main: #eee8ff;
-            --text-muted: #aaa1c5;
-
-            --border: rgba(159, 111, 255, 0.20);
-
-            --container: 1180px;
-        }
-
-
-        /* =========================
-           RESET
-        ========================= */
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        /* =========================================
+           PRIVACY POLICY PAGE
+           HOME PAGE DESIGN
+        ========================================= */
 
         body {
-            margin: 0;
-            min-height: 100vh;
-
-            color: var(--off-white);
-
             font-family: 'Poppins', sans-serif;
-
-            background:
-                radial-gradient(
-                    circle at 50% 0%,
-                    #2d1b55 0%,
-                    #17132f 32%,
-                    #0d0d20 65%,
-                    #090b19 100%
-                );
-
-            overflow-x: hidden;
         }
 
-        a {
-            -webkit-tap-highlight-color: transparent;
-        }
-
-
-        /* =========================
-           HEADER
-        ========================= */
-
-        .header {
-            position: fixed;
-
-            top: 14px;
-            left: 50%;
-
-            transform: translateX(-50%);
-
-            width: calc(100% - 32px);
-            max-width: var(--container);
-
-            height: 68px;
-
-            display: flex;
-            align-items: center;
-
-            padding: 0 14px 0 17px;
-
-            gap: 12px;
-
-            background:
-                rgba(10, 9, 27, 0.88);
-
-            border: 1px solid
-                rgba(159, 111, 255, 0.18);
-
-            border-radius: 20px;
-
-            box-shadow:
-                0 14px 40px rgba(0, 0, 0, 0.32);
-
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-
-            z-index: 1000;
-        }
-
-
-        .logo {
-            width: 43px;
-            height: 43px;
-
-            border-radius: 12px;
-
-            object-fit: cover;
-
-            flex-shrink: 0;
-        }
-
-
-        .brand {
-            font-family: 'Poppins', sans-serif;
-
-            font-size: 16px;
-
-            font-weight: 600;
-
-            color: #ffffff;
-
-            white-space: nowrap;
-
-            overflow: hidden;
-
-            text-overflow: ellipsis;
-
-            flex: 1;
-
-            min-width: 0;
-        }
-
-
-        /* =========================
-           MENU BUTTON
-        ========================= */
-
-        .menu-button {
-            width: 44px;
-            height: 44px;
-
-            border: 1px solid
-                rgba(159, 111, 255, 0.10);
-
-            outline: none;
-
-            background:
-                rgba(255, 255, 255, 0.035);
-
-            color: #ffffff;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            cursor: pointer;
-
-            padding: 0;
-
-            flex-shrink: 0;
-
-            border-radius: 13px;
-
-            transition:
-                background 0.2s ease,
-                border-color 0.2s ease,
-                transform 0.2s ease;
-        }
-
-        .menu-button:hover {
-            background:
-                rgba(145, 76, 246, 0.15);
-
-            border-color:
-                rgba(159, 111, 255, 0.25);
-        }
-
-        .menu-button:active {
-            transform: scale(0.94);
-        }
-
-
-        /* =========================
-           HAMBURGER
-        ========================= */
-
-        .hamburger {
-            width: 24px;
-            height: 18px;
-
-            position: relative;
-
-            display: flex;
-            flex-direction: column;
-
-            justify-content: space-between;
-        }
-
-        .hamburger span {
-            display: block;
-
-            width: 100%;
-            height: 3px;
-
-            border-radius: 10px;
-
-            background: #ffffff;
-
-            transition:
-                transform 0.25s ease,
-                opacity 0.2s ease;
-        }
-
-
-        /* =========================
-           HAMBURGER -> X
-        ========================= */
-
-        .menu-button.active .hamburger span:nth-child(1) {
-            transform:
-                translateY(7.5px)
-                rotate(45deg);
-        }
-
-        .menu-button.active .hamburger span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-button.active .hamburger span:nth-child(3) {
-            transform:
-                translateY(-7.5px)
-                rotate(-45deg);
-        }
-
-
-        /* =========================
-           DROPDOWN MENU
-        ========================= */
-
-        .menu-dropdown {
-            position: fixed;
-
-            top: 91px;
-            right: max(20px, calc((100vw - var(--container)) / 2));
-
-            width: 220px;
-
-            padding: 9px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(45, 27, 85, 0.98),
-                    rgba(13, 12, 31, 0.98)
-                );
-
-            border: 1px solid
-                rgba(159, 111, 255, 0.25);
-
-            border-radius: 18px;
-
-            box-shadow:
-                0 22px 55px rgba(0, 0, 0, 0.48);
-
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-
-            opacity: 0;
-            visibility: hidden;
-
-            transform:
-                translateY(-10px)
-                scale(0.96);
-
-            transform-origin: top right;
-
-            transition:
-                opacity 0.22s ease,
-                visibility 0.22s ease,
-                transform 0.22s ease;
-
-            z-index: 999;
-        }
-
-
-        .menu-dropdown.show {
-            opacity: 1;
-
-            visibility: visible;
-
-            transform:
-                translateY(0)
-                scale(1);
-        }
-
-
-        .menu-dropdown a {
-            display: flex;
-            align-items: center;
-
-            padding: 12px 14px;
-
-            border-radius: 12px;
-
-            color: #eee8ff;
-
-            text-decoration: none;
-
-            font-size: 13px;
-
-            font-weight: 500;
-
-            transition:
-                background 0.2s ease,
-                color 0.2s ease,
-                transform 0.2s ease;
-        }
-
-
-        .menu-dropdown a:hover {
-            background:
-                rgba(145, 76, 246, 0.16);
-
-            color: #b68cff;
-
-            transform: translateX(2px);
-        }
-
-
-        .menu-dropdown a.active {
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(145, 76, 246, 0.20),
-                    rgba(104, 100, 245, 0.12)
-                );
-
-            color: #b68cff;
-        }
-
-
-        /* =========================
-           MAIN
-        ========================= */
-
-        .container {
+        .privacy-page {
             width: min(92%, 900px);
-
             margin: 0 auto;
-
             padding-top: 145px;
             padding-bottom: 75px;
         }
 
-
-        /* =========================
+        /* =========================================
            PAGE INTRO
-        ========================= */
+        ========================================= */
 
-        .page-intro {
+        .privacy-intro {
             text-align: center;
-
             margin-bottom: 42px;
         }
 
-
-        .badge {
+        .privacy-badge {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-
             gap: 8px;
 
             padding: 8px 17px;
-
             margin-bottom: 19px;
 
             border-radius: 999px;
 
-            border: 1px solid
-                rgba(153, 93, 255, 0.30);
+            border: 1px solid rgba(153, 93, 255, 0.30);
 
-            background:
-                rgba(104, 67, 175, 0.12);
+            background: rgba(104, 67, 175, 0.12);
 
             color: #b894ff;
 
             font-size: 11px;
-
             font-weight: 600;
 
-            letter-spacing: 0.2px;
-
             box-shadow:
-                0 0 25px
-                rgba(128, 78, 255, 0.06);
+                0 0 25px rgba(128, 78, 255, 0.06);
         }
 
-
-        .title {
+        .privacy-title {
             margin: 0;
 
             font-size: clamp(34px, 5vw, 50px);
@@ -447,25 +102,23 @@
             -webkit-text-fill-color: transparent;
         }
 
-
-        .subtitle {
+        .privacy-subtitle {
             margin: 13px auto 0;
 
             max-width: 620px;
 
-            color: var(--text-muted);
+            color: #aaa1c5;
 
             font-size: 12px;
 
             line-height: 1.7;
         }
 
+        /* =========================================
+           POLICY CARD
+        ========================================= */
 
-        /* =========================
-           POLICY CARDS
-        ========================= */
-
-        .policy-card {
+        .privacy-card {
             position: relative;
 
             overflow: hidden;
@@ -477,8 +130,7 @@
                     rgba(17, 16, 38, 0.88)
                 );
 
-            border: 1px solid
-                rgba(159, 111, 255, 0.16);
+            border: 1px solid rgba(159, 111, 255, 0.16);
 
             border-radius: 20px;
 
@@ -487,11 +139,8 @@
             margin-bottom: 16px;
 
             box-shadow:
-                0 15px 45px
-                rgba(0, 0, 0, 0.18),
-
-                inset 0 1px 0
-                rgba(255, 255, 255, 0.025);
+                0 15px 45px rgba(0, 0, 0, 0.18),
+                inset 0 1px 0 rgba(255, 255, 255, 0.025);
 
             transition:
                 border-color 0.25s ease,
@@ -499,8 +148,7 @@
                 box-shadow 0.25s ease;
         }
 
-
-        .policy-card::before {
+        .privacy-card::before {
             content: "";
 
             position: absolute;
@@ -513,32 +161,27 @@
 
             border-radius: 50%;
 
-            background:
-                rgba(145, 76, 246, 0.09);
+            background: rgba(145, 76, 246, 0.09);
 
             filter: blur(20px);
 
             pointer-events: none;
         }
 
-
-        .policy-card:hover {
-            border-color:
-                rgba(159, 111, 255, 0.27);
+        .privacy-card:hover {
+            border-color: rgba(159, 111, 255, 0.27);
 
             transform: translateY(-2px);
 
             box-shadow:
-                0 20px 48px
-                rgba(0, 0, 0, 0.23);
+                0 20px 48px rgba(0, 0, 0, 0.23);
         }
 
-
-        /* =========================
+        /* =========================================
            SECTION TITLE
-        ========================= */
+        ========================================= */
 
-        .section-title {
+        .privacy-section-title {
             position: relative;
 
             margin: 0 0 12px;
@@ -552,8 +195,7 @@
             line-height: 1.35;
         }
 
-
-        .section-title::after {
+        .privacy-section-title::after {
             content: "";
 
             display: block;
@@ -573,8 +215,7 @@
                 );
         }
 
-
-        .policy-card p {
+        .privacy-card p {
             color: #d8d1e8;
 
             font-size: 13px;
@@ -586,15 +227,12 @@
             font-weight: 400;
         }
 
-
-        .policy-card ul {
+        .privacy-card ul {
             padding-left: 21px;
-
             margin: 11px 0;
         }
 
-
-        .policy-card li {
+        .privacy-card li {
             color: #d8d1e8;
 
             font-size: 13px;
@@ -604,27 +242,23 @@
             line-height: 1.75;
         }
 
-
-        .highlight {
+        .privacy-highlight {
             color: #b68cff;
-
             font-weight: 600;
         }
 
-
-        /* =========================
+        /* =========================================
            INFO BOX
-        ========================= */
+        ========================================= */
 
-        .info-box {
+        .privacy-info-box {
             margin-top: 17px;
 
             padding: 14px 16px;
 
             border-radius: 14px;
 
-            border: 1px solid
-                rgba(151, 96, 255, 0.22);
+            border: 1px solid rgba(151, 96, 255, 0.22);
 
             background:
                 linear-gradient(
@@ -640,468 +274,149 @@
             line-height: 1.75;
         }
 
-
-        /* =========================
+        /* =========================================
            EMAIL
-        ========================= */
+        ========================================= */
 
-        .email {
+        .privacy-email {
             color: #ae83ff;
 
             text-decoration: none;
 
             font-weight: 500;
 
-            transition:
-                color 0.2s ease;
+            transition: color 0.2s ease;
         }
 
-
-        .email:hover {
+        .privacy-email:hover {
             color: #c9adff;
-
             text-decoration: underline;
         }
 
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            width: min(92%, var(--container));
-
-            margin: 0 auto;
-
-            padding: 28px 0 38px;
-
-            border-top: 1px solid
-                rgba(235, 242, 240, 0.07);
-
-            text-align: center;
-
-            color: rgba(235, 242, 240, 0.48);
-
-            font-size: 11.5px;
-
-            line-height: 1.8;
-        }
-
-
-        .footer-links {
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            flex-wrap: wrap;
-
-            gap: 8px 0;
-
-            margin-top: 13px;
-        }
-
-
-        footer a {
-            color:
-                rgba(210, 133, 242, 0.70);
-
-            text-decoration: none;
-
-            margin: 0 9px;
-
-            font-size: 11.5px;
-
-            transition:
-                color 0.2s ease;
-        }
-
-
-        footer a:hover {
-            color: #ffffff;
-        }
-
-
-        .footer-separator {
-            color:
-                rgba(255, 255, 255, 0.16);
-
-            user-select: none;
-        }
-
-
-        /* =========================
-           LARGE DESKTOP
-        ========================= */
-
-        @media (min-width: 1400px) {
-
-            .header {
-                height: 70px;
-            }
-
-            .container {
-                max-width: 920px;
-            }
-
-            .policy-card {
-                padding: 29px 31px;
-            }
-
-        }
-
-
-        /* =========================
-           TABLET
-        ========================= */
-
-        @media (max-width: 900px) {
-
-            .header {
-                width: calc(100% - 28px);
-            }
-
-            .menu-dropdown {
-                right: 14px;
-            }
-
-        }
-
-
-        /* =========================
+        /* =========================================
            MOBILE
-        ========================= */
+        ========================================= */
 
         @media (max-width: 768px) {
 
-            .header {
-                top: 10px;
-
-                width: calc(100% - 20px);
-
-                height: 64px;
-
-                padding:
-                    0 11px 0 13px;
-
-                border-radius: 17px;
-            }
-
-
-            .logo {
-                width: 41px;
-                height: 41px;
-
-                border-radius: 11px;
-            }
-
-
-            .brand {
-                font-size: 15px;
-            }
-
-
-            .menu-button {
-                width: 42px;
-                height: 42px;
-
-                border-radius: 12px;
-            }
-
-
-            .menu-dropdown {
-                top: 82px;
-
-                right: 10px;
-
-                width: 215px;
-            }
-
-
-            .container {
+            .privacy-page {
                 width: 91%;
-
                 padding-top: 122px;
-
                 padding-bottom: 52px;
             }
 
-
-            .page-intro {
+            .privacy-intro {
                 margin-bottom: 31px;
             }
 
-
-            .badge {
+            .privacy-badge {
                 font-size: 10px;
-
                 padding: 7px 14px;
-
                 margin-bottom: 15px;
             }
 
-
-            .title {
+            .privacy-title {
                 font-size: 34px;
-
                 letter-spacing: -0.9px;
             }
 
-
-            .subtitle {
+            .privacy-subtitle {
                 font-size: 11px;
-
                 margin-top: 11px;
             }
 
-
-            .policy-card {
+            .privacy-card {
                 padding: 21px;
-
                 border-radius: 17px;
-
                 margin-bottom: 13px;
             }
 
-
-            .section-title {
+            .privacy-section-title {
                 font-size: 17px;
             }
 
-
-            .policy-card p,
-            .policy-card li {
+            .privacy-card p,
+            .privacy-card li {
                 font-size: 12.5px;
-
                 line-height: 1.8;
             }
 
-
-            .info-box {
+            .privacy-info-box {
                 font-size: 11.5px;
-
                 padding: 13px 14px;
             }
-
-
-            footer {
-                width: 91%;
-
-                padding:
-                    24px 0 32px;
-
-                font-size: 10.5px;
-            }
-
-
-            footer a {
-                font-size: 10.5px;
-
-                margin: 0 6px;
-            }
-
         }
-
-
-        /* =========================
-           SMALL MOBILE
-        ========================= */
 
         @media (max-width: 480px) {
 
-            .header {
-                width: calc(100% - 16px);
-
-                top: 8px;
-
-                height: 61px;
-
-                padding-left: 10px;
-            }
-
-
-            .logo {
-                width: 39px;
-                height: 39px;
-            }
-
-
-            .brand {
-                font-size: 14px;
-            }
-
-
-            .menu-button {
-                width: 41px;
-                height: 41px;
-            }
-
-
-            .hamburger {
-                width: 23px;
-                height: 18px;
-            }
-
-
-            .container {
+            .privacy-page {
                 width: 90%;
-
                 padding-top: 113px;
             }
 
-
-            .title {
+            .privacy-title {
                 font-size: 30px;
             }
 
-
-            .subtitle {
+            .privacy-subtitle {
                 font-size: 10.5px;
             }
 
-
-            .policy-card {
+            .privacy-card {
                 padding: 18px;
-
                 border-radius: 16px;
             }
 
-
-            .section-title {
+            .privacy-section-title {
                 font-size: 16px;
             }
 
-
-            .policy-card p,
-            .policy-card li {
+            .privacy-card p,
+            .privacy-card li {
                 font-size: 12px;
             }
 
-
-            .info-box {
+            .privacy-info-box {
                 font-size: 11px;
             }
-
-
-            .menu-dropdown {
-                top: 77px;
-
-                right: 8px;
-
-                width: 210px;
-            }
-
         }
-
-
-        /* =========================
-           VERY SMALL PHONES
-        ========================= */
 
         @media (max-width: 360px) {
 
-            .header {
-                width: calc(100% - 14px);
-
-                padding: 0 8px;
-            }
-
-
-            .logo {
-                width: 37px;
-                height: 37px;
-            }
-
-
-            .brand {
-                font-size: 13px;
-            }
-
-
-            .menu-button {
-                width: 39px;
-                height: 39px;
-            }
-
-
-            .container {
+            .privacy-page {
                 width: 91%;
-
                 padding-top: 108px;
             }
 
-
-            .title {
+            .privacy-title {
                 font-size: 27px;
             }
 
-
-            .policy-card {
+            .privacy-card {
                 padding: 16px;
             }
 
-
-            .section-title {
+            .privacy-section-title {
                 font-size: 15px;
             }
 
-
-            .policy-card p,
-            .policy-card li {
+            .privacy-card p,
+            .privacy-card li {
                 font-size: 11.5px;
             }
-
-
-            .footer-links {
-                gap: 5px 0;
-            }
-
-
-            footer a {
-                margin: 0 4px;
-            }
-
         }
 
+        @media (hover: none) {
 
-        /* =========================
-           LANDSCAPE MOBILE
-        ========================= */
+            .privacy-card:hover {
+                transform: none;
 
-        @media (
-            max-height: 500px
-        ) and (
-            orientation: landscape
-        ) {
-
-            .header {
-                top: 7px;
-
-                height: 58px;
+                border-color:
+                    rgba(159, 111, 255, 0.16);
             }
-
-
-            .container {
-                padding-top: 90px;
-            }
-
-
-            .menu-dropdown {
-                top: 72px;
-            }
-
         }
-
-
-        /* =========================
-           REDUCED MOTION
-        ========================= */
 
         @media (prefers-reduced-motion: reduce) {
-
-            html {
-                scroll-behavior: auto;
-            }
 
             *,
             *::before,
@@ -1110,122 +425,126 @@
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
             }
-
         }
-
-
-        /* =========================
-           TOUCH DEVICES
-        ========================= */
-
-        @media (hover: none) {
-
-            .policy-card:hover {
-                transform: none;
-
-                border-color:
-                    rgba(159, 111, 255, 0.16);
-            }
-
-            .menu-dropdown a:hover {
-                transform: none;
-            }
-
-        }
-
 
     </style>
 </head>
 
+<body id="top">
 
-<body>
+<!-- =========================================
+     SAME HOME PAGE NAVBAR
+========================================= -->
+
+<nav class="navbar" aria-label="Main Navigation">
+
+    <div class="nav-container">
+
+        <a
+            href="index.html"
+            class="logo"
+            aria-label="Super Video Player Home"
+        >
+
+            <img
+                src="https://i.ibb.co/m598JHpc/Super-Video-Player-Logo.png"
+                width="50"
+                height="50"
+                alt="Super Video Player Logo"
+            >
+
+            <span>
+                Super Video Player
+            </span>
+
+        </a>
 
 
-<!-- =========================
-     HEADER
-========================= -->
+        <ul
+            class="nav-links"
+            id="navLinks"
+        >
 
-<header class="header">
+            <li>
+                <a href="index.html#formats">
+                    Formats
+                </a>
+            </li>
 
-    <img
-        src="https://i.ibb.co/m598JHpc/Super-Video-Player-Logo.png"
-        class="logo"
-        alt="Super Video Player"
-    >
+            <li>
+                <a href="index.html#features">
+                    Features
+                </a>
+            </li>
 
-    <div class="brand">
-        Super Video Player
+            <li>
+                <a href="index.html#screenshots">
+                    Screenshots
+                </a>
+            </li>
+
+            <li>
+                <a href="index.html#apk">
+                    APK
+                </a>
+            </li>
+
+            <li>
+                <a href="index.html#faq">
+                    FAQ
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="nav-right">
+
+            <button
+                class="nav-toggle"
+                id="navToggle"
+                type="button"
+                aria-label="Open menu"
+                aria-expanded="false"
+                aria-controls="navLinks"
+            >
+
+                <i class="fas fa-bars"></i>
+
+            </button>
+
+        </div>
+
     </div>
-
-    <button
-        class="menu-button"
-        id="menuButton"
-        aria-label="Open menu"
-        aria-expanded="false"
-        type="button"
-    >
-
-        <span class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </span>
-
-    </button>
-
-</header>
-
-
-<!-- =========================
-     DROPDOWN MENU
-========================= -->
-
-<nav
-    class="menu-dropdown"
-    id="menuDropdown"
-    aria-hidden="true"
->
-
-    <a href="index.html">
-        Home
-    </a>
-
-    <a
-        href="privacy-policy.html"
-        class="active"
-    >
-        Privacy Policy
-    </a>
-
-    <a href="terms.html">
-        Terms
-    </a>
-
-    <a href="contact.html">
-        Contact
-    </a>
 
 </nav>
 
 
-<!-- =========================
+<!-- =========================================
      PRIVACY POLICY
-========================= -->
+========================================= -->
 
-<main class="container">
+<main class="privacy-page">
 
-    <div class="page-intro">
+    <!-- PAGE INTRO -->
 
-        <div class="badge">
+    <div class="privacy-intro">
+
+        <div class="privacy-badge">
+
             <i class="fa-solid fa-shield-halved"></i>
+
             Your Privacy Matters
+
         </div>
 
-        <h1 class="title">
+
+        <h1 class="privacy-title">
             Privacy Policy
         </h1>
 
-        <p class="subtitle">
+
+        <p class="privacy-subtitle">
             Last Updated: September 29, 2026
         </p>
 
@@ -1234,25 +553,30 @@
 
     <!-- 1 -->
 
-    <section class="policy-card">
+    <section class="privacy-card">
 
-        <h2 class="section-title">
+        <h2 class="privacy-section-title">
             1. Introduction
         </h2>
 
         <p>
+
             Welcome to
-            <span class="highlight">
+            <span class="privacy-highlight">
                 Super Video Player
             </span>.
+
             This Privacy Policy explains how information is handled when
             you visit our website or download the Super Video Player
             Android application.
+
         </p>
 
         <p>
+
             By using this website, you agree to the practices described
             in this Privacy Policy.
+
         </p>
 
     </section>
@@ -1260,20 +584,24 @@
 
     <!-- 2 -->
 
-    <section class="policy-card">
+    <section class="privacy-card">
 
-        <h2 class="section-title">
+        <h2 class="privacy-section-title">
             2. No Login or Account Required
         </h2>
 
         <p>
+
             Our website does not require users to create an account,
             register, or log in.
+
         </p>
 
         <p>
+
             You can access the website and download the Super Video Player
             APK without creating an account or providing login credentials.
+
         </p>
 
     </section>
@@ -1281,21 +609,25 @@
 
     <!-- 3 -->
 
-    <section class="policy-card">
+    <section class="privacy-card">
 
-        <h2 class="section-title">
+        <h2 class="privacy-section-title">
             3. Personal Information
         </h2>
 
         <p>
+
             We do not intentionally collect personal information such as
             your name, phone number, home address, password, or payment
             information through this website.
+
         </p>
 
         <p>
+
             You are not required to provide personal information to
             download the Super Video Player APK.
+
         </p>
 
     </section>
@@ -1303,27 +635,33 @@
 
     <!-- 4 -->
 
-    <section class="policy-card">
+    <section class="privacy-card">
 
-        <h2 class="section-title">
+        <h2 class="privacy-section-title">
             4. Website Information
         </h2>
 
         <p>
+
             When you visit our website, certain technical information may
             be processed automatically by web hosting, servers, browsers,
             or other technical services.
+
         </p>
 
         <p>
+
             This may include information such as IP address, browser type,
             operating system, device information, date and time of access,
             and basic server logs.
+
         </p>
 
         <p>
+
             This technical information may be used for normal website
             operation, security, and technical maintenance.
+
         </p>
 
     </section>
@@ -1331,24 +669,28 @@
 
     <!-- 5 -->
 
-    <section class="policy-card">
+    <section class="privacy-card">
 
-        <h2 class="section-title">
+        <h2 class="privacy-section-title">
             5. Website Advertising
         </h2>
 
         <p>
+
             Our website may display advertisements provided by
             third-party advertising services.
+
         </p>
 
         <p>
+
             Advertising providers may use cookies or similar technologies
             to display advertisements, measure advertising performance,
             and provide relevant advertising according to their policies.
+
         </p>
 
-        <div class="info-box">
+        <div class="privacy-info-box">
 
             Advertising is available on the
             Super Video Player website only.
@@ -1363,26 +705,32 @@
 
     <!-- 6 -->
 
-    <section class="policy-card">
+    <section class="privacy-card">
 
-        <h2 class="section-title">
+        <h2 class="privacy-section-title">
             6. Cookies
         </h2>
 
         <p>
+
             Our website or third-party services used on the website may
             use cookies and similar technologies.
+
         </p>
 
         <p>
+
             Cookies may be used for website functionality, security,
             advertising, or other technical purposes.
+
         </p>
 
         <p>
+
             You can manage or disable cookies through your browser
             settings. Some website features may not work correctly
             if cookies are disabled.
+
         </p>
 
     </section>
@@ -1390,25 +738,31 @@
 
     <!-- 7 -->
 
-    <section class="policy-card">
+    <section class="privacy-card">
 
-        <h2 class="section-title">
+        <h2 class="privacy-section-title">
             7. Super Video Player App
         </h2>
 
         <p>
+
             The Super Video Player Android application does not require
             users to create an account or log in.
+
         </p>
 
         <p>
+
             The application does not display advertisements.
+
         </p>
 
         <p>
+
             The application is provided for video playback and related
             functionality. Information handled by the application may
             depend on the features and permissions used on your device.
+
         </p>
 
     </section>
@@ -1416,21 +770,25 @@
 
     <!-- 8 -->
 
-    <section class="policy-card">
+    <section class="privacy-card">
 
-        <h2 class="section-title">
+        <h2 class="privacy-section-title">
             8. APK Downloads
         </h2>
 
         <p>
+
             The Super Video Player APK may be downloaded from our website.
             No account or login is required to download the APK.
+
         </p>
 
         <p>
+
             Your browser, device, hosting provider, or Internet service
             provider may process technical information associated with
             downloading a file.
+
         </p>
 
     </section>
@@ -1438,21 +796,25 @@
 
     <!-- 9 -->
 
-    <section class="policy-card">
+    <section class="privacy-card">
 
-        <h2 class="section-title">
+        <h2 class="privacy-section-title">
             9. Third-Party Services and Links
         </h2>
 
         <p>
+
             Our website may contain links to third-party websites or
             services.
+
         </p>
 
         <p>
+
             Third-party services may have their own privacy policies and
             terms of use. We are not responsible for the privacy practices,
             content, or security of external websites.
+
         </p>
 
     </section>
@@ -1460,20 +822,24 @@
 
     <!-- 10 -->
 
-    <section class="policy-card">
+    <section class="privacy-card">
 
-        <h2 class="section-title">
+        <h2 class="privacy-section-title">
             10. Data Security
         </h2>
 
         <p>
+
             We take reasonable measures to maintain the security of our
             website and the files provided through it.
+
         </p>
 
         <p>
+
             However, no method of Internet transmission or electronic
             storage can be guaranteed to be completely secure.
+
         </p>
 
     </section>
@@ -1481,21 +847,25 @@
 
     <!-- 11 -->
 
-    <section class="policy-card">
+    <section class="privacy-card">
 
-        <h2 class="section-title">
+        <h2 class="privacy-section-title">
             11. Children's Privacy
         </h2>
 
         <p>
+
             Our website does not intentionally collect personal information
             from children.
+
         </p>
 
         <p>
+
             If you believe that personal information has been provided to
             us by a child, please contact us so that we can review the
             matter.
+
         </p>
 
     </section>
@@ -1503,19 +873,23 @@
 
     <!-- 12 -->
 
-    <section class="policy-card">
+    <section class="privacy-card">
 
-        <h2 class="section-title">
+        <h2 class="privacy-section-title">
             12. Changes to This Privacy Policy
         </h2>
 
         <p>
+
             We may update this Privacy Policy from time to time.
+
         </p>
 
         <p>
+
             Any changes will be published on this page, and the
             "Last Updated" date will be changed when appropriate.
+
         </p>
 
     </section>
@@ -1523,20 +897,22 @@
 
     <!-- 13 -->
 
-    <section class="policy-card">
+    <section class="privacy-card">
 
-        <h2 class="section-title">
+        <h2 class="privacy-section-title">
             13. Contact Us
         </h2>
 
         <p>
+
             If you have any questions regarding this Privacy Policy,
             please contact us.
+
         </p>
 
         <p>
 
-            <span class="highlight">
+            <span class="privacy-highlight">
                 Super Video Player
             </span>
 
@@ -1545,7 +921,7 @@
             Email:
 
             <a
-                class="email"
+                class="privacy-email"
                 href="mailto:smstudioindia91@gmail.com"
             >
                 smstudioindia91@gmail.com
@@ -1558,175 +934,276 @@
 </main>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- =========================================
+     SAME HOME PAGE FOOTER
+========================================= -->
 
-<footer>
+<footer class="custom-footer">
 
-    © 2026 Super Video Player. All rights reserved.
+    <div class="custom-footer-container">
 
-    <div class="footer-links">
+        <!-- BRAND -->
 
-        <a href="index.html">
-            Home
-        </a>
+        <div class="custom-footer-brand">
 
-        <span class="footer-separator">|</span>
+            <a
+                href="index.html"
+                class="custom-footer-logo"
+                aria-label="Super Video Player Home"
+            >
 
-        <a href="privacy-policy.html">
-            Privacy Policy
-        </a>
+                <img
+                    src="https://i.ibb.co/m598JHpc/Super-Video-Player-Logo.png"
+                    alt="Super Video Player Logo"
+                >
 
-        <span class="footer-separator">|</span>
+                <span>
+                    Super Video Player
+                </span>
 
-        <a href="terms.html">
-            Terms
-        </a>
+            </a>
 
-        <span class="footer-separator">|</span>
 
-        <a href="contact.html">
-            Contact
-        </a>
+            <p>
+                Fast, smooth and powerful video player
+                for Android.
+            </p>
+
+
+            <!-- SOCIAL ICONS -->
+
+            <ul class="custom-footer-social">
+
+                <li>
+
+                    <a
+                        href="#"
+                        aria-label="X"
+                    >
+
+                        <i class="fa-brands fa-x-twitter"></i>
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a
+                        href="#"
+                        aria-label="Instagram"
+                    >
+
+                        <i class="fa-brands fa-instagram"></i>
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a
+                        href="#"
+                        aria-label="Telegram"
+                    >
+
+                        <i class="fa-brands fa-telegram"></i>
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- QUICK LINKS -->
+
+        <div class="custom-footer-column">
+
+            <h3>
+                Quick Links
+            </h3>
+
+            <ul>
+
+                <li>
+                    <a href="index.html#formats">
+                        Formats
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#features">
+                        Features
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#screenshots">
+                        Screenshots
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#faq">
+                        FAQ
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- DOWNLOAD -->
+
+        <div class="custom-footer-column">
+
+            <h3>
+                Download
+            </h3>
+
+            <ul>
+
+                <li>
+                    <a href="index.html#apk">
+                        Android APK
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#apk">
+                        Latest Version
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#apk">
+                        Release Notes
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- LEGAL -->
+
+        <div class="custom-footer-column">
+
+            <h3>
+                Legal
+            </h3>
+
+            <ul>
+
+                <li>
+                    <a href="privacy-policy.html">
+                        Privacy Policy
+                    </a>
+                </li>
+
+                <li>
+                    <a href="terms.html">
+                        Terms
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contact.html">
+                        Contact
+                    </a>
+                </li>
+
+                <li>
+                    <a href="mailto:smstudioindia91@gmail.com">
+                        Email Us
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- APP -->
+
+        <div class="custom-footer-column">
+
+            <h3>
+                Super Video Player
+            </h3>
+
+            <ul>
+
+                <li>
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="privacy-policy.html">
+                        Privacy Policy
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#top">
+                        Back to Top
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- MIDDLE DIVIDER -->
+
+    <div class="custom-footer-divider">
+
+        <span></span>
+
+        <img
+            src="https://i.ibb.co/m598JHpc/Super-Video-Player-Logo.png"
+            alt="Super Video Player"
+        >
+
+        <span></span>
+
+    </div>
+
+
+    <!-- FOOTER BOTTOM -->
+
+    <div class="custom-footer-bottom">
+
+        <div class="custom-footer-credit">
+            Made with <span>♥</span> SM Studio
+        </div>
+
+        <div class="custom-footer-copyright">
+            © 2026 Super Video Player. All rights reserved.
+        </div>
 
     </div>
 
 </footer>
 
 
-<!-- =========================
-     MENU JAVASCRIPT
-========================= -->
+<!-- =========================================
+     HOME PAGE JAVASCRIPT
+========================================= -->
 
-<script>
-
-    const menuButton =
-        document.getElementById("menuButton");
-
-    const menuDropdown =
-        document.getElementById("menuDropdown");
-
-
-    function closeMenu() {
-
-        menuDropdown.classList.remove("show");
-
-        menuButton.classList.remove("active");
-
-        menuButton.setAttribute(
-            "aria-expanded",
-            "false"
-        );
-
-        menuDropdown.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-    }
-
-
-    function toggleMenu() {
-
-        const isOpen =
-            menuDropdown.classList.toggle("show");
-
-        menuButton.classList.toggle(
-            "active",
-            isOpen
-        );
-
-        menuButton.setAttribute(
-            "aria-expanded",
-            String(isOpen)
-        );
-
-        menuDropdown.setAttribute(
-            "aria-hidden",
-            String(!isOpen)
-        );
-
-    }
-
-
-    /* Open / Close */
-
-    menuButton.addEventListener(
-        "click",
-        function (event) {
-
-            event.stopPropagation();
-
-            toggleMenu();
-
-        }
-    );
-
-
-    /* Prevent dropdown click from closing itself */
-
-    menuDropdown.addEventListener(
-        "click",
-        function (event) {
-
-            event.stopPropagation();
-
-        }
-    );
-
-
-    /* Close outside */
-
-    document.addEventListener(
-        "click",
-        function () {
-
-            closeMenu();
-
-        }
-    );
-
-
-    /* Close after selecting link */
-
-    const menuLinks =
-        menuDropdown.querySelectorAll("a");
-
-
-    menuLinks.forEach(
-        function (link) {
-
-            link.addEventListener(
-                "click",
-                function () {
-
-                    closeMenu();
-
-                }
-            );
-
-        }
-    );
-
-
-    /* Escape */
-
-    document.addEventListener(
-        "keydown",
-        function (event) {
-
-            if (event.key === "Escape") {
-
-                closeMenu();
-
-            }
-
-        }
-    );
-
-</script>
-
+<script src="script.js"></script>
 
 </body>
 </html>
