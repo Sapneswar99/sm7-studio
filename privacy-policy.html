@@ -23,6 +23,10 @@
 
         body {
             margin: 0;
+            min-height: 100vh;
+            color: #f4efff;
+            font-family: 'Poppins', sans-serif;
+
             background:
                 radial-gradient(
                     circle at 50% 15%,
@@ -30,102 +34,191 @@
                     #17132f 45%,
                     #090b19 100%
                 );
-            color: #f4efff;
-            font-family: 'Poppins', sans-serif;
-            min-height: 100vh;
         }
 
-        /* HEADER */
+        /* =========================
+           HEADER
+        ========================= */
+
         .header {
-            height: 92px;
-            background: rgba(7, 7, 24, 0.95);
+            width: 100%;
+            height: 86px;
+
+            background: rgba(7, 7, 24, 0.97);
             border-bottom: 1px solid rgba(160, 115, 255, 0.15);
+
             display: flex;
             align-items: center;
-            padding: 0 22px;
-            gap: 14px;
+
+            padding: 0 20px;
+            gap: 12px;
+
             position: sticky;
             top: 0;
             z-index: 100;
+
             backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
         }
 
         .logo {
-            width: 58px;
-            height: 58px;
+            width: 54px;
+            height: 54px;
+
             border-radius: 50%;
             object-fit: cover;
+
             flex-shrink: 0;
         }
 
+        /* NORMAL FONT */
         .brand {
-            font-family: 'Pacifico', cursive;
-            font-size: 22px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+
             color: #ffffff;
-            flex: 1;
+
             white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            flex: 1;
+            min-width: 0;
         }
 
         .download-btn {
-            background: linear-gradient(135deg, #914cf6, #6864f5);
-            color: white;
-            padding: 14px 20px;
-            border-radius: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: linear-gradient(
+                135deg,
+                #914cf6,
+                #6864f5
+            );
+
+            color: #ffffff;
+
+            padding: 12px 17px;
+
+            border-radius: 15px;
+
             text-decoration: none;
-            font-family: 'Pacifico', cursive;
-            font-size: 16px;
-            box-shadow: 0 8px 25px rgba(126, 82, 255, 0.28);
+
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+
+            white-space: nowrap;
+            flex-shrink: 0;
+
+            box-shadow:
+                0 8px 25px rgba(126, 82, 255, 0.28);
+
+            transition: 0.2s ease;
         }
 
         .download-btn:hover {
             opacity: 0.9;
+            transform: translateY(-1px);
         }
 
         .menu {
-            font-size: 34px;
-            color: white;
+            width: 34px;
+            height: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #ffffff;
+
+            font-size: 30px;
             line-height: 1;
-            margin-left: 8px;
+
+            flex-shrink: 0;
         }
 
-        /* MAIN */
+
+        /* =========================
+           MAIN
+        ========================= */
+
         .container {
             width: 92%;
             max-width: 850px;
+
             margin: 45px auto 70px;
         }
 
+
+        /* =========================
+           BADGE
+        ========================= */
+
         .badge {
             width: fit-content;
+
             margin: 0 auto 25px;
+
             padding: 10px 25px;
+
             border-radius: 30px;
+
             border: 1px solid rgba(153, 93, 255, 0.4);
+
             background: rgba(104, 67, 175, 0.15);
+
             color: #b894ff;
+
             font-family: 'Pacifico', cursive;
             font-size: 16px;
-            box-shadow: 0 0 25px rgba(128, 78, 255, 0.08);
+
+            box-shadow:
+                0 0 25px rgba(128, 78, 255, 0.08);
         }
+
+
+        /* =========================
+           PAGE TITLE
+        ========================= */
 
         .title {
             text-align: center;
+
             font-family: 'Pacifico', cursive;
+
             font-size: 42px;
+
             margin: 0 0 10px;
-            background: linear-gradient(90deg, #ffffff, #b083ff);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #b083ff
+                );
+
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .subtitle {
             text-align: center;
+
             color: #aaa1c5;
+
             font-size: 14px;
+
             margin-bottom: 32px;
         }
 
-        /* POLICY CARD */
+
+        /* =========================
+           POLICY CARD
+        ========================= */
+
         .policy-card {
             background:
                 linear-gradient(
@@ -135,33 +228,40 @@
                 );
 
             border: 1px solid rgba(159, 111, 255, 0.23);
+
             border-radius: 24px;
+
             padding: 28px;
+
             margin-bottom: 18px;
 
             box-shadow:
                 0 15px 45px rgba(0, 0, 0, 0.22),
-                inset 0 1px 0 rgba(255,255,255,0.03);
+                inset 0 1px 0 rgba(255, 255, 255, 0.03);
         }
 
-        /*
-            Privacy Policy text uses normal Poppins font.
-            Only the website brand/title keeps the script style.
-        */
 
+        /* NORMAL FONT */
         .section-title {
             font-family: 'Poppins', sans-serif;
+
             font-size: 23px;
             font-weight: 600;
+
             color: #b68cff;
+
             margin: 0 0 12px;
         }
 
         .policy-card p {
             color: #ddd7eb;
+
             font-size: 14px;
+
             line-height: 1.85;
+
             margin: 8px 0;
+
             font-family: 'Poppins', sans-serif;
         }
 
@@ -172,9 +272,13 @@
 
         .policy-card li {
             color: #d8d1e8;
+
             font-size: 14px;
+
             margin: 8px 0;
+
             line-height: 1.7;
+
             font-family: 'Poppins', sans-serif;
         }
 
@@ -185,38 +289,60 @@
 
         .info-box {
             border: 1px solid rgba(151, 96, 255, 0.3);
+
             background: rgba(121, 73, 205, 0.09);
+
             padding: 16px;
+
             border-radius: 16px;
+
             margin-top: 15px;
+
             color: #ddd5ee;
+
             font-size: 13px;
+
             line-height: 1.7;
+
             font-family: 'Poppins', sans-serif;
         }
 
         .email {
             color: #ae83ff;
+
             text-decoration: none;
+
+            font-family: 'Poppins', sans-serif;
         }
 
         .email:hover {
             text-decoration: underline;
         }
 
-        /* FOOTER */
+
+        /* =========================
+           FOOTER
+        ========================= */
+
         footer {
             text-align: center;
+
             padding: 30px 20px 45px;
+
             color: #77718b;
+
             font-family: 'Poppins', sans-serif;
+
             font-size: 13px;
         }
 
         footer a {
             color: #a277ed;
+
             text-decoration: none;
+
             margin: 0 7px;
+
             font-family: 'Poppins', sans-serif;
         }
 
@@ -224,90 +350,158 @@
             text-decoration: underline;
         }
 
-        /* MOBILE */
+
+        /* =========================
+           MOBILE
+        ========================= */
+
         @media (max-width: 600px) {
 
             .header {
-                height: 82px;
-                padding: 0 16px;
-                gap: 10px;
+                height: 78px;
+
+                padding: 0 14px;
+
+                gap: 9px;
             }
 
             .logo {
-                width: 48px;
-                height: 48px;
+                width: 46px;
+                height: 46px;
             }
 
             .brand {
-                font-size: 18px;
+                font-size: 15px;
+                font-weight: 500;
             }
 
             .download-btn {
-                padding: 11px 15px;
-                font-size: 14px;
-                border-radius: 14px;
+                padding: 10px 12px;
+
+                border-radius: 13px;
+
+                font-size: 12px;
             }
 
             .menu {
-                font-size: 30px;
+                width: 30px;
+                height: 30px;
+
+                font-size: 27px;
             }
+
 
             .container {
                 width: 91%;
+
                 margin-top: 35px;
             }
 
+
             .badge {
                 font-size: 14px;
+
                 padding: 9px 18px;
             }
+
 
             .title {
                 font-size: 32px;
             }
 
+
             .subtitle {
                 font-size: 12px;
             }
 
+
             .policy-card {
                 padding: 21px;
+
                 border-radius: 20px;
             }
+
 
             .section-title {
                 font-size: 19px;
             }
+
 
             .policy-card p,
             .policy-card li {
                 font-size: 13px;
             }
 
+
             .info-box {
                 font-size: 12px;
+            }
+
+
+            footer {
+                font-size: 12px;
+            }
+        }
+
+
+        /* =========================
+           VERY SMALL PHONES
+        ========================= */
+
+        @media (max-width: 380px) {
+
+            .header {
+                padding: 0 10px;
+                gap: 7px;
+            }
+
+            .logo {
+                width: 42px;
+                height: 42px;
+            }
+
+            .brand {
+                font-size: 13px;
+            }
+
+            .download-btn {
+                padding: 9px 10px;
+                font-size: 11px;
+            }
+
+            .menu {
+                width: 27px;
+                font-size: 25px;
             }
         }
     </style>
 </head>
 
+
 <body>
 
-<!-- HEADER -->
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header class="header">
 
-    <!-- Replace logo.png with your actual logo -->
-    <img src="https://i.ibb.co/m598JHpc/Super-Video-Player-Logo.png" width="50" height="50">
-         class="logo"
-         alt="Super Video Player">
+    <img
+        src="https://i.ibb.co/m598JHpc/Super-Video-Player-Logo.png"
+        class="logo"
+        alt="Super Video Player"
+    >
 
     <div class="brand">
         Super Video Player
     </div>
 
-    <a href="index.html#download"
-       class="download-btn">
-        ↓ Download
+    <a
+        href="index.html#download"
+        class="download-btn"
+    >
+        ↓&nbsp; Download
     </a>
 
     <div class="menu">
@@ -317,20 +511,28 @@
 </header>
 
 
-<!-- PRIVACY POLICY CONTENT -->
+
+<!-- =========================
+     PRIVACY POLICY
+========================= -->
+
 <main class="container">
+
 
     <div class="badge">
         🔒 Your Privacy Matters
     </div>
 
+
     <h1 class="title">
         Privacy Policy
     </h1>
 
+
     <p class="subtitle">
         Last Updated: September 29, 2026
     </p>
+
 
 
     <!-- 1 -->
@@ -341,7 +543,10 @@
         </h2>
 
         <p>
-            Welcome to <span class="highlight">Super Video Player</span>.
+            Welcome to
+            <span class="highlight">
+                Super Video Player
+            </span>.
             This Privacy Policy explains how information is handled when
             you visit our website or download the Super Video Player
             Android application.
@@ -353,6 +558,7 @@
         </p>
 
     </section>
+
 
 
     <!-- 2 -->
@@ -375,6 +581,7 @@
     </section>
 
 
+
     <!-- 3 -->
     <section class="policy-card">
 
@@ -394,6 +601,7 @@
         </p>
 
     </section>
+
 
 
     <!-- 4 -->
@@ -423,6 +631,7 @@
     </section>
 
 
+
     <!-- 5 -->
     <section class="policy-card">
 
@@ -433,7 +642,9 @@
         <p>
             Our website may display advertisements provided by
             third-party advertising services, including
-            <span class="highlight">Google AdSense</span>.
+            <span class="highlight">
+                Google AdSense
+            </span>.
         </p>
 
         <p>
@@ -443,12 +654,17 @@
         </p>
 
         <div class="info-box">
-            Advertising is available on the Super Video Player website
-            only. The Super Video Player Android application does not
-            contain advertisements.
+
+            Advertising is available on the
+            Super Video Player website only.
+
+            The Super Video Player Android application
+            does not contain advertisements.
+
         </div>
 
     </section>
+
 
 
     <!-- 6 -->
@@ -477,6 +693,7 @@
     </section>
 
 
+
     <!-- 7 -->
     <section class="policy-card">
 
@@ -502,6 +719,7 @@
     </section>
 
 
+
     <!-- 8 -->
     <section class="policy-card">
 
@@ -521,6 +739,7 @@
         </p>
 
     </section>
+
 
 
     <!-- 9 -->
@@ -544,6 +763,7 @@
     </section>
 
 
+
     <!-- 10 -->
     <section class="policy-card">
 
@@ -562,6 +782,7 @@
         </p>
 
     </section>
+
 
 
     <!-- 11 -->
@@ -585,6 +806,7 @@
     </section>
 
 
+
     <!-- 12 -->
     <section class="policy-card">
 
@@ -604,6 +826,7 @@
     </section>
 
 
+
     <!-- 13 -->
     <section class="policy-card">
 
@@ -617,24 +840,35 @@
         </p>
 
         <p>
+
             <span class="highlight">
                 Super Video Player
             </span>
+
             <br>
 
             Email:
-            <a class="email"
-               href="mailto:smstudioindia91@gmail.com">
+
+            <a
+                class="email"
+                href="mailto:smstudioindia91@gmail.com"
+            >
                 smstudioindia91@gmail.com
             </a>
+
         </p>
 
     </section>
 
+
 </main>
 
 
-<!-- FOOTER -->
+
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
 
     © 2026 Super Video Player. All rights reserved.
@@ -664,6 +898,7 @@
     </a>
 
 </footer>
+
 
 </body>
 </html>
