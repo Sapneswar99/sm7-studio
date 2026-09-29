@@ -29,11 +29,13 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
-
   background: #0a0a1a;
   color: #e5e7eb;
-
   line-height: 1.6;
+}
+
+body.menu-open {
+  overflow: hidden;
 }
 
 img,
@@ -65,21 +67,20 @@ button {
 
 /* ============================================
    FLOATING FIXED NAVBAR
-   ALWAYS VISIBLE ON SCROLL
+   ALWAYS VISIBLE
    ============================================ */
 
 .navbar {
   position: fixed !important;
-
   top: 14px;
   left: 50%;
-
   width: calc(100% - 28px);
   max-width: 1400px;
-
   transform: translateX(-50%);
 
   z-index: 99999;
+
+  display: block;
 
   visibility: visible !important;
   opacity: 1 !important;
@@ -98,8 +99,8 @@ button {
 
   transition:
     background 0.3s ease,
-    box-shadow 0.3s ease,
-    border-color 0.3s ease;
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .navbar.scrolled {
@@ -887,6 +888,8 @@ h2 {
   width: 100%;
   max-width: 1200px;
 
+  min-height: 90px;
+
   margin: 24px auto;
 
   padding: 0 24px;
@@ -1244,7 +1247,7 @@ h2 {
 }
 
 .faq-item.active .faq-answer {
-  max-height: 400px;
+  max-height: 500px;
 }
 
 /* ============================================
@@ -1493,8 +1496,6 @@ footer {
 
 @media (max-width: 768px) {
 
-  /* FLOATING HEADER */
-
   .navbar {
     top: 10px;
     left: 50%;
@@ -1557,10 +1558,11 @@ footer {
     overflow-y: auto;
 
     visibility: hidden;
-
     opacity: 0;
 
     transform: translateX(calc(100% + 25px));
+
+    pointer-events: none;
 
     transition:
       transform 0.35s ease,
@@ -1572,10 +1574,11 @@ footer {
     right: 10px;
 
     visibility: visible;
-
     opacity: 1;
 
     transform: translateX(0);
+
+    pointer-events: auto;
   }
 
   .nav-links a {
