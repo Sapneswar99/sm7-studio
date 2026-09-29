@@ -5,108 +5,252 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Privacy Policy - Super Video Player</title>
-    <meta name="description" content="Privacy Policy for the Super Video Player APK download website. Learn how we collect, use, and protect your information.">
+    <meta name="description"
+          content="Read the Privacy Policy for Super Video Player. Learn how we handle information, cookies, advertisements and APK downloads.">
+
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;600&display=swap"
+          rel="stylesheet">
 
     <style>
         * {
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fb;
-            color: #222;
+            background:
+                radial-gradient(circle at 50% 15%, #2d1b55 0%, #17132f 45%, #090b19 100%);
+            color: #f4efff;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        .header {
+            height: 92px;
+            background: rgba(7, 7, 24, 0.95);
+            border-bottom: 1px solid rgba(160, 115, 255, 0.15);
+            display: flex;
+            align-items: center;
+            padding: 0 22px;
+            gap: 14px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(14px);
+        }
+
+        .logo {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .brand {
+            font-family: 'Pacifico', cursive;
+            font-size: 22px;
+            color: #ffffff;
+            flex: 1;
+            white-space: nowrap;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #914cf6, #6864f5);
+            color: white;
+            padding: 14px 20px;
+            border-radius: 17px;
+            text-decoration: none;
+            font-family: 'Pacifico', cursive;
+            font-size: 16px;
+            box-shadow: 0 8px 25px rgba(126, 82, 255, 0.28);
+        }
+
+        .menu {
+            font-size: 34px;
+            color: white;
+            line-height: 1;
+            margin-left: 8px;
+        }
+
+        /* MAIN */
+        .container {
+            width: 92%;
+            max-width: 850px;
+            margin: 45px auto 70px;
+        }
+
+        .badge {
+            width: fit-content;
+            margin: 0 auto 25px;
+            padding: 10px 25px;
+            border-radius: 30px;
+            border: 1px solid rgba(153, 93, 255, 0.4);
+            background: rgba(104, 67, 175, 0.15);
+            color: #b894ff;
+            font-family: 'Pacifico', cursive;
+            font-size: 16px;
+            box-shadow: 0 0 25px rgba(128, 78, 255, 0.08);
+        }
+
+        .title {
+            text-align: center;
+            font-family: 'Pacifico', cursive;
+            font-size: 42px;
+            margin: 0 0 10px;
+            background: linear-gradient(90deg, #ffffff, #b083ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #aaa1c5;
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        /* CARD */
+        .policy-card {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(58, 40, 96, 0.72),
+                    rgba(20, 18, 42, 0.82)
+                );
+            border: 1px solid rgba(159, 111, 255, 0.23);
+            border-radius: 24px;
+            padding: 28px;
+            margin-bottom: 18px;
+            box-shadow:
+                0 15px 45px rgba(0, 0, 0, 0.22),
+                inset 0 1px 0 rgba(255,255,255,0.03);
+        }
+
+        .section-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 23px;
+            color: #b68cff;
+            margin: 0 0 12px;
+        }
+
+        .policy-card p {
+            color: #ddd7eb;
+            font-size: 14px;
+            line-height: 1.85;
+            margin: 8px 0;
+        }
+
+        .policy-card ul {
+            padding-left: 22px;
+            margin: 10px 0;
+        }
+
+        .policy-card li {
+            color: #d8d1e8;
+            font-size: 14px;
+            margin: 8px 0;
             line-height: 1.7;
         }
 
-        header {
-            background: #111827;
-            color: #fff;
-            padding: 28px 20px;
-            text-align: center;
+        .highlight {
+            color: #ad7cff;
+            font-weight: 500;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 30px;
+        .info-box {
+            border: 1px solid rgba(151, 96, 255, 0.3);
+            background: rgba(121, 73, 205, 0.09);
+            padding: 16px;
+            border-radius: 16px;
+            margin-top: 15px;
+            color: #ddd5ee;
+            font-size: 13px;
         }
 
-        header p {
-            margin: 8px 0 0;
-            color: #d1d5db;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 0 18px;
-        }
-
-        .content {
-            background: #fff;
-            padding: 35px;
-            border-radius: 14px;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.06);
-        }
-
-        h2 {
-            color: #111827;
-            margin-top: 30px;
-            font-size: 22px;
-        }
-
-        h2:first-child {
-            margin-top: 0;
-        }
-
-        p {
-            margin: 12px 0;
-        }
-
-        ul {
-            padding-left: 22px;
-        }
-
-        li {
-            margin-bottom: 8px;
-        }
-
-        a {
-            color: #2563eb;
+        .email {
+            color: #ae83ff;
             text-decoration: none;
         }
 
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .updated {
-            background: #f3f4f6;
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            font-size: 14px;
-        }
-
+        /* FOOTER */
         footer {
             text-align: center;
-            padding: 25px 15px;
-            color: #6b7280;
-            font-size: 14px;
+            padding: 30px 20px 45px;
+            color: #77718b;
+            font-family: 'Pacifico', cursive;
+            font-size: 13px;
         }
 
+        footer a {
+            color: #a277ed;
+            text-decoration: none;
+            margin: 0 7px;
+        }
+
+        /* MOBILE */
         @media (max-width: 600px) {
-            header h1 {
-                font-size: 25px;
+
+            .header {
+                height: 82px;
+                padding: 0 16px;
+                gap: 10px;
             }
 
-            .content {
-                padding: 22px;
+            .logo {
+                width: 48px;
+                height: 48px;
             }
 
-            h2 {
+            .brand {
+                font-size: 18px;
+            }
+
+            .download-btn {
+                padding: 11px 15px;
+                font-size: 14px;
+                border-radius: 14px;
+            }
+
+            .menu {
+                font-size: 30px;
+            }
+
+            .container {
+                width: 91%;
+                margin-top: 35px;
+            }
+
+            .badge {
+                font-size: 14px;
+                padding: 9px 18px;
+            }
+
+            .title {
+                font-size: 32px;
+            }
+
+            .subtitle {
+                font-size: 12px;
+            }
+
+            .policy-card {
+                padding: 21px;
+                border-radius: 20px;
+            }
+
+            .section-title {
                 font-size: 20px;
+            }
+
+            .policy-card p,
+            .policy-card li {
+                font-size: 13px;
             }
         }
     </style>
@@ -114,232 +258,289 @@
 
 <body>
 
-<header>
-    <h1>Privacy Policy</h1>
-    <p>Super Video Player</p>
+<!-- HEADER -->
+<header class="header">
+
+    <!-- Replace with your actual logo -->
+    <img src="logo.png" class="logo" alt="Super Video Player">
+
+    <div class="brand">Super Video Player</div>
+
+    <a href="index.html#download" class="download-btn">
+        ↓ Download
+    </a>
+
+    <div class="menu">☰</div>
+
 </header>
 
-<div class="container">
-    <div class="content">
 
-        <div class="updated">
-            <strong>Last Updated:</strong> September 29, 2026
-        </div>
+<!-- CONTENT -->
+<main class="container">
 
-        <h2>1. Introduction</h2>
+    <div class="badge">
+        🔒 Your Privacy Matters
+    </div>
+
+    <h1 class="title">Privacy Policy</h1>
+
+    <p class="subtitle">
+        Last Updated: September 29, 2026
+    </p>
+
+
+    <section class="policy-card">
+
+        <h2 class="section-title">1. Introduction</h2>
 
         <p>
-            Welcome to the official website of <strong>Super Video Player</strong>.
-            This Privacy Policy explains how we collect, use, and protect information
-            when you visit our website or download information and APK files related
-            to Super Video Player.
+            Welcome to <span class="highlight">Super Video Player</span>.
+            This Privacy Policy explains how information may be collected,
+            used and protected when you visit our website or download the
+            Super Video Player Android APK.
         </p>
 
         <p>
-            By using this website, you agree to the practices described in this
-            Privacy Policy.
+            By using this website, you agree to the practices described
+            in this Privacy Policy.
         </p>
 
+    </section>
 
-        <h2>2. Information We Collect</h2>
+
+    <section class="policy-card">
+
+        <h2 class="section-title">2. Information We Collect</h2>
 
         <p>
-            We do not intentionally collect personally identifiable information
-            such as your name, phone number, home address, or password through this
-            website unless you voluntarily provide it.
+            We do not intentionally collect personally identifiable
+            information through this website unless you voluntarily
+            provide it to us.
         </p>
 
         <p>
-            However, certain non-personal information may be automatically collected
-            when you visit the website, including:
+            Some technical information may automatically be collected,
+            such as:
         </p>
 
         <ul>
             <li>IP address</li>
             <li>Browser type and version</li>
-            <li>Device type</li>
-            <li>Operating system</li>
+            <li>Device and operating system information</li>
             <li>Pages visited</li>
             <li>Referring website</li>
-            <li>Date and time of your visit</li>
+            <li>Date and time of access</li>
             <li>General website usage information</li>
         </ul>
 
+    </section>
 
-        <h2>3. How We Use Information</h2>
+
+    <section class="policy-card">
+
+        <h2 class="section-title">3. How We Use Information</h2>
 
         <p>
-            Information collected automatically may be used for the following
-            purposes:
+            Information may be used to:
         </p>
 
         <ul>
-            <li>To operate and maintain the website</li>
-            <li>To improve website performance and user experience</li>
-            <li>To understand website traffic and usage</li>
-            <li>To detect and prevent abuse or security issues</li>
-            <li>To improve our content and services</li>
+            <li>Operate and maintain our website</li>
+            <li>Improve website performance</li>
+            <li>Improve the user experience</li>
+            <li>Understand website traffic</li>
+            <li>Detect security issues and abuse</li>
+            <li>Improve our content and services</li>
         </ul>
 
+    </section>
 
-        <h2>4. Cookies</h2>
+
+    <section class="policy-card">
+
+        <h2 class="section-title">4. Cookies</h2>
 
         <p>
-            Our website may use cookies and similar technologies to improve the
-            browsing experience and understand how visitors use the website.
+            Our website may use cookies and similar technologies to
+            improve your browsing experience and understand how visitors
+            use our website.
         </p>
 
         <p>
-            Cookies may also be used by third-party services, including advertising
-            and analytics providers.
+            You can control or disable cookies through your browser
+            settings. Some website features may not function correctly
+            if cookies are disabled.
+        </p>
+
+    </section>
+
+
+    <section class="policy-card">
+
+        <h2 class="section-title">5. Advertising</h2>
+
+        <p>
+            We may display advertisements through third-party advertising
+            providers such as <span class="highlight">Google AdSense</span>.
         </p>
 
         <p>
-            You can control or disable cookies through your browser settings.
-            Disabling cookies may affect certain features of the website.
+            Advertising providers may use cookies or similar technologies
+            to provide advertisements and measure advertising performance.
         </p>
 
+        <div class="info-box">
+            Advertising and privacy practices may vary depending on your
+            location, device and applicable privacy settings.
+        </div>
 
-        <h2>5. Google AdSense and Advertising</h2>
+    </section>
 
-        <p>
-            We may use third-party advertising services such as
-            <strong>Google AdSense</strong> to display advertisements on our website.
-        </p>
 
-        <p>
-            Third-party advertising providers may use cookies, web beacons, or
-            similar technologies to display advertisements based on a user's
-            previous visits to this or other websites.
-        </p>
+    <section class="policy-card">
+
+        <h2 class="section-title">6. Third-Party Services</h2>
 
         <p>
-            Users may be able to manage advertising preferences through Google's
-            advertising settings and other available privacy controls.
-        </p>
-
-
-        <h2>6. Third-Party Services</h2>
-
-        <p>
-            Our website may use third-party services for advertising, analytics,
-            hosting, content delivery, or other website-related functions.
+            Our website may use third-party services for advertising,
+            analytics, hosting, content delivery or other website
+            functionality.
         </p>
 
         <p>
-            These third-party services may collect information according to their
-            own privacy policies. We recommend reviewing the privacy policies of
-            those services for more information about how they handle data.
+            Third-party services may collect and process information
+            according to their own privacy policies.
         </p>
 
+    </section>
 
-        <h2>7. APK Downloads</h2>
+
+    <section class="policy-card">
+
+        <h2 class="section-title">7. APK Downloads</h2>
 
         <p>
-            Super Video Player APK files may be provided through this website for
-            download.
-        </p>
-
-        <p>
-            Downloading an APK file does not require you to provide personal
-            information to us. However, your device, browser, internet service
-            provider, or third-party services may collect technical information
-            associated with the download.
+            Super Video Player APK files may be provided through this
+            website for download.
         </p>
 
         <p>
-            Users should only install APK files from sources they trust and should
-            review Android security warnings before installation.
-        </p>
-
-
-        <h2>8. External Links</h2>
-
-        <p>
-            Our website may contain links to third-party websites or services.
-            These websites have their own privacy policies and terms of use.
+            We do not require personal information simply to download
+            an APK file from our website.
         </p>
 
         <p>
-            We are not responsible for the privacy practices, content, or security
-            of third-party websites.
+            Your browser, device or Internet service provider may
+            independently collect technical information associated with
+            downloading files.
         </p>
 
-
-        <h2>9. Data Security</h2>
-
-        <p>
-            We take reasonable measures to protect information associated with the
-            operation of this website.
-        </p>
-
-        <p>
-            However, no method of transmitting information over the Internet or
-            storing information electronically can be guaranteed to be completely
-            secure.
-        </p>
+    </section>
 
 
-        <h2>10. Children's Privacy</h2>
+    <section class="policy-card">
+
+        <h2 class="section-title">8. External Links</h2>
 
         <p>
-            This website is not intended to knowingly collect personal information
-            from children.
+            Our website may contain links to external websites or
+            third-party services.
         </p>
 
         <p>
-            If you believe that a child has provided personal information through
-            our website, please contact us so that appropriate action can be taken.
+            We are not responsible for the privacy practices, content
+            or security of third-party websites. We recommend reviewing
+            their respective privacy policies.
         </p>
 
+    </section>
 
-        <h2>11. Your Privacy Choices</h2>
 
-        <p>
-            Depending on your location, you may have certain rights regarding
-            personal information, including rights to access, correct, delete, or
-            restrict the processing of certain information.
-        </p>
+    <section class="policy-card">
+
+        <h2 class="section-title">9. Data Security</h2>
 
         <p>
-            You can also manage cookies and certain advertising preferences through
-            your browser or available privacy settings.
-        </p>
-
-
-        <h2>12. Changes to This Privacy Policy</h2>
-
-        <p>
-            We may update this Privacy Policy from time to time to reflect changes
-            to our website, services, or applicable legal requirements.
+            We use reasonable measures to protect information associated
+            with the operation of our website.
         </p>
 
         <p>
-            Any changes will be posted on this page with an updated
-            <strong>Last Updated</strong> date.
+            However, no Internet transmission or electronic storage
+            method can be guaranteed to be completely secure.
         </p>
 
+    </section>
 
-        <h2>13. Contact Us</h2>
+
+    <section class="policy-card">
+
+        <h2 class="section-title">10. Children's Privacy</h2>
 
         <p>
-            If you have any questions, concerns, or requests regarding this Privacy
-            Policy, please contact us:
+            Our website is not intended to knowingly collect personal
+            information from children.
         </p>
 
         <p>
-            <strong>Super Video Player</strong><br>
+            If you believe that a child has provided personal information
+            through our website, please contact us.
+        </p>
+
+    </section>
+
+
+    <section class="policy-card">
+
+        <h2 class="section-title">11. Changes to This Policy</h2>
+
+        <p>
+            We may update this Privacy Policy from time to time.
+            Any changes will be published on this page and the
+            "Last Updated" date will be updated accordingly.
+        </p>
+
+    </section>
+
+
+    <section class="policy-card">
+
+        <h2 class="section-title">12. Contact Us</h2>
+
+        <p>
+            If you have any questions regarding this Privacy Policy,
+            you can contact us at:
+        </p>
+
+        <p>
+            <span class="highlight">Super Video Player</span><br>
             Email:
-            <a href="mailto:YOUR_EMAIL@example.com">
-                YOUR_EMAIL@example.com
+            <a class="email"
+               href="mailto:smstudioindia91@gmail.com">
+                smstudioindia91@gmail.com
             </a>
         </p>
 
-    </div>
-</div>
+    </section>
 
+</main>
+
+
+<!-- FOOTER -->
 <footer>
-    &copy; 2026 Super Video Player. All rights reserved.
+
+    © 2026 Super Video Player. All rights reserved.
+
+    <br><br>
+
+    <a href="index.html">Home</a>
+    |
+    <a href="privacy-policy.html">Privacy Policy</a>
+    |
+    <a href="terms.html">Terms</a>
+    |
+    <a href="contact.html">Contact</a>
+
 </footer>
 
 </body>
