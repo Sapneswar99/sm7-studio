@@ -9,10 +9,46 @@
     <meta name="description"
           content="Read the Privacy Policy for Super Video Player. Learn how information is handled on our website and Android application.">
 
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;600&display=swap"
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
           rel="stylesheet">
 
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+
+        /* ============================================
+           SUPER VIDEO PLAYER
+           PRIVACY POLICY
+           HOME PAGE STYLE
+           FULL REPLACEMENT
+           ============================================ */
+
+        :root {
+            --bg-dark: #090b19;
+            --bg-main: #0d0d20;
+            --bg-card: rgba(25, 20, 48, 0.82);
+
+            --purple: #914cf6;
+            --purple-light: #b68cff;
+            --purple-soft: #a277ed;
+
+            --off-white: #f4efff;
+            --text-main: #eee8ff;
+            --text-muted: #aaa1c5;
+
+            --border: rgba(159, 111, 255, 0.20);
+
+            --container: 1180px;
+        }
+
+
+        /* =========================
+           RESET
+        ========================= */
 
         * {
             box-sizing: border-box;
@@ -26,17 +62,24 @@
             margin: 0;
             min-height: 100vh;
 
-            color: #f4efff;
+            color: var(--off-white);
 
             font-family: 'Poppins', sans-serif;
 
             background:
                 radial-gradient(
-                    circle at 50% 15%,
+                    circle at 50% 0%,
                     #2d1b55 0%,
-                    #17132f 45%,
+                    #17132f 32%,
+                    #0d0d20 65%,
                     #090b19 100%
                 );
+
+            overflow-x: hidden;
+        }
+
+        a {
+            -webkit-tap-highlight-color: transparent;
         }
 
 
@@ -45,36 +88,48 @@
         ========================= */
 
         .header {
-            width: 100%;
-            height: 82px;
+            position: fixed;
 
-            background: rgba(7, 7, 24, 0.97);
+            top: 14px;
+            left: 50%;
 
-            border-bottom: 1px solid
-                rgba(160, 115, 255, 0.15);
+            transform: translateX(-50%);
+
+            width: calc(100% - 32px);
+            max-width: var(--container);
+
+            height: 68px;
 
             display: flex;
             align-items: center;
 
-            padding: 0 20px;
+            padding: 0 14px 0 17px;
 
             gap: 12px;
 
-            position: sticky;
-            top: 0;
+            background:
+                rgba(10, 9, 27, 0.88);
+
+            border: 1px solid
+                rgba(159, 111, 255, 0.18);
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 14px 40px rgba(0, 0, 0, 0.32);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
 
             z-index: 1000;
-
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
         }
 
 
         .logo {
-            width: 52px;
-            height: 52px;
+            width: 43px;
+            height: 43px;
 
-            border-radius: 50%;
+            border-radius: 12px;
 
             object-fit: cover;
 
@@ -82,14 +137,12 @@
         }
 
 
-        /* NORMAL FONT */
-
         .brand {
             font-family: 'Poppins', sans-serif;
 
-            font-size: 18px;
+            font-size: 16px;
 
-            font-weight: 500;
+            font-weight: 600;
 
             color: #ffffff;
 
@@ -110,13 +163,16 @@
         ========================= */
 
         .menu-button {
-            width: 42px;
-            height: 42px;
+            width: 44px;
+            height: 44px;
 
-            border: none;
+            border: 1px solid
+                rgba(159, 111, 255, 0.10);
+
             outline: none;
 
-            background: transparent;
+            background:
+                rgba(255, 255, 255, 0.035);
 
             color: #ffffff;
 
@@ -130,15 +186,20 @@
 
             flex-shrink: 0;
 
-            border-radius: 12px;
+            border-radius: 13px;
 
             transition:
                 background 0.2s ease,
+                border-color 0.2s ease,
                 transform 0.2s ease;
         }
 
         .menu-button:hover {
-            background: rgba(145, 76, 246, 0.15);
+            background:
+                rgba(145, 76, 246, 0.15);
+
+            border-color:
+                rgba(159, 111, 255, 0.25);
         }
 
         .menu-button:active {
@@ -146,11 +207,13 @@
         }
 
 
-        /* HAMBURGER */
+        /* =========================
+           HAMBURGER
+        ========================= */
 
         .hamburger {
-            width: 25px;
-            height: 19px;
+            width: 24px;
+            height: 18px;
 
             position: relative;
 
@@ -181,7 +244,9 @@
         ========================= */
 
         .menu-button.active .hamburger span:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
+            transform:
+                translateY(7.5px)
+                rotate(45deg);
         }
 
         .menu-button.active .hamburger span:nth-child(2) {
@@ -189,7 +254,9 @@
         }
 
         .menu-button.active .hamburger span:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
+            transform:
+                translateY(-7.5px)
+                rotate(-45deg);
         }
 
 
@@ -200,12 +267,12 @@
         .menu-dropdown {
             position: fixed;
 
-            top: 92px;
-            right: 20px;
+            top: 91px;
+            right: max(20px, calc((100vw - var(--container)) / 2));
 
-            width: 210px;
+            width: 220px;
 
-            padding: 10px;
+            padding: 9px;
 
             background:
                 linear-gradient(
@@ -215,15 +282,15 @@
                 );
 
             border: 1px solid
-                rgba(159, 111, 255, 0.28);
+                rgba(159, 111, 255, 0.25);
 
             border-radius: 18px;
 
             box-shadow:
-                0 18px 45px rgba(0, 0, 0, 0.45);
+                0 22px 55px rgba(0, 0, 0, 0.48);
 
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
 
             opacity: 0;
             visibility: hidden;
@@ -245,6 +312,7 @@
 
         .menu-dropdown.show {
             opacity: 1;
+
             visibility: visible;
 
             transform:
@@ -254,7 +322,8 @@
 
 
         .menu-dropdown a {
-            display: block;
+            display: flex;
+            align-items: center;
 
             padding: 12px 14px;
 
@@ -264,22 +333,24 @@
 
             text-decoration: none;
 
-            font-family: 'Poppins', sans-serif;
-
-            font-size: 14px;
+            font-size: 13px;
 
             font-weight: 500;
 
             transition:
                 background 0.2s ease,
-                color 0.2s ease;
+                color 0.2s ease,
+                transform 0.2s ease;
         }
 
 
         .menu-dropdown a:hover {
-            background: rgba(145, 76, 246, 0.16);
+            background:
+                rgba(145, 76, 246, 0.16);
 
             color: #b68cff;
+
+            transform: translateX(2px);
         }
 
 
@@ -300,62 +371,76 @@
         ========================= */
 
         .container {
-            width: 92%;
-            max-width: 850px;
+            width: min(92%, 900px);
 
-            margin: 45px auto 70px;
+            margin: 0 auto;
+
+            padding-top: 145px;
+            padding-bottom: 75px;
         }
 
 
         /* =========================
-           BADGE
+           PAGE INTRO
         ========================= */
 
+        .page-intro {
+            text-align: center;
+
+            margin-bottom: 42px;
+        }
+
+
         .badge {
-            width: fit-content;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
 
-            margin: 0 auto 25px;
+            gap: 8px;
 
-            padding: 10px 25px;
+            padding: 8px 17px;
 
-            border-radius: 30px;
+            margin-bottom: 19px;
+
+            border-radius: 999px;
 
             border: 1px solid
-                rgba(153, 93, 255, 0.4);
+                rgba(153, 93, 255, 0.30);
 
             background:
-                rgba(104, 67, 175, 0.15);
+                rgba(104, 67, 175, 0.12);
 
             color: #b894ff;
 
-            font-family: 'Pacifico', cursive;
+            font-size: 11px;
 
-            font-size: 16px;
+            font-weight: 600;
+
+            letter-spacing: 0.2px;
 
             box-shadow:
                 0 0 25px
-                rgba(128, 78, 255, 0.08);
+                rgba(128, 78, 255, 0.06);
         }
 
 
-        /* =========================
-           PAGE TITLE
-        ========================= */
-
         .title {
-            text-align: center;
+            margin: 0;
 
-            font-family: 'Pacifico', cursive;
+            font-size: clamp(34px, 5vw, 50px);
 
-            font-size: 42px;
+            line-height: 1.12;
 
-            margin: 0 0 10px;
+            font-weight: 800;
+
+            letter-spacing: -1.4px;
 
             background:
                 linear-gradient(
                     90deg,
-                    #ffffff,
-                    #b083ff
+                    #ffffff 0%,
+                    #d8c4ff 45%,
+                    #a66cff 100%
                 );
 
             -webkit-background-clip: text;
@@ -364,134 +449,217 @@
 
 
         .subtitle {
-            text-align: center;
+            margin: 13px auto 0;
 
-            color: #aaa1c5;
+            max-width: 620px;
 
-            font-size: 14px;
+            color: var(--text-muted);
 
-            margin-bottom: 32px;
+            font-size: 12px;
+
+            line-height: 1.7;
         }
 
 
         /* =========================
-           POLICY CARD
+           POLICY CARDS
         ========================= */
 
         .policy-card {
+            position: relative;
+
+            overflow: hidden;
+
             background:
                 linear-gradient(
                     145deg,
-                    rgba(58, 40, 96, 0.72),
-                    rgba(20, 18, 42, 0.82)
+                    rgba(45, 31, 73, 0.72),
+                    rgba(17, 16, 38, 0.88)
                 );
 
             border: 1px solid
-                rgba(159, 111, 255, 0.23);
+                rgba(159, 111, 255, 0.16);
 
-            border-radius: 24px;
+            border-radius: 20px;
 
-            padding: 28px;
+            padding: 27px 29px;
 
-            margin-bottom: 18px;
+            margin-bottom: 16px;
 
             box-shadow:
                 0 15px 45px
-                rgba(0, 0, 0, 0.22),
+                rgba(0, 0, 0, 0.18),
 
                 inset 0 1px 0
-                rgba(255, 255, 255, 0.03);
+                rgba(255, 255, 255, 0.025);
+
+            transition:
+                border-color 0.25s ease,
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
         }
 
 
-        /* NORMAL FONT */
+        .policy-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 130px;
+            height: 130px;
+
+            top: -85px;
+            right: -70px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(145, 76, 246, 0.09);
+
+            filter: blur(20px);
+
+            pointer-events: none;
+        }
+
+
+        .policy-card:hover {
+            border-color:
+                rgba(159, 111, 255, 0.27);
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 20px 48px
+                rgba(0, 0, 0, 0.23);
+        }
+
+
+        /* =========================
+           SECTION TITLE
+        ========================= */
 
         .section-title {
-            font-family: 'Poppins', sans-serif;
+            position: relative;
 
-            font-size: 23px;
-
-            font-weight: 600;
+            margin: 0 0 12px;
 
             color: #b68cff;
 
-            margin: 0 0 12px;
+            font-size: 19px;
+
+            font-weight: 700;
+
+            line-height: 1.35;
+        }
+
+
+        .section-title::after {
+            content: "";
+
+            display: block;
+
+            width: 30px;
+            height: 2px;
+
+            margin-top: 8px;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #914cf6,
+                    transparent
+                );
         }
 
 
         .policy-card p {
-            color: #ddd7eb;
+            color: #d8d1e8;
 
-            font-size: 14px;
+            font-size: 13px;
 
             line-height: 1.85;
 
             margin: 8px 0;
 
-            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
         }
 
 
         .policy-card ul {
-            padding-left: 22px;
+            padding-left: 21px;
 
-            margin: 10px 0;
+            margin: 11px 0;
         }
 
 
         .policy-card li {
             color: #d8d1e8;
 
-            font-size: 14px;
+            font-size: 13px;
 
             margin: 8px 0;
 
-            line-height: 1.7;
-
-            font-family: 'Poppins', sans-serif;
+            line-height: 1.75;
         }
 
 
         .highlight {
-            color: #ad7cff;
+            color: #b68cff;
 
             font-weight: 600;
         }
 
 
+        /* =========================
+           INFO BOX
+        ========================= */
+
         .info-box {
+            margin-top: 17px;
+
+            padding: 14px 16px;
+
+            border-radius: 14px;
+
             border: 1px solid
-                rgba(151, 96, 255, 0.3);
+                rgba(151, 96, 255, 0.22);
 
             background:
-                rgba(121, 73, 205, 0.09);
+                linear-gradient(
+                    135deg,
+                    rgba(121, 73, 205, 0.10),
+                    rgba(87, 62, 143, 0.06)
+                );
 
-            padding: 16px;
+            color: #d8d0e9;
 
-            border-radius: 16px;
+            font-size: 12px;
 
-            margin-top: 15px;
-
-            color: #ddd5ee;
-
-            font-size: 13px;
-
-            line-height: 1.7;
-
-            font-family: 'Poppins', sans-serif;
+            line-height: 1.75;
         }
 
+
+        /* =========================
+           EMAIL
+        ========================= */
 
         .email {
             color: #ae83ff;
 
             text-decoration: none;
 
-            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+
+            transition:
+                color 0.2s ease;
         }
 
 
         .email:hover {
+            color: #c9adff;
+
             text-decoration: underline;
         }
 
@@ -501,31 +669,102 @@
         ========================= */
 
         footer {
+            width: min(92%, var(--container));
+
+            margin: 0 auto;
+
+            padding: 28px 0 38px;
+
+            border-top: 1px solid
+                rgba(235, 242, 240, 0.07);
+
             text-align: center;
 
-            padding: 30px 20px 45px;
+            color: rgba(235, 242, 240, 0.48);
 
-            color: #77718b;
+            font-size: 11.5px;
 
-            font-family: 'Poppins', sans-serif;
+            line-height: 1.8;
+        }
 
-            font-size: 13px;
+
+        .footer-links {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 8px 0;
+
+            margin-top: 13px;
         }
 
 
         footer a {
-            color: #a277ed;
+            color:
+                rgba(210, 133, 242, 0.70);
 
             text-decoration: none;
 
-            margin: 0 7px;
+            margin: 0 9px;
 
-            font-family: 'Poppins', sans-serif;
+            font-size: 11.5px;
+
+            transition:
+                color 0.2s ease;
         }
 
 
         footer a:hover {
-            text-decoration: underline;
+            color: #ffffff;
+        }
+
+
+        .footer-separator {
+            color:
+                rgba(255, 255, 255, 0.16);
+
+            user-select: none;
+        }
+
+
+        /* =========================
+           LARGE DESKTOP
+        ========================= */
+
+        @media (min-width: 1400px) {
+
+            .header {
+                height: 70px;
+            }
+
+            .container {
+                max-width: 920px;
+            }
+
+            .policy-card {
+                padding: 29px 31px;
+            }
+
+        }
+
+
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .header {
+                width: calc(100% - 28px);
+            }
+
+            .menu-dropdown {
+                right: 14px;
+            }
+
         }
 
 
@@ -533,106 +772,225 @@
            MOBILE
         ========================= */
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
 
             .header {
-                height: 76px;
+                top: 10px;
 
-                padding: 0 15px;
+                width: calc(100% - 20px);
 
-                gap: 10px;
+                height: 64px;
+
+                padding:
+                    0 11px 0 13px;
+
+                border-radius: 17px;
             }
 
 
             .logo {
-                width: 46px;
-                height: 46px;
+                width: 41px;
+                height: 41px;
+
+                border-radius: 11px;
             }
 
 
             .brand {
                 font-size: 15px;
-
-                font-weight: 500;
             }
 
 
             .menu-button {
                 width: 42px;
                 height: 42px;
-            }
 
-
-            .hamburger {
-                width: 24px;
-                height: 18px;
-            }
-
-
-            .hamburger span {
-                height: 3px;
+                border-radius: 12px;
             }
 
 
             .menu-dropdown {
-                top: 86px;
+                top: 82px;
 
-                right: 14px;
+                right: 10px;
 
-                width: 200px;
+                width: 215px;
             }
 
 
             .container {
                 width: 91%;
 
-                margin-top: 35px;
+                padding-top: 122px;
+
+                padding-bottom: 52px;
+            }
+
+
+            .page-intro {
+                margin-bottom: 31px;
             }
 
 
             .badge {
-                font-size: 14px;
+                font-size: 10px;
 
-                padding: 9px 18px;
+                padding: 7px 14px;
+
+                margin-bottom: 15px;
             }
 
 
             .title {
-                font-size: 32px;
+                font-size: 34px;
+
+                letter-spacing: -0.9px;
             }
 
 
             .subtitle {
-                font-size: 12px;
+                font-size: 11px;
+
+                margin-top: 11px;
             }
 
 
             .policy-card {
                 padding: 21px;
 
-                border-radius: 20px;
+                border-radius: 17px;
+
+                margin-bottom: 13px;
             }
 
 
             .section-title {
-                font-size: 19px;
+                font-size: 17px;
             }
 
 
             .policy-card p,
             .policy-card li {
-                font-size: 13px;
+                font-size: 12.5px;
+
+                line-height: 1.8;
             }
 
 
             .info-box {
-                font-size: 12px;
+                font-size: 11.5px;
+
+                padding: 13px 14px;
             }
 
 
             footer {
+                width: 91%;
+
+                padding:
+                    24px 0 32px;
+
+                font-size: 10.5px;
+            }
+
+
+            footer a {
+                font-size: 10.5px;
+
+                margin: 0 6px;
+            }
+
+        }
+
+
+        /* =========================
+           SMALL MOBILE
+        ========================= */
+
+        @media (max-width: 480px) {
+
+            .header {
+                width: calc(100% - 16px);
+
+                top: 8px;
+
+                height: 61px;
+
+                padding-left: 10px;
+            }
+
+
+            .logo {
+                width: 39px;
+                height: 39px;
+            }
+
+
+            .brand {
+                font-size: 14px;
+            }
+
+
+            .menu-button {
+                width: 41px;
+                height: 41px;
+            }
+
+
+            .hamburger {
+                width: 23px;
+                height: 18px;
+            }
+
+
+            .container {
+                width: 90%;
+
+                padding-top: 113px;
+            }
+
+
+            .title {
+                font-size: 30px;
+            }
+
+
+            .subtitle {
+                font-size: 10.5px;
+            }
+
+
+            .policy-card {
+                padding: 18px;
+
+                border-radius: 16px;
+            }
+
+
+            .section-title {
+                font-size: 16px;
+            }
+
+
+            .policy-card p,
+            .policy-card li {
                 font-size: 12px;
             }
+
+
+            .info-box {
+                font-size: 11px;
+            }
+
+
+            .menu-dropdown {
+                top: 77px;
+
+                right: 8px;
+
+                width: 210px;
+            }
+
         }
 
 
@@ -640,46 +998,141 @@
            VERY SMALL PHONES
         ========================= */
 
-        @media (max-width: 380px) {
+        @media (max-width: 360px) {
 
             .header {
-                padding: 0 12px;
+                width: calc(100% - 14px);
 
-                gap: 8px;
+                padding: 0 8px;
             }
 
 
             .logo {
-                width: 43px;
-                height: 43px;
+                width: 37px;
+                height: 37px;
             }
 
 
             .brand {
-                font-size: 14px;
+                font-size: 13px;
             }
 
 
             .menu-button {
-                width: 40px;
-                height: 40px;
+                width: 39px;
+                height: 39px;
             }
 
 
-            .hamburger {
-                width: 23px;
-                height: 17px;
+            .container {
+                width: 91%;
+
+                padding-top: 108px;
+            }
+
+
+            .title {
+                font-size: 27px;
+            }
+
+
+            .policy-card {
+                padding: 16px;
+            }
+
+
+            .section-title {
+                font-size: 15px;
+            }
+
+
+            .policy-card p,
+            .policy-card li {
+                font-size: 11.5px;
+            }
+
+
+            .footer-links {
+                gap: 5px 0;
+            }
+
+
+            footer a {
+                margin: 0 4px;
+            }
+
+        }
+
+
+        /* =========================
+           LANDSCAPE MOBILE
+        ========================= */
+
+        @media (
+            max-height: 500px
+        ) and (
+            orientation: landscape
+        ) {
+
+            .header {
+                top: 7px;
+
+                height: 58px;
+            }
+
+
+            .container {
+                padding-top: 90px;
             }
 
 
             .menu-dropdown {
-                right: 10px;
-
-                width: calc(100% - 20px);
-
-                max-width: 210px;
+                top: 72px;
             }
+
         }
+
+
+        /* =========================
+           REDUCED MOTION
+        ========================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+
+        }
+
+
+        /* =========================
+           TOUCH DEVICES
+        ========================= */
+
+        @media (hover: none) {
+
+            .policy-card:hover {
+                transform: none;
+
+                border-color:
+                    rgba(159, 111, 255, 0.16);
+            }
+
+            .menu-dropdown a:hover {
+                transform: none;
+            }
+
+        }
+
 
     </style>
 </head>
@@ -704,7 +1157,6 @@
         Super Video Player
     </div>
 
-    <!-- CLICKABLE MENU BUTTON -->
     <button
         class="menu-button"
         id="menuButton"
@@ -714,11 +1166,9 @@
     >
 
         <span class="hamburger">
-
             <span></span>
             <span></span>
             <span></span>
-
         </span>
 
     </button>
@@ -764,20 +1214,22 @@
 
 <main class="container">
 
+    <div class="page-intro">
 
-    <div class="badge">
-        🔒 Your Privacy Matters
+        <div class="badge">
+            <i class="fa-solid fa-shield-halved"></i>
+            Your Privacy Matters
+        </div>
+
+        <h1 class="title">
+            Privacy Policy
+        </h1>
+
+        <p class="subtitle">
+            Last Updated: September 29, 2026
+        </p>
+
     </div>
-
-
-    <h1 class="title">
-        Privacy Policy
-    </h1>
-
-
-    <p class="subtitle">
-        Last Updated: September 29, 2026
-    </p>
 
 
     <!-- 1 -->
@@ -1103,7 +1555,6 @@
 
     </section>
 
-
 </main>
 
 
@@ -1115,29 +1566,31 @@
 
     © 2026 Super Video Player. All rights reserved.
 
-    <br><br>
+    <div class="footer-links">
 
-    <a href="index.html">
-        Home
-    </a>
+        <a href="index.html">
+            Home
+        </a>
 
-    |
+        <span class="footer-separator">|</span>
 
-    <a href="privacy-policy.html">
-        Privacy Policy
-    </a>
+        <a href="privacy-policy.html">
+            Privacy Policy
+        </a>
 
-    |
+        <span class="footer-separator">|</span>
 
-    <a href="terms.html">
-        Terms
-    </a>
+        <a href="terms.html">
+            Terms
+        </a>
 
-    |
+        <span class="footer-separator">|</span>
 
-    <a href="contact.html">
-        Contact
-    </a>
+        <a href="contact.html">
+            Contact
+        </a>
+
+    </div>
 
 </footer>
 
@@ -1148,15 +1601,33 @@
 
 <script>
 
-    const menuButton = document.getElementById("menuButton");
-    const menuDropdown = document.getElementById("menuDropdown");
+    const menuButton =
+        document.getElementById("menuButton");
+
+    const menuDropdown =
+        document.getElementById("menuDropdown");
 
 
-    /* Open / Close Menu */
+    function closeMenu() {
 
-    menuButton.addEventListener("click", function (event) {
+        menuDropdown.classList.remove("show");
 
-        event.stopPropagation();
+        menuButton.classList.remove("active");
+
+        menuButton.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+        menuDropdown.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+    }
+
+
+    function toggleMenu() {
 
         const isOpen =
             menuDropdown.classList.toggle("show");
@@ -1168,97 +1639,91 @@
 
         menuButton.setAttribute(
             "aria-expanded",
-            isOpen
+            String(isOpen)
         );
 
         menuDropdown.setAttribute(
             "aria-hidden",
-            !isOpen
+            String(!isOpen)
         );
 
-    });
+    }
 
 
-    /* Close when clicking outside */
+    /* Open / Close */
 
-    document.addEventListener("click", function (event) {
+    menuButton.addEventListener(
+        "click",
+        function (event) {
 
-        if (
-            !menuDropdown.contains(event.target) &&
-            !menuButton.contains(event.target)
-        ) {
+            event.stopPropagation();
 
-            menuDropdown.classList.remove("show");
-
-            menuButton.classList.remove("active");
-
-            menuButton.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-            menuDropdown.setAttribute(
-                "aria-hidden",
-                "true"
-            );
+            toggleMenu();
 
         }
+    );
 
-    });
+
+    /* Prevent dropdown click from closing itself */
+
+    menuDropdown.addEventListener(
+        "click",
+        function (event) {
+
+            event.stopPropagation();
+
+        }
+    );
 
 
-    /* Close menu after selecting a link */
+    /* Close outside */
+
+    document.addEventListener(
+        "click",
+        function () {
+
+            closeMenu();
+
+        }
+    );
+
+
+    /* Close after selecting link */
 
     const menuLinks =
         menuDropdown.querySelectorAll("a");
 
 
-    menuLinks.forEach(function (link) {
+    menuLinks.forEach(
+        function (link) {
 
-        link.addEventListener("click", function () {
+            link.addEventListener(
+                "click",
+                function () {
 
-            menuDropdown.classList.remove("show");
+                    closeMenu();
 
-            menuButton.classList.remove("active");
-
-            menuButton.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-            menuDropdown.setAttribute(
-                "aria-hidden",
-                "true"
-            );
-
-        });
-
-    });
-
-
-    /* Close menu with Escape */
-
-    document.addEventListener("keydown", function (event) {
-
-        if (event.key === "Escape") {
-
-            menuDropdown.classList.remove("show");
-
-            menuButton.classList.remove("active");
-
-            menuButton.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-            menuDropdown.setAttribute(
-                "aria-hidden",
-                "true"
+                }
             );
 
         }
+    );
 
-    });
+
+    /* Escape */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (event.key === "Escape") {
+
+                closeMenu();
+
+            }
+
+        }
+    );
 
 </script>
 
