@@ -12,12 +12,12 @@
 
   <meta
     name="description"
-    content="Super Video Player is an Android video player for local video files, with practical playback controls, subtitles, gesture controls, playback speed and playlist features."
+    content="SM Gaming is a fast, mobile-friendly gaming website with free browser games across action, arcade, puzzle, racing, sports, strategy and casual categories."
   >
 
   <meta
     name="keywords"
-    content="Super Video Player, Android video player, local video player, offline video player, video player APK, Android media player, MP4 player, MKV player, subtitle player, SM Studio"
+    content="free games, online games, browser games, mobile games, arcade games, puzzle games, racing games, action games, sports games, SM Gaming, SM Studio"
   >
 
   <meta
@@ -27,7 +27,7 @@
 
   <meta
     name="theme-color"
-    content="#0a0a1a"
+    content="#070711"
   >
 
   <meta
@@ -47,12 +47,12 @@
 
   <meta
     property="og:title"
-    content="Super Video Player - Video Player for Android"
+    content="SM Gaming - Free Browser Games"
   >
 
   <meta
     property="og:description"
-    content="Learn about Super Video Player, local video playback, supported formats, subtitles, playback controls and the current Android APK."
+    content="Play free browser games across action, arcade, puzzle, racing, sports, strategy and casual categories."
   >
 
   <meta
@@ -67,12 +67,12 @@
 
   <meta
     property="og:image"
-    content="https://i.ibb.co/m598JHpc/Super-Video-Player-Logo.png"
+    content="https://sm7-studio.online/favicon.png"
   >
 
   <meta
     property="og:site_name"
-    content="Super Video Player"
+    content="SM Gaming"
   >
 
 
@@ -87,24 +87,23 @@
 
   <meta
     name="twitter:title"
-    content="Super Video Player - Video Player for Android"
+    content="SM Gaming - Free Browser Games"
   >
 
   <meta
     name="twitter:description"
-    content="An Android video player focused on local video playback, subtitles and practical playback controls."
+    content="Play free browser games on mobile and desktop."
   >
 
   <meta
     name="twitter:image"
-    content="https://i.ibb.co/m598JHpc/Super-Video-Player-Logo.png"
+    content="https://sm7-studio.online/favicon.png"
   >
 
 
   <!-- =====================================================
        GOOGLE ADSENSE
-       Manual ad units are intentionally not placed on this
-       page while the website is being reviewed for AdSense.
+       Preserved
   ====================================================== -->
 
   <script
@@ -120,7 +119,7 @@
 
 
   <title>
-    Super Video Player - Video Player for Android | SM Studio
+    SM Gaming - Free Online Browser Games | SM Studio
   </title>
 
 
@@ -181,7 +180,7 @@
 
 
   <!-- =====================================================
-       GOOGLE FONTS
+       GOOGLE FONT
   ====================================================== -->
 
   <link
@@ -202,22 +201,22 @@
 
 
   <!-- =====================================================
-       MAIN CSS
-  ====================================================== -->
-
-  <link
-    rel="stylesheet"
-    href="style.css"
-  >
-
-
-  <!-- =====================================================
        FONT AWESOME
   ====================================================== -->
 
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  >
+
+
+  <!-- =====================================================
+       MAIN CSS
+  ====================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="style.css"
   >
 
 </head>
@@ -230,1683 +229,1004 @@
      NAVBAR
 ====================================================== -->
 
-<nav
-  class="navbar"
-  aria-label="Main Navigation"
->
+<header class="site-header">
 
-  <div class="nav-container">
+  <nav
+    class="navbar"
+    aria-label="Main Navigation"
+  >
 
-    <a
-      href="#"
-      class="logo"
-      aria-label="Super Video Player Home"
-    >
+    <div class="nav-container">
 
-      <img
-        src="https://i.ibb.co/m598JHpc/Super-Video-Player-Logo.png"
-        width="50"
-        height="50"
-        alt="Super Video Player logo"
+      <a
+        href="#home"
+        class="brand"
+        aria-label="SM Gaming Home"
       >
 
-      <span>
-        Super Video Player
-      </span>
+        <span class="brand-logo">
 
-    </a>
+          <img
+            src="favicon.png"
+            width="42"
+            height="42"
+            alt="SM Gaming"
+          >
+
+        </span>
+
+        <span class="brand-text">
+
+          <strong>SM</strong>
+          Gaming
+
+        </span>
+
+      </a>
 
 
-    <ul
-      class="nav-links"
-      id="navLinks"
+      <div
+        class="desktop-nav"
+        id="desktopNav"
+      >
+
+        <a href="#home" class="nav-link active">
+          Home
+        </a>
+
+        <a href="#games" class="nav-link">
+          Games
+        </a>
+
+        <a href="#categories" class="nav-link">
+          Categories
+        </a>
+
+        <a href="#how-it-works" class="nav-link">
+          How It Works
+        </a>
+
+      </div>
+
+
+      <div class="nav-actions">
+
+        <button
+          type="button"
+          class="nav-favorite-btn"
+          id="favoriteFilterBtn"
+          aria-label="Show favorite games"
+          title="Favorites"
+        >
+
+          <i class="fa-regular fa-heart"></i>
+
+          <span id="favoriteCount">
+            0
+          </span>
+
+        </button>
+
+
+        <button
+          type="button"
+          class="menu-btn"
+          id="menuBtn"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+        >
+
+          <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="mobile-menu"
+      id="mobileMenu"
     >
 
-      <li>
-        <a href="#about">
-          About
-        </a>
-      </li>
+      <a href="#home">
+        <i class="fa-solid fa-house"></i>
+        Home
+      </a>
 
-      <li>
-        <a href="#formats">
-          Formats
-        </a>
-      </li>
+      <a href="#games">
+        <i class="fa-solid fa-gamepad"></i>
+        Games
+      </a>
 
-      <li>
-        <a href="#features">
-          Features
-        </a>
-      </li>
+      <a href="#categories">
+        <i class="fa-solid fa-layer-group"></i>
+        Categories
+      </a>
 
-      <li>
-        <a href="#screenshots">
-          Screenshots
-        </a>
-      </li>
-
-      <li>
-        <a href="#apk">
-          Download
-        </a>
-      </li>
-
-      <li>
-        <a href="#faq">
-          FAQ
-        </a>
-      </li>
-
-    </ul>
-
-
-    <div class="nav-right">
+      <a href="#how-it-works">
+        <i class="fa-solid fa-circle-info"></i>
+        How It Works
+      </a>
 
       <button
-        class="nav-toggle"
-        id="navToggle"
         type="button"
-        aria-label="Open menu"
-        aria-expanded="false"
-        aria-controls="navLinks"
+        id="mobileFavorites"
       >
 
-        <i
-          class="fas fa-bars"
-          aria-hidden="true"
-        ></i>
+        <i class="fa-solid fa-heart"></i>
+        Favorites
 
       </button>
 
     </div>
 
-  </div>
+  </nav>
 
-</nav>
+</header>
 
 
 <!-- =====================================================
      HERO
 ====================================================== -->
 
-<section class="hero">
+<main id="home">
 
-  <div class="container hero-content">
+  <section class="hero-section">
 
-    <div class="hero-badge">
+    <div class="hero-bg-shape hero-shape-one"></div>
+    <div class="hero-bg-shape hero-shape-two"></div>
 
-      <i
-        class="fas fa-mobile-screen-button"
-        aria-hidden="true"
-      ></i>
 
-      Android Video Player
+    <div class="container hero-container">
+
+      <div class="hero-content">
+
+        <div class="hero-badge">
+
+          <span class="live-dot"></span>
+
+          FREE BROWSER GAMES
+
+        </div>
+
+
+        <h1>
+
+          Play.
+          <span>Compete.</span>
+          Have Fun.
+
+        </h1>
+
+
+        <p>
+
+          Discover fast, fun and mobile-friendly games.
+          Choose your favorite category and start playing
+          directly from your browser.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+          <a
+            href="#games"
+            class="btn btn-primary"
+          >
+
+            <i class="fa-solid fa-gamepad"></i>
+
+            Explore Games
+
+          </a>
+
+
+          <a
+            href="#categories"
+            class="btn btn-secondary"
+          >
+
+            <i class="fa-solid fa-layer-group"></i>
+
+            Browse Categories
+
+          </a>
+
+        </div>
+
+
+        <div class="hero-stats">
+
+          <div class="hero-stat">
+
+            <strong>
+              30+
+            </strong>
+
+            <span>
+              Games
+            </span>
+
+          </div>
+
+
+          <div class="hero-stat-divider"></div>
+
+
+          <div class="hero-stat">
+
+            <strong>
+              7
+            </strong>
+
+            <span>
+              Categories
+            </span>
+
+          </div>
+
+
+          <div class="hero-stat-divider"></div>
+
+
+          <div class="hero-stat">
+
+            <strong>
+              Free
+            </strong>
+
+            <span>
+              To Play
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="hero-visual">
+
+        <div class="hero-game-window">
+
+          <div class="window-top">
+
+            <div class="window-dots">
+
+              <span></span>
+              <span></span>
+              <span></span>
+
+            </div>
+
+            <span>
+              SM GAMING
+            </span>
+
+            <i class="fa-solid fa-expand"></i>
+
+          </div>
+
+
+          <div class="hero-game-art">
+
+            <div class="hero-grid"></div>
+
+            <div class="floating-controller">
+
+              <i class="fa-solid fa-gamepad"></i>
+
+            </div>
+
+
+            <div class="hero-art-title">
+
+              <small>
+                READY?
+              </small>
+
+              <strong>
+                LET'S PLAY
+              </strong>
+
+            </div>
+
+
+            <div class="hero-art-buttons">
+
+              <span>
+                PLAY NOW
+              </span>
+
+              <span>
+                ★ ★ ★ ★ ★
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="floating-card floating-card-one">
+
+          <i class="fa-solid fa-bolt"></i>
+
+          <div>
+
+            <strong>
+              Fast Games
+            </strong>
+
+            <span>
+              Jump right in
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="floating-card floating-card-two">
+
+          <i class="fa-solid fa-mobile-screen-button"></i>
+
+          <div>
+
+            <strong>
+              Mobile Ready
+            </strong>
+
+            <span>
+              Touch friendly
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
 
-
-    <h1>
-
-      <img
-        src="https://i.ibb.co/m598JHpc/Super-Video-Player-Logo.png"
-        width="45"
-        height="45"
-        alt="Super Video Player app icon"
-      >
-
-      <span>
-        Super Video Player
-      </span>
-
-    </h1>
+  </section>
 
 
-    <p class="tagline">
+<!-- =====================================================
+     SEARCH / GAME CONTROLS
+====================================================== -->
 
-      <strong>
-        A simple way to watch videos on Android.
-      </strong>
+  <section
+    class="game-browser-section"
+    id="games"
+  >
 
-      Super Video Player is an Android application
-      designed for playing compatible video files stored
-      locally on your device. It provides practical
-      playback controls for everyday video watching,
-      including seeking, subtitles, gesture controls,
-      playback speed and audio options.
+    <div class="container">
 
-    </p>
-
-
-    <div class="download-buttons">
-
-      <a
-        href="#apk"
-        class="btn btn-primary"
-      >
-
-        <i
-          class="fab fa-android"
-          aria-hidden="true"
-        ></i>
+      <div class="section-heading-row">
 
         <div>
 
-          <small>
-            Download for
-          </small>
+          <span class="section-label">
+            GAME LIBRARY
+          </span>
 
-          <strong>
-            Android APK
-          </strong>
+          <h2>
+            Find Your Next Game
+          </h2>
 
-        </div>
-
-      </a>
-
-
-      <a
-        href="#features"
-        class="btn btn-secondary"
-      >
-
-        <i
-          class="fas fa-info-circle"
-          aria-hidden="true"
-        ></i>
-
-        <div>
-
-          <small>
-            Explore
-          </small>
-
-          <strong>
-            Features
-          </strong>
+          <p>
+            Search, filter and choose a game you want to play.
+          </p>
 
         </div>
-
-      </a>
-
-    </div>
-
-
-    <p class="version">
-      Version 1.1.4 &bull; 28 MB &bull; Android 7.0+
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     ABOUT
-====================================================== -->
-
-<section
-  class="features"
-  id="about"
->
-
-  <div class="container">
-
-    <div class="section-header">
-
-      <span class="section-tag">
-        ABOUT
-      </span>
-
-      <h2>
-        What Is Super Video Player?
-      </h2>
-
-      <p class="section-subtitle">
-        A practical Android video player for watching
-        compatible video files stored on your device.
-      </p>
-
-    </div>
-
-
-    <div class="features-grid">
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-play-circle"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Local Video Playback
-        </h3>
-
-        <p>
-          Super Video Player is designed for playing video
-          files that are already available on your Android
-          device. You can select a compatible file and watch
-          it directly without uploading the video to an
-          online video service.
-        </p>
 
       </div>
 
 
-      <div class="feature-card">
+      <div class="game-controls">
 
-        <div class="icon-box">
-          <i
-            class="fas fa-folder-open"
-            aria-hidden="true"
-          ></i>
+        <div class="search-box">
+
+          <i class="fa-solid fa-magnifying-glass"></i>
+
+          <input
+            type="search"
+            id="gameSearch"
+            placeholder="Search games..."
+            autocomplete="off"
+            aria-label="Search games"
+          >
+
+          <button
+            type="button"
+            id="clearSearch"
+            aria-label="Clear search"
+          >
+
+            <i class="fa-solid fa-xmark"></i>
+
+          </button>
+
         </div>
 
-        <h3>
-          Easy File Access
-        </h3>
 
-        <p>
-          The application is designed around everyday local
-          video playback. Depending on the Android version
-          and installed application release, videos can be
-          selected through available folders or the device
-          media library.
-        </p>
+        <div class="sort-box">
 
-      </div>
+          <i class="fa-solid fa-arrow-down-wide-short"></i>
 
+          <select
+            id="gameSort"
+            aria-label="Sort games"
+          >
 
-      <div class="feature-card">
+            <option value="popular">
+              Popular
+            </option>
 
-        <div class="icon-box">
-          <i
-            class="fas fa-sliders"
-            aria-hidden="true"
-          ></i>
+            <option value="rating">
+              Highest Rated
+            </option>
+
+            <option value="az">
+              A - Z
+            </option>
+
+            <option value="new">
+              Newest
+            </option>
+
+          </select>
+
         </div>
-
-        <h3>
-          Practical Playback Controls
-        </h3>
-
-        <p>
-          The player provides controls for common playback
-          tasks such as play, pause, seeking, forward,
-          rewind, playback speed, subtitles and available
-          audio settings.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-mobile-screen"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Android Focused
-        </h3>
-
-        <p>
-          Super Video Player is developed for Android
-          smartphones and compatible devices. The APK
-          currently listed on this website requires Android
-          7.0 or newer.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     WHY USE
-====================================================== -->
-
-<section class="formats">
-
-  <div class="container">
-
-    <div class="section-header">
-
-      <span class="section-tag">
-        WHY USE IT
-      </span>
-
-      <h2>
-        Designed for Local Video Watching
-      </h2>
-
-      <p class="section-subtitle">
-        The application focuses on the controls people
-        commonly need while watching videos on a phone.
-      </p>
-
-    </div>
-
-
-    <div class="formats-grid">
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-hard-drive"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Watch Local Files
-        </h3>
-
-        <p>
-          Play compatible video files that are stored on
-          your Android device. This makes the application
-          suitable for videos already downloaded or copied
-          to local storage.
-        </p>
-
-      </div>
-
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-hand-pointer"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Simple Touch Controls
-        </h3>
-
-        <p>
-          Use familiar touch-based playback controls and
-          supported gestures to seek through a video or
-          adjust available playback settings.
-        </p>
-
-      </div>
-
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-closed-captioning"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Subtitle Options
-        </h3>
-
-        <p>
-          Compatible subtitle files can be used when
-          supported by the installed application version
-          and the selected video.
-        </p>
-
-      </div>
-
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-gauge-high"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Flexible Playback
-        </h3>
-
-        <p>
-          Playback speed and other available controls can
-          be useful for tutorials, lectures, interviews,
-          personal recordings and entertainment videos.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     FORMATS
-====================================================== -->
-
-<section
-  class="formats"
-  id="formats"
->
-
-  <div class="container">
-
-    <div class="section-header">
-
-      <span class="section-tag">
-        FORMATS
-      </span>
-
-      <h2>
-        Supported Video Formats
-      </h2>
-
-      <p class="section-subtitle">
-        Common video containers can be opened when the
-        required audio and video codecs are supported.
-      </p>
-
-    </div>
-
-
-    <div class="formats-grid">
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-file-video"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          MP4 &amp; M4V
-        </h3>
-
-        <p>
-          MP4 is a widely used video container for mobile
-          video files. M4V files can also be played when
-          their contained codecs are compatible with the
-          application and Android device.
-        </p>
-
-      </div>
-
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-compact-disc"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          MKV &amp; WEBM
-        </h3>
-
-        <p>
-          MKV and WEBM are commonly used containers for
-          digital video. Some files may contain multiple
-          audio or subtitle tracks.
-        </p>
-
-      </div>
-
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-film"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          AVI &amp; MOV
-        </h3>
-
-        <p>
-          AVI and MOV are established video containers used
-          by many video files. Playback depends on the
-          codecs contained in each file and the capabilities
-          of the Android device.
-        </p>
-
-      </div>
-
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-video"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          FLV, 3GP, TS &amp; More
-        </h3>
-
-        <p>
-          Additional formats such as FLV, 3GP and TS may be
-          compatible depending on the file's codecs and the
-          media capabilities available on the device.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     FEATURES
-====================================================== -->
-
-<section
-  class="features"
-  id="features"
->
-
-  <div class="container">
-
-    <div class="section-header">
-
-      <span class="section-tag">
-        FEATURES
-      </span>
-
-      <h2>
-        Features for Everyday Video Playback
-      </h2>
-
-      <p class="section-subtitle">
-        Practical controls for watching and managing
-        compatible videos on an Android device.
-      </p>
-
-    </div>
-
-
-    <div class="features-grid">
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-play"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Video Playback
-        </h3>
-
-        <p>
-          Open compatible local video files and use
-          standard playback controls such as play, pause,
-          seek, forward and rewind.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-closed-captioning"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Subtitle Support
-        </h3>
-
-        <p>
-          Compatible subtitle files can be loaded while
-          watching a video. Common subtitle formats may
-          include SRT, ASS, SSA and VTT, depending on
-          application support.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-expand"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Gesture Controls
-        </h3>
-
-        <p>
-          Supported touch gestures can make common playback
-          actions easier, including seeking and available
-          volume or brightness adjustments.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-sliders-h"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Playback Settings
-        </h3>
-
-        <p>
-          Available playback settings can be used to adjust
-          the viewing experience according to the controls
-          included in the installed application version.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-volume-high"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Audio Controls
-        </h3>
-
-        <p>
-          Compatible audio tracks can be played through the
-          device audio system. Available audio-track and
-          equalizer options depend on the video and device.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-layer-group"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Playlist Support
-        </h3>
-
-        <p>
-          Compatible videos can be organized into a playback
-          list when playlist functionality is available in
-          the installed version.
-        </p>
 
       </div>
 
 
       <div
-        class="feature-card"
-        id="no-ads"
+        class="category-tabs"
+        id="categories"
+        aria-label="Game Categories"
       >
 
-        <div class="icon-box">
-          <i
-            class="fas fa-shield-halved"
-            aria-hidden="true"
-          ></i>
-        </div>
+        <button
+          class="category-btn active"
+          data-category="All"
+          type="button"
+        >
 
-        <h3>
-          Ad-Free Android App
-        </h3>
+          <i class="fa-solid fa-border-all"></i>
 
-        <p>
-          The current Android application is presented as
-          an ad-free video player. Website advertising and
-          advertising inside the Android application are
-          separate.
-        </p>
+          All
+
+        </button>
+
+
+        <button
+          class="category-btn"
+          data-category="Action"
+          type="button"
+        >
+
+          <i class="fa-solid fa-crosshairs"></i>
+
+          Action
+
+        </button>
+
+
+        <button
+          class="category-btn"
+          data-category="Arcade"
+          type="button"
+        >
+
+          <i class="fa-solid fa-ghost"></i>
+
+          Arcade
+
+        </button>
+
+
+        <button
+          class="category-btn"
+          data-category="Puzzle"
+          type="button"
+        >
+
+          <i class="fa-solid fa-puzzle-piece"></i>
+
+          Puzzle
+
+        </button>
+
+
+        <button
+          class="category-btn"
+          data-category="Racing"
+          type="button"
+        >
+
+          <i class="fa-solid fa-car"></i>
+
+          Racing
+
+        </button>
+
+
+        <button
+          class="category-btn"
+          data-category="Sports"
+          type="button"
+        >
+
+          <i class="fa-solid fa-basketball"></i>
+
+          Sports
+
+        </button>
+
+
+        <button
+          class="category-btn"
+          data-category="Strategy"
+          type="button"
+        >
+
+          <i class="fa-solid fa-chess"></i>
+
+          Strategy
+
+        </button>
+
+
+        <button
+          class="category-btn"
+          data-category="Casual"
+          type="button"
+        >
+
+          <i class="fa-solid fa-face-smile"></i>
+
+          Casual
+
+        </button>
 
       </div>
 
 
-      <div class="feature-card">
+      <div
+        class="games-grid"
+        id="gamesGrid"
+      ></div>
 
-        <div class="icon-box">
-          <i
-            class="fas fa-gauge-high"
-            aria-hidden="true"
-          ></i>
+
+      <div
+        class="no-results"
+        id="noResults"
+        hidden
+      >
+
+        <div class="no-results-icon">
+
+          <i class="fa-solid fa-gamepad"></i>
+
         </div>
 
         <h3>
-          Playback Speed
+          No games found
         </h3>
 
         <p>
-          Supported playback-speed controls can be useful
-          for tutorials, lectures, interviews and other
-          videos where a faster or slower viewing speed is
-          helpful.
+          Try another search or choose a different category.
         </p>
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="resetFilters"
+        >
+
+          Reset Filters
+
+        </button>
 
       </div>
 
     </div>
 
-  </div>
-
-</section>
+  </section>
 
 
 <!-- =====================================================
      HOW IT WORKS
 ====================================================== -->
 
-<section class="formats">
+  <section
+    class="how-section"
+    id="how-it-works"
+  >
 
-  <div class="container">
+    <div class="container">
 
-    <div class="section-header">
+      <div class="section-heading centered">
 
-      <span class="section-tag">
-        GUIDE
-      </span>
+        <span class="section-label">
+          SIMPLE & FAST
+        </span>
 
-      <h2>
-        How Super Video Player Works
-      </h2>
-
-      <p class="section-subtitle">
-        A simple overview of the normal local-video
-        playback process.
-      </p>
-
-    </div>
-
-
-    <div class="formats-grid">
-
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-folder"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          1. Select a Video
-        </h3>
+        <h2>
+          How It Works
+        </h2>
 
         <p>
-          Open the application and select a compatible video
-          file stored on your Android device. Depending on
-          the device and application version, videos may be
-          available through folders or the device media
-          library.
+          Getting into a game takes just a few seconds.
         </p>
 
       </div>
 
 
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-play-circle"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          2. Start Playback
-        </h3>
-
-        <p>
-          Tap a compatible video to begin playback. Use the
-          player controls to pause, seek, rewind, forward or
-          change other available playback settings.
-        </p>
-
-      </div>
+      <div class="steps-grid">
 
 
-      <div class="format-card">
+        <article class="step-card">
 
-        <div class="format-icon">
-          <i
-            class="fas fa-closed-captioning"
-            aria-hidden="true"
-          ></i>
-        </div>
+          <div class="step-number">
+            01
+          </div>
 
-        <h3>
-          3. Configure Subtitles
-        </h3>
+          <div class="step-icon">
 
-        <p>
-          If a compatible subtitle file is available, use
-          the subtitle controls to load it. Appearance and
-          available subtitle options depend on the installed
-          application version and subtitle format.
-        </p>
+            <i class="fa-solid fa-magnifying-glass"></i>
 
-      </div>
+          </div>
+
+          <h3>
+            Find a Game
+          </h3>
+
+          <p>
+            Browse the library or search for a game
+            you want to play.
+          </p>
+
+        </article>
 
 
-      <div class="format-card">
+        <article class="step-card">
 
-        <div class="format-icon">
-          <i
-            class="fas fa-expand"
-            aria-hidden="true"
-          ></i>
-        </div>
+          <div class="step-number">
+            02
+          </div>
 
-        <h3>
-          4. Adjust Playback
-        </h3>
+          <div class="step-icon">
 
-        <p>
-          Use the available controls to change volume,
-          brightness, playback speed, video position and
-          other supported settings according to the device
-          and application version.
-        </p>
+            <i class="fa-solid fa-gamepad"></i>
+
+          </div>
+
+          <h3>
+            Choose Your Game
+          </h3>
+
+          <p>
+            Open a game card to view its details and
+            available play option.
+          </p>
+
+        </article>
+
+
+        <article class="step-card">
+
+          <div class="step-number">
+            03
+          </div>
+
+          <div class="step-icon">
+
+            <i class="fa-solid fa-play"></i>
+
+          </div>
+
+          <h3>
+            Start Playing
+          </h3>
+
+          <p>
+            Launch the game and enjoy a touch-friendly
+            browser gaming experience.
+          </p>
+
+        </article>
 
       </div>
 
     </div>
 
-  </div>
-
-</section>
+  </section>
 
 
 <!-- =====================================================
-     SCREENSHOTS
+     FEATURES
 ====================================================== -->
 
-<section
-  class="screenshots"
-  id="screenshots"
+  <section class="features-section">
+
+    <div class="container">
+
+      <div class="section-heading centered">
+
+        <span class="section-label">
+          BUILT FOR PLAYERS
+        </span>
+
+        <h2>
+          Gaming Without the Hassle
+        </h2>
+
+        <p>
+          A clean gaming experience designed for both
+          phones and larger screens.
+        </p>
+
+      </div>
+
+
+      <div class="benefits-grid">
+
+
+        <article class="benefit-card">
+
+          <div class="benefit-icon">
+            <i class="fa-solid fa-mobile-screen"></i>
+          </div>
+
+          <h3>
+            Mobile Friendly
+          </h3>
+
+          <p>
+            Responsive layouts and touch-friendly controls
+            make the website comfortable to use on phones.
+          </p>
+
+        </article>
+
+
+        <article class="benefit-card">
+
+          <div class="benefit-icon">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+
+          <h3>
+            Fast Interface
+          </h3>
+
+          <p>
+            Lightweight page structure with smooth
+            navigation and quick game discovery.
+          </p>
+
+        </article>
+
+
+        <article class="benefit-card">
+
+          <div class="benefit-icon">
+            <i class="fa-solid fa-layer-group"></i>
+          </div>
+
+          <h3>
+            Multiple Categories
+          </h3>
+
+          <p>
+            Find action, arcade, puzzle, racing, sports,
+            strategy and casual games in one place.
+          </p>
+
+        </article>
+
+
+        <article class="benefit-card">
+
+          <div class="benefit-icon">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+
+          <h3>
+            Save Favorites
+          </h3>
+
+          <p>
+            Save games to your favorites on this device
+            using your browser's local storage.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+<!-- =====================================================
+     CTA
+====================================================== -->
+
+  <section class="cta-section">
+
+    <div class="container">
+
+      <div class="cta-card">
+
+        <div class="cta-content">
+
+          <span class="section-label">
+            READY TO PLAY?
+          </span>
+
+          <h2>
+            Pick a Game.
+            <span>Start Playing.</span>
+          </h2>
+
+          <p>
+            Explore the SM Gaming library and discover
+            your next favorite browser game.
+          </p>
+
+          <a
+            href="#games"
+            class="btn btn-primary"
+          >
+
+            <i class="fa-solid fa-gamepad"></i>
+
+            Explore Games
+
+          </a>
+
+        </div>
+
+
+        <div class="cta-decoration">
+
+          <i class="fa-solid fa-gamepad"></i>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<!-- =====================================================
+     GAME MODAL
+====================================================== -->
+
+<div
+  class="game-modal"
+  id="gameModal"
+  aria-hidden="true"
 >
 
-  <div class="container">
+  <div
+    class="modal-overlay"
+    id="modalOverlay"
+  ></div>
 
-    <div class="section-header">
 
-      <span class="section-tag">
-        SCREENSHOTS
-      </span>
+  <div
+    class="modal-box"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalGameTitle"
+  >
 
-      <h2>
-        A Look Inside the App
+    <button
+      type="button"
+      class="modal-close"
+      id="modalClose"
+      aria-label="Close game details"
+    >
+
+      <i class="fa-solid fa-xmark"></i>
+
+    </button>
+
+
+    <div
+      class="modal-cover"
+      id="modalCover"
+    >
+
+      <div class="modal-cover-icon" id="modalIcon">
+        🎮
+      </div>
+
+    </div>
+
+
+    <div class="modal-content">
+
+      <div class="modal-category" id="modalCategory">
+        ACTION
+      </div>
+
+      <h2 id="modalGameTitle">
+        Game Title
       </h2>
 
-      <p class="section-subtitle">
-        Preview the Super Video Player interface and
-        playback experience before installing the app.
+      <div class="modal-meta">
+
+        <span id="modalRating">
+          ★ 4.8
+        </span>
+
+        <span id="modalPlays">
+          10K plays
+        </span>
+
+      </div>
+
+      <p id="modalDescription">
+        Game description.
       </p>
 
-    </div>
+
+      <div class="modal-actions">
+
+        <button
+          type="button"
+          class="btn btn-primary modal-play-btn"
+          id="modalPlayBtn"
+        >
+
+          <i class="fa-solid fa-play"></i>
+
+          Play Game
+
+        </button>
 
 
-    <div class="screenshot-slider">
+        <button
+          type="button"
+          class="modal-favorite-btn"
+          id="modalFavoriteBtn"
+        >
 
+          <i class="fa-regular fa-heart"></i>
 
-      <div class="phone">
+          Favorite
 
-        <div class="phone-screen">
-
-          <img
-            src="https://i.ibb.co/GQDCTKsX/IMG-20260929-195745.jpg"
-            alt="Super Video Player home screen showing local video content"
-            loading="lazy"
-          >
-
-        </div>
-
-      </div>
-
-
-      <div class="phone">
-
-        <div class="phone-screen">
-
-          <img
-            src="https://i.ibb.co/W4CpqBd1/IMG-20260929-210140.jpg"
-            alt="Super Video Player video browser screen"
-            loading="lazy"
-          >
-
-        </div>
+        </button>
 
       </div>
 
 
-      <div class="phone">
-
-        <div class="phone-screen">
-
-          <img
-            src="https://i.ibb.co/svpC0tL2/IMG-20260929-210203.jpg"
-            alt="Super Video Player playback control interface"
-            loading="lazy"
-          >
-
-        </div>
-
-      </div>
-
-
-      <div class="phone">
-
-        <div class="phone-screen">
-
-          <img
-            src="https://i.ibb.co/q3LL5LkQ/IMG-20260929-210221.jpg"
-            alt="Super Video Player video playback interface"
-            loading="lazy"
-          >
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     PLAYBACK INFORMATION
-====================================================== -->
-
-<section class="features">
-
-  <div class="container">
-
-    <div class="section-header">
-
-      <span class="section-tag">
-        PLAYBACK
-      </span>
-
-      <h2>
-        Subtitles, Audio and Playback Controls
-      </h2>
-
-      <p class="section-subtitle">
-        Information about the controls that can be useful
-        when watching local videos.
-      </p>
-
-    </div>
-
-
-    <div class="features-grid">
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-language"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Subtitles
-        </h3>
-
-        <p>
-          Subtitles can help when watching movies, shows,
-          educational videos or content in another language.
-          Compatible subtitle files can be loaded alongside
-          supported video files.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-volume-high"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Audio
-        </h3>
-
-        <p>
-          Videos containing compatible audio tracks can be
-          played through the device's audio system. Available
-          audio-track and equalizer options depend on the
-          video and Android device.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-hand-pointer"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Touch Controls
-        </h3>
-
-        <p>
-          Touch-based controls can make video watching more
-          convenient on a phone. Supported gestures may be
-          used for common actions such as seeking, volume
-          and brightness adjustments.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-clock"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Playback Speed
-        </h3>
-
-        <p>
-          Variable playback speed can be useful for tutorials,
-          lectures, interviews or other content where you want
-          to slow down or speed up playback.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     USE CASES
-====================================================== -->
-
-<section class="formats">
-
-  <div class="container">
-
-    <div class="section-header">
-
-      <span class="section-tag">
-        USE CASES
-      </span>
-
-      <h2>
-        What Can You Watch?
-      </h2>
-
-      <p class="section-subtitle">
-        Super Video Player can be useful for different types
-        of locally stored video content.
-      </p>
-
-    </div>
-
-
-    <div class="formats-grid">
-
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-film"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Movies and Shows
-        </h3>
-
-        <p>
-          Watch compatible movie and television video files
-          stored on your Android device, with available
-          subtitle and playback controls.
-        </p>
-
-      </div>
-
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-graduation-cap"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Tutorials and Lessons
-        </h3>
-
-        <p>
-          Playback-speed controls can be useful when watching
-          tutorials, lectures, training material or educational
-          videos stored locally.
-        </p>
-
-      </div>
-
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-camera"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Personal Videos
-        </h3>
-
-        <p>
-          Play compatible personal recordings, downloaded
-          videos or other files that are available in the
-          device's local storage.
-        </p>
-
-      </div>
-
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-language"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Subtitled Content
-        </h3>
-
-        <p>
-          Videos with compatible external subtitle files can
-          be useful for multilingual content or situations
-          where subtitles are needed.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     ANDROID COMPATIBILITY
-====================================================== -->
-
-<section class="formats">
-
-  <div class="container">
-
-    <div class="section-header">
-
-      <span class="section-tag">
-        COMPATIBILITY
-      </span>
-
-      <h2>
-        Android Compatibility
-      </h2>
-
-      <p class="section-subtitle">
-        Information about the Android version and playback
-        considerations for the current APK.
-      </p>
-
-    </div>
-
-
-    <div class="formats-grid">
-
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fab fa-android"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Android 7.0+
-        </h3>
-
-        <p>
-          The current Super Video Player APK listed here
-          requires a device running Android 7.0 or newer.
-          Actual compatibility can vary depending on the
-          device and Android version.
-        </p>
-
-      </div>
-
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-memory"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Video Performance
-        </h3>
-
-        <p>
-          Playback performance depends on video resolution,
-          bitrate, codec complexity and the processing
-          capabilities of the Android device.
-        </p>
-
-      </div>
-
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-file"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          File Compatibility
-        </h3>
-
-        <p>
-          A file extension alone does not guarantee playback.
-          The audio and video codecs inside the file must also
-          be compatible with the application or device.
-        </p>
-
-      </div>
-
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-mobile-screen-button"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Device Differences
-        </h3>
-
-        <p>
-          Android devices use different hardware and media
-          components. Because of this, the same video can
-          behave differently on different devices.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     APK DOWNLOAD
-====================================================== -->
-
-<section
-  class="apk-section"
-  id="apk"
->
-
-  <div class="container">
-
-    <div class="section-header">
-
-      <span class="section-tag">
-        DOWNLOAD
-      </span>
-
-      <h2>
-        Super Video Player APK
-      </h2>
-
-      <p class="section-subtitle">
-        Download the current Android release listed by
-        SM Studio and install it on a compatible device.
-      </p>
-
-    </div>
-
-
-    <div class="apk-card">
-
-      <div class="apk-info">
-
-
-        <div class="apk-row">
-
-          <span class="apk-label">
-            App
-          </span>
-
-          <span class="apk-value">
-            Super Video Player
-          </span>
-
-        </div>
-
-
-        <div class="apk-row">
-
-          <span class="apk-label">
-            Platform
-          </span>
-
-          <span class="apk-value">
-            Android
-          </span>
-
-        </div>
-
-
-        <div class="apk-row">
-
-          <span class="apk-label">
-            Minimum Android
-          </span>
-
-          <span class="apk-value">
-            Android 7.0+
-          </span>
-
-        </div>
-
-
-        <div class="apk-row">
-
-          <span class="apk-label">
-            Version
-          </span>
-
-          <span class="apk-value">
-            1.1.4
-          </span>
-
-        </div>
-
-
-        <div class="apk-row">
-
-          <span class="apk-label">
-            Size
-          </span>
-
-          <span class="apk-value">
-            28 MB
-          </span>
-
-        </div>
-
-
-        <div class="apk-row">
-
-          <span class="apk-label">
-            Price
-          </span>
-
-          <span class="apk-value apk-free">
-            Free
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <a
-        href="https://github.com/Sapneswar99/sm7-studio/releases/download/1.1.4/Super_Video_Player.apk"
-        class="btn-download"
-        rel="noopener noreferrer"
+      <div
+        class="game-notice"
+        id="gameNotice"
       >
 
-        <i
-          class="fas fa-download"
-          aria-hidden="true"
-        ></i>
+        <i class="fa-solid fa-circle-info"></i>
 
-        Download APK (28 MB)
-
-      </a>
-
-
-      <p class="note">
-
-        <i
-          class="fas fa-info-circle"
-          aria-hidden="true"
-        ></i>
-
-        Before installing an APK from outside Google Play,
-        Android may ask you to allow installation from the
-        browser or file manager you are using.
-
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     INSTALLATION
-====================================================== -->
-
-<section
-  class="features"
-  id="installation"
->
-
-  <div class="container">
-
-    <div class="section-header">
-
-      <span class="section-tag">
-        INSTALLATION
-      </span>
-
-      <h2>
-        How to Install the APK
-      </h2>
-
-      <p class="section-subtitle">
-        General steps for installing the downloaded APK
-        on a compatible Android device.
-      </p>
-
-    </div>
-
-
-    <div class="features-grid">
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-download"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Step 1: Download
-        </h3>
-
-        <p>
-          Use the download button above to download the
-          Super Video Player APK. Wait until the download
-          has completed before opening the file.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-folder-open"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Step 2: Open the APK
-        </h3>
-
-        <p>
-          Open the downloaded APK from your browser's
-          download list or the device's file manager.
-          Android will show the installation screen.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-shield-halved"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Step 3: Allow Installation
-        </h3>
-
-        <p>
-          If Android blocks the installation, follow the
-          system instructions to allow your browser or
-          file manager to install applications from that
-          source.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-check-circle"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Step 4: Install and Open
-        </h3>
-
-        <p>
-          Tap Install and wait for the installation to finish.
-          After installation, open Super Video Player and
-          select a compatible video file to begin playback.
-        </p>
+        The game page needs to be added to its game folder
+        before it can be launched.
 
       </div>
 
@@ -1914,938 +1234,173 @@
 
   </div>
 
-</section>
-
-
-<!-- =====================================================
-     TROUBLESHOOTING
-====================================================== -->
-
-<section class="formats">
-
-  <div class="container">
-
-    <div class="section-header">
-
-      <span class="section-tag">
-        HELP
-      </span>
-
-      <h2>
-        Common Playback Problems
-      </h2>
-
-      <p class="section-subtitle">
-        Video playback can vary depending on the file,
-        codecs, resolution and Android device.
-      </p>
-
-    </div>
-
-
-    <div class="formats-grid">
-
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-triangle-exclamation"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Video Does Not Play
-        </h3>
-
-        <p>
-          Check whether the file is complete and whether
-          its audio and video codecs are compatible with
-          the application and Android device. Try another
-          known-compatible video file to compare playback.
-        </p>
-
-      </div>
-
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-volume-xmark"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          No Audio
-        </h3>
-
-        <p>
-          Check the device volume and make sure the video
-          actually contains an audio track. Some files use
-          audio codecs that may not be available on every
-          Android device.
-        </p>
-
-      </div>
-
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-closed-captioning"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Subtitle Not Showing
-        </h3>
-
-        <p>
-          Make sure the subtitle file is compatible and
-          correctly selected. When using an external subtitle
-          file, check that the file is readable and matches
-          the video.
-        </p>
-
-      </div>
-
-
-      <div class="format-card">
-
-        <div class="format-icon">
-          <i
-            class="fas fa-gauge-high"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Playback Is Not Smooth
-        </h3>
-
-        <p>
-          High-resolution or high-bitrate videos can require
-          more processing power. Try a lower-resolution copy
-          or check the device's available storage and
-          background activity.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     TECHNICAL NOTES
-====================================================== -->
-
-<section class="features">
-
-  <div class="container">
-
-    <div class="section-header">
-
-      <span class="section-tag">
-        TECHNICAL NOTES
-      </span>
-
-      <h2>
-        Understanding Video Compatibility
-      </h2>
-
-      <p class="section-subtitle">
-        Why two files with similar extensions can behave
-        differently during playback.
-      </p>
-
-    </div>
-
-
-    <div class="features-grid">
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-file-video"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Container vs Codec
-        </h3>
-
-        <p>
-          A video extension such as MP4 or MKV describes the
-          container. The actual video and audio streams inside
-          the container use codecs. Both the container and
-          codecs need to be compatible for reliable playback.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-video"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Video Codec
-        </h3>
-
-        <p>
-          Video streams can use different compression
-          technologies. Device hardware and Android media
-          components determine which video codecs can be
-          decoded efficiently.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-volume-high"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Audio Codec
-        </h3>
-
-        <p>
-          A video can display correctly while its audio fails
-          if the audio stream uses a codec that is unavailable
-          on the device or unsupported by the playback stack.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-microchip"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Device Hardware
-        </h3>
-
-        <p>
-          Resolution, bitrate and codec complexity can affect
-          playback performance. Older or less powerful devices
-          may require more processing for high-quality video.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     VERSION INFORMATION
-====================================================== -->
-
-<section class="features">
-
-  <div class="container">
-
-    <div class="section-header">
-
-      <span class="section-tag">
-        VERSION
-      </span>
-
-      <h2>
-        Current Release Information
-      </h2>
-
-      <p class="section-subtitle">
-        Details for the APK currently published on this website.
-      </p>
-
-    </div>
-
-
-    <div class="features-grid">
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-code-branch"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Version 1.1.4
-        </h3>
-
-        <p>
-          The current APK listed on this page is version
-          1.1.4. This page should be updated whenever a newer
-          release is published.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-file-arrow-down"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          APK Size
-        </h3>
-
-        <p>
-          The currently listed APK is approximately 28 MB.
-          The actual downloaded file size can change when
-          a future application release is published.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-user-shield"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Privacy
-        </h3>
-
-        <p>
-          Information about website privacy, data handling
-          and related policies is available on the Privacy
-          Policy page linked from the website footer.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="icon-box">
-          <i
-            class="fas fa-envelope"
-            aria-hidden="true"
-          ></i>
-        </div>
-
-        <h3>
-          Support
-        </h3>
-
-        <p>
-          If you experience a website, download or application
-          related problem, visit the Contact page for the
-          available support information.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     FAQ
-====================================================== -->
-
-<section
-  class="faq"
-  id="faq"
->
-
-  <div class="container">
-
-    <div class="section-header">
-
-      <span class="section-tag">
-        FAQ
-      </span>
-
-      <h2>
-        Frequently Asked Questions
-      </h2>
-
-      <p class="section-subtitle">
-        Answers to common questions about Super Video Player.
-      </p>
-
-    </div>
-
-
-    <div class="faq-list">
-
-
-      <div class="faq-item">
-
-        <button
-          class="faq-question"
-          type="button"
-          aria-expanded="false"
-        >
-
-          <span>
-            What is Super Video Player?
-          </span>
-
-          <i
-            class="fas fa-chevron-down"
-            aria-hidden="true"
-          ></i>
-
-        </button>
-
-
-        <div class="faq-answer">
-
-          <p>
-            Super Video Player is an Android application
-            designed for playing compatible video files
-            stored on an Android device. It provides
-            playback controls, subtitle support, gesture
-            controls and other viewing options.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button
-          class="faq-question"
-          type="button"
-          aria-expanded="false"
-        >
-
-          <span>
-            Which video formats are supported?
-          </span>
-
-          <i
-            class="fas fa-chevron-down"
-            aria-hidden="true"
-          ></i>
-
-        </button>
-
-
-        <div class="faq-answer">
-
-          <p>
-            The website lists common containers such as MP4,
-            M4V, MKV, WEBM, AVI, MOV, FLV, 3GP and TS.
-            Actual playback depends on the codecs inside
-            each file and the Android device.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button
-          class="faq-question"
-          type="button"
-          aria-expanded="false"
-        >
-
-          <span>
-            Is Super Video Player free?
-          </span>
-
-          <i
-            class="fas fa-chevron-down"
-            aria-hidden="true"
-          ></i>
-
-        </button>
-
-
-        <div class="faq-answer">
-
-          <p>
-            The APK currently listed on this website is
-            available for free download. The current Android
-            application is presented as an ad-free player.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button
-          class="faq-question"
-          type="button"
-          aria-expanded="false"
-        >
-
-          <span>
-            Does Super Video Player require an internet connection?
-          </span>
-
-          <i
-            class="fas fa-chevron-down"
-            aria-hidden="true"
-          ></i>
-
-        </button>
-
-
-        <div class="faq-answer">
-
-          <p>
-            Super Video Player is designed primarily for
-            playing local video files stored on an Android
-            device. Internet access can still be required
-            for downloading the APK or accessing website
-            resources.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button
-          class="faq-question"
-          type="button"
-          aria-expanded="false"
-        >
-
-          <span>
-            Does it support subtitles?
-          </span>
-
-          <i
-            class="fas fa-chevron-down"
-            aria-hidden="true"
-          ></i>
-
-        </button>
-
-
-        <div class="faq-answer">
-
-          <p>
-            The player is designed to support common subtitle
-            formats such as SRT, ASS, SSA and VTT, subject to
-            compatibility with the installed application
-            version and the selected video.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button
-          class="faq-question"
-          type="button"
-          aria-expanded="false"
-        >
-
-          <span>
-            What Android version is required?
-          </span>
-
-          <i
-            class="fas fa-chevron-down"
-            aria-hidden="true"
-          ></i>
-
-        </button>
-
-
-        <div class="faq-answer">
-
-          <p>
-            The APK currently listed on this website requires
-            Android 7.0 or newer. Playback compatibility can
-            vary between devices.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button
-          class="faq-question"
-          type="button"
-          aria-expanded="false"
-        >
-
-          <span>
-            Why might a particular video not play?
-          </span>
-
-          <i
-            class="fas fa-chevron-down"
-            aria-hidden="true"
-          ></i>
-
-        </button>
-
-
-        <div class="faq-answer">
-
-          <p>
-            Video playback depends on both the file container
-            and the audio and video codecs inside the file.
-            A file can have a familiar extension but still
-            contain a codec that is not supported by the
-            application or device.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button
-          class="faq-question"
-          type="button"
-          aria-expanded="false"
-        >
-
-          <span>
-            Why is a video playing without sound?
-          </span>
-
-          <i
-            class="fas fa-chevron-down"
-            aria-hidden="true"
-          ></i>
-
-        </button>
-
-
-        <div class="faq-answer">
-
-          <p>
-            Check the device volume and make sure the video
-            contains an audio track. Some files use audio
-            codecs that may not be available on every
-            Android device.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button
-          class="faq-question"
-          type="button"
-          aria-expanded="false"
-        >
-
-          <span>
-            Can I play downloaded videos?
-          </span>
-
-          <i
-            class="fas fa-chevron-down"
-            aria-hidden="true"
-          ></i>
-
-        </button>
-
-
-        <div class="faq-answer">
-
-          <p>
-            Yes, compatible video files that are stored
-            locally on the Android device can be selected
-            for playback. The file must use a compatible
-            container and supported audio and video codecs.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button
-          class="faq-question"
-          type="button"
-          aria-expanded="false"
-        >
-
-          <span>
-            Where can I report a website problem?
-          </span>
-
-          <i
-            class="fas fa-chevron-down"
-            aria-hidden="true"
-          ></i>
-
-        </button>
-
-
-        <div class="faq-answer">
-
-          <p>
-            Visit the Contact page from the website footer
-            for the available support information.
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
+</div>
 
 
 <!-- =====================================================
      FOOTER
 ====================================================== -->
 
-<footer class="custom-footer">
+<footer class="site-footer">
 
-  <div class="container custom-footer-container">
+  <div class="container">
 
-    <div class="custom-footer-top">
+    <div class="footer-grid">
 
 
-      <!-- BRAND -->
-
-      <div class="custom-footer-brand">
+      <div class="footer-brand">
 
         <a
-          href="#"
-          class="custom-footer-brand-name"
-          aria-label="Super Video Player Home"
+          href="#home"
+          class="brand footer-brand-link"
         >
 
-          <img
-            src="https://i.ibb.co/m598JHpc/Super-Video-Player-Logo.png"
-            width="50"
-            height="50"
-            alt="Super Video Player logo"
-            loading="lazy"
-          >
+          <span class="brand-logo">
 
-          <span>
-            Super Video Player
+            <img
+              src="favicon.png"
+              width="42"
+              height="42"
+              alt="SM Gaming"
+              loading="lazy"
+            >
+
+          </span>
+
+          <span class="brand-text">
+
+            <strong>SM</strong>
+            Gaming
+
           </span>
 
         </a>
 
 
-        <p class="custom-footer-slogan">
-          A simple Android video player for local videos.
+        <p>
+          A growing collection of free, mobile-friendly
+          browser games from SM Studio.
         </p>
 
 
-        <!-- SOCIAL -->
+        <div class="social-links">
 
-        <ul class="custom-footer-social">
+          <a
+            href="https://x.com/SapneswarM7"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="SM Studio on X"
+          >
 
-          <li>
+            <i class="fa-brands fa-x-twitter"></i>
 
-            <a
-              href="https://x.com/SapneswarM7"
-              aria-label="Super Video Player on X"
-              class="footer-social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-
-              <svg
-                width="17"
-                height="17"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-
-                <path
-                  d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"
-                />
-
-              </svg>
-
-            </a>
-
-          </li>
+          </a>
 
 
-          <li>
+          <a
+            href="https://www.instagram.com/sm__studio7/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="SM Studio on Instagram"
+          >
 
-            <a
-              href="https://www.instagram.com/sm__studio7/"
-              aria-label="Super Video Player on Instagram"
-              class="footer-social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <i class="fa-brands fa-instagram"></i>
 
-              <i
-                class="fab fa-instagram"
-                aria-hidden="true"
-              ></i>
-
-            </a>
-
-          </li>
+          </a>
 
 
-          <li>
+          <a
+            href="https://t.me/sm_studio7"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="SM Studio on Telegram"
+          >
 
-            <a
-              href="https://t.me/sm_studio7"
-              aria-label="Super Video Player on Telegram"
-              class="footer-social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <i class="fa-brands fa-telegram"></i>
 
-              <i
-                class="fab fa-telegram-plane"
-                aria-hidden="true"
-              ></i>
+          </a>
 
-            </a>
-
-          </li>
-
-        </ul>
+        </div>
 
       </div>
 
 
-      <!-- QUICK LINKS -->
-
-      <div class="custom-footer-column">
+      <div class="footer-column">
 
         <h3>
-          Quick Links
+          Gaming
         </h3>
 
-        <a href="#">
-          Home
+        <a href="#games">
+          All Games
         </a>
 
-        <a href="#about">
-          About
+        <a href="#categories">
+          Categories
         </a>
 
-        <a href="#formats">
-          Formats
+        <a href="#games">
+          Popular Games
         </a>
 
-        <a href="#features">
-          Features
-        </a>
-
-        <a href="#screenshots">
-          Screenshots
+        <a href="#games">
+          New Games
         </a>
 
       </div>
 
 
-      <!-- DOWNLOAD -->
-
-      <div class="custom-footer-column">
+      <div class="footer-column">
 
         <h3>
-          Download
+          Categories
         </h3>
 
-        <a href="#apk">
-          Download APK
+        <a href="#games" data-footer-category="Action">
+          Action
         </a>
 
-        <a href="#faq">
-          FAQ
+        <a href="#games" data-footer-category="Arcade">
+          Arcade
         </a>
 
-        <a href="#installation">
-          Installation
+        <a href="#games" data-footer-category="Puzzle">
+          Puzzle
         </a>
 
-        <a href="#features">
-          Features
+        <a href="#games" data-footer-category="Racing">
+          Racing
         </a>
 
       </div>
 
 
-      <!-- LEGAL -->
+      <div class="footer-column">
 
-      <div class="custom-footer-column">
+        <h3>
+          More
+        </h3>
+
+        <a href="#games" data-footer-category="Sports">
+          Sports
+        </a>
+
+        <a href="#games" data-footer-category="Strategy">
+          Strategy
+        </a>
+
+        <a href="#games" data-footer-category="Casual">
+          Casual
+        </a>
+
+        <a href="#how-it-works">
+          How It Works
+        </a>
+
+      </div>
+
+
+      <div class="footer-column">
 
         <h3>
           Legal
@@ -2856,7 +1411,7 @@
         </a>
 
         <a href="terms.html">
-          Terms
+          Terms &amp; Conditions
         </a>
 
         <a href="contact.html">
@@ -2864,38 +1419,7 @@
         </a>
 
         <a href="mailto:support@sm7-studio.online">
-          Email Us
-        </a>
-
-      </div>
-
-
-      <!-- APP -->
-
-      <div class="custom-footer-column">
-
-        <h3>
-          Super Video Player
-        </h3>
-
-        <a href="#apk">
-          Android APK
-        </a>
-
-        <a href="#no-ads">
-          No Ads
-        </a>
-
-        <a href="#screenshots">
-          App Screenshots
-        </a>
-
-        <a href="#faq">
-          Frequently Asked Questions
-        </a>
-
-        <a href="#">
-          Back to Top
+          Email Support
         </a>
 
       </div>
@@ -2903,48 +1427,19 @@
     </div>
 
 
-    <!-- FOOTER DIVIDER -->
-
-    <div class="custom-footer-middle">
-
-      <div class="custom-footer-line"></div>
-
-      <div class="custom-footer-middle-logo">
-
-        <img
-          src="https://i.ibb.co/m598JHpc/Super-Video-Player-Logo.png"
-          width="48"
-          height="48"
-          alt="Super Video Player"
-          loading="lazy"
-        >
-
-      </div>
-
-      <div class="custom-footer-line"></div>
-
-    </div>
+    <div class="footer-divider"></div>
 
 
-    <!-- COPYRIGHT -->
+    <div class="footer-bottom">
 
-    <div class="custom-footer-bottom">
-
-      <p class="custom-footer-credit">
-
+      <p>
         Made with
-
-        <span aria-hidden="true">
-          ❤️
-        </span>
-
-        SM Studio
-
+        <span aria-hidden="true">❤️</span>
+        by SM Studio
       </p>
 
-
-      <p class="custom-footer-copyright">
-        © 2026 Super Video Player. All rights reserved.
+      <p>
+        © 2026 SM Gaming. All rights reserved.
       </p>
 
     </div>
@@ -2952,6 +1447,22 @@
   </div>
 
 </footer>
+
+
+<!-- =====================================================
+     BACK TO TOP
+====================================================== -->
+
+<button
+  type="button"
+  class="back-to-top"
+  id="backToTop"
+  aria-label="Back to top"
+>
+
+  <i class="fa-solid fa-arrow-up"></i>
+
+</button>
 
 
 <!-- =====================================================
