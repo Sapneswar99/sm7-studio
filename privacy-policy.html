@@ -11,7 +11,7 @@
 
   <meta
     name="description"
-    content="Read the Privacy Policy for Super Video Player. Learn how information is handled on our website and Android application."
+    content="Read the Privacy Policy for Super Video Player. Learn how information, cookies, advertising technologies, and device permissions are handled on our website and Android application."
   >
 
   <meta
@@ -24,10 +24,17 @@
     content="#0a0a1a"
   >
 
+  <meta
+    name="author"
+    content="SM Studio"
+  >
+
   <link
     rel="canonical"
     href="https://sm7-studio.online/privacy-policy.html"
   >
+
+  <!-- OPEN GRAPH -->
 
   <meta
     property="og:type"
@@ -41,7 +48,7 @@
 
   <meta
     property="og:description"
-    content="Learn how information is handled when you visit the Super Video Player website or use the Android application."
+    content="Learn how information, cookies, advertising technologies, and device permissions are handled by Super Video Player."
   >
 
   <meta
@@ -53,6 +60,25 @@
     property="og:site_name"
     content="Super Video Player"
   >
+
+
+  <!-- TWITTER -->
+
+  <meta
+    name="twitter:card"
+    content="summary"
+  >
+
+  <meta
+    name="twitter:title"
+    content="Privacy Policy | Super Video Player"
+  >
+
+  <meta
+    name="twitter:description"
+    content="Privacy information for the Super Video Player website and Android application."
+  >
+
 
   <title>Privacy Policy | Super Video Player</title>
 
@@ -96,22 +122,16 @@
     href="favicon.png"
   >
 
-  <!-- Apple Devices -->
-
   <link
     rel="apple-touch-icon"
     sizes="180x180"
     href="favicon.png"
   >
 
-  <!-- Android / PWA -->
-
   <link
     rel="manifest"
     href="site.webmanifest"
   >
-
-  <!-- Microsoft -->
 
   <meta
     name="msapplication-TileImage"
@@ -149,10 +169,6 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
   >
 
-
-  <!-- =====================================================
-       ALL CSS INLINE
-  ====================================================== -->
 
   <style>
 
@@ -227,15 +243,13 @@
     .container {
       width: 100%;
       max-width: 1200px;
-
       margin: 0 auto;
-
       padding: 0 24px;
     }
 
 
     /* =====================================================
-       FLOATING FIXED NAVBAR
+       NAVBAR
     ====================================================== */
 
     .navbar {
@@ -244,13 +258,10 @@
       top: 14px;
       left: 50%;
 
-      width:
-        calc(100% - 28px);
-
+      width: calc(100% - 28px);
       max-width: 1400px;
 
-      transform:
-        translateX(-50%);
+      transform: translateX(-50%);
 
       z-index: 99999;
 
@@ -262,11 +273,8 @@
       background:
         rgba(10, 10, 26, 0.94);
 
-      backdrop-filter:
-        blur(18px);
-
-      -webkit-backdrop-filter:
-        blur(18px);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
 
       border:
         1px solid rgba(139, 92, 246, 0.22);
@@ -295,11 +303,6 @@
         0 0 30px rgba(139, 92, 246, 0.12);
     }
 
-
-    /* =====================================================
-       NAV CONTAINER
-    ====================================================== */
-
     .nav-container {
       width: 100%;
       max-width: 1400px;
@@ -307,25 +310,17 @@
       min-height: 68px;
 
       margin: 0 auto;
-
       padding: 8px 22px;
 
       display: flex;
-
       align-items: center;
       justify-content: space-between;
 
       gap: 20px;
     }
 
-
-    /* =====================================================
-       LOGO
-    ====================================================== */
-
     .logo {
       display: flex;
-
       align-items: center;
 
       gap: 10px;
@@ -333,7 +328,6 @@
       color: #fff;
 
       font-size: 20px;
-
       font-weight: 700;
 
       white-space: nowrap;
@@ -358,11 +352,6 @@
 
       font-weight: 600;
     }
-
-
-    /* =====================================================
-       NAV LINKS
-    ====================================================== */
 
     .nav-links {
       display: flex;
@@ -391,7 +380,6 @@
       color: #9ca3af;
 
       font-size: 15px;
-
       font-weight: 500;
 
       transition:
@@ -427,11 +415,6 @@
       width: 100%;
     }
 
-
-    /* =====================================================
-       NAV RIGHT
-    ====================================================== */
-
     .nav-right {
       display: flex;
 
@@ -441,11 +424,6 @@
 
       flex-shrink: 0;
     }
-
-
-    /* =====================================================
-       MENU BUTTON
-    ====================================================== */
 
     .nav-toggle {
       display: none;
@@ -461,7 +439,6 @@
       background: transparent;
 
       border: none;
-
       border-radius: 8px;
 
       color: #fff;
@@ -511,11 +488,6 @@
       padding: 0 24px;
     }
 
-
-    /* =====================================================
-       PRIVACY INTRO
-    ====================================================== */
-
     .privacy-intro {
       text-align: center;
 
@@ -546,7 +518,6 @@
       color: #a78bfa;
 
       font-size: 12px;
-
       font-weight: 600;
     }
 
@@ -665,7 +636,6 @@
       color: #a78bfa;
 
       font-size: 20px;
-
       font-weight: 700;
 
       line-height: 1.35;
@@ -707,7 +677,6 @@
 
     .privacy-highlight {
       color: #a78bfa;
-
       font-weight: 600;
     }
 
@@ -739,6 +708,8 @@
       font-weight: 500;
 
       text-decoration: underline;
+
+      overflow-wrap: anywhere;
     }
 
     .privacy-info-box a:hover {
@@ -751,6 +722,8 @@
       font-weight: 500;
 
       text-decoration: none;
+
+      overflow-wrap: anywhere;
     }
 
     .privacy-email:hover {
@@ -797,8 +770,6 @@
       position: relative;
 
       width: 100%;
-
-      margin-top: 0;
 
       padding: 78px 0 0;
 
@@ -868,11 +839,6 @@
       padding: 0 24px;
     }
 
-
-    /* =====================================================
-       FOOTER TOP
-    ====================================================== */
-
     .custom-footer-top {
       display: grid;
 
@@ -884,11 +850,6 @@
 
       padding-bottom: 58px;
     }
-
-
-    /* =====================================================
-       FOOTER BRAND
-    ====================================================== */
 
     .custom-footer-brand {
       display: flex;
@@ -910,7 +871,6 @@
       color: var(--off-white);
 
       font-size: 21px;
-
       font-weight: 700;
 
       line-height: 1.3;
@@ -948,11 +908,6 @@
 
       line-height: 1.8;
     }
-
-
-    /* =====================================================
-       SOCIAL ICONS
-    ====================================================== */
 
     .custom-footer-social {
       display: flex !important;
@@ -1051,49 +1006,36 @@
       line-height: 1;
     }
 
-    .custom-footer-social li:nth-child(1) a:hover {
+    .custom-footer-social li:nth-child(1) a:hover,
+    .custom-footer-social li:nth-child(2) a:hover,
+    .custom-footer-social li:nth-child(3) a:hover {
       transform:
         translateY(-4px);
+    }
 
+    .custom-footer-social li:nth-child(1) a:hover {
       background:
         rgba(255, 255, 255, 0.10);
 
       border-color:
         rgba(255, 255, 255, 0.25);
-
-      color: #ffffff;
     }
 
     .custom-footer-social li:nth-child(2) a:hover {
-      transform:
-        translateY(-4px);
-
       background:
         rgba(228, 64, 95, 0.12);
 
       border-color:
         rgba(228, 64, 95, 0.35);
-
-      color: #e4405f;
     }
 
     .custom-footer-social li:nth-child(3) a:hover {
-      transform:
-        translateY(-4px);
-
       background:
         rgba(34, 158, 217, 0.12);
 
       border-color:
         rgba(34, 158, 217, 0.35);
-
-      color: #229ed9;
     }
-
-
-    /* =====================================================
-       FOOTER COLUMNS
-    ====================================================== */
 
     .custom-footer-column {
       display: flex;
@@ -1110,7 +1052,6 @@
       color: var(--off-white);
 
       font-size: 14px;
-
       font-weight: 700;
 
       letter-spacing: 0.2px;
@@ -1129,7 +1070,6 @@
         rgba(210, 133, 242, 0.72);
 
       font-size: 12.5px;
-
       font-weight: 400;
 
       line-height: 1.6;
@@ -1167,11 +1107,6 @@
     .custom-footer-column a:hover::after {
       width: 100%;
     }
-
-
-    /* =====================================================
-       FOOTER MIDDLE
-    ====================================================== */
 
     .custom-footer-middle {
       width: 100%;
@@ -1238,18 +1173,12 @@
         );
     }
 
-
-    /* =====================================================
-       FOOTER BOTTOM
-    ====================================================== */
-
     .custom-footer-bottom {
       position: relative;
 
       display: flex;
 
       align-items: center;
-
       justify-content: space-between;
 
       gap: 18px;
@@ -1400,19 +1329,11 @@
 
       .navbar {
         top: 10px;
-        left: 50%;
 
         width:
           calc(100% - 20px);
 
-        transform:
-          translateX(-50%);
-
-        z-index: 99999;
-
         border-radius: 16px;
-
-        overflow: visible;
       }
 
       .nav-container {
@@ -1421,9 +1342,6 @@
         padding:
           6px 16px;
       }
-
-
-      /* MOBILE MENU */
 
       .nav-links {
         position: fixed;
@@ -1519,9 +1437,6 @@
         display: flex;
       }
 
-
-      /* PRIVACY */
-
       .privacy-page {
         padding:
           125px 0 60px;
@@ -1567,9 +1482,6 @@
       .privacy-info-box {
         font-size: 11.5px;
       }
-
-
-      /* FOOTER */
 
       .custom-footer {
         padding-top: 55px;
@@ -2090,7 +2002,7 @@
 
 
     /* =====================================================
-       LANDSCAPE MOBILE
+       LANDSCAPE
     ====================================================== */
 
     @media (max-height: 500px) and (orientation: landscape) {
@@ -2167,7 +2079,7 @@
 
 
   <!-- =====================================================
-       FLOATING NAVBAR
+       NAVBAR
   ====================================================== -->
 
   <nav
@@ -2176,9 +2088,6 @@
   >
 
     <div class="nav-container">
-
-
-      <!-- LOGO -->
 
       <a
         href="index.html"
@@ -2199,8 +2108,6 @@
 
       </a>
 
-
-      <!-- NAV LINKS -->
 
       <ul
         class="nav-links"
@@ -2238,8 +2145,6 @@
       </ul>
 
 
-      <!-- MOBILE TOGGLE -->
-
       <div class="nav-right">
 
         <button
@@ -2251,7 +2156,10 @@
           aria-controls="navLinks"
         >
 
-          <i class="fas fa-bars"></i>
+          <i
+            class="fas fa-bars"
+            aria-hidden="true"
+          ></i>
 
         </button>
 
@@ -2271,15 +2179,14 @@
     <div class="privacy-wrapper">
 
 
-      <!-- =================================================
-           INTRO
-      ================================================== -->
-
-      <div class="privacy-intro">
+      <header class="privacy-intro">
 
         <div class="privacy-badge">
 
-          <i class="fa-solid fa-shield-halved"></i>
+          <i
+            class="fa-solid fa-shield-halved"
+            aria-hidden="true"
+          ></i>
 
           Your Privacy Matters
 
@@ -2290,19 +2197,23 @@
         </h1>
 
         <p class="privacy-subtitle">
-          Last Updated: September 29, 2026
+          Last Updated: October 7, 2026
         </p>
 
-      </div>
+      </header>
 
 
-      <!-- =================================================
-           1. INTRODUCTION
-      ================================================== -->
+      <!-- 1 -->
 
-      <section class="privacy-card">
+      <section
+        class="privacy-card"
+        aria-labelledby="privacy-introduction"
+      >
 
-        <h2 class="privacy-section-title">
+        <h2
+          class="privacy-section-title"
+          id="privacy-introduction"
+        >
           1. Introduction
         </h2>
 
@@ -2311,108 +2222,139 @@
           <span class="privacy-highlight">
             Super Video Player
           </span>.
-          This Privacy Policy explains how information may be handled
-          when you visit the Super Video Player website or use the
-          Super Video Player Android application.
+          This Privacy Policy explains how information may be
+          processed when you visit the Super Video Player website
+          or use the Super Video Player Android application.
         </p>
 
         <p>
-          Our goal is to provide clear information about the types of
-          information that may be processed through the website,
-          advertising services, technical services, and the application.
+          This policy describes the types of information that may
+          be handled through website infrastructure, advertising
+          services, technical services, voluntary communications,
+          and Android device permissions.
         </p>
 
         <p>
-          By using this website or application, you acknowledge that
-          you have read this Privacy Policy.
-        </p>
-
-      </section>
-
-
-      <!-- =================================================
-           2. NO ACCOUNT
-      ================================================== -->
-
-      <section class="privacy-card">
-
-        <h2 class="privacy-section-title">
-          2. No Login or Account Required
-        </h2>
-
-        <p>
-          The Super Video Player website does not require visitors to
-          create an account, register, or log in to access the publicly
-          available website content.
-        </p>
-
-        <p>
-          The APK download area is intended to be accessible without
-          requiring users to create an account or provide login
-          credentials.
-        </p>
-
-        <p>
-          Super Video Player is designed as an offline video playback
-          application and does not require an online user account for
-          its core playback functionality.
+          Our intention is to provide clear and understandable
+          information about privacy-related practices associated
+          with the website and application.
         </p>
 
       </section>
 
 
-      <!-- =================================================
-           3. PERSONAL INFORMATION
-      ================================================== -->
+      <!-- 2 -->
 
-      <section class="privacy-card">
+      <section
+        class="privacy-card"
+        aria-labelledby="privacy-account"
+      >
 
-        <h2 class="privacy-section-title">
-          3. Personal Information
+        <h2
+          class="privacy-section-title"
+          id="privacy-account"
+        >
+          2. Website and Account Access
         </h2>
 
         <p>
-          We do not intentionally request personal information such as
-          your name, phone number, home address, password, or payment
-          information simply to visit this website or download the
-          Super Video Player APK.
+          The publicly available Super Video Player website does
+          not require visitors to create an account or log in to
+          read its pages or access publicly available information.
         </p>
 
         <p>
-          If you voluntarily contact us by email, we may receive the
-          information that you choose to include in your message,
-          such as your email address and the contents of your request.
+          The website may provide access to information about the
+          Android application, supported features, screenshots,
+          installation instructions, frequently asked questions,
+          and the APK download area.
         </p>
 
         <p>
-          Information voluntarily provided through communication with us
-          may be used only as reasonably necessary to respond to your
-          request, provide support, or address a website or application
-          issue.
+          The Super Video Player Android application does not
+          require an online user account for its core offline
+          video playback functionality.
         </p>
 
       </section>
 
 
-      <!-- =================================================
-           4. WEBSITE TECHNICAL INFORMATION
-      ================================================== -->
+      <!-- 3 -->
 
-      <section class="privacy-card">
+      <section
+        class="privacy-card"
+        aria-labelledby="privacy-information"
+      >
 
-        <h2 class="privacy-section-title">
-          4. Website Information
+        <h2
+          class="privacy-section-title"
+          id="privacy-information"
+        >
+          3. Information You Voluntarily Provide
         </h2>
 
         <p>
-          When you visit a website, certain technical information may
-          be processed automatically by web hosting infrastructure,
-          servers, browsers, security systems, or third-party services.
+          We do not intentionally require personal information
+          such as your name, phone number, home address, password,
+          or payment information simply to visit the website or
+          download the Super Video Player APK.
         </p>
 
         <p>
-          Depending on the services used to operate the website, this
-          information may include:
+          If you voluntarily contact us by email, we may receive
+          information that you choose to provide in your message.
+          This may include your email address, device information,
+          application version, and a description of the issue.
+        </p>
+
+        <p>
+          Information provided voluntarily may be used as
+          reasonably necessary to respond to your request,
+          investigate a reported issue, provide support, or
+          improve the website or application.
+        </p>
+
+        <div class="privacy-info-box">
+
+          <strong>
+            Please avoid sending sensitive information.
+          </strong>
+
+          <br><br>
+
+          Do not include passwords, payment card details, account
+          credentials, security codes, or other highly sensitive
+          information in a support email.
+
+        </div>
+
+      </section>
+
+
+      <!-- 4 -->
+
+      <section
+        class="privacy-card"
+        aria-labelledby="privacy-technical"
+      >
+
+        <h2
+          class="privacy-section-title"
+          id="privacy-technical"
+        >
+          4. Website Technical Information
+        </h2>
+
+        <p>
+          When you access a website, certain technical information
+          may be processed automatically by hosting infrastructure,
+          web servers, browsers, security systems, content delivery
+          services, or other technical providers.
+        </p>
+
+        <p>
+          Depending on the services involved, this information may
+          include:
         </p>
 
         <ul class="privacy-list">
@@ -2430,101 +2372,108 @@
           </li>
 
           <li>
-            Date and time of website access
+            Date and time of a website request
           </li>
 
           <li>
-            Pages or resources requested
+            Requested pages, files, or resources
           </li>
 
           <li>
-            Basic technical and security information
+            Basic security, diagnostic, and technical information
           </li>
 
         </ul>
 
         <p>
-          Such information may be processed for normal website
-          operation, security, troubleshooting, performance monitoring,
-          abuse prevention, and technical maintenance.
+          Technical information may be used for website delivery,
+          security, troubleshooting, abuse prevention, performance
+          monitoring, and maintenance.
         </p>
 
       </section>
 
 
-      <!-- =================================================
-           5. GOOGLE ADSENSE
-      ================================================== -->
+      <!-- 5 -->
 
-      <section class="privacy-card">
+      <section
+        class="privacy-card"
+        aria-labelledby="privacy-adsense"
+      >
 
-        <h2 class="privacy-section-title">
-          5. Google AdSense and Website Advertising
+        <h2
+          class="privacy-section-title"
+          id="privacy-adsense"
+        >
+          5. Google AdSense and Advertising
         </h2>
 
         <p>
           The Super Video Player website may display advertisements
-          provided by Google AdSense and other third-party advertising
-          providers.
+          provided by Google AdSense or other advertising services.
         </p>
 
         <p>
-          Advertising providers may use cookies, web beacons, pixels,
-          device identifiers, or similar technologies to deliver,
-          measure, and improve advertising, detect invalid activity,
-          prevent fraud, and understand interactions with advertisements.
+          Advertising services may use cookies, web beacons,
+          pixels, device information, advertising identifiers, or
+          similar technologies to deliver, measure, personalize,
+          limit, or improve advertising and to detect invalid
+          activity or fraud.
         </p>
 
         <p>
-          Depending on applicable settings, consent requirements, and
-          your location, Google and other advertising providers may
-          process certain information such as browser information,
-          device information, IP address, advertising identifiers, and
-          interaction information.
+          Depending on applicable laws, consent choices, browser
+          settings, and location, advertising providers may process
+          information such as browser information, device
+          information, IP address, advertising identifiers, and
+          interactions with advertisements.
         </p>
 
         <p>
-          The use of advertising technologies is controlled by the
-          applicable third-party provider's policies and settings.
-          We do not control how third-party advertising providers
-          independently process information.
+          Third-party advertising providers operate according to
+          their own policies and may provide users with controls
+          for advertising preferences and privacy choices.
         </p>
 
         <div class="privacy-info-box">
 
           <strong>
-            Advertising and the Android application:
+            Super Video Player Android application:
           </strong>
 
           <br><br>
 
-          The Super Video Player Android application is intended to
-          provide offline video playback and does not contain
-          advertisements.
+          The Android application is intended for offline video
+          playback and does not display advertisements as part of
+          its core playback experience.
 
         </div>
 
       </section>
 
 
-      <!-- =================================================
-           6. COOKIES
-      ================================================== -->
+      <!-- 6 -->
 
-      <section class="privacy-card">
+      <section
+        class="privacy-card"
+        aria-labelledby="privacy-cookies"
+      >
 
-        <h2 class="privacy-section-title">
+        <h2
+          class="privacy-section-title"
+          id="privacy-cookies"
+        >
           6. Cookies and Similar Technologies
         </h2>
 
         <p>
-          The website and third-party services used on or in connection
-          with the website may use cookies, web beacons, pixels,
-          local storage, or similar technologies.
+          The website and services used in connection with the
+          website may use cookies, local storage, web beacons,
+          pixels, or similar technologies.
         </p>
 
         <p>
-          These technologies may be used for purposes such as:
+          These technologies may be used for purposes including:
         </p>
 
         <ul class="privacy-list">
@@ -2550,44 +2499,50 @@
           </li>
 
           <li>
-            Improving website performance
+            Improving website reliability and performance
           </li>
 
         </ul>
 
         <p>
-          You can control or delete cookies through the settings of
-          your web browser. Disabling certain cookies may affect some
-          website functionality or third-party services.
+          You can manage or delete cookies through your browser
+          settings. Blocking or deleting certain cookies may affect
+          some website functionality or third-party services.
         </p>
 
       </section>
 
 
-      <!-- =================================================
-           7. ADVERTISING CHOICES
-      ================================================== -->
+      <!-- 7 -->
 
-      <section class="privacy-card">
+      <section
+        class="privacy-card"
+        aria-labelledby="privacy-controls"
+      >
 
-        <h2 class="privacy-section-title">
+        <h2
+          class="privacy-section-title"
+          id="privacy-controls"
+        >
           7. Advertising Choices and Privacy Controls
         </h2>
 
         <p>
-          Depending on your location and applicable privacy laws, you
-          may have choices regarding personalized advertising,
-          advertising cookies, and certain similar technologies.
+          Depending on your location and applicable privacy laws,
+          you may have choices concerning personalized advertising,
+          advertising cookies, and similar technologies.
         </p>
 
         <p>
-          Google provides tools that allow users to review or manage
-          certain advertising preferences.
+          Google provides settings and information that may help
+          users manage certain advertising preferences.
         </p>
 
         <div class="privacy-info-box">
 
-          Google advertising settings:
+          <strong>
+            Google Ads Settings
+          </strong>
 
           <br>
 
@@ -2596,12 +2551,14 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            https://adssettings.google.com/
+            Google advertising settings
           </a>
 
           <br><br>
 
-          Google Privacy Policy:
+          <strong>
+            Google Privacy Policy
+          </strong>
 
           <br>
 
@@ -2610,129 +2567,144 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            https://policies.google.com/privacy
+            Google Privacy Policy
           </a>
 
         </div>
 
         <p>
-          Where required by applicable law, appropriate consent or
-          privacy controls may be provided for certain advertising
-          cookies or personalized advertising technologies.
+          Where required by applicable law, appropriate consent
+          mechanisms or privacy controls may apply to certain
+          advertising technologies.
         </p>
 
       </section>
 
 
-      <!-- =================================================
-           8. ANDROID APPLICATION
-      ================================================== -->
+      <!-- 8 -->
 
-      <section class="privacy-card">
+      <section
+        class="privacy-card"
+        aria-labelledby="privacy-app"
+      >
 
-        <h2 class="privacy-section-title">
-          8. Super Video Player Android Application
+        <h2
+          class="privacy-section-title"
+          id="privacy-app"
+        >
+          8. Android Application and Permissions
         </h2>
 
         <p>
-          Super Video Player is an Android application designed for
-          offline video playback and related media playback functions.
+          Super Video Player is an Android application designed
+          primarily for playing compatible video files stored on
+          the user's device.
         </p>
 
         <p>
-          The application does not require users to create an account
-          or log in to use its core playback functionality.
+          The application does not require an online account for
+          its core video playback functionality.
         </p>
 
         <p>
-          The application may request access to media files or other
-          device resources when such access is required for features
-          such as selecting and playing videos stored on the device.
+          Depending on the Android version and application
+          implementation, the application may request access to
+          media files or related device resources when required
+          for features such as selecting and playing videos stored
+          on the device.
         </p>
 
         <p>
-          Android permissions are controlled by the Android operating
-          system. The exact permissions available or required may vary
-          depending on the Android version, device manufacturer, and
-          application version.
+          Android permissions are managed by the Android operating
+          system. The exact permissions and permission behavior
+          may differ depending on the Android version, device
+          manufacturer, and application version.
         </p>
 
         <p>
-          The application does not intentionally collect personal
-          information such as your name, phone number, home address,
-          password, or payment information for its core video playback
-          functionality.
+          The application does not intentionally request personal
+          information such as your name, phone number, home
+          address, password, or payment information for its core
+          offline playback functionality.
         </p>
 
         <div class="privacy-info-box">
 
           <strong>
-            Offline playback:
+            Local media:
           </strong>
 
           <br><br>
 
-          The core purpose of Super Video Player is to play compatible
-          video files stored on the user's device. Video files selected
-          for playback remain under the user's control on the device,
-          subject to the Android operating system and the permissions
-          granted to the application.
+          Video files selected for playback are files stored on
+          the user's device. Their availability and access are
+          subject to the Android operating system and permissions
+          granted by the user.
 
         </div>
 
       </section>
 
 
-      <!-- =================================================
-           9. THIRD-PARTY SERVICES
-      ================================================== -->
+      <!-- 9 -->
 
-      <section class="privacy-card">
+      <section
+        class="privacy-card"
+        aria-labelledby="privacy-third-party"
+      >
 
-        <h2 class="privacy-section-title">
+        <h2
+          class="privacy-section-title"
+          id="privacy-third-party"
+        >
           9. Third-Party Services and External Links
         </h2>
 
         <p>
-          Our website may contain links to third-party websites,
-          platforms, social networks, advertising services, or other
-          external resources.
+          The website may contain links to third-party websites,
+          social networks, advertising services, hosting services,
+          documentation, or other external resources.
         </p>
 
         <p>
-          Third-party services operate independently and may have their
-          own privacy policies, terms of use, cookies, and data
-          processing practices.
+          Third-party services operate independently and may have
+          their own privacy policies, terms of use, cookies, and
+          data-processing practices.
         </p>
 
         <p>
-          We are not responsible for the privacy practices, security,
-          availability, or content of third-party websites and services.
+          We do not control the privacy practices or security
+          practices of third-party services and are not responsible
+          for their independent data processing.
         </p>
 
         <p>
-          We recommend reviewing the privacy policy of a third-party
-          service before providing information or interacting with that
-          service.
+          Before submitting information to a third-party service,
+          users should review that service's applicable privacy
+          policy and terms.
         </p>
 
       </section>
 
 
-      <!-- =================================================
-           10. DATA SECURITY
-      ================================================== -->
+      <!-- 10 -->
 
-      <section class="privacy-card">
+      <section
+        class="privacy-card"
+        aria-labelledby="privacy-security"
+      >
 
-        <h2 class="privacy-section-title">
+        <h2
+          class="privacy-section-title"
+          id="privacy-security"
+        >
           10. Data Security
         </h2>
 
         <p>
-          We take reasonable measures appropriate to the operation of
-          our website to help protect information against unauthorized
-          access, misuse, or alteration.
+          We take reasonable measures appropriate to the operation
+          of the website to help protect information against
+          unauthorized access, misuse, or alteration.
         </p>
 
         <p>
@@ -2742,87 +2714,132 @@
         </p>
 
         <p>
-          Users should also take reasonable steps to protect their own
-          devices, accounts, files, and Internet connections.
+          Users should also take reasonable steps to protect their
+          own devices, files, accounts, and Internet connections.
         </p>
 
       </section>
 
 
-      <!-- =================================================
-           11. CHILDREN'S PRIVACY
-      ================================================== -->
+      <!-- 11 -->
 
-      <section class="privacy-card">
+      <section
+        class="privacy-card"
+        aria-labelledby="privacy-children"
+      >
 
-        <h2 class="privacy-section-title">
+        <h2
+          class="privacy-section-title"
+          id="privacy-children"
+        >
           11. Children's Privacy
         </h2>
 
         <p>
-          The website and application are not designed to intentionally
-          collect personal information from children.
+          The website and application are not designed to
+          intentionally collect personal information from children.
         </p>
 
         <p>
           We do not intentionally request personal information from
-          children for the purpose of creating an account or using the
-          core Super Video Player playback functionality.
+          children for the purpose of creating an account or using
+          the core Super Video Player playback functionality.
         </p>
 
         <p>
-          If you believe that personal information has been submitted
-          to us by a child, please contact us so that we can review
-          the matter and take appropriate action where necessary.
-        </p>
-
-      </section>
-
-
-      <!-- =================================================
-           12. POLICY CHANGES
-      ================================================== -->
-
-      <section class="privacy-card">
-
-        <h2 class="privacy-section-title">
-          12. Changes to This Privacy Policy
-        </h2>
-
-        <p>
-          We may update this Privacy Policy from time to time to reflect
-          changes to the website, application, services, technologies,
-          legal requirements, or privacy practices.
-        </p>
-
-        <p>
-          When changes are made, the updated version will be published
-          on this page.
-        </p>
-
-        <p>
-          The "Last Updated" date at the top of this page will be
-          changed when appropriate.
+          If you believe that personal information has been
+          submitted to us by a child, please contact us so that the
+          matter can be reviewed and appropriate action can be
+          considered where necessary.
         </p>
 
       </section>
 
 
-      <!-- =================================================
-           13. CONTACT
-      ================================================== -->
+      <!-- 12 -->
 
-      <section class="privacy-card">
+      <section
+        class="privacy-card"
+        aria-labelledby="privacy-retention"
+      >
 
-        <h2 class="privacy-section-title">
-          13. Contact Us
+        <h2
+          class="privacy-section-title"
+          id="privacy-retention"
+        >
+          12. Information Retention
         </h2>
 
         <p>
-          If you have questions, concerns, or requests regarding this
-          Privacy Policy, the Super Video Player website, or the
-          Android application, you can contact us using the email
-          address below.
+          Information voluntarily sent to us by email may be
+          retained for as long as reasonably necessary to handle
+          the request, provide support, maintain relevant records,
+          resolve an issue, or meet applicable legal or operational
+          requirements.
+        </p>
+
+        <p>
+          We do not claim to retain every type of technical
+          information for a fixed period because retention may
+          depend on the hosting provider, security systems,
+          advertising services, and other third-party
+          infrastructure involved.
+        </p>
+
+      </section>
+
+
+      <!-- 13 -->
+
+      <section
+        class="privacy-card"
+        aria-labelledby="privacy-changes"
+      >
+
+        <h2
+          class="privacy-section-title"
+          id="privacy-changes"
+        >
+          13. Changes to This Privacy Policy
+        </h2>
+
+        <p>
+          We may update this Privacy Policy from time to time to
+          reflect changes to the website, application, services,
+          technologies, legal requirements, or privacy practices.
+        </p>
+
+        <p>
+          When changes are made, the updated policy will be
+          published on this page.
+        </p>
+
+        <p>
+          The "Last Updated" date shown at the beginning of this
+          policy will be changed when appropriate.
+        </p>
+
+      </section>
+
+
+      <!-- 14 -->
+
+      <section
+        class="privacy-card"
+        aria-labelledby="privacy-contact"
+      >
+
+        <h2
+          class="privacy-section-title"
+          id="privacy-contact"
+        >
+          14. Contact Us
+        </h2>
+
+        <p>
+          If you have questions, concerns, or requests regarding
+          this Privacy Policy, the Super Video Player website, or
+          the Android application, you can contact us by email.
         </p>
 
         <p>
@@ -2843,6 +2860,14 @@
           </a>
 
         </p>
+
+        <div class="privacy-info-box">
+
+          For technical support, it is helpful to include the
+          Android version, application version, device model when
+          relevant, and a short description of the problem.
+
+        </div>
 
       </section>
 
@@ -2885,7 +2910,6 @@
 
           </a>
 
-
           <p class="custom-footer-slogan">
             Offline video playback made simple.
           </p>
@@ -2893,15 +2917,16 @@
 
           <!-- SOCIAL -->
 
-          <ul class="custom-footer-social">
-
-            <!-- X -->
+          <ul
+            class="custom-footer-social"
+            aria-label="Social media links"
+          >
 
             <li>
 
               <a
                 href="https://x.com/SapneswarM7"
-                aria-label="X"
+                aria-label="Super Video Player on X"
                 class="footer-social-link"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -2926,38 +2951,40 @@
             </li>
 
 
-            <!-- INSTAGRAM -->
-
             <li>
 
               <a
                 href="https://www.instagram.com/sm__studio7?stkn=c28xNGxld2Jhdmhs"
-                aria-label="Instagram"
+                aria-label="Super Video Player on Instagram"
                 class="footer-social-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
 
-                <i class="fab fa-instagram"></i>
+                <i
+                  class="fab fa-instagram"
+                  aria-hidden="true"
+                ></i>
 
               </a>
 
             </li>
 
 
-            <!-- TELEGRAM -->
-
             <li>
 
               <a
                 href="https://t.me/sm_studio7"
-                aria-label="Telegram"
+                aria-label="Super Video Player on Telegram"
                 class="footer-social-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
 
-                <i class="fab fa-telegram-plane"></i>
+                <i
+                  class="fab fa-telegram-plane"
+                  aria-hidden="true"
+                ></i>
 
               </a>
 
@@ -3065,7 +3092,7 @@
           </a>
 
           <a href="index.html#features">
-            No Ads
+            App Features
           </a>
 
           <a href="index.html#screenshots">
@@ -3081,9 +3108,7 @@
       </div>
 
 
-      <!-- =================================================
-           FOOTER MIDDLE
-      ================================================== -->
+      <!-- FOOTER MIDDLE -->
 
       <div class="custom-footer-middle">
 
@@ -3105,9 +3130,7 @@
       </div>
 
 
-      <!-- =================================================
-           FOOTER BOTTOM
-      ================================================== -->
+      <!-- FOOTER BOTTOM -->
 
       <div class="custom-footer-bottom">
 
@@ -3123,7 +3146,6 @@
 
         </p>
 
-
         <p class="custom-footer-copyright">
 
           © 2026 Super Video Player. All rights reserved.
@@ -3138,7 +3160,7 @@
 
 
   <!-- =====================================================
-       ALL JAVASCRIPT INLINE
+       JAVASCRIPT
   ====================================================== -->
 
   <script>
@@ -3194,7 +3216,7 @@
 
 
         /* =========================================
-           MENU RESET
+           CLOSE MENU
         ========================================= */
 
         function closeMenu() {
@@ -3236,7 +3258,7 @@
 
 
         /* =========================================
-           MOBILE MENU TOGGLE
+           MOBILE MENU
         ========================================= */
 
         if (navToggle && navLinks) {
@@ -3292,9 +3314,7 @@
           );
 
 
-          /* =====================================
-             CLOSE AFTER LINK CLICK
-          ===================================== */
+          /* CLOSE AFTER LINK CLICK */
 
           navLinks
             .querySelectorAll('a')
@@ -3314,9 +3334,7 @@
             );
 
 
-          /* =====================================
-             CLICK OUTSIDE
-          ===================================== */
+          /* CLICK OUTSIDE */
 
           document.addEventListener(
             'click',
@@ -3391,7 +3409,7 @@
 
 
         /* =========================================
-           CLOSE MENU ON RESIZE
+           RESIZE
         ========================================= */
 
         window.addEventListener(
