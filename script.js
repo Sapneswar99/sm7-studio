@@ -1,526 +1,398 @@
-/* =====================================================
+/* =========================================================
    SM GAMING
-   MAIN JAVASCRIPT
-===================================================== */
+   Main JavaScript
+========================================================= */
 
 "use strict";
 
 
-/* =====================================================
+/* =========================================================
    GAME DATA
-===================================================== */
+========================================================= */
 
 const games = [
 
   {
-    id: "neon-drift",
     title: "Neon Drift",
+    slug: "neon-drift",
     category: "Racing",
-    rating: 4.9,
-    plays: "18K",
     icon: "🏎️",
-    tag: "HOT",
     description:
-      "Race through a glowing neon world and master your drift through challenging tracks.",
-    path: "games/neon-drift/index.html"
+      "Push your reflexes to the limit and master high-speed neon racing."
   },
 
   {
-    id: "space-defender",
     title: "Space Defender",
+    slug: "space-defender",
     category: "Action",
-    rating: 4.8,
-    plays: "16K",
     icon: "🚀",
-    tag: "POPULAR",
     description:
-      "Defend your ship from waves of incoming enemies in a fast arcade space battle.",
-    path: "games/space-defender/index.html"
+      "Defend your ship and survive waves of enemies from deep space."
   },
 
   {
-    id: "block-blast",
     title: "Block Blast",
+    slug: "block-blast",
     category: "Puzzle",
-    rating: 4.8,
-    plays: "22K",
     icon: "🧱",
-    tag: "TOP",
     description:
-      "Place colorful blocks, complete lines and aim for the highest score.",
-    path: "games/block-blast/index.html"
+      "Clear blocks, create combos and challenge your puzzle-solving skills."
   },
 
   {
-    id: "ninja-dash",
     title: "Ninja Dash",
+    slug: "ninja-dash",
     category: "Arcade",
-    rating: 4.7,
-    plays: "14K",
     icon: "🥷",
-    tag: "NEW",
     description:
-      "Dash through dangerous obstacles, collect rewards and see how far you can go.",
-    path: "games/ninja-dash/index.html"
+      "Run, jump and dodge obstacles in a fast arcade adventure."
   },
 
   {
-    id: "goal-master",
     title: "Goal Master",
+    slug: "goal-master",
     category: "Sports",
-    rating: 4.8,
-    plays: "12K",
     icon: "⚽",
-    tag: "SPORT",
     description:
-      "Take the perfect shot and beat the goalkeeper in this quick football challenge.",
-    path: "games/goal-master/index.html"
+      "Take your best shots and become the master of the goal."
   },
 
   {
-    id: "candy-match",
     title: "Candy Match",
+    slug: "candy-match",
     category: "Puzzle",
-    rating: 4.6,
-    plays: "11K",
     icon: "🍬",
-    tag: "FUN",
     description:
-      "Match colorful candies and complete increasingly challenging puzzle levels.",
-    path: "games/candy-match/index.html"
+      "Match colorful candies and complete satisfying puzzle challenges."
   },
 
   {
-    id: "tower-guard",
     title: "Tower Guard",
+    slug: "tower-guard",
     category: "Strategy",
-    rating: 4.8,
-    plays: "9K",
     icon: "🏰",
-    tag: "STRATEGY",
     description:
-      "Build your defenses and protect your base from incoming enemies.",
-    path: "games/tower-guard/index.html"
+      "Defend your tower, plan your moves and stop incoming enemies."
   },
 
   {
-    id: "zombie-escape",
     title: "Zombie Escape",
+    slug: "zombie-escape",
     category: "Action",
-    rating: 4.7,
-    plays: "15K",
     icon: "🧟",
-    tag: "HOT",
     description:
-      "Escape the zombie zone while avoiding enemies and searching for a safe route.",
-    path: "games/zombie-escape/index.html"
+      "Escape dangerous zombies and survive as long as you can."
   },
 
   {
-    id: "speed-racer",
     title: "Speed Racer",
+    slug: "speed-racer",
     category: "Racing",
-    rating: 4.7,
-    plays: "13K",
     icon: "🏁",
-    tag: "RACE",
     description:
-      "Drive at high speed, avoid traffic and try to set a new distance record.",
-    path: "games/speed-racer/index.html"
+      "Race through challenging tracks and chase your fastest time."
   },
 
   {
-    id: "galaxy-shooter",
     title: "Galaxy Shooter",
+    slug: "galaxy-shooter",
     category: "Action",
-    rating: 4.9,
-    plays: "20K",
     icon: "👾",
-    tag: "TOP",
     description:
-      "Take control of your spacecraft and shoot your way through an alien invasion.",
-    path: "games/galaxy-shooter/index.html"
+      "Blast enemies and protect the galaxy in this classic shooter."
   },
 
   {
-    id: "color-switch",
     title: "Color Switch",
+    slug: "color-switch",
     category: "Arcade",
-    rating: 4.5,
-    plays: "8K",
     icon: "🎨",
-    tag: "CASUAL",
     description:
-      "Time your movement carefully and pass through obstacles with matching colors.",
-    path: "games/color-switch/index.html"
+      "React quickly and switch through colors without making mistakes."
   },
 
   {
-    id: "word-quest",
     title: "Word Quest",
+    slug: "word-quest",
     category: "Puzzle",
-    rating: 4.6,
-    plays: "7K",
     icon: "🔤",
-    tag: "BRAIN",
     description:
-      "Find hidden words and complete vocabulary challenges across different levels.",
-    path: "games/word-quest/index.html"
+      "Solve words, discover hidden answers and complete each challenge."
   },
 
   {
-    id: "penalty-pro",
     title: "Penalty Pro",
+    slug: "penalty-pro",
     category: "Sports",
-    rating: 4.7,
-    plays: "10K",
     icon: "🥅",
-    tag: "SPORT",
     description:
-      "Step up for the penalty and try to score against the goalkeeper.",
-    path: "games/penalty-pro/index.html"
+      "Step up for the penalty and try to score the perfect goal."
   },
 
   {
-    id: "merge-kingdom",
     title: "Merge Kingdom",
+    slug: "merge-kingdom",
     category: "Strategy",
-    rating: 4.8,
-    plays: "8K",
     icon: "👑",
-    tag: "NEW",
     description:
-      "Merge resources, expand your kingdom and build a powerful empire.",
-    path: "games/merge-kingdom/index.html"
+      "Build and expand your kingdom by combining useful resources."
   },
 
   {
-    id: "fruit-slice",
     title: "Fruit Slice",
+    slug: "fruit-slice",
     category: "Arcade",
-    rating: 4.6,
-    plays: "13K",
     icon: "🍉",
-    tag: "FUN",
     description:
-      "Slice fruit quickly and avoid dangerous objects in this fast-paced arcade game.",
-    path: "games/fruit-slice/index.html"
+      "Slice falling fruit and test your speed and reaction time."
   },
 
   {
-    id: "car-rush",
     title: "Car Rush",
+    slug: "car-rush",
     category: "Racing",
-    rating: 4.6,
-    plays: "9K",
     icon: "🚗",
-    tag: "RACE",
     description:
-      "Rush through traffic, dodge obstacles and survive as long as possible.",
-    path: "games/car-rush/index.html"
+      "Drive fast, avoid obstacles and survive the endless road."
   },
 
   {
-    id: "bubble-pop",
     title: "Bubble Pop",
+    slug: "bubble-pop",
     category: "Puzzle",
-    rating: 4.5,
-    plays: "10K",
     icon: "🫧",
-    tag: "CASUAL",
     description:
-      "Pop groups of colorful bubbles and complete fun puzzle challenges.",
-    path: "games/bubble-pop/index.html"
+      "Pop matching bubbles and clear the board with clever moves."
   },
 
   {
-    id: "battle-arena",
     title: "Battle Arena",
+    slug: "battle-arena",
     category: "Action",
-    rating: 4.8,
-    plays: "17K",
     icon: "⚔️",
-    tag: "HOT",
     description:
-      "Enter the arena and survive intense battles against challenging opponents.",
-    path: "games/battle-arena/index.html"
+      "Enter the arena and take on challenging opponents."
   },
 
   {
-    id: "basketball-shot",
     title: "Basketball Shot",
+    slug: "basketball-shot",
     category: "Sports",
-    rating: 4.6,
-    plays: "8K",
     icon: "🏀",
-    tag: "SPORT",
     description:
-      "Aim your shot carefully and score as many baskets as you can.",
-    path: "games/basketball-shot/index.html"
+      "Aim carefully and score as many basketball shots as possible."
   },
 
   {
-    id: "memory-match",
     title: "Memory Match",
+    slug: "memory-match",
     category: "Puzzle",
-    rating: 4.7,
-    plays: "6K",
     icon: "🧠",
-    tag: "BRAIN",
     description:
-      "Test your memory by matching pairs of hidden cards.",
-    path: "games/memory-match/index.html"
+      "Remember the cards and find matching pairs."
   },
 
   {
-    id: "highway-chase",
     title: "Highway Chase",
+    slug: "highway-chase",
     category: "Racing",
-    rating: 4.7,
-    plays: "11K",
     icon: "🚓",
-    tag: "HOT",
     description:
-      "Race through busy highways while avoiding traffic and dangerous obstacles.",
-    path: "games/highway-chase/index.html"
+      "Chase through traffic and survive the high-speed highway."
   },
 
   {
-    id: "dungeon-run",
     title: "Dungeon Run",
-    category: "Action",
-    rating: 4.7,
-    plays: "9K",
-    icon: "🗡️",
-    tag: "ADVENTURE",
+    slug: "dungeon-run",
+    category: "Adventure",
+    icon: "🗝️",
     description:
-      "Explore a dangerous dungeon, avoid traps and survive mysterious enemies.",
-    path: "games/dungeon-run/index.html"
+      "Explore a dangerous dungeon and find your way through."
   },
 
   {
-    id: "chess-lite",
     title: "Chess Lite",
+    slug: "chess-lite",
     category: "Strategy",
-    rating: 4.9,
-    plays: "12K",
     icon: "♟️",
-    tag: "BRAIN",
     description:
-      "Enjoy a clean and simple chess experience for quick strategic matches.",
-    path: "games/chess-lite/index.html"
+      "Enjoy a simple chess experience and think several moves ahead."
   },
 
   {
-    id: "flappy-rocket",
     title: "Flappy Rocket",
+    slug: "flappy-rocket",
     category: "Arcade",
-    rating: 4.4,
-    plays: "15K",
     icon: "🚀",
-    tag: "FUN",
     description:
-      "Guide your rocket through obstacles and see how long you can survive.",
-    path: "games/flappy-rocket/index.html"
+      "Fly your rocket through obstacles and chase a new high score."
   },
 
   {
-    id: "hexa-stack",
     title: "Hexa Stack",
+    slug: "hexa-stack",
     category: "Puzzle",
-    rating: 4.6,
-    plays: "7K",
     icon: "🔷",
-    tag: "NEW",
     description:
-      "Arrange colorful hexagons and solve increasingly challenging board puzzles.",
-    path: "games/hexa-stack/index.html"
+      "Place and combine shapes to clear the board."
   },
 
   {
-    id: "tank-strike",
     title: "Tank Strike",
+    slug: "tank-strike",
     category: "Action",
-    rating: 4.8,
-    plays: "13K",
-    icon: "💥",
-    tag: "ACTION",
+    icon: "🛡️",
     description:
-      "Control your tank, aim carefully and defeat opponents across the battlefield.",
-    path: "games/tank-strike/index.html"
+      "Take control of your tank and defeat incoming targets."
   },
 
   {
-    id: "skate-rush",
     title: "Skate Rush",
+    slug: "skate-rush",
     category: "Sports",
-    rating: 4.5,
-    plays: "6K",
     icon: "🛹",
-    tag: "SPORT",
     description:
-      "Skate through obstacles, collect points and try to beat your best score.",
-    path: "games/skate-rush/index.html"
+      "Skate through obstacles and keep your run alive."
   },
 
   {
-    id: "island-builder",
     title: "Island Builder",
+    slug: "island-builder",
     category: "Strategy",
-    rating: 4.8,
-    plays: "8K",
     icon: "🏝️",
-    tag: "BUILD",
     description:
-      "Build and expand your own island while managing resources and space.",
-    path: "games/island-builder/index.html"
+      "Build your own island and carefully manage its resources."
   },
 
   {
-    id: "word-master",
     title: "Word Master",
+    slug: "word-master",
     category: "Puzzle",
-    rating: 4.7,
-    plays: "5K",
     icon: "📚",
-    tag: "BRAIN",
     description:
-      "Challenge your vocabulary and find the correct words before time runs out.",
-    path: "games/word-master/index.html"
+      "Challenge your vocabulary and complete word-based puzzles."
   },
 
   {
-    id: "pixel-runner",
     title: "Pixel Runner",
+    slug: "pixel-runner",
     category: "Arcade",
-    rating: 4.7,
-    plays: "10K",
     icon: "🏃",
-    tag: "PIXEL",
     description:
-      "Run through a colorful pixel world, jump over obstacles and collect rewards.",
-    path: "games/pixel-runner/index.html"
+      "Run through a pixel world, dodge obstacles and survive."
   },
 
   {
-    id: "drift-king",
     title: "Drift King",
+    slug: "drift-king",
     category: "Racing",
-    rating: 4.9,
-    plays: "16K",
     icon: "🏎️",
-    tag: "TOP",
     description:
-      "Master tight corners and become the king of the drift track.",
-    path: "games/drift-king/index.html"
+      "Master sharp corners and become the ultimate drift king."
   },
 
   {
-    id: "alien-attack",
     title: "Alien Attack",
+    slug: "alien-attack",
     category: "Action",
-    rating: 4.7,
-    plays: "12K",
     icon: "👽",
-    tag: "ALIEN",
     description:
-      "Protect the planet from waves of alien enemies in a classic shooter challenge.",
-    path: "games/alien-attack/index.html"
+      "Defend your world against a relentless alien invasion."
   },
 
   {
-    id: "pool-master",
     title: "Pool Master",
+    slug: "pool-master",
     category: "Sports",
-    rating: 4.8,
-    plays: "9K",
     icon: "🎱",
-    tag: "SPORT",
     description:
-      "Aim your shots, control the cue and clear the table in this pool challenge.",
-    path: "games/pool-master/index.html"
+      "Aim your shots and clear the table like a pool master."
   },
 
   {
-    id: "farm-match",
     title: "Farm Match",
+    slug: "farm-match",
     category: "Casual",
-    rating: 4.5,
-    plays: "6K",
     icon: "🌾",
-    tag: "CASUAL",
     description:
-      "Match farm-themed objects and complete relaxing casual puzzle levels.",
-    path: "games/farm-match/index.html"
+      "Match farm items and enjoy a relaxing casual puzzle."
   },
 
   {
-    id: "castle-defense",
     title: "Castle Defense",
+    slug: "castle-defense",
     category: "Strategy",
-    rating: 4.8,
-    plays: "10K",
     icon: "🏯",
-    tag: "DEFENSE",
     description:
-      "Defend your castle, upgrade your defenses and stop every incoming wave.",
-    path: "games/castle-defense/index.html"
+      "Protect your castle and stop enemies from reaching the gates."
   },
 
   {
-    id: "maze-escape",
     title: "Maze Escape",
+    slug: "maze-escape",
     category: "Puzzle",
-    rating: 4.6,
-    plays: "5K",
     icon: "🌀",
-    tag: "BRAIN",
     description:
-      "Find your way through tricky mazes and reach the exit as quickly as possible.",
-    path: "games/maze-escape/index.html"
+      "Find your way through the maze and reach the exit."
   }
 
 ];
 
 
-/* =====================================================
-   DOM ELEMENTS
-===================================================== */
+/* =========================================================
+   STATE
+========================================================= */
 
-const gamesGrid =
-  document.getElementById("gamesGrid");
+const FAVORITES_KEY = "sm_gaming_favorites";
+
+let activeFilter = "all";
+
+let searchTerm = "";
+
+let showFavoritesOnly = false;
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const gameGrid =
+  document.getElementById("gameGrid");
 
 const gameSearch =
   document.getElementById("gameSearch");
 
-const gameSort =
-  document.getElementById("gameSort");
-
 const clearSearch =
   document.getElementById("clearSearch");
 
-const noResults =
-  document.getElementById("noResults");
+const emptyGames =
+  document.getElementById("emptyGames");
 
-const resetFilters =
-  document.getElementById("resetFilters");
+const resetGames =
+  document.getElementById("resetGames");
 
-const favoriteFilterBtn =
-  document.getElementById("favoriteFilterBtn");
+const filterWrap =
+  document.getElementById("filterWrap");
+
+const mobileFilterBtn =
+  document.getElementById("mobileFilterBtn");
+
+const favoritesBtn =
+  document.getElementById("favoritesBtn");
 
 const favoriteCount =
   document.getElementById("favoriteCount");
 
-const mobileFavorites =
-  document.getElementById("mobileFavorites");
+const activeFilterInfo =
+  document.getElementById("activeFilterInfo");
 
-const menuBtn =
-  document.getElementById("menuBtn");
+const navToggle =
+  document.getElementById("navToggle");
 
-const mobileMenu =
-  document.getElementById("mobileMenu");
+const navLinks =
+  document.getElementById("navLinks");
 
-const gameModal =
+const modal =
   document.getElementById("gameModal");
 
 const modalOverlay =
@@ -529,67 +401,50 @@ const modalOverlay =
 const modalClose =
   document.getElementById("modalClose");
 
-const modalCover =
-  document.getElementById("modalCover");
-
 const modalIcon =
   document.getElementById("modalIcon");
 
 const modalCategory =
   document.getElementById("modalCategory");
 
-const modalGameTitle =
-  document.getElementById("modalGameTitle");
-
-const modalRating =
-  document.getElementById("modalRating");
-
-const modalPlays =
-  document.getElementById("modalPlays");
+const modalTitle =
+  document.getElementById("modalTitle");
 
 const modalDescription =
   document.getElementById("modalDescription");
 
-const modalPlayBtn =
-  document.getElementById("modalPlayBtn");
+const modalPlay =
+  document.getElementById("modalPlay");
 
-const modalFavoriteBtn =
-  document.getElementById("modalFavoriteBtn");
-
-const gameNotice =
-  document.getElementById("gameNotice");
+const modalFavorite =
+  document.getElementById("modalFavorite");
 
 const backToTop =
   document.getElementById("backToTop");
 
 
-/* =====================================================
-   STATE
-===================================================== */
-
-const FAVORITES_KEY =
-  "sm_gaming_favorites";
-
-let activeCategory = "All";
-
-let favoritesOnly = false;
-
-let selectedGame = null;
-
-
-/* =====================================================
+/* =========================================================
    FAVORITES
-===================================================== */
+========================================================= */
 
 function getFavorites() {
 
   try {
 
     const saved =
-      localStorage.getItem(FAVORITES_KEY);
+      localStorage.getItem(
+        FAVORITES_KEY
+      );
 
-    return saved
-      ? JSON.parse(saved)
+    if (!saved) {
+      return [];
+    }
+
+    const parsed =
+      JSON.parse(saved);
+
+    return Array.isArray(parsed)
+      ? parsed
       : [];
 
   } catch (error) {
@@ -613,7 +468,8 @@ function saveFavorites(favorites) {
   } catch (error) {
 
     console.warn(
-      "Favorites could not be saved."
+      "Could not save favorites.",
+      error
     );
 
   }
@@ -621,25 +477,25 @@ function saveFavorites(favorites) {
 }
 
 
-function isFavorite(gameId) {
+function isFavorite(slug) {
 
-  return getFavorites().includes(gameId);
+  return getFavorites().includes(slug);
 
 }
 
 
-function toggleFavorite(gameId) {
+function toggleFavorite(slug) {
 
   const favorites =
     getFavorites();
 
   const index =
-    favorites.indexOf(gameId);
+    favorites.indexOf(slug);
 
 
   if (index === -1) {
 
-    favorites.push(gameId);
+    favorites.push(slug);
 
   } else {
 
@@ -654,479 +510,417 @@ function toggleFavorite(gameId) {
 
   renderGames();
 
-  if (
-    selectedGame &&
-    selectedGame.id === gameId
-  ) {
-
-    updateModalFavoriteButton();
-
-  }
+  updateModalFavorite(slug);
 
 }
 
+
+/* =========================================================
+   FAVORITE COUNT
+========================================================= */
 
 function updateFavoriteCount() {
 
   const count =
     getFavorites().length;
 
-  favoriteCount.textContent =
-    count;
+  if (favoriteCount) {
+
+    favoriteCount.textContent =
+      count;
+
+  }
 
 }
 
 
-/* =====================================================
-   CATEGORY CLASS
-===================================================== */
+/* =========================================================
+   FILTER GAMES
+========================================================= */
 
-function getCoverClass(category) {
+function getFilteredGames() {
 
-  return "cover-" +
-    category.toLowerCase();
+  const favorites =
+    getFavorites();
+
+
+  return games.filter((game) => {
+
+    const categoryMatch =
+      activeFilter === "all" ||
+      game.category === activeFilter;
+
+
+    const favoriteMatch =
+      !showFavoritesOnly ||
+      favorites.includes(game.slug);
+
+
+    const query =
+      searchTerm
+        .trim()
+        .toLowerCase();
+
+
+    const searchMatch =
+      !query ||
+      game.title
+        .toLowerCase()
+        .includes(query) ||
+      game.category
+        .toLowerCase()
+        .includes(query) ||
+      game.description
+        .toLowerCase()
+        .includes(query);
+
+
+    return (
+      categoryMatch &&
+      favoriteMatch &&
+      searchMatch
+    );
+
+  });
 
 }
 
 
-/* =====================================================
-   FORMAT PLAYS
-===================================================== */
+/* =========================================================
+   RENDER GAME CARD
+========================================================= */
 
-function parsePlays(value) {
+function createGameCard(game) {
 
-  if (!value) {
-    return 0;
-  }
-
-  const number =
-    parseFloat(
-      String(value)
-        .replace(/[^0-9.]/g, "")
-    );
-
-  if (value.includes("K")) {
-    return number * 1000;
-  }
-
-  if (value.includes("M")) {
-    return number * 1000000;
-  }
-
-  return number;
-
-}
+  const favorite =
+    isFavorite(game.slug);
 
 
-/* =====================================================
-   FILTER + SORT
-===================================================== */
-
-function getVisibleGames() {
-
-  const query =
-    gameSearch.value
-      .trim()
-      .toLowerCase();
+  const article =
+    document.createElement("article");
 
 
-  let filtered =
-    games.filter((game) => {
-
-      const matchesSearch =
-        game.title
-          .toLowerCase()
-          .includes(query) ||
-        game.category
-          .toLowerCase()
-          .includes(query);
+  article.className =
+    "game-card";
 
 
-      const matchesCategory =
-        activeCategory === "All" ||
-        game.category === activeCategory;
+  article.dataset.game =
+    game.slug;
 
 
-      const matchesFavorite =
-        !favoritesOnly ||
-        isFavorite(game.id);
+  article.innerHTML = `
+
+    <div class="game-card-visual">
+
+      <span class="game-category">
+        ${escapeHTML(game.category)}
+      </span>
+
+      <button
+        type="button"
+        class="game-favorite ${favorite ? "active" : ""}"
+        data-favorite="${escapeHTML(game.slug)}"
+        aria-label="${favorite ? "Remove from favorites" : "Add to favorites"}"
+        aria-pressed="${favorite}"
+      >
+
+        <i
+          class="${favorite ? "fas" : "far"} fa-heart"
+          aria-hidden="true"
+        ></i>
+
+      </button>
+
+      <span
+        class="game-icon"
+        aria-hidden="true"
+      >
+        ${game.icon}
+      </span>
+
+    </div>
+
+    <div class="game-card-body">
+
+      <h3>
+        ${escapeHTML(game.title)}
+      </h3>
+
+      <p>
+        ${escapeHTML(game.description)}
+      </p>
+
+      <div class="game-card-footer">
+
+        <span class="game-play">
+
+          <i
+            class="fas fa-play"
+            aria-hidden="true"
+          ></i>
+
+          Play Now
+
+        </span>
+
+        <span class="game-type">
+          ${escapeHTML(game.category)}
+        </span>
+
+      </div>
+
+    </div>
+
+  `;
 
 
-      return (
-        matchesSearch &&
-        matchesCategory &&
-        matchesFavorite
-      );
-
-    });
-
-
-  const sortType =
-    gameSort.value;
-
-
-  if (sortType === "rating") {
-
-    filtered.sort(
-      (a, b) =>
-        b.rating - a.rating
-    );
-
-  }
-
-
-  else if (sortType === "az") {
-
-    filtered.sort(
-      (a, b) =>
-        a.title.localeCompare(b.title)
-    );
-
-  }
-
-
-  else if (sortType === "new") {
-
-    filtered.reverse();
-
-  }
-
-
-  else {
-
-    filtered.sort(
-      (a, b) =>
-        parsePlays(b.plays) -
-        parsePlays(a.plays)
-    );
-
-  }
-
-
-  return filtered;
+  return article;
 
 }
 
 
-/* =====================================================
-   RENDER GAME CARDS
-===================================================== */
+/* =========================================================
+   RENDER GAMES
+========================================================= */
 
 function renderGames() {
 
-  const visibleGames =
-    getVisibleGames();
+  if (!gameGrid) {
+    return;
+  }
 
 
-  gamesGrid.innerHTML = "";
+  const filteredGames =
+    getFilteredGames();
 
 
-  if (!visibleGames.length) {
+  gameGrid.innerHTML = "";
 
-    gamesGrid.style.display = "none";
 
-    noResults.hidden = false;
+  filteredGames.forEach((game) => {
+
+    gameGrid.appendChild(
+      createGameCard(game)
+    );
+
+  });
+
+
+  if (emptyGames) {
+
+    emptyGames.hidden =
+      filteredGames.length !== 0;
+
+  }
+
+
+  updateActiveFilterUI();
+
+  updateActiveFilterInfo();
+
+}
+
+
+/* =========================================================
+   ACTIVE FILTER UI
+========================================================= */
+
+function updateActiveFilterUI() {
+
+  const buttons =
+    document.querySelectorAll(
+      ".filter-btn"
+    );
+
+
+  buttons.forEach((button) => {
+
+    const filter =
+      button.dataset.filter;
+
+
+    button.classList.toggle(
+      "active",
+      !showFavoritesOnly &&
+      filter === activeFilter
+    );
+
+  });
+
+
+  if (favoritesBtn) {
+
+    favoritesBtn.classList.toggle(
+      "active",
+      showFavoritesOnly
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   ACTIVE FILTER INFO
+========================================================= */
+
+function updateActiveFilterInfo() {
+
+  if (!activeFilterInfo) {
+    return;
+  }
+
+
+  if (showFavoritesOnly) {
+
+    activeFilterInfo.hidden = false;
+
+    activeFilterInfo.textContent =
+      "Showing your favorite games";
 
     return;
 
   }
 
 
-  gamesGrid.style.display = "grid";
+  if (searchTerm.trim()) {
 
-  noResults.hidden = true;
+    activeFilterInfo.hidden = false;
 
+    activeFilterInfo.textContent =
+      `Search results for "${searchTerm.trim()}"`;
 
-  visibleGames.forEach(
-    (game) => {
+    return;
 
-      const card =
-        document.createElement("article");
-
-      card.className =
-        "game-card reveal";
+  }
 
 
-      const favorite =
-        isFavorite(game.id);
+  if (activeFilter !== "all") {
+
+    activeFilterInfo.hidden = false;
+
+    activeFilterInfo.textContent =
+      `Showing ${activeFilter} games`;
+
+    return;
+
+  }
 
 
-      card.innerHTML = `
-
-        <div
-          class="game-cover ${getCoverClass(game.category)}"
-        >
-
-          <span class="game-tag">
-            ${game.tag}
-          </span>
-
-
-          <button
-            type="button"
-            class="favorite-game-btn ${favorite ? "is-favorite" : ""}"
-            data-favorite="${game.id}"
-            aria-label="${favorite ? "Remove from favorites" : "Add to favorites"}"
-            title="${favorite ? "Remove from favorites" : "Add to favorites"}"
-          >
-
-            <i class="${favorite ? "fa-solid" : "fa-regular"} fa-heart"></i>
-
-          </button>
-
-
-          <span
-            class="game-icon"
-            aria-hidden="true"
-          >
-            ${game.icon}
-          </span>
-
-        </div>
-
-
-        <div class="game-card-content">
-
-          <h3 class="game-card-title">
-            ${game.title}
-          </h3>
-
-
-          <div class="game-card-meta">
-
-            <span class="game-rating">
-              ★ ${game.rating}
-            </span>
-
-            <span class="game-plays">
-              ${game.plays} plays
-            </span>
-
-          </div>
-
-
-          <div class="game-card-bottom">
-
-            <span class="game-category">
-              ${game.category}
-            </span>
-
-
-            <button
-              type="button"
-              class="game-play-button"
-              data-game="${game.id}"
-            >
-
-              Play
-
-              <i class="fa-solid fa-arrow-right"></i>
-
-            </button>
-
-          </div>
-
-        </div>
-
-      `;
-
-
-      gamesGrid.appendChild(card);
-
-    }
-  );
-
-
-  setupCardEvents();
-
-  requestAnimationFrame(
-    () => {
-
-      document
-        .querySelectorAll(
-          ".game-card.reveal"
-        )
-        .forEach(
-          (card) => {
-
-            card.classList.add(
-              "visible"
-            );
-
-          }
-        );
-
-    }
-  );
+  activeFilterInfo.hidden = true;
 
 }
 
 
-/* =====================================================
-   CARD EVENTS
-===================================================== */
+/* =========================================================
+   SET FILTER
+========================================================= */
 
-function setupCardEvents() {
+function setFilter(filter) {
 
-  document
-    .querySelectorAll(
-      "[data-game]"
-    )
-    .forEach(
-      (button) => {
+  activeFilter =
+    filter || "all";
 
-        button.addEventListener(
-          "click",
-          () => {
+  showFavoritesOnly =
+    false;
 
-            const game =
-              games.find(
-                (item) =>
-                  item.id ===
-                  button.dataset.game
-              );
-
-            if (game) {
-              openGameModal(game);
-            }
-
-          }
-        );
-
-      }
-    );
-
-
-  document
-    .querySelectorAll(
-      "[data-favorite]"
-    )
-    .forEach(
-      (button) => {
-
-        button.addEventListener(
-          "click",
-          (event) => {
-
-            event.stopPropagation();
-
-            toggleFavorite(
-              button.dataset.favorite
-            );
-
-          }
-        );
-
-      }
-    );
+  renderGames();
 
 }
 
 
-/* =====================================================
-   GAME MODAL
-===================================================== */
+/* =========================================================
+   OPEN GAME MODAL
+========================================================= */
 
-function openGameModal(game) {
+function openGameModal(slug) {
 
-  selectedGame = game;
+  const game =
+    games.find(
+      (item) =>
+        item.slug === slug
+    );
 
 
-  modalGameTitle.textContent =
-    game.title;
+  if (!game || !modal) {
+    return;
+  }
 
-  modalCategory.textContent =
-    game.category.toUpperCase();
-
-  modalRating.textContent =
-    `★ ${game.rating}`;
-
-  modalPlays.textContent =
-    `${game.plays} plays`;
-
-  modalDescription.textContent =
-    game.description;
 
   modalIcon.textContent =
     game.icon;
 
+  modalCategory.textContent =
+    game.category.toUpperCase();
 
-  modalCover.className =
-    `modal-cover ${getCoverClass(game.category)}`;
+  modalTitle.textContent =
+    game.title;
 
-
-  updateModalFavoriteButton();
-
-
-  /*
-    We intentionally do not automatically redirect.
-    The Play button checks the configured game path.
-  */
-
-  gameNotice.innerHTML = `
-
-    <i class="fa-solid fa-circle-info"></i>
-
-    Game path:
-    <strong>${game.path}</strong>
-
-  `;
+  modalDescription.textContent =
+    game.description;
 
 
-  gameModal.classList.add("active");
+  modalPlay.href =
+    `games/${game.slug}/index.html`;
 
-  gameModal.setAttribute(
+
+  modalPlay.dataset.slug =
+    game.slug;
+
+
+  updateModalFavorite(
+    game.slug
+  );
+
+
+  modal.classList.add("open");
+
+  modal.setAttribute(
     "aria-hidden",
     "false"
   );
 
-  document.body.classList.add(
-    "modal-open"
-  );
+
+  document.body.style.overflow =
+    "hidden";
+
+
+  setTimeout(() => {
+
+    if (modalClose) {
+      modalClose.focus();
+    }
+
+  }, 50);
 
 }
 
 
-function closeGameModal() {
+/* =========================================================
+   MODAL FAVORITE
+========================================================= */
 
-  gameModal.classList.remove(
-    "active"
-  );
+function updateModalFavorite(slug) {
 
-  gameModal.setAttribute(
-    "aria-hidden",
-    "true"
-  );
-
-  document.body.classList.remove(
-    "modal-open"
-  );
-
-  selectedGame = null;
-
-}
-
-
-function updateModalFavoriteButton() {
-
-  if (!selectedGame) {
+  if (!modalFavorite) {
     return;
   }
 
 
   const favorite =
-    isFavorite(selectedGame.id);
+    isFavorite(slug);
 
 
-  modalFavoriteBtn.classList.toggle(
-    "is-favorite",
-    favorite
-  );
+  modalFavorite.dataset.slug =
+    slug;
 
 
-  modalFavoriteBtn.innerHTML = `
+  modalFavorite.innerHTML = `
 
-    <i class="${favorite ? "fa-solid" : "fa-regular"} fa-heart"></i>
+    <i
+      class="${favorite ? "fas" : "far"} fa-heart"
+      aria-hidden="true"
+    ></i>
 
     ${favorite ? "Favorited" : "Favorite"}
 
@@ -1135,158 +929,119 @@ function updateModalFavoriteButton() {
 }
 
 
-/* =====================================================
-   PLAY GAME
-===================================================== */
+/* =========================================================
+   CLOSE MODAL
+========================================================= */
 
-function playSelectedGame() {
+function closeGameModal() {
 
-  if (!selectedGame) {
+  if (!modal) {
     return;
   }
 
 
-  /*
-    Game files should exist at:
-    /games/game-name/index.html
-  */
+  modal.classList.remove(
+    "open"
+  );
+
+  modal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
 
 
-  window.location.href =
-    selectedGame.path;
+  document.body.style.overflow =
+    "";
 
 }
 
 
-/* =====================================================
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function toggleMobileNav() {
+
+  if (!navLinks || !navToggle) {
+    return;
+  }
+
+
+  const open =
+    navLinks.classList.toggle(
+      "show"
+    );
+
+
+  navToggle.setAttribute(
+    "aria-expanded",
+    String(open)
+  );
+
+
+  navToggle.setAttribute(
+    "aria-label",
+    open
+      ? "Close menu"
+      : "Open menu"
+  );
+
+
+  navToggle.innerHTML = open
+    ? `<i class="fas fa-xmark" aria-hidden="true"></i>`
+    : `<i class="fas fa-bars" aria-hidden="true"></i>`;
+
+}
+
+
+function closeMobileNav() {
+
+  if (!navLinks || !navToggle) {
+    return;
+  }
+
+
+  navLinks.classList.remove(
+    "show"
+  );
+
+
+  navToggle.setAttribute(
+    "aria-expanded",
+    "false"
+  );
+
+
+  navToggle.setAttribute(
+    "aria-label",
+    "Open menu"
+  );
+
+
+  navToggle.innerHTML =
+    `<i class="fas fa-bars" aria-hidden="true"></i>`;
+
+}
+
+
+/* =========================================================
    SEARCH
-===================================================== */
+========================================================= */
 
-gameSearch.addEventListener(
-  "input",
-  () => {
+function handleSearch() {
 
-    clearSearch.style.display =
-      gameSearch.value
-        ? "grid"
-        : "none";
-
-    renderGames();
-
-  }
-);
+  searchTerm =
+    gameSearch
+      ? gameSearch.value
+      : "";
 
 
-clearSearch.addEventListener(
-  "click",
-  () => {
+  if (clearSearch) {
 
-    gameSearch.value = "";
-
-    clearSearch.style.display =
-      "none";
-
-    renderGames();
-
-    gameSearch.focus();
+    clearSearch.hidden =
+      !searchTerm.length;
 
   }
-);
-
-
-/* =====================================================
-   SORT
-===================================================== */
-
-gameSort.addEventListener(
-  "change",
-  renderGames
-);
-
-
-/* =====================================================
-   CATEGORY FILTER
-===================================================== */
-
-document
-  .querySelectorAll(
-    ".category-btn"
-  )
-  .forEach(
-    (button) => {
-
-      button.addEventListener(
-        "click",
-        () => {
-
-          activeCategory =
-            button.dataset.category;
-
-          favoritesOnly = false;
-
-
-          document
-            .querySelectorAll(
-              ".category-btn"
-            )
-            .forEach(
-              (item) =>
-                item.classList.remove(
-                  "active"
-                )
-            );
-
-
-          button.classList.add(
-            "active"
-          );
-
-
-          renderGames();
-
-        }
-      );
-
-    }
-  );
-
-
-/* =====================================================
-   FAVORITE FILTER
-===================================================== */
-
-function showFavoritesOnly() {
-
-  favoritesOnly =
-    !favoritesOnly;
-
-
-  if (favoritesOnly) {
-
-    activeCategory =
-      "All";
-
-
-    document
-      .querySelectorAll(
-        ".category-btn"
-      )
-      .forEach(
-        (button) =>
-          button.classList.toggle(
-            "active",
-            button.dataset.category ===
-            "All"
-          )
-      );
-
-  }
-
-
-  favoriteFilterBtn.classList.toggle(
-    "active",
-    favoritesOnly
-  );
 
 
   renderGames();
@@ -1294,244 +1049,305 @@ function showFavoritesOnly() {
 }
 
 
-favoriteFilterBtn.addEventListener(
-  "click",
-  showFavoritesOnly
-);
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetGamesView() {
+
+  activeFilter =
+    "all";
+
+  searchTerm =
+    "";
+
+  showFavoritesOnly =
+    false;
 
 
-mobileFavorites.addEventListener(
-  "click",
-  () => {
-
-    showFavoritesOnly();
-
-    closeMobileMenu();
-
-    document
-      .getElementById("games")
-      .scrollIntoView({
-        behavior: "smooth"
-      });
-
-  }
-);
-
-
-/* =====================================================
-   RESET FILTERS
-===================================================== */
-
-resetFilters.addEventListener(
-  "click",
-  () => {
-
+  if (gameSearch) {
     gameSearch.value = "";
-
-    clearSearch.style.display =
-      "none";
-
-    gameSort.value =
-      "popular";
-
-    activeCategory =
-      "All";
-
-    favoritesOnly =
-      false;
-
-
-    document
-      .querySelectorAll(
-        ".category-btn"
-      )
-      .forEach(
-        (button) =>
-          button.classList.toggle(
-            "active",
-            button.dataset.category ===
-            "All"
-          )
-      );
-
-
-    favoriteFilterBtn.classList.remove(
-      "active"
-    );
-
-
-    renderGames();
-
   }
-);
 
 
-/* =====================================================
-   MOBILE MENU
-===================================================== */
-
-function closeMobileMenu() {
-
-  mobileMenu.classList.remove(
-    "active"
-  );
-
-  menuBtn.setAttribute(
-    "aria-expanded",
-    "false"
-  );
+  if (clearSearch) {
+    clearSearch.hidden = true;
+  }
 
 
-  menuBtn.innerHTML =
-    '<i class="fa-solid fa-bars"></i>';
+  if (filterWrap) {
+    filterWrap.classList.remove(
+      "open"
+    );
+  }
+
+
+  renderGames();
 
 }
 
 
-menuBtn.addEventListener(
-  "click",
-  () => {
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
 
-    const open =
-      mobileMenu.classList.toggle(
-        "active"
-      );
+function escapeHTML(value) {
 
-
-    menuBtn.setAttribute(
-      "aria-expanded",
-      String(open)
+  return String(value)
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
     );
 
-
-    menuBtn.innerHTML = open
-      ? '<i class="fa-solid fa-xmark"></i>'
-      : '<i class="fa-solid fa-bars"></i>';
-
-  }
-);
+}
 
 
-document
-  .querySelectorAll(
-    ".mobile-menu a"
-  )
-  .forEach(
-    (link) => {
+/* =========================================================
+   EVENT DELEGATION - GAME GRID
+========================================================= */
 
-      link.addEventListener(
-        "click",
-        closeMobileMenu
-      );
+if (gameGrid) {
+
+  gameGrid.addEventListener(
+    "click",
+    (event) => {
+
+      const favoriteButton =
+        event.target.closest(
+          "[data-favorite]"
+        );
+
+
+      if (favoriteButton) {
+
+        event.stopPropagation();
+
+        toggleFavorite(
+          favoriteButton.dataset.favorite
+        );
+
+        return;
+
+      }
+
+
+      const card =
+        event.target.closest(
+          ".game-card"
+        );
+
+
+      if (card) {
+
+        openGameModal(
+          card.dataset.game
+        );
+
+      }
 
     }
   );
 
+}
 
-/* =====================================================
-   FOOTER CATEGORY LINKS
-===================================================== */
+
+/* =========================================================
+   FILTER BUTTONS
+========================================================= */
 
 document
   .querySelectorAll(
-    "[data-footer-category]"
+    ".filter-btn"
   )
-  .forEach(
-    (link) => {
+  .forEach((button) => {
 
-      link.addEventListener(
-        "click",
-        () => {
+    button.addEventListener(
+      "click",
+      () => {
 
-          const category =
-            link.dataset.footerCategory;
+        setFilter(
+          button.dataset.filter
+        );
 
+        if (filterWrap) {
 
-          activeCategory =
-            category;
+          filterWrap.classList.remove(
+            "open"
+          );
 
-          favoritesOnly =
-            false;
+        }
 
+      }
+    );
 
-          document
-            .querySelectorAll(
-              ".category-btn"
-            )
-            .forEach(
-              (button) =>
-                button.classList.toggle(
-                  "active",
-                  button.dataset.category ===
-                  category
-                )
-            );
+  });
 
 
-          favoriteFilterBtn.classList.remove(
-            "active"
+/* =========================================================
+   CATEGORY BUTTONS
+========================================================= */
+
+document
+  .querySelectorAll(
+    "[data-category]"
+  )
+  .forEach((button) => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        const category =
+          button.dataset.category;
+
+
+        setFilter(category);
+
+
+        const gamesSection =
+          document.getElementById(
+            "games"
           );
 
 
-          renderGames();
+        if (gamesSection) {
+
+          gamesSection.scrollIntoView({
+            behavior: "smooth"
+          });
 
         }
-      );
+
+      }
+    );
+
+  });
+
+
+/* =========================================================
+   FEATURED GAME
+========================================================= */
+
+document
+  .querySelectorAll(
+    "[data-game]"
+  )
+  .forEach((element) => {
+
+    if (
+      element.classList.contains(
+        "game-card"
+      )
+    ) {
+      return;
+    }
+
+
+    element.addEventListener(
+      "click",
+      () => {
+
+        openGameModal(
+          element.dataset.game
+        );
+
+      }
+    );
+
+  });
+
+
+/* =========================================================
+   MODAL EVENTS
+========================================================= */
+
+if (modalClose) {
+
+  modalClose.addEventListener(
+    "click",
+    closeGameModal
+  );
+
+}
+
+
+if (modalOverlay) {
+
+  modalOverlay.addEventListener(
+    "click",
+    closeGameModal
+  );
+
+}
+
+
+if (modalFavorite) {
+
+  modalFavorite.addEventListener(
+    "click",
+    () => {
+
+      const slug =
+        modalFavorite.dataset.slug;
+
+
+      if (slug) {
+
+        toggleFavorite(slug);
+
+      }
 
     }
   );
 
-
-/* =====================================================
-   MODAL EVENTS
-===================================================== */
-
-modalClose.addEventListener(
-  "click",
-  closeGameModal
-);
+}
 
 
-modalOverlay.addEventListener(
-  "click",
-  closeGameModal
-);
+if (modalPlay) {
 
+  modalPlay.addEventListener(
+    "click",
+    () => {
 
-modalFavoriteBtn.addEventListener(
-  "click",
-  () => {
-
-    if (selectedGame) {
-
-      toggleFavorite(
-        selectedGame.id
-      );
+      closeGameModal();
 
     }
+  );
 
-  }
-);
+}
 
 
-modalPlayBtn.addEventListener(
-  "click",
-  playSelectedGame
-);
-
+/* =========================================================
+   ESC KEY
+========================================================= */
 
 document.addEventListener(
   "keydown",
   (event) => {
 
     if (
-      event.key === "Escape" &&
-      gameModal.classList.contains(
-        "active"
-      )
+      event.key === "Escape"
     ) {
 
       closeGameModal();
+
+      closeMobileNav();
 
     }
 
@@ -1539,13 +1355,170 @@ document.addEventListener(
 );
 
 
-/* =====================================================
+/* =========================================================
+   MOBILE NAV
+========================================================= */
+
+if (navToggle) {
+
+  navToggle.addEventListener(
+    "click",
+    toggleMobileNav
+  );
+
+}
+
+
+document
+  .querySelectorAll(
+    "#navLinks a"
+  )
+  .forEach((link) => {
+
+    link.addEventListener(
+      "click",
+      closeMobileNav
+    );
+
+  });
+
+
+/* =========================================================
+   FAVORITES NAV
+========================================================= */
+
+if (favoritesBtn) {
+
+  favoritesBtn.addEventListener(
+    "click",
+    () => {
+
+      showFavoritesOnly =
+        !showFavoritesOnly;
+
+
+      if (showFavoritesOnly) {
+
+        activeFilter =
+          "all";
+
+      }
+
+
+      renderGames();
+
+
+      const gamesSection =
+        document.getElementById(
+          "games"
+        );
+
+
+      if (
+        gamesSection &&
+        showFavoritesOnly
+      ) {
+
+        gamesSection.scrollIntoView({
+          behavior: "smooth"
+        });
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   SEARCH EVENTS
+========================================================= */
+
+if (gameSearch) {
+
+  gameSearch.addEventListener(
+    "input",
+    handleSearch
+  );
+
+}
+
+
+if (clearSearch) {
+
+  clearSearch.addEventListener(
+    "click",
+    () => {
+
+      if (gameSearch) {
+
+        gameSearch.value = "";
+
+      }
+
+      handleSearch();
+
+      if (gameSearch) {
+        gameSearch.focus();
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   MOBILE FILTER
+========================================================= */
+
+if (mobileFilterBtn) {
+
+  mobileFilterBtn.addEventListener(
+    "click",
+    () => {
+
+      if (filterWrap) {
+
+        filterWrap.classList.toggle(
+          "open"
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   RESET BUTTON
+========================================================= */
+
+if (resetGames) {
+
+  resetGames.addEventListener(
+    "click",
+    resetGamesView
+  );
+
+}
+
+
+/* =========================================================
    BACK TO TOP
-===================================================== */
+========================================================= */
 
 window.addEventListener(
   "scroll",
   () => {
+
+    if (!backToTop) {
+      return;
+    }
+
 
     if (window.scrollY > 500) {
 
@@ -1568,156 +1541,27 @@ window.addEventListener(
 );
 
 
-backToTop.addEventListener(
-  "click",
-  () => {
+if (backToTop) {
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
+  backToTop.addEventListener(
+    "click",
+    () => {
 
-  }
-);
-
-
-/* =====================================================
-   ACTIVE NAVIGATION
-===================================================== */
-
-const sections =
-  document.querySelectorAll(
-    "main section[id]"
-  );
-
-const navLinks =
-  document.querySelectorAll(
-    ".nav-link"
-  );
-
-
-const sectionObserver =
-  new IntersectionObserver(
-    (entries) => {
-
-      entries.forEach(
-        (entry) => {
-
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-
-          navLinks.forEach(
-            (link) => {
-
-              link.classList.remove(
-                "active"
-              );
-
-
-              if (
-                link.getAttribute(
-                  "href"
-                ) ===
-                "#" + entry.target.id
-              ) {
-
-                link.classList.add(
-                  "active"
-                );
-
-              }
-
-            }
-          );
-
-        }
-      );
-
-    },
-    {
-      rootMargin:
-        "-35% 0px -55% 0px"
-    }
-  );
-
-
-sections.forEach(
-  (section) =>
-    sectionObserver.observe(
-      section
-    )
-);
-
-
-/* =====================================================
-   REVEAL OBSERVER
-===================================================== */
-
-const revealObserver =
-  new IntersectionObserver(
-    (entries) => {
-
-      entries.forEach(
-        (entry) => {
-
-          if (
-            entry.isIntersecting
-          ) {
-
-            entry.target.classList.add(
-              "visible"
-            );
-
-            revealObserver.unobserve(
-              entry.target
-            );
-
-          }
-
-        }
-      );
-
-    },
-    {
-      threshold: 0.08
-    }
-  );
-
-
-document
-  .querySelectorAll(
-    ".step-card, .benefit-card, .cta-card"
-  )
-  .forEach(
-    (element) => {
-
-      element.classList.add(
-        "reveal"
-      );
-
-      revealObserver.observe(
-        element
-      );
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
 
     }
   );
 
+}
 
-/* =====================================================
+
+/* =========================================================
    INITIALIZE
-===================================================== */
+========================================================= */
 
 updateFavoriteCount();
 
 renderGames();
-
-clearSearch.style.display =
-  "none";
-
-
-/* =====================================================
-   SERVICE WORKER
-   Not required for the website.
-===================================================== */
