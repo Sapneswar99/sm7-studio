@@ -12,12 +12,12 @@
 
   <meta
     name="description"
-    content="SM Gaming is a fast, mobile-friendly gaming website with free browser games across action, arcade, puzzle, racing, sports, strategy and casual categories."
+    content="SM Gaming is a fast and mobile-friendly gaming portal with browser games across action, arcade, puzzle, racing, sports, strategy, adventure and casual categories."
   >
 
   <meta
     name="keywords"
-    content="free games, online games, browser games, mobile games, arcade games, puzzle games, racing games, action games, sports games, SM Gaming, SM Studio"
+    content="SM Gaming, online games, free browser games, mobile games, arcade games, puzzle games, racing games, action games, sports games, strategy games, SM Studio"
   >
 
   <meta
@@ -27,7 +27,7 @@
 
   <meta
     name="theme-color"
-    content="#070711"
+    content="#07070d"
   >
 
   <meta
@@ -47,12 +47,12 @@
 
   <meta
     property="og:title"
-    content="SM Gaming - Free Browser Games"
+    content="SM Gaming - Play Free Browser Games"
   >
 
   <meta
     property="og:description"
-    content="Play free browser games across action, arcade, puzzle, racing, sports, strategy and casual categories."
+    content="Play fast and mobile-friendly browser games across action, arcade, puzzle, racing, sports, strategy and more."
   >
 
   <meta
@@ -77,7 +77,7 @@
 
 
   <!-- =====================================================
-       TWITTER CARD
+       TWITTER
   ====================================================== -->
 
   <meta
@@ -87,12 +87,12 @@
 
   <meta
     name="twitter:title"
-    content="SM Gaming - Free Browser Games"
+    content="SM Gaming - Play Free Browser Games"
   >
 
   <meta
     name="twitter:description"
-    content="Play free browser games on mobile and desktop."
+    content="Play mobile-friendly browser games across multiple categories."
   >
 
   <meta
@@ -103,7 +103,7 @@
 
   <!-- =====================================================
        GOOGLE ADSENSE
-       Preserved
+       Keep this code for the existing AdSense account.
   ====================================================== -->
 
   <script
@@ -119,7 +119,7 @@
 
 
   <title>
-    SM Gaming - Free Online Browser Games | SM Studio
+    SM Gaming - Play Free Browser Games | SM Studio
   </title>
 
 
@@ -180,7 +180,7 @@
 
 
   <!-- =====================================================
-       GOOGLE FONT
+       GOOGLE FONTS
   ====================================================== -->
 
   <link
@@ -195,7 +195,7 @@
   >
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@600;700;800;900&display=swap"
     rel="stylesheet"
   >
 
@@ -206,7 +206,7 @@
 
   <link
     rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
   >
 
 
@@ -236,72 +236,76 @@
     aria-label="Main Navigation"
   >
 
-    <div class="nav-container">
+    <div class="container nav-container">
+
 
       <a
-        href="#home"
+        href="#"
         class="brand"
         aria-label="SM Gaming Home"
       >
 
-        <span class="brand-logo">
-
-          <img
-            src="favicon.png"
-            width="42"
-            height="42"
-            alt="SM Gaming"
-          >
-
+        <span class="brand-icon">
+          <i
+            class="fas fa-gamepad"
+            aria-hidden="true"
+          ></i>
         </span>
 
         <span class="brand-text">
-
-          <strong>SM</strong>
-          Gaming
-
+          SM <strong>Gaming</strong>
         </span>
 
       </a>
 
 
-      <div
-        class="desktop-nav"
-        id="desktopNav"
+      <ul
+        class="nav-links"
+        id="navLinks"
       >
 
-        <a href="#home" class="nav-link active">
-          Home
-        </a>
+        <li>
+          <a href="#games">
+            Games
+          </a>
+        </li>
 
-        <a href="#games" class="nav-link">
-          Games
-        </a>
+        <li>
+          <a href="#categories">
+            Categories
+          </a>
+        </li>
 
-        <a href="#categories" class="nav-link">
-          Categories
-        </a>
+        <li>
+          <a href="#featured">
+            Featured
+          </a>
+        </li>
 
-        <a href="#how-it-works" class="nav-link">
-          How It Works
-        </a>
+        <li>
+          <a href="#how-to-play">
+            How to Play
+          </a>
+        </li>
 
-      </div>
+      </ul>
 
 
       <div class="nav-actions">
 
         <button
+          class="favorite-nav-btn"
+          id="favoritesBtn"
           type="button"
-          class="nav-favorite-btn"
-          id="favoriteFilterBtn"
           aria-label="Show favorite games"
-          title="Favorites"
         >
 
-          <i class="fa-regular fa-heart"></i>
+          <i
+            class="fas fa-heart"
+            aria-hidden="true"
+          ></i>
 
-          <span id="favoriteCount">
+          <span class="favorite-count" id="favoriteCount">
             0
           </span>
 
@@ -309,56 +313,22 @@
 
 
         <button
+          class="nav-toggle"
+          id="navToggle"
           type="button"
-          class="menu-btn"
-          id="menuBtn"
-          aria-label="Open navigation menu"
+          aria-label="Open menu"
           aria-expanded="false"
+          aria-controls="navLinks"
         >
 
-          <i class="fa-solid fa-bars"></i>
+          <i
+            class="fas fa-bars"
+            aria-hidden="true"
+          ></i>
 
         </button>
 
       </div>
-
-    </div>
-
-
-    <div
-      class="mobile-menu"
-      id="mobileMenu"
-    >
-
-      <a href="#home">
-        <i class="fa-solid fa-house"></i>
-        Home
-      </a>
-
-      <a href="#games">
-        <i class="fa-solid fa-gamepad"></i>
-        Games
-      </a>
-
-      <a href="#categories">
-        <i class="fa-solid fa-layer-group"></i>
-        Categories
-      </a>
-
-      <a href="#how-it-works">
-        <i class="fa-solid fa-circle-info"></i>
-        How It Works
-      </a>
-
-      <button
-        type="button"
-        id="mobileFavorites"
-      >
-
-        <i class="fa-solid fa-heart"></i>
-        Favorites
-
-      </button>
 
     </div>
 
@@ -371,745 +341,1037 @@
      HERO
 ====================================================== -->
 
-<main id="home">
+<main>
 
-  <section class="hero-section">
+<section class="hero">
 
-    <div class="hero-bg-shape hero-shape-one"></div>
-    <div class="hero-bg-shape hero-shape-two"></div>
+  <div class="hero-grid"></div>
 
+  <div class="hero-glow hero-glow-one"></div>
+  <div class="hero-glow hero-glow-two"></div>
 
-    <div class="container hero-container">
+  <div class="container hero-content">
 
-      <div class="hero-content">
+    <div class="hero-badge">
 
-        <div class="hero-badge">
+      <span class="badge-dot"></span>
 
-          <span class="live-dot"></span>
+      <i
+        class="fas fa-gamepad"
+        aria-hidden="true"
+      ></i>
 
-          FREE BROWSER GAMES
+      30+ Browser Games
 
-        </div>
-
-
-        <h1>
-
-          Play.
-          <span>Compete.</span>
-          Have Fun.
-
-        </h1>
+    </div>
 
 
-        <p>
-
-          Discover fast, fun and mobile-friendly games.
-          Choose your favorite category and start playing
-          directly from your browser.
-
-        </p>
+    <h1>
+      PLAY.
+      <span>COMPETE.</span>
+      HAVE FUN.
+    </h1>
 
 
-        <div class="hero-buttons">
+    <p class="hero-description">
 
-          <a
-            href="#games"
-            class="btn btn-primary"
-          >
+      Discover a growing collection of fast,
+      mobile-friendly browser games.
+      Choose your favorite category and start playing.
 
-            <i class="fa-solid fa-gamepad"></i>
-
-            Explore Games
-
-          </a>
+    </p>
 
 
-          <a
-            href="#categories"
-            class="btn btn-secondary"
-          >
+    <div class="hero-buttons">
 
-            <i class="fa-solid fa-layer-group"></i>
+      <a
+        href="#games"
+        class="btn btn-primary"
+      >
 
-            Browse Categories
+        <i
+          class="fas fa-play"
+          aria-hidden="true"
+        ></i>
 
-          </a>
+        Explore Games
 
-        </div>
-
-
-        <div class="hero-stats">
-
-          <div class="hero-stat">
-
-            <strong>
-              30+
-            </strong>
-
-            <span>
-              Games
-            </span>
-
-          </div>
+      </a>
 
 
-          <div class="hero-stat-divider"></div>
+      <a
+        href="#categories"
+        class="btn btn-secondary"
+      >
+
+        <i
+          class="fas fa-layer-group"
+          aria-hidden="true"
+        ></i>
+
+        Browse Categories
+
+      </a>
+
+    </div>
 
 
-          <div class="hero-stat">
+    <div class="hero-mini-stats">
 
-            <strong>
-              7
-            </strong>
+      <div class="mini-stat">
 
-            <span>
-              Categories
-            </span>
+        <strong>
+          36+
+        </strong>
 
-          </div>
-
-
-          <div class="hero-stat-divider"></div>
-
-
-          <div class="hero-stat">
-
-            <strong>
-              Free
-            </strong>
-
-            <span>
-              To Play
-            </span>
-
-          </div>
-
-        </div>
+        <span>
+          Games
+        </span>
 
       </div>
 
 
-      <div class="hero-visual">
-
-        <div class="hero-game-window">
-
-          <div class="window-top">
-
-            <div class="window-dots">
-
-              <span></span>
-              <span></span>
-              <span></span>
-
-            </div>
-
-            <span>
-              SM GAMING
-            </span>
-
-            <i class="fa-solid fa-expand"></i>
-
-          </div>
+      <div class="mini-divider"></div>
 
 
-          <div class="hero-game-art">
+      <div class="mini-stat">
 
-            <div class="hero-grid"></div>
+        <strong>
+          8
+        </strong>
 
-            <div class="floating-controller">
+        <span>
+          Categories
+        </span>
 
-              <i class="fa-solid fa-gamepad"></i>
-
-            </div>
-
-
-            <div class="hero-art-title">
-
-              <small>
-                READY?
-              </small>
-
-              <strong>
-                LET'S PLAY
-              </strong>
-
-            </div>
+      </div>
 
 
-            <div class="hero-art-buttons">
-
-              <span>
-                PLAY NOW
-              </span>
-
-              <span>
-                ★ ★ ★ ★ ★
-              </span>
-
-            </div>
-
-          </div>
-
-        </div>
+      <div class="mini-divider"></div>
 
 
-        <div class="floating-card floating-card-one">
+      <div class="mini-stat">
 
-          <i class="fa-solid fa-bolt"></i>
+        <strong>
+          100%
+        </strong>
 
-          <div>
-
-            <strong>
-              Fast Games
-            </strong>
-
-            <span>
-              Jump right in
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div class="floating-card floating-card-two">
-
-          <i class="fa-solid fa-mobile-screen-button"></i>
-
-          <div>
-
-            <strong>
-              Mobile Ready
-            </strong>
-
-            <span>
-              Touch friendly
-            </span>
-
-          </div>
-
-        </div>
+        <span>
+          Mobile Friendly
+        </span>
 
       </div>
 
     </div>
 
-  </section>
+  </div>
+
+</section>
 
 
 <!-- =====================================================
-     SEARCH / GAME CONTROLS
+     FEATURED
 ====================================================== -->
 
-  <section
-    class="game-browser-section"
-    id="games"
-  >
+<section
+  class="featured-section"
+  id="featured"
+>
 
-    <div class="container">
+  <div class="container">
 
-      <div class="section-heading-row">
+    <div class="section-heading">
 
-        <div>
+      <div>
 
-          <span class="section-label">
-            GAME LIBRARY
+        <span class="section-label">
+          FEATURED GAME
+        </span>
+
+        <h2>
+          Ready to Play?
+        </h2>
+
+      </div>
+
+      <a
+        href="#games"
+        class="view-all"
+      >
+        View all games
+        <i
+          class="fas fa-arrow-right"
+          aria-hidden="true"
+        ></i>
+      </a>
+
+    </div>
+
+
+    <article class="featured-card">
+
+      <div class="featured-visual">
+
+        <div class="featured-grid"></div>
+
+        <div class="featured-orb"></div>
+
+        <div class="featured-car">
+          🏎️
+        </div>
+
+        <div class="featured-speed speed-one">
+          ━━━━━━━━━
+        </div>
+
+        <div class="featured-speed speed-two">
+          ━━━━━
+        </div>
+
+        <div class="featured-speed speed-three">
+          ━━━━━━━
+        </div>
+
+        <div class="featured-tag">
+          RACING
+        </div>
+
+      </div>
+
+
+      <div class="featured-content">
+
+        <span class="eyebrow">
+          FEATURED
+        </span>
+
+        <h3>
+          Neon Drift
+        </h3>
+
+        <p>
+          Push your reflexes to the limit and master
+          high-speed neon racing.
+        </p>
+
+
+        <div class="featured-meta">
+
+          <span>
+            <i
+              class="fas fa-car"
+              aria-hidden="true"
+            ></i>
+            Racing
           </span>
 
-          <h2>
-            Find Your Next Game
-          </h2>
-
-          <p>
-            Search, filter and choose a game you want to play.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="game-controls">
-
-        <div class="search-box">
-
-          <i class="fa-solid fa-magnifying-glass"></i>
-
-          <input
-            type="search"
-            id="gameSearch"
-            placeholder="Search games..."
-            autocomplete="off"
-            aria-label="Search games"
-          >
-
-          <button
-            type="button"
-            id="clearSearch"
-            aria-label="Clear search"
-          >
-
-            <i class="fa-solid fa-xmark"></i>
-
-          </button>
+          <span>
+            <i
+              class="fas fa-mobile-screen"
+              aria-hidden="true"
+            ></i>
+            Mobile Friendly
+          </span>
 
         </div>
 
-
-        <div class="sort-box">
-
-          <i class="fa-solid fa-arrow-down-wide-short"></i>
-
-          <select
-            id="gameSort"
-            aria-label="Sort games"
-          >
-
-            <option value="popular">
-              Popular
-            </option>
-
-            <option value="rating">
-              Highest Rated
-            </option>
-
-            <option value="az">
-              A - Z
-            </option>
-
-            <option value="new">
-              Newest
-            </option>
-
-          </select>
-
-        </div>
-
-      </div>
-
-
-      <div
-        class="category-tabs"
-        id="categories"
-        aria-label="Game Categories"
-      >
 
         <button
-          class="category-btn active"
-          data-category="All"
+          class="btn btn-primary featured-play"
           type="button"
+          data-game="neon-drift"
         >
 
-          <i class="fa-solid fa-border-all"></i>
+          <i
+            class="fas fa-play"
+            aria-hidden="true"
+          ></i>
 
-          All
+          Play Neon Drift
 
         </button>
 
+      </div>
 
-        <button
-          class="category-btn"
-          data-category="Action"
-          type="button"
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     GAME LIBRARY
+====================================================== -->
+
+<section
+  class="games-section"
+  id="games"
+>
+
+  <div class="container">
+
+
+    <div class="section-heading games-heading">
+
+      <div>
+
+        <span class="section-label">
+          GAME LIBRARY
+        </span>
+
+        <h2>
+          Choose Your Game
+        </h2>
+
+        <p>
+          Find something fun and start playing.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="game-tools">
+
+      <div class="search-box">
+
+        <i
+          class="fas fa-search"
+          aria-hidden="true"
+        ></i>
+
+        <input
+          type="search"
+          id="gameSearch"
+          placeholder="Search games..."
+          autocomplete="off"
+          aria-label="Search games"
         >
 
-          <i class="fa-solid fa-crosshairs"></i>
+        <button
+          type="button"
+          id="clearSearch"
+          class="clear-search"
+          aria-label="Clear search"
+          hidden
+        >
 
+          <i
+            class="fas fa-xmark"
+            aria-hidden="true"
+          ></i>
+
+        </button>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="mobile-filter-btn"
+        id="mobileFilterBtn"
+      >
+
+        <i
+          class="fas fa-filter"
+          aria-hidden="true"
+        ></i>
+
+        Filters
+
+      </button>
+
+    </div>
+
+
+    <!-- FILTERS -->
+
+    <div
+      class="filter-wrap"
+      id="filterWrap"
+    >
+
+      <button
+        class="filter-btn active"
+        type="button"
+        data-filter="all"
+      >
+        All
+      </button>
+
+      <button
+        class="filter-btn"
+        type="button"
+        data-filter="Action"
+      >
+        Action
+      </button>
+
+      <button
+        class="filter-btn"
+        type="button"
+        data-filter="Arcade"
+      >
+        Arcade
+      </button>
+
+      <button
+        class="filter-btn"
+        type="button"
+        data-filter="Puzzle"
+      >
+        Puzzle
+      </button>
+
+      <button
+        class="filter-btn"
+        type="button"
+        data-filter="Racing"
+      >
+        Racing
+      </button>
+
+      <button
+        class="filter-btn"
+        type="button"
+        data-filter="Sports"
+      >
+        Sports
+      </button>
+
+      <button
+        class="filter-btn"
+        type="button"
+        data-filter="Strategy"
+      >
+        Strategy
+      </button>
+
+      <button
+        class="filter-btn"
+        type="button"
+        data-filter="Casual"
+      >
+        Casual
+      </button>
+
+      <button
+        class="filter-btn"
+        type="button"
+        data-filter="Adventure"
+      >
+        Adventure
+      </button>
+
+    </div>
+
+
+    <div
+      class="active-filter-info"
+      id="activeFilterInfo"
+      hidden
+    ></div>
+
+
+    <!-- GAME GRID -->
+
+    <div
+      class="game-grid"
+      id="gameGrid"
+    ></div>
+
+
+    <!-- EMPTY -->
+
+    <div
+      class="empty-games"
+      id="emptyGames"
+      hidden
+    >
+
+      <div class="empty-icon">
+
+        <i
+          class="fas fa-gamepad"
+          aria-hidden="true"
+        ></i>
+
+      </div>
+
+      <h3>
+        No games found
+      </h3>
+
+      <p>
+        Try another search or category.
+      </p>
+
+      <button
+        type="button"
+        class="btn btn-secondary"
+        id="resetGames"
+      >
+
+        <i
+          class="fas fa-rotate-left"
+          aria-hidden="true"
+        ></i>
+
+        Show All Games
+
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     CATEGORIES
+====================================================== -->
+
+<section
+  class="categories-section"
+  id="categories"
+>
+
+  <div class="container">
+
+    <div class="section-heading centered">
+
+      <span class="section-label">
+        CATEGORIES
+      </span>
+
+      <h2>
+        Play Your Way
+      </h2>
+
+      <p>
+        Pick a category and discover games made for
+        different moods and play styles.
+      </p>
+
+    </div>
+
+
+    <div class="category-grid">
+
+
+      <button
+        class="category-card category-action"
+        type="button"
+        data-category="Action"
+      >
+
+        <span class="category-icon">
+          <i
+            class="fas fa-crosshairs"
+            aria-hidden="true"
+          ></i>
+        </span>
+
+        <strong>
           Action
+        </strong>
 
-        </button>
+        <small>
+          Fast &amp; intense
+        </small>
 
-
-        <button
-          class="category-btn"
-          data-category="Arcade"
-          type="button"
-        >
-
-          <i class="fa-solid fa-ghost"></i>
-
-          Arcade
-
-        </button>
+      </button>
 
 
-        <button
-          class="category-btn"
-          data-category="Puzzle"
-          type="button"
-        >
-
-          <i class="fa-solid fa-puzzle-piece"></i>
-
-          Puzzle
-
-        </button>
-
-
-        <button
-          class="category-btn"
-          data-category="Racing"
-          type="button"
-        >
-
-          <i class="fa-solid fa-car"></i>
-
-          Racing
-
-        </button>
-
-
-        <button
-          class="category-btn"
-          data-category="Sports"
-          type="button"
-        >
-
-          <i class="fa-solid fa-basketball"></i>
-
-          Sports
-
-        </button>
-
-
-        <button
-          class="category-btn"
-          data-category="Strategy"
-          type="button"
-        >
-
-          <i class="fa-solid fa-chess"></i>
-
-          Strategy
-
-        </button>
-
-
-        <button
-          class="category-btn"
-          data-category="Casual"
-          type="button"
-        >
-
-          <i class="fa-solid fa-face-smile"></i>
-
-          Casual
-
-        </button>
-
-      </div>
-
-
-      <div
-        class="games-grid"
-        id="gamesGrid"
-      ></div>
-
-
-      <div
-        class="no-results"
-        id="noResults"
-        hidden
+      <button
+        class="category-card"
+        type="button"
+        data-category="Arcade"
       >
 
-        <div class="no-results-icon">
+        <span class="category-icon">
+          <i
+            class="fas fa-gamepad"
+            aria-hidden="true"
+          ></i>
+        </span>
 
-          <i class="fa-solid fa-gamepad"></i>
+        <strong>
+          Arcade
+        </strong>
+
+        <small>
+          Quick sessions
+        </small>
+
+      </button>
+
+
+      <button
+        class="category-card"
+        type="button"
+        data-category="Puzzle"
+      >
+
+        <span class="category-icon">
+          <i
+            class="fas fa-puzzle-piece"
+            aria-hidden="true"
+          ></i>
+        </span>
+
+        <strong>
+          Puzzle
+        </strong>
+
+        <small>
+          Test your brain
+        </small>
+
+      </button>
+
+
+      <button
+        class="category-card"
+        type="button"
+        data-category="Racing"
+      >
+
+        <span class="category-icon">
+          <i
+            class="fas fa-flag-checkered"
+            aria-hidden="true"
+          ></i>
+        </span>
+
+        <strong>
+          Racing
+        </strong>
+
+        <small>
+          Speed &amp; drift
+        </small>
+
+      </button>
+
+
+      <button
+        class="category-card"
+        type="button"
+        data-category="Sports"
+      >
+
+        <span class="category-icon">
+          <i
+            class="fas fa-trophy"
+            aria-hidden="true"
+          ></i>
+        </span>
+
+        <strong>
+          Sports
+        </strong>
+
+        <small>
+          Compete &amp; score
+        </small>
+
+      </button>
+
+
+      <button
+        class="category-card"
+        type="button"
+        data-category="Strategy"
+      >
+
+        <span class="category-icon">
+          <i
+            class="fas fa-chess"
+            aria-hidden="true"
+          ></i>
+        </span>
+
+        <strong>
+          Strategy
+        </strong>
+
+        <small>
+          Think ahead
+        </small>
+
+      </button>
+
+
+      <button
+        class="category-card"
+        type="button"
+        data-category="Casual"
+      >
+
+        <span class="category-icon">
+          <i
+            class="fas fa-seedling"
+            aria-hidden="true"
+          ></i>
+        </span>
+
+        <strong>
+          Casual
+        </strong>
+
+        <small>
+          Relax &amp; play
+        </small>
+
+      </button>
+
+
+      <button
+        class="category-card"
+        type="button"
+        data-category="Adventure"
+      >
+
+        <span class="category-icon">
+          <i
+            class="fas fa-compass"
+            aria-hidden="true"
+          ></i>
+        </span>
+
+        <strong>
+          Adventure
+        </strong>
+
+        <small>
+          Explore worlds
+        </small>
+
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     WHY SM GAMING
+====================================================== -->
+
+<section class="why-section">
+
+  <div class="container">
+
+    <div class="section-heading centered">
+
+      <span class="section-label">
+        WHY SM GAMING
+      </span>
+
+      <h2>
+        Gaming Without the Hassle
+      </h2>
+
+      <p>
+        Built with a simple goal: make finding a fun game
+        quick and easy.
+      </p>
+
+    </div>
+
+
+    <div class="why-grid">
+
+
+      <article class="why-card">
+
+        <div class="why-number">
+          01
+        </div>
+
+        <div class="why-icon">
+
+          <i
+            class="fas fa-bolt"
+            aria-hidden="true"
+          ></i>
 
         </div>
 
         <h3>
-          No games found
+          Quick to Start
         </h3>
 
         <p>
-          Try another search or choose a different category.
+          Browse the library, choose a game and start your
+          session without complicated navigation.
         </p>
 
-        <button
-          type="button"
-          class="btn btn-primary"
-          id="resetFilters"
-        >
+      </article>
 
-          Reset Filters
 
-        </button>
+      <article class="why-card">
 
-      </div>
+        <div class="why-number">
+          02
+        </div>
+
+        <div class="why-icon">
+
+          <i
+            class="fas fa-mobile-screen-button"
+            aria-hidden="true"
+          ></i>
+
+        </div>
+
+        <h3>
+          Mobile Friendly
+        </h3>
+
+        <p>
+          The gaming portal is designed to work comfortably
+          on phones, tablets and desktop screens.
+        </p>
+
+      </article>
+
+
+      <article class="why-card">
+
+        <div class="why-number">
+          03
+        </div>
+
+        <div class="why-icon">
+
+          <i
+            class="fas fa-layer-group"
+            aria-hidden="true"
+          ></i>
+
+        </div>
+
+        <h3>
+          Multiple Categories
+        </h3>
+
+        <p>
+          From racing and action to puzzles and strategy,
+          there is a category for different play styles.
+        </p>
+
+      </article>
+
+
+      <article class="why-card">
+
+        <div class="why-number">
+          04
+        </div>
+
+        <div class="why-icon">
+
+          <i
+            class="fas fa-heart"
+            aria-hidden="true"
+          ></i>
+
+        </div>
+
+        <h3>
+          Save Favorites
+        </h3>
+
+        <p>
+          Mark games as favorites on your device so you can
+          find them quickly during your next visit.
+        </p>
+
+      </article>
 
     </div>
 
-  </section>
+  </div>
+
+</section>
 
 
 <!-- =====================================================
-     HOW IT WORKS
+     HOW TO PLAY
 ====================================================== -->
 
-  <section
-    class="how-section"
-    id="how-it-works"
-  >
+<section
+  class="how-section"
+  id="how-to-play"
+>
 
-    <div class="container">
+  <div class="container">
 
-      <div class="section-heading centered">
+    <div class="section-heading centered">
 
-        <span class="section-label">
-          SIMPLE & FAST
-        </span>
+      <span class="section-label">
+        HOW TO PLAY
+      </span>
 
-        <h2>
-          How It Works
-        </h2>
+      <h2>
+        Three Simple Steps
+      </h2>
 
-        <p>
-          Getting into a game takes just a few seconds.
-        </p>
-
-      </div>
-
-
-      <div class="steps-grid">
-
-
-        <article class="step-card">
-
-          <div class="step-number">
-            01
-          </div>
-
-          <div class="step-icon">
-
-            <i class="fa-solid fa-magnifying-glass"></i>
-
-          </div>
-
-          <h3>
-            Find a Game
-          </h3>
-
-          <p>
-            Browse the library or search for a game
-            you want to play.
-          </p>
-
-        </article>
-
-
-        <article class="step-card">
-
-          <div class="step-number">
-            02
-          </div>
-
-          <div class="step-icon">
-
-            <i class="fa-solid fa-gamepad"></i>
-
-          </div>
-
-          <h3>
-            Choose Your Game
-          </h3>
-
-          <p>
-            Open a game card to view its details and
-            available play option.
-          </p>
-
-        </article>
-
-
-        <article class="step-card">
-
-          <div class="step-number">
-            03
-          </div>
-
-          <div class="step-icon">
-
-            <i class="fa-solid fa-play"></i>
-
-          </div>
-
-          <h3>
-            Start Playing
-          </h3>
-
-          <p>
-            Launch the game and enjoy a touch-friendly
-            browser gaming experience.
-          </p>
-
-        </article>
-
-      </div>
+      <p>
+        Getting started takes only a few seconds.
+      </p>
 
     </div>
 
-  </section>
+
+    <div class="steps-grid">
 
 
-<!-- =====================================================
-     FEATURES
-====================================================== -->
+      <article class="step-card">
 
-  <section class="features-section">
+        <div class="step-number">
+          1
+        </div>
 
-    <div class="container">
+        <div class="step-icon">
 
-      <div class="section-heading centered">
+          <i
+            class="fas fa-search"
+            aria-hidden="true"
+          ></i>
 
-        <span class="section-label">
-          BUILT FOR PLAYERS
-        </span>
+        </div>
 
-        <h2>
-          Gaming Without the Hassle
-        </h2>
+        <h3>
+          Find a Game
+        </h3>
 
         <p>
-          A clean gaming experience designed for both
-          phones and larger screens.
+          Search the library or choose a category to find
+          something you want to play.
         </p>
 
-      </div>
+      </article>
 
 
-      <div class="benefits-grid">
+      <article class="step-card">
+
+        <div class="step-number">
+          2
+        </div>
+
+        <div class="step-icon">
+
+          <i
+            class="fas fa-play"
+            aria-hidden="true"
+          ></i>
+
+        </div>
+
+        <h3>
+          Open the Game
+        </h3>
+
+        <p>
+          Select a game card to see its details and open
+          the corresponding game page.
+        </p>
+
+      </article>
 
 
-        <article class="benefit-card">
+      <article class="step-card">
 
-          <div class="benefit-icon">
-            <i class="fa-solid fa-mobile-screen"></i>
-          </div>
+        <div class="step-number">
+          3
+        </div>
 
-          <h3>
-            Mobile Friendly
-          </h3>
+        <div class="step-icon">
 
-          <p>
-            Responsive layouts and touch-friendly controls
-            make the website comfortable to use on phones.
-          </p>
+          <i
+            class="fas fa-gamepad"
+            aria-hidden="true"
+          ></i>
 
-        </article>
+        </div>
 
+        <h3>
+          Start Playing
+        </h3>
 
-        <article class="benefit-card">
+        <p>
+          Have fun, improve your skills and come back for
+          another game whenever you want.
+        </p>
 
-          <div class="benefit-icon">
-            <i class="fa-solid fa-bolt"></i>
-          </div>
-
-          <h3>
-            Fast Interface
-          </h3>
-
-          <p>
-            Lightweight page structure with smooth
-            navigation and quick game discovery.
-          </p>
-
-        </article>
-
-
-        <article class="benefit-card">
-
-          <div class="benefit-icon">
-            <i class="fa-solid fa-layer-group"></i>
-          </div>
-
-          <h3>
-            Multiple Categories
-          </h3>
-
-          <p>
-            Find action, arcade, puzzle, racing, sports,
-            strategy and casual games in one place.
-          </p>
-
-        </article>
-
-
-        <article class="benefit-card">
-
-          <div class="benefit-icon">
-            <i class="fa-solid fa-heart"></i>
-          </div>
-
-          <h3>
-            Save Favorites
-          </h3>
-
-          <p>
-            Save games to your favorites on this device
-            using your browser's local storage.
-          </p>
-
-        </article>
-
-      </div>
+      </article>
 
     </div>
 
-  </section>
+  </div>
+
+</section>
 
 
 <!-- =====================================================
      CTA
 ====================================================== -->
 
-  <section class="cta-section">
+<section class="cta-section">
 
-    <div class="container">
+  <div class="cta-glow"></div>
 
-      <div class="cta-card">
+  <div class="container cta-content">
 
-        <div class="cta-content">
+    <div class="cta-icon">
 
-          <span class="section-label">
-            READY TO PLAY?
-          </span>
-
-          <h2>
-            Pick a Game.
-            <span>Start Playing.</span>
-          </h2>
-
-          <p>
-            Explore the SM Gaming library and discover
-            your next favorite browser game.
-          </p>
-
-          <a
-            href="#games"
-            class="btn btn-primary"
-          >
-
-            <i class="fa-solid fa-gamepad"></i>
-
-            Explore Games
-
-          </a>
-
-        </div>
-
-
-        <div class="cta-decoration">
-
-          <i class="fa-solid fa-gamepad"></i>
-
-        </div>
-
-      </div>
+      <i
+        class="fas fa-gamepad"
+        aria-hidden="true"
+      ></i>
 
     </div>
 
-  </section>
+    <span class="section-label">
+      LET'S PLAY
+    </span>
+
+    <h2>
+      Your Next Game Is Waiting.
+    </h2>
+
+    <p>
+      Explore the game library and find your next
+      favorite browser game.
+    </p>
+
+    <a
+      href="#games"
+      class="btn btn-primary"
+    >
+
+      <i
+        class="fas fa-rocket"
+        aria-hidden="true"
+      ></i>
+
+      Start Playing
+
+    </a>
+
+  </div>
+
+</section>
 
 </main>
 
@@ -1119,7 +1381,7 @@
 ====================================================== -->
 
 <div
-  class="game-modal"
+  class="modal"
   id="gameModal"
   aria-hidden="true"
 >
@@ -1131,10 +1393,10 @@
 
 
   <div
-    class="modal-box"
+    class="modal-card"
     role="dialog"
     aria-modal="true"
-    aria-labelledby="modalGameTitle"
+    aria-labelledby="modalTitle"
   >
 
     <button
@@ -1144,97 +1406,112 @@
       aria-label="Close game details"
     >
 
-      <i class="fa-solid fa-xmark"></i>
+      <i
+        class="fas fa-xmark"
+        aria-hidden="true"
+      ></i>
 
     </button>
 
 
     <div
-      class="modal-cover"
-      id="modalCover"
+      class="modal-game-icon"
+      id="modalIcon"
     >
-
-      <div class="modal-cover-icon" id="modalIcon">
-        🎮
-      </div>
-
+      🎮
     </div>
 
 
-    <div class="modal-content">
-
-      <div class="modal-category" id="modalCategory">
-        ACTION
-      </div>
-
-      <h2 id="modalGameTitle">
-        Game Title
-      </h2>
-
-      <div class="modal-meta">
-
-        <span id="modalRating">
-          ★ 4.8
-        </span>
-
-        <span id="modalPlays">
-          10K plays
-        </span>
-
-      </div>
-
-      <p id="modalDescription">
-        Game description.
-      </p>
+    <span
+      class="modal-category"
+      id="modalCategory"
+    >
+      GAME
+    </span>
 
 
-      <div class="modal-actions">
-
-        <button
-          type="button"
-          class="btn btn-primary modal-play-btn"
-          id="modalPlayBtn"
-        >
-
-          <i class="fa-solid fa-play"></i>
-
-          Play Game
-
-        </button>
+    <h3 id="modalTitle">
+      Game
+    </h3>
 
 
-        <button
-          type="button"
-          class="modal-favorite-btn"
-          id="modalFavoriteBtn"
-        >
-
-          <i class="fa-regular fa-heart"></i>
-
-          Favorite
-
-        </button>
-
-      </div>
+    <p
+      class="modal-description"
+      id="modalDescription"
+    >
+      Game description.
+    </p>
 
 
-      <div
-        class="game-notice"
-        id="gameNotice"
+    <div class="modal-actions">
+
+      <a
+        href="#"
+        class="btn btn-primary"
+        id="modalPlay"
       >
 
-        <i class="fa-solid fa-circle-info"></i>
+        <i
+          class="fas fa-play"
+          aria-hidden="true"
+        ></i>
 
-        The game page needs to be added to its game folder
-        before it can be launched.
+        Play Now
 
-      </div>
+      </a>
+
+
+      <button
+        type="button"
+        class="btn btn-secondary"
+        id="modalFavorite"
+      >
+
+        <i
+          class="far fa-heart"
+          aria-hidden="true"
+        ></i>
+
+        Favorite
+
+      </button>
 
     </div>
+
+
+    <p class="modal-note">
+
+      <i
+        class="fas fa-circle-info"
+        aria-hidden="true"
+      ></i>
+
+      Game pages are opened from the SM Gaming library.
+
+    </p>
 
   </div>
 
 </div>
+
+
+<!-- =====================================================
+     BACK TO TOP
+====================================================== -->
+
+<button
+  type="button"
+  class="back-to-top"
+  id="backToTop"
+  aria-label="Back to top"
+>
+
+  <i
+    class="fas fa-arrow-up"
+    aria-hidden="true"
+  ></i>
+
+</button>
 
 
 <!-- =====================================================
@@ -1245,41 +1522,39 @@
 
   <div class="container">
 
+
     <div class="footer-grid">
 
+
+      <!-- BRAND -->
 
       <div class="footer-brand">
 
         <a
-          href="#home"
-          class="brand footer-brand-link"
+          href="#"
+          class="brand footer-brand-logo"
+          aria-label="SM Gaming Home"
         >
 
-          <span class="brand-logo">
+          <span class="brand-icon">
 
-            <img
-              src="favicon.png"
-              width="42"
-              height="42"
-              alt="SM Gaming"
-              loading="lazy"
-            >
+            <i
+              class="fas fa-gamepad"
+              aria-hidden="true"
+            ></i>
 
           </span>
 
           <span class="brand-text">
-
-            <strong>SM</strong>
-            Gaming
-
+            SM <strong>Gaming</strong>
           </span>
 
         </a>
 
 
         <p>
-          A growing collection of free, mobile-friendly
-          browser games from SM Studio.
+          A growing gaming portal by SM Studio,
+          built for quick and enjoyable browser gaming.
         </p>
 
 
@@ -1292,7 +1567,10 @@
             aria-label="SM Studio on X"
           >
 
-            <i class="fa-brands fa-x-twitter"></i>
+            <i
+              class="fab fa-x-twitter"
+              aria-hidden="true"
+            ></i>
 
           </a>
 
@@ -1304,7 +1582,10 @@
             aria-label="SM Studio on Instagram"
           >
 
-            <i class="fa-brands fa-instagram"></i>
+            <i
+              class="fab fa-instagram"
+              aria-hidden="true"
+            ></i>
 
           </a>
 
@@ -1316,7 +1597,10 @@
             aria-label="SM Studio on Telegram"
           >
 
-            <i class="fa-brands fa-telegram"></i>
+            <i
+              class="fab fa-telegram-plane"
+              aria-hidden="true"
+            ></i>
 
           </a>
 
@@ -1325,22 +1609,24 @@
       </div>
 
 
+      <!-- GAMES -->
+
       <div class="footer-column">
 
         <h3>
-          Gaming
+          Games
         </h3>
 
         <a href="#games">
           All Games
         </a>
 
-        <a href="#categories">
-          Categories
+        <a href="#featured">
+          Featured
         </a>
 
-        <a href="#games">
-          Popular Games
+        <a href="#categories">
+          Categories
         </a>
 
         <a href="#games">
@@ -1350,55 +1636,34 @@
       </div>
 
 
+      <!-- EXPLORE -->
+
       <div class="footer-column">
 
         <h3>
-          Categories
+          Explore
         </h3>
 
-        <a href="#games" data-footer-category="Action">
+        <a href="#games">
           Action
         </a>
 
-        <a href="#games" data-footer-category="Arcade">
-          Arcade
-        </a>
-
-        <a href="#games" data-footer-category="Puzzle">
+        <a href="#games">
           Puzzle
         </a>
 
-        <a href="#games" data-footer-category="Racing">
+        <a href="#games">
           Racing
         </a>
 
-      </div>
-
-
-      <div class="footer-column">
-
-        <h3>
-          More
-        </h3>
-
-        <a href="#games" data-footer-category="Sports">
+        <a href="#games">
           Sports
         </a>
 
-        <a href="#games" data-footer-category="Strategy">
-          Strategy
-        </a>
-
-        <a href="#games" data-footer-category="Casual">
-          Casual
-        </a>
-
-        <a href="#how-it-works">
-          How It Works
-        </a>
-
       </div>
 
+
+      <!-- LEGAL -->
 
       <div class="footer-column">
 
@@ -1450,26 +1715,13 @@
 
 
 <!-- =====================================================
-     BACK TO TOP
-====================================================== -->
-
-<button
-  type="button"
-  class="back-to-top"
-  id="backToTop"
-  aria-label="Back to top"
->
-
-  <i class="fa-solid fa-arrow-up"></i>
-
-</button>
-
-
-<!-- =====================================================
      JAVASCRIPT
 ====================================================== -->
 
-<script src="script.js"></script>
+<script
+  src="script.js"
+  defer
+></script>
 
 
 </body>
